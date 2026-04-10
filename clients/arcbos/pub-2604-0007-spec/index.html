@@ -464,6 +464,122 @@ O. 云平台（Cloud）【系统外模块】
 ├─ 任务调度
 ├─ 数据平台
 └─ OTA系统</code></pre></figure>
+<h2>软件架构</h2>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">ARCBOS Robotics Edition
+└─ 除雪机器人完整软件架构
+
+   ├─ 1. 云端平台（Cloud）
+   │  ├─ 车队管理
+   │  ├─ 任务调度
+   │  ├─ 地图/作业区域管理
+   │  ├─ 远程监控
+   │  ├─ 数据存储与分析
+   │  ├─ OTA升级
+   │  └─ 对外API接口
+   │
+   ├─ 2. 上位机（IPC / Industrial PC）
+   │  ├─ 操作系统（Linux / Ubuntu）
+   │  ├─ 本地计算资源管理
+   │  ├─ 与ROS运行环境集成
+   │  ├─ 与MCU通信
+   │  ├─ 与云端通信
+   │  ├─ 本地HMI/调试接口
+   │  └─ 日志与状态管理
+   │
+   ├─ 3. ROS中间件与机器人智能层（ROS / AI Layer）
+   │  ├─ ROS2通信框架
+   │  │  ├─ Topic
+   │  │  ├─ Service
+   │  │  └─ Action
+   │  │
+   │  ├─ 感知节点
+   │  │  ├─ 摄像头处理
+   │  │  ├─ 激光雷达处理
+   │  │  ├─ IMU数据处理
+   │  │  └─ 多传感器融合
+   │  │
+   │  ├─ 定位节点
+   │  │  ├─ RTK-GNSS
+   │  │  ├─ SLAM
+   │  │  └─ 融合定位
+   │  │
+   │  ├─ 规划节点
+   │  │  ├─ 全局路径规划
+   │  │  └─ 局部路径规划
+   │  │
+   │  ├─ 决策节点
+   │  │  ├─ 避障决策
+   │  │  ├─ 作业策略
+   │  │  └─ 模式切换
+   │  │
+   │  ├─ 控制节点
+   │  │  ├─ 轨迹跟踪
+   │  │  ├─ 速度指令生成
+   │  │  └─ 转向指令生成
+   │  │
+   │  └─ 任务管理节点
+   │     ├─ 除雪任务编排
+   │     ├─ 状态机管理
+   │     └─ 异常处理
+   │
+   └─ 4. MCU实时控制层（MCU / Embedded Layer）
+      ├─ 底盘驱动控制
+      │  ├─ 左电机控制
+      │  ├─ 右电机控制
+      │  ├─ 制动控制
+      │  └─ 编码器反馈
+      │
+      ├─ 作业机构控制
+      │  ├─ 绞龙控制
+      │  ├─ 抛雪器控制
+      │  └─ 升降/角度执行器控制
+      │
+      ├─ 电池与电源管理
+      │  ├─ BMS通信
+      │  ├─ 电量检测
+      │  ├─ 温度检测
+      │  └─ 加热/保温控制
+      │
+      ├─ 传感器底层采集
+      │  ├─ 电流/电压
+      │  ├─ 温度
+      │  ├─ 限位开关
+      │  └─ 急停输入
+      │
+      ├─ 安全控制
+      │  ├─ 急停逻辑
+      │  ├─ 故障保护
+      │  ├─ 降级运行
+      │  └─ 联锁保护
+      │
+      └─ 总线与接口
+         ├─ CAN
+         ├─ UART
+         ├─ RS485
+         └─ EtherCAT（如需）</code></pre></figure>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">云端
+└─ 管很多台机器人，负责调度、监控、OTA、数据
+
+上位机（工业PC）
+└─ 机器人本地大脑硬件，运行 Linux + ROS
+
+ROS
+└─ 机器人本地大脑软件，负责感知、定位、规划、决策、任务管理
+
+MCU
+└─ 机器人小脑/执行控制，负责电机、作业机构、电池、安全、实时控制</code></pre></figure>
+<p><strong>最本质的关系图</strong>：</p>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">云端        = 管理层
+上位机      = 计算平台
+ROS         = 智能软件框架
+MCU         = 实时执行控制</code></pre></figure>
+<p>也就是：</p>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">Cloud → IPC → ROS → MCU → 电机/电池/执行器</code></pre></figure>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">ARCBOS Snowbot 软件架构
+├─ 云端（Cloud）         → 调度 / 监控 / OTA / 数据
+├─ 上位机（IPC）         → 本地计算平台，运行 Linux + ROS
+├─ ROS（Robot Brain）    → 感知 / 定位 / 规划 / 决策 / 任务管理
+└─ MCU（Real-Time Ctrl） → 电机 / 电池 / 作业机构 / 安全控制</code></pre></figure>
 </article>
 
   <footer class="footer">
