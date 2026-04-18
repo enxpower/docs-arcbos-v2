@@ -33,88 +33,137 @@
   </div>
 
   <article><h2>一、用途</h2>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">本文件用于规范 Snowbot 机械结构设计文件的正式交付路径。
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">本文件用于规范 Snowbot 机械结构设计文件的目录放置、正式交付路径与 PowerShell 上传操作。
 适用对象：结构设计工程师、兼职工程师、外包工程师。
-适用仓库：arcbos/snowbot-mechanical
-核心原则：所有正式交付必须进入 GitHub 仓库；未进入 GitHub 的内容，不视为正式交付。</code></pre></figure>
-<h2>二、仓库信息</h2>
+适用仓库：arcbos/snowbot-mechanical。
+核心原则：所有正式交付必须进入 GitHub 仓库；未进入 GitHub 的内容，不视为正式交付。
+说明：本文件已按仓库当前 README 与 .gitattributes 的实际内容校正，可作为工程交付规范、执行手册与验收依据使用。</code></pre></figure>
+<h2>二、仓库信息（已验证）</h2>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">GitHub 组织：arcbos
 仓库名称：snowbot-mechanical
 仓库地址：https://github.com/arcbos/snowbot-mechanical
-默认分支：main</code></pre></figure>
-<h2>三、交付总原则</h2>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 所有结构相关正式交付，统一进入 GitHub 仓库。
-2. 所有文件必须放入正确目录，不允许乱放。
-3. 所有交付必须可追踪、可复用、可接手。
-4. 仅聊天说明、仅截图、仅口头说明，不构成正式交付。
-5. 无源文件、无仓库记录、无实际推进作用的，不计入有效提交。
-6. 后续工程结算、验收与进度确认，统一以 GitHub 仓库中的正式记录为准。</code></pre></figure>
-<h2>四、仓库目录规范</h2>
+默认分支：main
+可见性：private</code></pre></figure>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">已验证的仓库规则：
+1. 本仓库为 Snowbot 机械结构唯一官方仓库。
+2. 所有设计文件必须提交至本仓库。
+3. 未进入仓库的内容，视为未完成。
+4. 所有进度以 Git 提交记录为准。
+5. 外包成果默认归公司所有。</code></pre></figure>
+<h2>三、仓库目录结构（按 README 现行规则）</h2>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">snowbot-mechanical/
-├─ 00_admin/                # 项目管理、规范、需求
-├─ 01_overall/              # 整机/总装
+├─ 00_admin/                # 项目管理、规范、需求文档
+├─ 01_overall/              # 整机方案、总装结构
 ├─ 02_chassis/              # 底盘结构
-├─ 03_mobility/             # 行走系统（驱动、履带/轮组、张紧）
-├─ 04_snow-head/            # 前端除雪机构（绞龙/抛雪/推雪）
-├─ 05_power-bay/            # 电池仓/电源结构
-├─ 06_equipment/            # 电控设备安装结构
-├─ 07_body/                 # 外壳/装甲/盖板
-├─ 08_interfaces/           # 模块接口结构
-├─ 09_service/              # 维护/检修结构
-├─ drawings/                # 工程图
+├─ 03_mobility/             # 行走系统（轮/履带）
+├─ 04_snow-head/            # 除雪机构（滚刷/螺旋）
+├─ 05_power-bay/            # 电池、电源结构
+├─ 06_equipment/            # 设备安装（传感器/电控）
+├─ 07_body/                 # 外壳、外观件
+├─ 08_interfaces/           # 安装接口、标准件接口
+├─ 09_service/              # 维修拆装结构
+├─ drawings/                # 工程图（PDF / DXF）
 ├─ exports/
-│  ├─ step/                 # STEP导出
-│  ├─ pdf/                  # PDF导出
-│  └─ dxf/                  # DXF导出（如适用）
-└─ release/                 # 冻结版本</code></pre></figure>
-<h2>五、文件类型要求</h2>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">每次正式提交，至少应包含以下一种或多种：
-
-1. 原始设计文件（如 SolidWorks）
-2. STEP 文件
-3. 关键 2D 工程图
-4. 总装图 / 分总成图
-5. 必要的结构说明文件
-6. 如有修订，必须附修订说明
-7. 如涉及装配推进，应附装配支撑记录或相关说明</code></pre></figure>
-<h2>六、命名规范</h2>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">统一命名格式：
+│  ├─ step/                 # STEP 文件
+│  ├─ pdf/                  # PDF 图纸
+│  └─ dxf/                  # DXF 加工图
+└─ release/                 # 冻结版本（用于生产/交付）</code></pre></figure>
+<h2>四、文件存放规则（按 README 现行规则）</h2>
+<h3>1. 3D设计文件</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">支持类型：
+- SolidWorks：.SLDPRT / .SLDASM
+- STEP：.step / .stp</code></pre></figure>
+<p>放置位置：</p>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">对应模块目录（如 02_chassis）</code></pre></figure>
+<h3>2. 图纸文件</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">drawings/</code></pre></figure>
+<h3>3. 导出文件</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">exports/step
+exports/pdf
+exports/dxf</code></pre></figure>
+<h3>4. 冻结版本</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">重要版本必须复制到 release 目录。
+release 目录为唯一可生产版本。</code></pre></figure>
+<h2>五、Git LFS 规则（按 .gitattributes 已验证）</h2>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">当前仓库已对以下文件类型启用 Git LFS：
+- *.step
+- *.stp
+- *.SLDPRT
+- *.SLDASM
+- *.SLDDRW
+- *.dwg
+- *.dxf
+- *.pdf</code></pre></figure>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">含义：
+1. 机械结构相关大文件已按 LFS 管理。
+2. 工程师本地必须正常安装 Git 与 Git LFS 环境，避免推送失败。
+3. 如出现大文件推送异常，应优先检查 LFS 是否已安装并初始化。</code></pre></figure>
+<h2>六、命名规范（强制）</h2>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">统一格式：
 模块_部件_版本_日期</code></pre></figure>
-<p>例如：</p>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">chassis_frame_V1_20260420.step
-battery_bay_V2_20260420.SLDPRT
-front_interface_V1_20260420.pdf</code></pre></figure>
+<p>示例：</p>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">chassis_frame_V1_20260404.step
+snowhead_auger_V2_20260405.SLDPRT</code></pre></figure>
 <p>禁止使用：</p>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">最终版
 最新版
-test
-new
 改改改
-123</code></pre></figure>
-<h2>七、正式交付判定标准</h2>
+test
+new</code></pre></figure>
+<h2>七、提交规范（按 README 现行规则）</h2>
+<h3>1. 提交频率</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">- 每周至少提交 1 次
+- 关键修改必须立即提交</code></pre></figure>
+<h3>2. 工程师标准提交步骤</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git pull
+git status
+git add .
+git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;模块: 修改内容&quot;</span>
+git push</code></pre></figure>
+<h3>3. 提交说明规范</h3>
+<p>格式：</p>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">模块: 修改内容</code></pre></figure>
+<p>示例：</p>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">chassis: 优化底盘强度
+snow-head: 调整螺旋直径</code></pre></figure>
+<h2>八、版本控制规则（按 README 现行规则）</h2>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 不允许覆盖他人文件。
+2. 重大修改必须说明。
+3. 每次修改必须可追溯。
+4. 重要版本必须复制到 release 目录。
+5. release 目录为唯一可生产版本。
+6. 禁止直接在 main 分支随意修改。</code></pre></figure>
+<h2>九、外包交付要求（按 README 现行规则）</h2>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 必须提供源文件（SolidWorks / STEP）。
+2. 必须提交至公司仓库。
+3. 按周提交，不允许一次性交付。
+4. 未提交部分不计入验收。
+5. 提交记录作为付款依据。</code></pre></figure>
+<h2>十、正式交付判定标准（综合执行规则）</h2>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">以下条件同时满足时，才可视为正式交付：
-
-1. 文件已上传至公司指定 GitHub 仓库
-2. 文件放在正确目录
-3. 文件可打开、可复用、可接手
-4. 具备必要源文件或工程文件
-5. 对当前样机推进有实际作用</code></pre></figure>
+1. 文件已上传至 arcbos/snowbot-mechanical 仓库。
+2. 文件放在正确目录。
+3. 文件可打开、可复用、可接手。
+4. 具备必要源文件或工程文件。
+5. 对当前样机推进有实际作用。</code></pre></figure>
 <p>以下情况不构成交付：</p>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 仅口头说明
-2. 仅微信聊天记录
-3. 仅截图或渲染图
-4. 未上传到 GitHub 的本地文件
-5. 无源文件或无法复用的零散文件</code></pre></figure>
-<h2>八、PowerShell + GitHub 上传操作手册</h2>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 仅口头说明。
+2. 仅微信聊天记录。
+3. 仅截图或渲染图。
+4. 未上传到 GitHub 的本地文件。
+5. 无源文件或无法复用的零散文件。</code></pre></figure>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">核心判定原则：
+不进 GitHub，不算交付。</code></pre></figure>
+<h2>十一、PowerShell + GitHub 上传操作手册</h2>
 <h3>1. 前提准备</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">在开始前，需确保以下条件已满足：
-
-1. 已安装 Git for Windows
-   下载地址：https://git-scm.com/download/win
-
-2. 已拥有 GitHub 账号
-
-3. 已被授予 arcbos/snowbot-mechanical 仓库访问权限</code></pre></figure>
+1. 已安装 Git for Windows。
+2. 已安装 Git LFS。
+3. 已拥有 GitHub 账号。
+4. 已被授予 arcbos/snowbot-mechanical 仓库访问权限。</code></pre></figure>
+<p>下载地址：</p>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">Git：https://git-scm.com/download/win
+Git LFS：https://git-lfs.com/</code></pre></figure>
 <h3>2. 获取 GitHub Personal Access Token</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">GitHub 推送代码时，通常不再直接使用账户密码，而使用 Personal Access Token。</code></pre></figure>
 <p>获取路径：</p>
@@ -124,9 +173,9 @@ new
 → Personal access tokens
 → Generate new token</code></pre></figure>
 <p>要求：</p>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 至少授予 repo 相关权限
-2. 生成后复制保存 token
-3. token 只会显示一次，丢失需重新生成</code></pre></figure>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 至少授予 repo 相关权限。
+2. 生成后复制保存 token。
+3. token 只会显示一次，丢失需重新生成。</code></pre></figure>
 <h3>3. 打开 PowerShell</h3>
 <p>例如在 D 盘创建工作目录：</p>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell"><span class="hljs-built_in">cd</span> D:\
@@ -136,59 +185,62 @@ mkdir work
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git clone https://github.com/arcbos/snowbot<span class="hljs-literal">-mechanical</span>.git
 <span class="hljs-built_in">cd</span> snowbot<span class="hljs-literal">-mechanical</span></code></pre></figure>
 <p>说明：</p>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 该命令会将远端仓库完整拉到本地
-2. 后续所有正式交付文件，都必须放在该本地仓库目录中
-3. 不允许脱离仓库单独维护交付文件夹</code></pre></figure>
-<h3>5. 查看当前目录结构</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 该命令会将远端仓库完整拉到本地。
+2. 后续所有正式交付文件，都必须放在该本地仓库目录中。
+3. 不允许脱离仓库单独维护交付文件夹。</code></pre></figure>
+<h3>5. 初始化 Git LFS（首次环境配置）</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git lfs install</code></pre></figure>
+<h3>6. 查看当前目录结构</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell"><span class="hljs-built_in">dir</span></code></pre></figure>
-<h3>6. 将本地工作文件放入对应目录</h3>
+<h3>7. 将本地工作文件放入对应目录</h3>
 <p>例如将本地文件复制到底盘目录：</p>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell"><span class="hljs-built_in">Copy-Item</span> <span class="hljs-string">&quot;D:\ChenChao\SnowbotFiles\*&quot;</span> <span class="hljs-string">&quot;.\02_chassis\&quot;</span> <span class="hljs-literal">-Recurse</span></code></pre></figure>
 <p>要求：</p>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 必须按模块放入对应目录
-2. 不允许将所有文件直接丢在根目录
-3. 原始文件、STEP、工程图尽量分别归档</code></pre></figure>
-<h3>7. 首次配置 Git 用户信息（仅需一次）</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 必须按模块放入对应目录。
+2. 不允许将所有文件直接丢在根目录。
+3. 原始文件、STEP、工程图尽量分别归档。</code></pre></figure>
+<h3>8. 首次配置 Git 用户信息（仅需一次）</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git config <span class="hljs-literal">--global</span> user.name <span class="hljs-string">&quot;你的GitHub用户名&quot;</span>
 git config <span class="hljs-literal">--global</span> user.email <span class="hljs-string">&quot;你的GitHub邮箱&quot;</span></code></pre></figure>
 <p>例如：</p>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git config <span class="hljs-literal">--global</span> user.name <span class="hljs-string">&quot;chenchao&quot;</span>
 git config <span class="hljs-literal">--global</span> user.email <span class="hljs-string">&quot;your_email@example.com&quot;</span></code></pre></figure>
-<h3>8. 查看本次修改状态</h3>
+<h3>9. 查看本次修改状态</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git status</code></pre></figure>
-<h3>9. 添加文件到提交区</h3>
+<h3>10. 添加文件到提交区</h3>
 <p>全部添加：</p>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git add .</code></pre></figure>
 <p>如仅添加某些目录：</p>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git add .\<span class="hljs-number">02</span>_chassis
 git add .\exports\step
 git add .\drawings</code></pre></figure>
-<h3>10. 提交说明</h3>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;Alpha结构提交：底盘主结构、电池仓、STEP与工程图&quot;</span></code></pre></figure>
+<h3>11. 提交说明</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;chassis: 优化底盘强度并提交STEP与工程图&quot;</span></code></pre></figure>
 <p>要求：</p>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 提交说明必须写清楚本次提交内容
-2. 禁止使用 update、test、aaa 等无意义说明</code></pre></figure>
-<h3>11. 推送到远端仓库</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 提交说明必须写清楚本次提交内容。
+2. 提交说明应采用“模块: 修改内容”格式。
+3. 禁止使用 update、test、aaa 等无意义说明。</code></pre></figure>
+<h3>12. 推送到远端仓库</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git push origin main</code></pre></figure>
 <p>若系统提示输入用户名和密码：</p>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">用户名：GitHub 用户名
-密码位置：填写 Personal Access Token，不填写 GitHub 登录密码</code></pre></figure>
-<h3>12. 验证是否成功</h3>
+密码位置：填写 Personal Access Token，不填写 GitHub 登录密码。</code></pre></figure>
+<h3>13. 验证是否成功</h3>
 <p>推送成功后：</p>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 打开仓库页面：https://github.com/arcbos/snowbot-mechanical
-2. 检查文件是否已出现在正确目录
-3. 检查 commit 记录是否存在</code></pre></figure>
+2. 检查文件是否已出现在正确目录。
+3. 检查 commit 记录是否存在。</code></pre></figure>
 <p>也可在 PowerShell 中查看最近提交记录：</p>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git log <span class="hljs-literal">--oneline</span> <span class="hljs-literal">-n</span> <span class="hljs-number">5</span></code></pre></figure>
-<h3>13. 后续每周标准流程</h3>
+<h3>14. 后续每周标准流程</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell"><span class="hljs-built_in">cd</span> D:\work\snowbot<span class="hljs-literal">-mechanical</span>
 git pull origin main
 <span class="hljs-comment"># 放入新文件或修改文件</span>
 git status
 git add .
-git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;本周结构更新说明&quot;</span>
+git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;模块: 本周结构更新说明&quot;</span>
 git push origin main</code></pre></figure>
-<h2>九、常见错误与处理</h2>
+<h2>十二、常见错误与处理</h2>
 <h3>1. 权限错误</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">原因：未被授予仓库权限，或 token 权限不足。
 处理：检查仓库权限和 token 设置。</code></pre></figure>
@@ -199,18 +251,18 @@ git push origin main</code></pre></figure>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">原因：本地落后于远端。
 处理：先拉取远端更新。</code></pre></figure>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git pull origin main</code></pre></figure>
-<h3>4. 大文件无法推送</h3>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">原因：文件体积过大，可能需启用 Git LFS。
-处理：如遇到该问题，再单独配置 Git LFS。</code></pre></figure>
-<h2>十、最终要求</h2>
+<h3>4. 大文件或 LFS 文件推送失败</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">原因：Git LFS 未安装、未初始化，或本地 LFS 配置异常。
+处理：检查 Git LFS 是否已安装，并重新执行 git lfs install。</code></pre></figure>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-powershell">git lfs install</code></pre></figure>
+<h2>十三、最终执行要求</h2>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">从正式执行日起，所有结构交付统一按本文件执行。
-
 即：
-1. 文件必须按仓库目录归档
-2. 必须有源文件
-3. 必须在 GitHub 可追踪
-4. 必须可复用、可接手
-5. 必须对样机推进有实际作用
+1. 文件必须按仓库目录归档。
+2. 必须有源文件。
+3. 必须在 GitHub 可追踪。
+4. 必须可复用、可接手。
+5. 必须对样机推进有实际作用。
 
 后续所有进度确认、有效提交认定与结算，统一以 GitHub 仓库中的正式记录为准。
 
