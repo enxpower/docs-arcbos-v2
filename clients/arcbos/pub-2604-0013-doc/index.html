@@ -402,7 +402,28 @@ Beta 阶段：2026年8月21日—2026年12月20日
 - 模块目录：放源文件
 - exports/step：放 STEP
 - drawings 或 exports/pdf：放 PDF
-- 00_admin/submission_notes：放一句话提交说明</code></pre></figure>
+- 00_admin/submission_notes：放一句话提交说明
+
+提交说明模板（极简版）：
+文件名：YYYY-MM-DD_[模块]_note.md
+内容：
+本周更新：
+问题：
+下一步：</code></pre></figure>
+<h3>周度评级与结算挂钩</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">周报评级采用 A / B / C 规则，并直接作为周度结算依据：
+
+A = 100% 结算
+B = 60% 结算
+C = 0% 结算
+
+说明：
+- A：源文件 + STEP/PDF + 提交说明 + 目录位置正确
+- B：已有源文件，但提交仍不完整
+- C：无源文件或未形成有效机械交付</code></pre></figure>
+<h3>仓库与系统为唯一依据</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">所有结构设计成果必须提交至公司指定 GitHub 仓库，未提交部分视为未完成交付。
+项目验收与进度评估以系统生成的周报（ABC评级）为唯一客观依据，并作为付款与验收依据。</code></pre></figure>
 <h3>可补充提交内容</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">根据阶段实际需要，可补充以下内容：
 - 关键2D工程图
@@ -520,7 +541,7 @@ Beta 阶段：2026年8月21日—2026年12月20日
 □ 是否说明了下周计划方向
 □ 是否说明了对样机实物推进的具体影响</code></pre></figure>
 <h3>8. 周验收结论</h3>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">A. 有效提交，可计入当周结算
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">A. 有效提交，可计入当周 100% 结算
 条件：
 - 已提交源文件
 - 已提交 STEP 或 PDF（至少一项）
@@ -528,14 +549,13 @@ Beta 阶段：2026年8月21日—2026年12月20日
 - 已附一句话提交说明
 - 对当前阶段推进有实际作用
 
-B. 有提交，但暂不计入或暂缓确认当周结算
+B. 有提交，但仅计入当周 60% 结算
 条件：
 - 已提交源文件
 - 但缺少 STEP / PDF / 提交说明中的部分内容
-- 或路径不规范
 - 或仍需补充后才能确认对推进的实际作用
 
-C. 无效提交
+C. 无效提交，当周不结算
 条件：
 - 无源文件
 - 仅口头 / 聊天 / 截图 / 渲染图
