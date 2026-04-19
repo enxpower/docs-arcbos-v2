@@ -388,43 +388,65 @@ Beta 阶段：2026年8月21日—2026年12月20日
 <h2>九、每周提交要求</h2>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">原则：
 不细拆到每天怎么做，但必须按周提交成果。
-每周提交不仅看设计文件，也看加工支撑、装配推进、修订记录、样机实物推进情况。
+为降低工程师负担、适应日常工作习惯，同时确保公司知识产权与工程延续性，周提交采用“最简有效交付包”原则。
 周提交验收仅用于判断“本周是否形成有效推进、是否可计入当周结算”，不当然等同于阶段里程碑已经完成。</code></pre></figure>
-<h3>有效周提交</h3>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">每周至少提交一次有效成果，内容包括以下一种或多种：
+<h3>最低有效周提交</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">每周至少提交一次有效成果，最低建议包含以下四项：
 
-1. 3D原始设计文件
-2. STEP文件
-3. 2D工程图
-4. 总装图 / 分总成图
-5. 结构说明文档
-6. 干涉检查 / 修订记录
-7. 效果图（用于展示阶段）
-8. 加工支撑记录
-9. 装配支撑记录
-10. 样机照片 / 视频 / 实物推进记录
-11. 问题定位与修订闭环记录</code></pre></figure>
+1. 原始设计源文件（如 SLDPRT / SLDASM / SLDDRW）
+2. STEP 或 PDF（二选一即可，最好同时提供）
+3. 一句话提交说明
+4. 文件进入公司指定正确路径（GitHub / 云盘）
+
+推荐目录：
+- 模块目录：放源文件
+- exports/step：放 STEP
+- drawings 或 exports/pdf：放 PDF
+- 00_admin/submission_notes：放一句话提交说明</code></pre></figure>
+<h3>可补充提交内容</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">根据阶段实际需要，可补充以下内容：
+- 关键2D工程图
+- 总装图 / 分总成图
+- 修订记录
+- 加工支撑记录
+- 装配支撑记录
+- 样机照片 / 视频 / 实物推进记录
+- 问题定位与修订闭环记录
+- 效果图（主要用于 Beta 展示阶段）
+
+说明：
+上述内容属于加分或补充交付项，不作为每周最低有效提交的固定硬门槛。</code></pre></figure>
 <h3>无效提交</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">以下不计入有效提交：
 
 - 仅口头说明
 - 仅聊天描述
-- 仅截图，无源文件或无推进依据
-- 未上传至指定GitHub / 云盘的文件
+- 仅截图 / 渲染图，无源文件或无推进依据
+- 未上传至指定 GitHub / 云盘的文件
 - 无法证明对样机实物推进产生实际作用的空泛说明
 - 已画图但拒绝配合装配、修订或接口说明闭环</code></pre></figure>
 <h2>十、交付文件要求</h2>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">所有成果及每周提交文件，必须统一提交至公司指定位置。
-设计交付与样机推进记录均应留痕。</code></pre></figure>
-<h3>提交内容</h3>
+设计交付与样机推进记录均应留痕。
+核心目标不是让工程师提交大量材料，而是确保公司获得可接手、可复用、可延续的核心工程资产。</code></pre></figure>
+<h3>最低交付内容</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 原始设计文件（如 SolidWorks）
-2. STEP文件
-3. 关键2D工程图
-4. 必要的设计说明
-5. 必要的效果图（Beta阶段）
-6. 加工 / 装配 / 修订记录
-7. 样机状态记录（照片 / 视频 / 说明）
-8. 必要接口说明和交接说明</code></pre></figure>
+2. STEP 或 PDF（二选一即可，最好同时提供）
+3. 一句话提交说明
+4. 文件进入公司指定正确路径</code></pre></figure>
+<h3>推荐补充内容</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 关键2D工程图
+2. 总装图 / 分总成图
+3. 修订记录
+4. 加工 / 装配 / 修订记录
+5. 样机状态记录（照片 / 视频 / 说明）
+6. 必要接口说明和交接说明
+7. 必要效果图（主要用于 Beta 阶段）</code></pre></figure>
+<h3>解释原则</h3>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">- 源文件，是公司控制设计权的核心
+- STEP / PDF，是最基本的工程输出证明
+- 一句话提交说明，用于后续接手和追踪
+- 其余内容按项目阶段和实际需要补充，不作为每周最低硬门槛</code></pre></figure>
 <h2>十一、协作与结算原则</h2>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">1. 甲方不细管日常过程，但按周检查成果。
 2. 每周提交成果，经甲方验收后，按 A / B / C 结论判断是否计入当周有效提交。
@@ -500,27 +522,26 @@ Beta 阶段：2026年8月21日—2026年12月20日
 <h3>8. 周验收结论</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">A. 有效提交，可计入当周结算
 条件：
-- 文件真实提交
-- 与任务相关
-- 可验证
-- 可继续推进
-- 对样机推进有实际作用
+- 已提交源文件
+- 已提交 STEP 或 PDF（至少一项）
+- 文件进入正确路径
+- 已附一句话提交说明
+- 对当前阶段推进有实际作用
 
-B. 有提交，但暂不计入当周结算
+B. 有提交，但暂不计入或暂缓确认当周结算
 条件：
-- 文件不完整
-- 说明不清晰
-- 设计深度不足
-- 对样机推进作用不明确
-- 需补充后再确认
+- 已提交源文件
+- 但缺少 STEP / PDF / 提交说明中的部分内容
+- 或路径不规范
+- 或仍需补充后才能确认对推进的实际作用
 
 C. 无效提交
 条件：
 - 无源文件
-- 仅口头 / 截图
+- 仅口头 / 聊天 / 截图 / 渲染图
+- 未进入指定仓库或路径
 - 与任务无关
-- 无法证明本周真实推进
-- 无法证明对样机实物推进有实际作用</code></pre></figure>
+- 无法证明本周真实推进</code></pre></figure>
 <h3>9. 甲方每周记录模板</h3>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-plain text">周次：
 对应阶段：Alpha / Beta
