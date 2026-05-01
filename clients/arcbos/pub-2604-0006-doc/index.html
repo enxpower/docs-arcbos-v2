@@ -33,9 +33,22 @@
   </div>
 
   <article><p>本文论述了除雪机器人Snowbot的总架构，如何模块化设计，哪些可以外包暂时，哪些必须自己掌握，后续也列出了工程师岗位</p>
-<figure class="code-figure"><pre class="n-code-notion"><code class="language-markdown"><span class="hljs-section">## 整机系统拆分</span>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-markdown"><span class="hljs-section">## 阶段边界说明</span></code></pre></figure>
+<p>本文件为 SnowBot 整机系统架构总览，用于定义系统模块划分、控制权边界与长期技术结构。</p>
+<p>本文件不等同于当前工程阶段的开发范围或外包范围。</p>
+<p>当前实际执行范围仅为：</p>
+<p>Alpha补齐 + Beta闭环</p>
+<p>以下能力属于后续阶段（不纳入当前外包或开发范围）：</p>
+<ul><li>SLAM / 建图</li><li>全局路径规划</li><li>区域覆盖算法</li><li>自动回充 / 自动返航</li><li>多机协同</li><li>云平台调度与远程运维</li></ul>
+<p>当前软件与导航外包范围以：</p>
+<p>《SnowBot Alpha补齐与Beta闭环移动机器人导航控制系统软件外包主需求文档》</p>
+<p>及</p>
+<p>《SnowBot Alpha补齐与Beta闭环软件外包工程任务清单》为准。</p>
+<p>本文件用于指导长期架构设计，不用于直接约束当前外包交付。</p>
+<figure class="code-figure"><pre class="n-code-notion"><code class="language-javascript">
+## 整机系统拆分
 
-Snowbot整机
+<span class="hljs-title class_">Snowbot</span>整机
 ├─ 机械系统（结构）
 ├─ 电控系统（硬件 + 控制）
 ├─ 软件系统（嵌入式 + 上位机）
@@ -45,7 +58,7 @@ Snowbot整机
 
 ---
 
-<span class="hljs-section">## 必须自己掌握（核心竞争力）</span>
+## 必须自己掌握（核心竞争力）
 
 核心控制范围
 ├─ 整机架构
@@ -77,18 +90,18 @@ Snowbot整机
 
 ---
 
-<span class="hljs-section">## 可以外包（但必须受控）</span>
+## 可以外包（但必须受控）
 
 外包范围
 ├─ 结构详细设计
 │  ├─ 3D建模
 │  ├─ 工程图输出
-│  └─ BOM整理
+│  └─ <span class="hljs-variable constant_">BOM</span>整理
 │  └─ 约束：源文件入库 + 按周提交
 │
-├─ PCB设计
+├─ <span class="hljs-variable constant_">PCB</span>设计
 │  ├─ 原理图
-│  └─ PCB Layout
+│  └─ <span class="hljs-variable constant_">PCB</span> <span class="hljs-title class_">Layout</span>
 │  └─ 约束：架构与电源方案内部定义
 │
 ├─ 嵌入式开发（部分）
@@ -107,13 +120,13 @@ Snowbot整机
 │  └─ 人机交互外观
 │
 └─ 打样与加工
-   ├─ CNC
+   ├─ <span class="hljs-variable constant_">CNC</span>
    ├─ 钣金
    └─ 焊接
 
 ---
 
-<span class="hljs-section">## 不可外包的底线</span>
+## 不可外包的底线
 
 控制红线
 ├─ 整机控制权
@@ -130,7 +143,7 @@ Snowbot整机
 
 ---
 
-<span class="hljs-section">## 当前最优分工</span>
+## 当前最优分工
 
 团队结构
 ├─ 负责人（你）
@@ -146,28 +159,28 @@ Snowbot整机
 │  └─ 结构优化
 │
 └─ 外包团队
-   ├─ PCB设计
+   ├─ <span class="hljs-variable constant_">PCB</span>设计
    ├─ 嵌入式开发（部分）
    ├─ 云平台开发
    └─ 加工制造
 
 ---
 
-<span class="hljs-section">## 核心目标</span>
+## 核心目标
 
 系统控制本质
 └─ 你是控制系统的人，而不是单纯做设计的人
 
 ---
 
-<span class="hljs-section">## 外包判断原则</span>
+## 外包判断原则
 
 决策逻辑
 └─ 判断问题：
    └─ 如果该模块丢失，是否还能重做整机
 
-<span class="hljs-code">      ├─ 可以 → 可外包
-      └─ 不可以 → 必须自控</span></code></pre></figure>
+      ├─ 可以 → 可外包
+      └─ 不可以 → 必须自控</code></pre></figure>
 <h2>Snowbot 整机系统架构（全电 + 全自治）</h2>
 <figure class="code-figure"><pre class="n-code-notion"><code class="language-markdown">Snowbot 整机系统架构（工程可执行版）
 
