@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-lang="zh">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +25,30 @@
   --sans-en:'Inter',sans-serif;
   --disp:'Bebas Neue',sans-serif;
 }
+
+/* ── lang switch ── */
+[data-lang="zh"] .en{display:none!important}
+[data-lang="en"] .zh{display:none!important}
+[data-lang="en"]{--serif:'Georgia',serif;--sans:'Inter',sans-serif}
+
+/* ── lang toggle ── */
+.lang-toggle{
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  z-index:9999;display:flex;align-items:center;
+  background:var(--card);border:1.5px solid var(--rule);
+  box-shadow:0 2px 14px rgba(0,0,0,.12);border-radius:3px;
+  overflow:hidden;
+}
+.lang-btn{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  padding:8px 18px;cursor:pointer;border:none;
+  background:transparent;color:var(--dim);
+  transition:background .16s,color .16s;text-transform:uppercase;
+}
+.lang-btn.active{background:var(--navy);color:#fff}
+.lang-sep{width:1.5px;height:22px;background:var(--rule);flex-shrink:0}
+.page-content{transition:opacity .2s ease}
+.page-content.out{opacity:0}
 
 body{
   background:var(--bg);color:var(--ink);
@@ -105,7 +129,7 @@ body::before{
   position:relative;z-index:2;
 }
 .thesis::before{content:'';position:absolute;left:0;top:28px;bottom:26px;width:3px;background:linear-gradient(to bottom,var(--accent),var(--signal))}
-.thesis-h{font-family:var(--disp);font-size:clamp(36px,4.5vw,56px);line-height:.9;letter-spacing:.02em;color:var(--navy);margin-bottom:12px}
+.thesis-h{font-family:var(--disp);font-size:clamp(36px,4.5vw,56px);line-height:1.05;letter-spacing:.02em;color:var(--navy);margin-bottom:14px}
 .thesis-h .hl{color:var(--accent)}
 .thesis-badges{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
 .thesis-body{border-left:3px solid var(--accent);padding-left:16px;max-width:920px}
@@ -131,9 +155,9 @@ body::before{
 .kn.k1::before{background:var(--accent)}.kn.k2::before{background:var(--signal)}
 .kn.k3::before{background:var(--cold)}.kn.k4::before{background:var(--gold)}
 .kn.k5::before{background:#3A8650}
-.kn-label{font-family:var(--mono);font-size:8.5px;letter-spacing:.15em;color:var(--dim);text-transform:uppercase;margin-bottom:6px}
-.kn-val{font-family:var(--disp);font-size:28px;letter-spacing:.04em;color:var(--navy);line-height:1;margin-bottom:4px}
-.kn-sub{font-family:var(--sans);font-size:11px;color:var(--dim);line-height:1.5;letter-spacing:.02em}
+.kn-label{font-family:var(--mono);font-size:8.5px;letter-spacing:.15em;color:var(--dim);text-transform:uppercase;margin-bottom:8px}
+.kn-val{font-family:var(--disp);font-size:32px;letter-spacing:.04em;color:var(--navy);line-height:1.1;margin-bottom:6px}
+.kn-sub{font-family:var(--sans);font-size:11px;color:var(--dim);line-height:1.6;letter-spacing:.02em}
 
 /* ══ TWO-COL ══ */
 .two-col{display:grid;grid-template-columns:1fr 1.5px 1fr;border-bottom:1px solid var(--rule);position:relative;z-index:2}
@@ -330,7 +354,7 @@ body::before{
 /* ══ CLOSING / CTA ══ */
 .closing{padding:36px 0 34px 24px;border-bottom:1px solid var(--rule);position:relative;z-index:2}
 .closing::before{content:'';position:absolute;left:0;top:36px;bottom:34px;width:3px;background:linear-gradient(to bottom,var(--gold),var(--signal))}
-.closing-h{font-family:var(--disp);font-size:clamp(32px,4vw,50px);line-height:.92;letter-spacing:.02em;color:var(--navy);margin-bottom:18px}
+.closing-h{font-family:var(--disp);font-size:clamp(32px,4vw,50px);line-height:1.08;letter-spacing:.02em;color:var(--navy);margin-bottom:20px}
 .closing-h .hl{color:var(--accent)}
 .closing-body{max-width:880px}
 .closing-body p{font-family:var(--serif);font-size:14.5px;line-height:2.1;color:var(--ink2);letter-spacing:.04em;margin-bottom:14px}
@@ -389,25 +413,39 @@ body::before{
 </style>
 </head>
 <body>
+<!-- lang toggle -->
+<div class="lang-toggle">
+  <button class="lang-btn active" id="btn-zh" onclick="setLang('zh')">中文</button>
+  <div class="lang-sep"></div>
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+</div>
+
+<div class="page-content" id="pc">
 <div class="page">
 
 <!-- ① HEADER -->
 <div class="header-band z a d1">
   <div>
-    <div class="brand-eyebrow">ARCBOS · 商业计划书 · Seed Round · 2026</div>
+    <div class="brand-eyebrow zh">ARCBOS · 商业计划书 · Seed Round · 2026</div>
+    <div class="brand-eyebrow en">ARCBOS · Business Plan · Seed Round · 2026</div>
     <div class="brand-name">ARCBOS</div>
-    <div class="brand-cn">上海阿克博斯技术有限公司 · Shanghai ARCBOS Systems Ltd</div>
+    <div class="brand-cn zh">上海阿克博斯技术有限公司 · Shanghai ARCBOS Systems Ltd</div>
+    <div class="brand-cn en" style="font-family:var(--sans-en);font-size:13px;letter-spacing:.06em;margin-top:7px;color:var(--signal)">Shanghai ARCBOS Systems Ltd · 上海阿克博斯技术有限公司</div>
     <div class="brand-sub">Engineered for Extreme Conditions · Physical AI × Extreme World</div>
   </div>
   <div class="doc-card">
     <div class="dc-inner">
       <div class="dc-top">
-        <div class="dc-doc-type">Full Business Plan · 完整版商业计划书</div>
+        <div class="dc-doc-type zh">Full Business Plan · 完整版商业计划书</div>
+        <div class="dc-doc-type en">Full Business Plan · Seed Round</div>
         <div class="dc-round">
-          <div class="dc-round-lbl">种子轮 · Raising</div>
+          <div class="dc-round-lbl zh">种子轮 · Raising</div>
+          <div class="dc-round-lbl en">Seed Round · Raising</div>
           <div class="dc-amt">$2M USD</div>
-          <div class="dc-amt2">≈ ¥1,500万人民币</div>
-          <div class="dc-stage">工程样机验证轮</div>
+          <div class="dc-amt2 zh">≈ ¥1,500万人民币</div>
+          <div class="dc-amt2 en">≈ ¥15M RMB</div>
+          <div class="dc-stage zh">工程样机验证轮</div>
+          <div class="dc-stage en">Engineering Prototype Round</div>
         </div>
       </div>
       <div class="dc-bottom">
@@ -420,23 +458,40 @@ body::before{
 
 <!-- ② CORE THESIS -->
 <div class="thesis z a d2">
-  <div class="eyebrow" style="margin-bottom:11px">核心判断 · Core Thesis</div>
-  <div class="thesis-h">一个已预算化的市场<br><span class="hl">正在等待被自动化</span></div>
+  <div class="eyebrow" style="margin-bottom:11px">
+    <span class="zh">核心判断 · Core Thesis</span>
+    <span class="en">Core Thesis</span>
+  </div>
+  <div class="thesis-h zh">一个已预算化的市场<br><span class="hl">正在等待被自动化</span></div>
+  <div class="thesis-h en">A Budgeted Market<br><span class="hl">Waiting to Be Automated</span></div>
   <div class="thesis-badges" style="margin-top:12px">
-    <span class="badge">刚需 · 已预算 · 每年重复</span>
-    <span class="badge">工业级自治 · 非消费级设备</span>
-    <span class="tag-accent">硬件选型完成 · 零件到货</span>
-    <span class="badge">首批客户试点意向已确认</span>
+    <span class="badge zh">刚需 · 已预算 · 每年重复</span>
+    <span class="badge en">Non-optional · Budgeted · Recurring</span>
+    <span class="badge zh">工业级自治 · 非消费级设备</span>
+    <span class="badge en">Industrial Autonomy · Not Consumer</span>
+    <span class="tag-accent zh">硬件选型完成 · 零件到货</span>
+    <span class="tag-accent en">Hardware Selected · Parts Arrived</span>
+    <span class="badge zh">首批客户试点意向已确认</span>
+    <span class="badge en">First Pilot Intent Confirmed</span>
   </div>
   <div class="thesis-body">
-    <p>
+    <p class="zh">
       北美商业设施的冬季除雪，每年消耗超过 <strong>US$225亿</strong>的运维预算。这不是新需求，不需要教育市场——它已经存在、每年重复、采购流程完全标准化（SIMA-10-2025，5月 RFP、9月授标）。问题从来不是"有没有需求"，而是：<strong>现有方案在极寒工况下太不可靠、太难管理、太依赖人工夜班</strong>。
     </p>
-    <p>
+    <p class="en">
+      North American commercial facilities spend over <strong>US$22.5B annually</strong> on snow and ice management. This is not a new category — it's a budgeted, recurring, compliance-driven operational expense. The procurement process is fully standardized (SIMA-10-2025: RFP by May, awarded by September 1). The problem has never been demand — it's that <strong>existing solutions fail in extreme cold, are unmanageable at night, and collapse under labor scarcity</strong>.
+    </p>
+    <p class="zh">
       机场自治除雪（Otto、Yeti）已证明极寒工况下无人化物理可行；消费级产品（Yarbo）止步于住宅吞吐量与 −25°C 边界。<span class="callout">商业园区 · 数据中心 · 物流场站</span>这个区间——工业级需求、园区规模、可复制部署——目前没有一个成熟的标准化产品。
     </p>
-    <p>
+    <p class="en">
+      Airport autonomous snow removal (Otto, Yeti) has proven unmanned operation is physically viable in extreme cold. Consumer products (Yarbo) stop at residential throughput and −25°C. The gap — <span class="callout">Commercial parks · Data centers · Logistics yards</span> — industrial-grade demand, campus scale, repeatable deployment — has no mature standardized product today.
+    </p>
+    <p class="zh">
       ARCBOS 正在填补这个空白。<strong>SnowBot 的关键硬件选型已完成、核心零件已到货</strong>，工程样机进入组装阶段。与此同时，创始人通过多年北美 C&I 能源客户网络，已从 CBRE、Colliers 管理体系内的设施负责人获得<strong>明确的试点意向确认</strong>。本轮融资的目标只有一个：<strong>用$200万美元把样机做出来，进入冬季验证，拿下首批付费试点</strong>。
+    </p>
+    <p class="en">
+      ARCBOS is filling this gap. <strong>Key hardware selection is complete, core components have arrived</strong>, and the engineering prototype is in assembly. Through the founder's North American C&I energy client network, facility managers within the CBRE and Colliers ecosystem have <strong>confirmed pilot interest in writing and in meetings</strong>. This round has one goal: <strong>$2M to finish the prototype, complete winter validation, and close the first paid pilots</strong>.
     </p>
   </div>
 </div>
@@ -444,66 +499,96 @@ body::before{
 <!-- ③ KEY NUMBERS -->
 <div class="kn-strip z a d3">
   <div class="kn k1">
-    <div class="kn-label">工程进度</div>
-    <div class="kn-val" style="font-size:20px;line-height:1.1">零件<br>到货</div>
-    <div class="kn-sub">关键硬件选型完成<br>工程样机进入组装阶段</div>
+    <div class="kn-label zh">工程进度</div>
+    <div class="kn-label en">Engineering</div>
+    <div class="kn-val zh">零件<br>到货</div>
+    <div class="kn-val en">Parts<br>In Hand</div>
+    <div class="kn-sub zh">关键硬件选型完成<br>工程样机进入组装阶段</div>
+    <div class="kn-sub en">Hardware selected<br>Prototype in assembly</div>
   </div>
   <div class="kn k2">
-    <div class="kn-label">客户试点意向</div>
-    <div class="kn-val">50<span style="font-size:16px">+</span></div>
-    <div class="kn-sub">首批意向方管理的<br>大型商业设施数量</div>
+    <div class="kn-label zh">客户试点意向</div>
+    <div class="kn-label en">Pilot Intent</div>
+    <div class="kn-val">50+</div>
+    <div class="kn-sub zh">首批意向方管理的<br>大型商业设施数量</div>
+    <div class="kn-sub en">Large facilities managed by<br>first confirmed pilot contact</div>
   </div>
   <div class="kn k3">
-    <div class="kn-label">公开招标时租锚点</div>
-    <div class="kn-val" style="font-size:20px">$145–495</div>
-    <div class="kn-sub">设备+操作员/小时<br>政府·学校公开招标实证</div>
+    <div class="kn-label zh">公开招标时租锚点</div>
+    <div class="kn-label en">Hourly Rate Benchmark</div>
+    <div class="kn-val">$145–495</div>
+    <div class="kn-sub zh">设备+操作员/小时<br>政府·学校公开招标实证</div>
+    <div class="kn-sub en">Equipment + operator / hr<br>Public procurement data</div>
   </div>
   <div class="kn k4">
-    <div class="kn-label">每季作业频次</div>
-    <div class="kn-val">35<span style="font-size:16px">+</span></div>
-    <div class="kn-sub">推雪 13–16次 + 融冰 20–25次<br>高频刚需 · 不可中断</div>
+    <div class="kn-label zh">每季作业频次</div>
+    <div class="kn-label en">Events per Season</div>
+    <div class="kn-val">35+</div>
+    <div class="kn-sub zh">推雪 13–16次 + 融冰 20–25次<br>高频刚需 · 不可中断</div>
+    <div class="kn-sub en">13–16 plowing + 20–25 deicing<br>High-frequency · Non-optional</div>
   </div>
   <div class="kn k5">
-    <div class="kn-label">北美市场规模</div>
-    <div class="kn-val">$225<span style="font-size:16px">亿</span></div>
-    <div class="kn-sub">商业设施除雪与融冰服务（2023）<br>88,200家企业 · 高度分散</div>
+    <div class="kn-label zh">北美市场规模</div>
+    <div class="kn-label en">North America Market</div>
+    <div class="kn-val zh">$225亿</div>
+    <div class="kn-val en">$22.5B</div>
+    <div class="kn-sub zh">商业设施除雪与融冰服务（2023）<br>88,200家企业 · 高度分散</div>
+    <div class="kn-sub en">Commercial snow & ice mgmt (2023)<br>88,200 operators · Highly fragmented</div>
   </div>
 </div>
 
 <!-- ④ WHY NOW + WHY US -->
 <div class="two-col z a d4">
   <div class="col-l">
-    <div class="sec-label">为什么是现在 · Four Convergences</div>
+    <div class="sec-label"><span class="zh">为什么是现在 · Four Convergences</span><span class="en">Why Now · Four Convergences</span></div>
     <div class="why-grid">
       <div class="wcard c1">
-        <div class="wc-n">01 · 用工结构性压力</div>
-        <div class="wc-title">劳动力成本上升 · 收缩</div>
-        <div class="wc-body">SIMA 行业报告直接点名：劳动力成本持续上升、劳动力收缩是除雪运营最大挑战。BLS 数据：私营福利负担占雇主成本 <strong>29.9%</strong>，夜班溢价另计。"找不到稳定夜班工人"是客户最高频抱怨。</div>
+        <div class="wc-n zh">01 · 用工结构性压力</div>
+        <div class="wc-n en">01 · Labor Structural Pressure</div>
+        <div class="wc-title zh">劳动力成本上升 · 收缩</div>
+        <div class="wc-title en">Rising Costs · Shrinking Workforce</div>
+        <div class="wc-body zh">SIMA 行业报告直接点名：劳动力成本持续上升、劳动力收缩是除雪运营最大挑战。BLS 数据：私营福利负担占雇主成本 <strong>29.9%</strong>，夜班溢价另计。"找不到稳定夜班工人"是客户最高频抱怨。</div>
+        <div class="wc-body en">SIMA industry reports name labor cost increases and workforce contraction as the top snow operations challenge. BLS data: benefits burden is <strong>29.9%</strong> of employer costs, plus night-shift premiums. "Can't find reliable night crews" is the #1 client complaint.</div>
       </div>
       <div class="wcard c2">
-        <div class="wc-n">02 · 采购标准化完成</div>
-        <div class="wc-title">买方已知道怎么买</div>
-        <div class="wc-body">SIMA-10-2025（ANSI 标准）将采购流程全面规范化：<strong>5月 RFP · 9月1日授标</strong>，合同明确 LOS/触发阈值/关键时间窗/监测记录/融冻再结冰处置。我们直接对标标准交付，不需要教育买方。</div>
+        <div class="wc-n zh">02 · 采购标准化完成</div>
+        <div class="wc-n en">02 · Procurement Standardized</div>
+        <div class="wc-title zh">买方已知道怎么买</div>
+        <div class="wc-title en">Buyers Already Know How to Buy</div>
+        <div class="wc-body zh">SIMA-10-2025（ANSI 标准）将采购流程全面规范化：<strong>5月 RFP · 9月1日授标</strong>，合同明确 LOS/触发阈值/关键时间窗/监测记录/融冻再结冰处置。我们直接对标标准交付，不需要教育买方。</div>
+        <div class="wc-body en">SIMA-10-2025 (ANSI standard) fully codifies procurement: <strong>RFP by May · Contract by Sept 1</strong>, with mandated LOS, trigger thresholds, time windows, monitoring, and refreeze treatment. We map to the standard — no buyer education needed.</div>
       </div>
       <div class="wcard c3">
-        <div class="wc-n">03 · 气候波动复杂化</div>
-        <div class="wc-title">极端事件 + 冻融循环上升</div>
-        <div class="wc-body">IPCC AR6：极端降水随变暖增强，高置信度。五大湖效应降雪时空格局变化，局地强降雪更突发。<strong>冻融循环增加</strong>提升二次巡检/处置需求——对无人化巡检与记录系统尤为利好。</div>
+        <div class="wc-n zh">03 · 气候波动复杂化</div>
+        <div class="wc-n en">03 · Climate Volatility</div>
+        <div class="wc-title zh">极端事件 + 冻融循环上升</div>
+        <div class="wc-title en">Extreme Events + Freeze-Thaw Cycles</div>
+        <div class="wc-body zh">IPCC AR6：极端降水随变暖增强，高置信度。五大湖效应降雪时空格局变化，局地强降雪更突发。<strong>冻融循环增加</strong>提升二次巡检/处置需求——对无人化巡检与记录系统尤为利好。</div>
+        <div class="wc-body en">IPCC AR6: extreme precipitation intensifies with warming (high confidence). Great Lakes-effect snowfall shifts to more localized, unpredictable bursts. <strong>Increasing freeze-thaw cycles</strong> raise demand for secondary inspection and reapplication — ideal for autonomous systems with logging.</div>
       </div>
       <div class="wcard c4">
-        <div class="wc-n">04 · 自治可行性已验证</div>
-        <div class="wc-title">缺的是产品化 · 不是技术</div>
-        <div class="wc-body">温尼伯机场（Otto 自治雪犁）、挪威法格内斯机场（Yeti 编队自治）证明<strong>冬季极端工况自治可行</strong>。机场是受控环境，商业园区缺的是可复制的标准化产品——这正是 SnowBot 要填补的空白。</div>
+        <div class="wc-n zh">04 · 自治可行性已验证</div>
+        <div class="wc-n en">04 · Autonomy Feasibility Proven</div>
+        <div class="wc-title zh">缺的是产品化 · 不是技术</div>
+        <div class="wc-title en">Missing Piece Is Productization, Not Tech</div>
+        <div class="wc-body zh">温尼伯机场（Otto 自治雪犁）、挪威法格内斯机场（Yeti 编队自治）证明<strong>冬季极端工况自治可行</strong>。机场是受控环境，商业园区缺的是可复制的标准化产品——这正是 SnowBot 要填补的空白。</div>
+        <div class="wc-body en">Winnipeg Airport (Otto autonomous plow) and Norway's Fagernes Airport (Yeti fleet) have proven <strong>winter autonomous operation is physically viable</strong>. Airports are controlled environments. Commercial campuses just need a standardized product — that's exactly SnowBot's gap.</div>
       </div>
       <div class="wcard c5">
-        <div class="wc-n">05 · 高失败成本场景已明确</div>
-        <div class="wc-title">客户付可靠性 · 不付便宜</div>
-        <div class="wc-body">数据中心停机成本：Uptime Institute 调研显示超过 50% 企业单次重大停机成本 <strong>>US$10万</strong>，部分超过 US$100万。物流仓储坡道结冰直接导致运营停摆。<strong>可靠性与责任闭环</strong>才是真实购买动机。</div>
+        <div class="wc-n zh">05 · 高失败成本场景已明确</div>
+        <div class="wc-n en">05 · High-Stakes Scenarios Defined</div>
+        <div class="wc-title zh">客户付可靠性 · 不付便宜</div>
+        <div class="wc-title en">Customers Pay for Reliability, Not Cheapness</div>
+        <div class="wc-body zh">数据中心停机成本：Uptime Institute 调研显示超过 50% 企业单次重大停机成本 <strong>>US$10万</strong>，部分超过 US$100万。物流仓储坡道结冰直接导致运营停摆。<strong>可靠性与责任闭环</strong>才是真实购买动机。</div>
+        <div class="wc-body en">Data center downtime: Uptime Institute shows >50% of firms report a single major outage costing <strong>>$100K</strong>, some >$1M. Logistics dock ramp icing halts operations immediately. <strong>Reliability and accountability</strong> are the real purchase drivers.</div>
       </div>
       <div class="wcard c6">
-        <div class="wc-n">06 · 渠道已具备</div>
-        <div class="wc-title">CBRE · Colliers 现有客户</div>
-        <div class="wc-body">创始人深耕北美 C&I 能源市场多年，<strong>CBRE、Colliers 两大商业地产管理公司均为现有客户关系</strong>。首批意向方管理 50+ 大型商业设施。采购时间窗已知，进入路径无需从零建立。</div>
+        <div class="wc-n zh">06 · 渠道已具备</div>
+        <div class="wc-n en">06 · Channel Already Exists</div>
+        <div class="wc-title zh">CBRE · Colliers 现有客户</div>
+        <div class="wc-title en">CBRE · Colliers Active Relationships</div>
+        <div class="wc-body zh">创始人深耕北美 C&I 能源市场多年，<strong>CBRE、Colliers 两大商业地产管理公司均为现有客户关系</strong>。首批意向方管理 50+ 大型商业设施。采购时间窗已知，进入路径无需从零建立。</div>
+        <div class="wc-body en">The founder has spent years in North American C&I energy markets. <strong>CBRE and Colliers are existing client relationships</strong> — not contacts. The first pilot intent came directly from within these networks. Procurement windows are known. Entry path is clear.</div>
       </div>
     </div>
   </div>
@@ -511,41 +596,51 @@ body::before{
   <div class="vr"></div>
 
   <div class="col-r">
-    <div class="sec-label">核心差异化 · The Unfair Advantage</div>
+    <div class="sec-label"><span class="zh">核心差异化 · The Unfair Advantage</span><span class="en">The Unfair Advantage</span></div>
     <div class="feat-row">
       <div class="feat">
         <div class="feat-bar"></div>
         <div>
-          <div class="feat-title">极寒 × 重载 × 自治 × 长时：四维耦合门槛</div>
-          <div class="feat-body">单点模块可被复制，<strong>四个维度同时成立的工程复杂度不可复制</strong>。−30°C 启动 · 重载履带牵引 · 无人值守决策 · 12小时连续运行——这是当前市场无任何已量产商业产品能覆盖的工况边界。</div>
+          <div class="feat-title zh">极寒 × 重载 × 自治 × 长时：四维耦合门槛</div>
+          <div class="feat-title en">Extreme Cold × Heavy Load × Autonomy × Endurance: 4-Axis Moat</div>
+          <div class="feat-body zh">单点模块可被复制，<strong>四个维度同时成立的工程复杂度不可复制</strong>。−30°C 启动 · 重载履带牵引 · 无人值守决策 · 12小时连续运行——这是当前市场无任何已量产商业产品能覆盖的工况边界。</div>
+          <div class="feat-body en">Single modules can be copied. <strong>Four dimensions working simultaneously cannot.</strong> −30°C cold start · heavy-load track traction · unmanned decision-making · 12+ hours continuous — no existing commercial product covers this operating envelope.</div>
         </div>
       </div>
       <div class="feat">
         <div class="feat-bar"></div>
         <div>
-          <div class="feat-title">从设施运维视角定义产品</div>
-          <div class="feat-body">我们卖的不是"能跑的机器人"，而是<strong>"必须完成任务的工业级系统"</strong>。产品指标直接映射到 SIMA LOS 验收框架：触发阈值达标时间、关键时间窗通行率、优先区域覆盖率、事件日志可审计性。</div>
+          <div class="feat-title zh">从设施运维视角定义产品</div>
+          <div class="feat-title en">Defined From Facility Operations, Not Robotics</div>
+          <div class="feat-body zh">我们卖的不是"能跑的机器人"，而是<strong>"必须完成任务的工业级系统"</strong>。产品指标直接映射到 SIMA LOS 验收框架：触发阈值达标时间、关键时间窗通行率、优先区域覆盖率、事件日志可审计性。</div>
+          <div class="feat-body en">We don't sell "a robot that moves." We sell <strong>"an industrial system that must complete the job."</strong> Product specs map directly to SIMA LOS acceptance criteria: trigger response time, time-window clearance rate, priority zone coverage, auditable event logs.</div>
         </div>
       </div>
       <div class="feat">
         <div class="feat-bar"></div>
         <div>
-          <div class="feat-title">世界模型 + 强化学习决策内核</div>
-          <div class="feat-body">非单点规则算法。<strong>极端感知数据 × 强化学习决策 × 工业级自治执行</strong>——感知失效降级、任务优先级动态调整、长时不确定环境持续正确决策，这是从自动化设备走向工业级自治系统的分水岭。顾问王梦迪（普林斯顿正教授，引用11,644次）提供科学护航。</div>
+          <div class="feat-title zh">世界模型 + 强化学习决策内核</div>
+          <div class="feat-title en">World Model + Reinforcement Learning Core</div>
+          <div class="feat-body zh">非单点规则算法。<strong>极端感知数据 × 强化学习决策 × 工业级自治执行</strong>——感知失效降级、任务优先级动态调整、长时不确定环境持续正确决策，这是从自动化设备走向工业级自治系统的分水岭。顾问王梦迪（普林斯顿正教授，引用11,644次）提供科学护航。</div>
+          <div class="feat-body en">Not rule-based automation. <strong>Extreme sensor data × RL decision-making × industrial-grade autonomous execution</strong> — graceful degradation on sensor failure, dynamic task prioritization, sustained correct decisions in long-duration uncertain environments. Backed by Prof. Mengdi Wang (Princeton, 11,644 citations).</div>
         </div>
       </div>
       <div class="feat">
         <div class="feat-bar"></div>
         <div>
-          <div class="feat-title">平台入口 · 非单一季节设备</div>
-          <div class="feat-body">极寒感知 + 自治决策能力横向复用：<strong>除草 → 巡检 → 安防</strong>。一次极端工况验证，多场景扩展。投资价值不止于除雪季节，而是 ARCBOS 建立"极端环境工业级自治系统"第一块工程基石。</div>
+          <div class="feat-title zh">平台入口 · 非单一季节设备</div>
+          <div class="feat-title en">Platform Entry Point, Not a Seasonal Device</div>
+          <div class="feat-body zh">极寒感知 + 自治决策能力横向复用：<strong>除草 → 巡检 → 安防</strong>。一次极端工况验证，多场景扩展。投资价值不止于除雪季节，而是 ARCBOS 建立"极端环境工业级自治系统"第一块工程基石。</div>
+          <div class="feat-body en">Extreme-cold perception + autonomous decision capabilities transfer laterally: <strong>mowing → inspection → security</strong>. One extreme-environment validation, multiple scenario expansion. Investment value extends beyond the snow season — this is ARCBOS building its first engineering foundation.</div>
         </div>
       </div>
       <div class="feat">
         <div class="feat-bar"></div>
         <div>
-          <div class="feat-title">供应链直连 · 产业化不可替代</div>
-          <div class="feat-body">产业顾问杨光华（机器人产业链顶级专家、清华具身智能产业协会副会长）<strong>全产业链上下游核心供应商直连</strong>，从样机到量产的产业化路径具有不可替代的人脉与资源优势。</div>
+          <div class="feat-title zh">供应链直连 · 产业化不可替代</div>
+          <div class="feat-title en">Supply Chain Direct Access · Irreplaceable Industrialization Path</div>
+          <div class="feat-body zh">产业顾问杨光华（机器人产业链顶级专家、清华具身智能产业协会副会长）<strong>全产业链上下游核心供应商直连</strong>，从样机到量产的产业化路径具有不可替代的人脉与资源优势。</div>
+          <div class="feat-body en">Industry advisor Yang Guanghua (top robotics supply chain expert, VP of Tsinghua Embodied AI Industry Association) has <strong>direct relationships with core suppliers across the full robotics value chain</strong> — from actuators and sensors to chassis components. Industrialization path is protected.</div>
         </div>
       </div>
     </div>
@@ -554,45 +649,48 @@ body::before{
 
 <!-- ⑤ MARKET -->
 <div class="market-sec z a d5">
-  <div class="sec-label">市场规模 · 自上而下 × 自下而上双重验证</div>
+  <div class="sec-label"><span class="zh">市场规模 · 自上而下 × 自下而上双重验证</span><span class="en">Market Size · Top-Down × Bottom-Up Validated</span></div>
   <div class="market-grid">
     <div class="mcard m1">
-      <div class="mcard-eyebrow">TAM · 总市场（自上而下）</div>
-      <div class="mcard-val">$225亿</div>
-      <div class="mcard-label">北美商业设施除雪与融冰服务（2023）</div>
-      <div class="mcard-body">包含人工、设备、材料、外包合同全口径。美国占 <strong>74.4%（约$167亿）</strong>，加拿大约$58亿。这是已预算化的现有支出，不是需要创造的新需求。</div>
+      <div class="mcard-eyebrow zh">TAM · 总市场（自上而下）</div><div class="mcard-eyebrow en">TAM · Total Market (Top-Down)</div>
+      <div class="mcard-val zh">$225亿</div><div class="mcard-val en">$22.5B</div>
+      <div class="mcard-label zh">北美商业设施除雪与融冰服务（2023）</div><div class="mcard-label en">North America commercial snow & ice mgmt (2023)</div>
+      <div class="mcard-body zh">包含人工、设备、材料、外包合同全口径。美国占 <strong>74.4%（约$167亿）</strong>，加拿大约$58亿。这是已预算化的现有支出，不是需要创造的新需求。</div>
+      <div class="mcard-body en">Covers labor, equipment, materials, and outsourced contracts. US accounts for <strong>74.4% (~$16.7B)</strong>, Canada ~$5.8B. This is existing budgeted spend — not a market to be created.</div>
     </div>
     <div class="mcard m2">
-      <div class="mcard-eyebrow">SAM · 可服务市场（自下而上锚定）</div>
-      <div class="mcard-val">$12–18亿</div>
-      <div class="mcard-label">北美工业级高可靠场站 · SnowBot 真实可替代份额</div>
-      <div class="mcard-body">保守测算：北美 <strong>~30,000个</strong> 工业/物流/医疗高可靠站点，年均除雪外包支出约 $4–6万/站点，对应 $12–18亿可替代 OPEX。这是 SnowBot 真正能拿走的份额，不是全市场幻觉。</div>
+      <div class="mcard-eyebrow zh">SAM · 可服务市场（自下而上锚定）</div><div class="mcard-eyebrow en">SAM · Serviceable Market (Bottom-Up)</div>
+      <div class="mcard-val zh">$12–18亿</div><div class="mcard-val en">$1.2–1.8B</div>
+      <div class="mcard-label zh">北美工业级高可靠场站 · SnowBot 真实可替代份额</div><div class="mcard-label en">High-reliability industrial sites · Real replaceable OPEX</div>
+      <div class="mcard-body zh">保守测算：北美 <strong>~30,000个</strong> 工业/物流/医疗高可靠站点，年均除雪外包支出约 $4–6万/站点，对应 $12–18亿可替代 OPEX。这是 SnowBot 真正能拿走的份额，不是全市场幻觉。</div>
+      <div class="mcard-body en">Conservative estimate: <strong>~30,000</strong> industrial/logistics/medical high-reliability sites in North America, avg $40–60K/site/year in snow outsourcing = $1.2–1.8B replaceable OPEX. This is the real addressable slice, not a TAM illusion.</div>
     </div>
     <div class="mcard m3">
-      <div class="mcard-eyebrow">SOM · 5年目标（执行驱动）</div>
-      <div class="mcard-val">$3,000–6,000万</div>
-      <div class="mcard-label">SAM 的 2%–5% · 受交付产能限制</div>
-      <div class="mcard-body">基于 <strong>300–500个站点部署</strong>，每站点平均年服务价值约 $10万（RaaS 口径）。这个数字完全受我们自己的交付能力约束，而非需求约束——市场端完全不是问题。</div>
+      <div class="mcard-eyebrow zh">SOM · 5年目标（执行驱动）</div><div class="mcard-eyebrow en">SOM · 5-Year Target (Execution-Driven)</div>
+      <div class="mcard-val zh">$3,000–6,000万</div><div class="mcard-val en">$30–60M</div>
+      <div class="mcard-label zh">SAM 的 2%–5% · 受交付产能限制</div><div class="mcard-label en">2%–5% of SAM · Delivery capacity constrained</div>
+      <div class="mcard-body zh">基于 <strong>300–500个站点部署</strong>，每站点平均年服务价值约 $10万（RaaS 口径）。这个数字完全受我们自己的交付能力约束，而非需求约束——市场端完全不是问题。</div>
+      <div class="mcard-body en">Based on <strong>300–500 site deployments</strong>, avg $100K/site/yr (RaaS basis). This number is fully constrained by our own delivery capacity — demand is not the bottleneck.</div>
     </div>
   </div>
   <div class="market-proof">
-    <div class="mp-lbl">自下而上锚点 · 可量化高可靠站点底座</div>
+    <div class="mp-lbl"><span class="zh">自下而上锚点 · 可量化高可靠站点底座</span><span class="en">Bottom-Up Anchors · Quantifiable High-Reliability Site Base</span></div>
     <div class="mp-grid">
       <div class="mp-item">
         <div class="mp-val">23,539</div>
-        <div class="mp-sub">美国仓储物流企业<br>（Q3 2025，NAICS 493）</div>
+        <div class="mp-sub zh">美国仓储物流企业<br>（Q3 2025，NAICS 493）</div><div class="mp-sub en">US warehousing firms<br>(Q3 2025, NAICS 493)</div>
       </div>
       <div class="mp-item">
         <div class="mp-val">6,100</div>
-        <div class="mp-sub">美国医院（FY2024）<br>急救通道零容错，失败成本极高</div>
+        <div class="mp-sub zh">美国医院（FY2024）<br>急救通道零容错，失败成本极高</div><div class="mp-sub en">US hospitals (FY2024)<br>Emergency access zero-tolerance, very high failure cost</div>
       </div>
       <div class="mp-item">
         <div class="mp-val">5,172</div>
-        <div class="mp-sub">加拿大仓储机构（2024）<br>极寒气候 · 冬季运维依赖度更高</div>
+        <div class="mp-sub zh">加拿大仓储机构（2024）<br>极寒气候 · 冬季运维依赖度更高</div><div class="mp-sub en">Canada warehousing (2024)<br>Extreme cold · Higher winter ops dependency</div>
       </div>
       <div class="mp-item">
-        <div class="mp-val">$4–6万</div>
-        <div class="mp-sub">典型工业站点年均除雪外包支出<br>（公开招标费率 × 作业频次推算）</div>
+        <div class="mp-val zh">$4–6万</div><div class="mp-val en">$40–60K</div>
+        <div class="mp-sub zh">典型工业站点年均除雪外包支出<br>（公开招标费率 × 作业频次推算）</div><div class="mp-sub en">Typical industrial site annual snow outsourcing<br>(Public procurement rates × frequency est.)</div>
       </div>
     </div>
   </div>
@@ -614,285 +712,316 @@ body::before{
       <div class="tcard-why"><strong>买点</strong>：可靠性 · 夜间保通 · 可审计 LOS · 责任闭环</div>
     </div>
     <div class="tcard t2">
-      <div class="tcard-badge">Tier 2 · 中期放量</div>
-      <div class="tcard-title">规模化标准场景</div>
+      <div class="tcard-badge zh">Tier 2 · 中期放量</div>
+      <div class="tcard-badge en">Tier 2 · Mid-Term Scale</div>
+      <div class="tcard-title zh">规模化标准场景</div>
+      <div class="tcard-title en">Standardized Scale Scenarios</div>
       <div class="tcard-items">
-        <div class="tcard-item">校园/教育机构：多人流 · 多区域路径 · 夜间安全</div>
-        <div class="tcard-item">多点商业地产组合：全国型 FM 聚合商管理的标准化物业</div>
-        <div class="tcard-item">外包承包商：作为设备供应商进入，渠道放大器</div>
-        <div class="tcard-item">市政外包合同：保险/合规体系完善后进入</div>
+        <div class="tcard-item zh">校园/教育机构：多人流 · 多区域路径 · 夜间安全</div>
+        <div class="tcard-item zh">多点商业地产组合：全国型 FM 聚合商管理的标准化物业</div>
+        <div class="tcard-item zh">外包承包商：作为设备供应商进入，渠道放大器</div>
+        <div class="tcard-item zh">市政外包合同：保险/合规体系完善后进入</div>
+        <div class="tcard-item en">Campus/education: multi-flow · multi-zone · nighttime safety</div>
+        <div class="tcard-item en">Multi-site commercial real estate: standardized properties under national FM managers</div>
+        <div class="tcard-item en">Outsourcing contractors: enter as equipment supplier, channel multiplier</div>
+        <div class="tcard-item en">Municipal contracts: enter after insurance/compliance system established</div>
       </div>
-      <div class="tcard-why"><strong>进入路径</strong>：通过 CBRE/Colliers 等 FM 渠道批量导入</div>
+      <div class="tcard-why zh"><strong>进入路径</strong>：通过 CBRE/Colliers 等 FM 渠道批量导入</div>
+      <div class="tcard-why en"><strong>Entry path:</strong> Batch introduction via CBRE/Colliers FM channels</div>
     </div>
     <div class="tcard t3">
-      <div class="tcard-badge">Tier 3 · 后期</div>
-      <div class="tcard-title">价格敏感标准场景</div>
+      <div class="tcard-badge zh">Tier 3 · 后期</div>
+      <div class="tcard-badge en">Tier 3 · Later Stage</div>
+      <div class="tcard-title zh">价格敏感标准场景</div>
+      <div class="tcard-title en">Price-Sensitive Standard Scenarios</div>
       <div class="tcard-items">
-        <div class="tcard-item">普通零售停车场：失败成本相对低，价格竞争更激烈</div>
-        <div class="tcard-item">一般办公园区：标准化但预算压力较大</div>
-        <div class="tcard-item">住宅/轻商业：留给 Yarbo 类产品，非 SnowBot 目标</div>
+        <div class="tcard-item zh">普通零售停车场：失败成本相对低，价格竞争更激烈</div>
+        <div class="tcard-item zh">一般办公园区：标准化但预算压力较大</div>
+        <div class="tcard-item zh">住宅/轻商业：留给 Yarbo 类产品，非 SnowBot 目标</div>
+        <div class="tcard-item en">General retail parking: lower failure cost, more price competition</div>
+        <div class="tcard-item en">Standard office parks: standardized but budget-constrained</div>
+        <div class="tcard-item en">Residential/light commercial: Yarbo territory, not SnowBot target</div>
       </div>
-      <div class="tcard-why"><strong>条件</strong>：需价格与可靠性双优后才可大规模替换</div>
+      <div class="tcard-why zh"><strong>条件</strong>：需价格与可靠性双优后才可大规模替换</div>
+      <div class="tcard-why en"><strong>Condition:</strong> Requires both price and reliability advantage for mass substitution</div>
     </div>
   </div>
 
   <table class="roi-table" style="margin-top:16px">
     <thead>
       <tr>
-        <th>场景（Tier 1）</th>
-        <th>传统年度成本估算（推算）</th>
-        <th>时租锚点</th>
-        <th>回本周期预判</th>
-        <th>核心非财务价值</th>
+        <th><span class="zh">场景（Tier 1）</span><span class="en">Scenario (Tier 1)</span></th>
+        <th><span class="zh">传统年度成本估算</span><span class="en">Traditional Annual Cost Est.</span></th>
+        <th><span class="zh">时租锚点</span><span class="en">Hourly Rate</span></th>
+        <th><span class="zh">回本周期预判</span><span class="en">Payback Est.</span></th>
+        <th><span class="zh">核心非财务价值</span><span class="en">Non-Financial Value</span></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>大型物流仓储园区<br><span class="sub">15–25 acres 硬化地面</span></td>
-        <td>推雪：$7.2万–12.6万/季<br><span class="sub">K=4台 · H=6h/次 · Np=15次</span></td>
+        <td><span class="zh">大型物流仓储园区<br><span class="sub">15–25 acres 硬化地面</span></span><span class="en">Large Logistics/Warehouse<br><span class="sub">15–25 acres hardscape</span></span></td>
+        <td><span class="zh">推雪：$7.2万–12.6万/季<br><span class="sub">K=4台 · H=6h/次 · Np=15次</span></span><span class="en">Plowing: $72K–126K/season<br><span class="sub">4 units × 6h/event × 15 events</span></span></td>
         <td>$200–350/h</td>
         <td class="highlight">1.5–2季</td>
-        <td>夜间保通 · LOS 记录 · 坡道零事故</td>
+        <td><span class="zh">夜间保通 · LOS 记录 · 坡道零事故</span><span class="en">Overnight clearance · LOS logs · Zero dock incidents</span></td>
       </tr>
       <tr>
-        <td>数据中心园区<br><span class="sub">5–12 acres 关键通道</span></td>
-        <td>高于一般场站<br><span class="sub">停机成本倒逼 WTP 溢价</span></td>
+        <td><span class="zh">数据中心园区<br><span class="sub">5–12 acres 关键通道</span></span><span class="en">Data Center Campus<br><span class="sub">5–12 acres critical paths</span></span></td>
+        <td><span class="zh">高于一般场站<br><span class="sub">停机成本倒逼 WTP 溢价</span></span><span class="en">Above average sites<br><span class="sub">Downtime cost drives WTP premium</span></span></td>
         <td>$250–495/h</td>
         <td class="highlight">2季（保守）</td>
-        <td>可审计日志 · SLA 达标证明 · 运维文化匹配</td>
+        <td><span class="zh">可审计日志 · SLA 达标证明 · 运维文化匹配</span><span class="en">Auditable logs · SLA compliance proof · Ops culture fit</span></td>
       </tr>
       <tr>
-        <td>医疗园区<br><span class="sub">美国 6,100 家医院</span></td>
-        <td>急救通道高频次 · 夜班人工调度最难</td>
+        <td><span class="zh">医疗园区<br><span class="sub">美国 6,100 家医院</span></span><span class="en">Medical Campus<br><span class="sub">6,100 US hospitals</span></span></td>
+        <td><span class="zh">急救通道高频次 · 夜班人工调度最难</span><span class="en">High-frequency ER access · Night staffing hardest</span></td>
         <td>$145–350/h</td>
         <td class="highlight">2–3季</td>
-        <td>急救通道夜间零中断 · 滑倒索赔风险降低</td>
+        <td><span class="zh">急救通道夜间零中断 · 滑倒索赔风险降低</span><span class="en">Zero ER access interruptions · Reduced slip liability</span></td>
       </tr>
     </tbody>
   </table>
   <div style="font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--dim);margin-top:8px">
-    * 费率数据来源：政府/学校公开招标表（$145–$495/h实证）+ BLS 劳动力成本。面积/频次/回本为推算，将由试点站点数据校正。
+    <span class="zh">* 费率数据来源：政府/学校公开招标表（$145–$495/h实证）+ BLS 劳动力成本。面积/频次/回本为推算，将由试点站点数据校正。</span><span class="en">* Rate sources: public government/university procurement records ($145–$495/h empirical) + BLS labor data. Area/frequency/payback are estimates to be calibrated with pilot site data.</span>
   </div>
 </div>
 
 <!-- ⑦ COMPETITION -->
 <div class="comp-sec z a d6">
-  <div class="sec-label">竞争格局 · 为什么中间存在空白</div>
+  <div class="sec-label"><span class="zh">竞争格局 · 为什么中间存在空白</span><span class="en">Competitive Landscape · Why the Gap Exists</span></div>
   <div class="comp-matrix">
     <div class="cm cx ca">
       <div class="cm-type">SnowBot · ARCBOS</div>
-      <div class="cm-name">目标定位</div>
+      <div class="cm-name zh">目标定位</div><div class="cm-name en">Target Positioning</div>
       <div class="cm-rows">
-        <div class="cm-row"><span class="cm-row-key">工业级重载</span><span class="cm-row-val yes">✓ 是</span></div>
-        <div class="cm-row"><span class="cm-row-key">极寒 −30°C</span><span class="cm-row-val yes">✓ 目标</span></div>
-        <div class="cm-row"><span class="cm-row-key">无人值守自治</span><span class="cm-row-val yes">✓ 全自治</span></div>
-        <div class="cm-row"><span class="cm-row-key">12h+ 连续运行</span><span class="cm-row-val yes">✓ 是</span></div>
-        <div class="cm-row"><span class="cm-row-key">可审计 LOS 记录</span><span class="cm-row-val yes">✓ 是</span></div>
-        <div class="cm-row"><span class="cm-row-key">商业园区产品化</span><span class="cm-row-val yes">✓ 是</span></div>
+        <div class="cm-row"><span class="cm-row-key zh">工业级重载</span><span class="cm-row-key en">Heavy-Load Industrial</span><span class="cm-row-val yes"><span class="zh">✓ 是</span><span class="en">✓ Yes</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">极寒 −30°C</span><span class="cm-row-key en">Extreme Cold −30°C</span><span class="cm-row-val yes"><span class="zh">✓ 目标</span><span class="en">✓ Target</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">无人值守自治</span><span class="cm-row-key en">Fully Autonomous</span><span class="cm-row-val yes"><span class="zh">✓ 全自治</span><span class="en">✓ Full Auto</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">12h+ 连续运行</span><span class="cm-row-key en">12h+ Continuous Ops</span><span class="cm-row-val yes">✓ 是</span></div>
+        <div class="cm-row"><span class="cm-row-key zh">可审计 LOS 记录</span><span class="cm-row-key en">Auditable LOS Logs</span><span class="cm-row-val yes">✓ 是</span></div>
+        <div class="cm-row"><span class="cm-row-key zh">商业园区产品化</span><span class="cm-row-key en">Campus Productized</span><span class="cm-row-val yes">✓ 是</span></div>
       </div>
     </div>
     <div class="cm cb">
-      <div class="cm-type">Yarbo · 消费级</div>
-      <div class="cm-name">住宅/轻商业方向</div>
+      <div class="cm-type zh">Yarbo · 消费级</div><div class="cm-type en">Yarbo · Consumer</div>
+      <div class="cm-name zh">住宅/轻商业方向</div><div class="cm-name en">Residential/Light Commercial</div>
       <div class="cm-rows">
-        <div class="cm-row"><span class="cm-row-key">工业级重载</span><span class="cm-row-val no">✗ 住宅吞吐</span></div>
-        <div class="cm-row"><span class="cm-row-key">温度边界</span><span class="cm-row-val partial">△ −25°C</span></div>
-        <div class="cm-row"><span class="cm-row-key">无人值守自治</span><span class="cm-row-val partial">△ 有限</span></div>
-        <div class="cm-row"><span class="cm-row-key">连续运行能力</span><span class="cm-row-val no">✗ 单次约6,000sqft</span></div>
-        <div class="cm-row"><span class="cm-row-key">可审计 LOS 记录</span><span class="cm-row-val no">✗ 无工业级</span></div>
-        <div class="cm-row"><span class="cm-row-key">目标市场</span><span class="cm-row-val no">住宅</span></div>
+        <div class="cm-row"><span class="cm-row-key zh">工业级重载</span><span class="cm-row-key en">Heavy-Load Industrial</span><span class="cm-row-val no"><span class="zh">✗ 住宅吞吐</span><span class="en">✗ Residential</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">温度边界</span><span class="cm-row-key en">Temp Boundary</span><span class="cm-row-val partial"><span class="zh">△ −25°C</span><span class="en">△ −25°C</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">无人值守自治</span><span class="cm-row-key en">Fully Autonomous</span><span class="cm-row-val partial"><span class="zh">△ 有限</span><span class="en">△ Limited</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">连续运行能力</span><span class="cm-row-key en">Continuous Runtime</span><span class="cm-row-val no"><span class="zh">✗ 单次约6,000sqft</span><span class="en">✗ ~6,000sqft/charge</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">可审计 LOS 记录</span><span class="cm-row-key en">Auditable LOS Logs</span><span class="cm-row-val no"><span class="zh">✗ 无工业级</span><span class="en">✗ None</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">目标市场</span><span class="cm-row-key en">Target Market</span><span class="cm-row-val no"><span class="zh">住宅</span><span class="en">Residential</span></span></div>
       </div>
-      <div class="cm-gap">住宅级吞吐与 −25°C 边界，与工业园区 −30°C 重载无人值守在产品定义上不是同类问题。</div>
+      <div class="cm-gap zh">住宅级吞吐与 −25°C 边界，与工业园区 −30°C 重载无人值守在产品定义上不是同类问题。</div><div class="cm-gap en">Residential throughput and −25°C limits are a fundamentally different product definition from industrial −30°C heavy-load unattended ops.</div>
     </div>
     <div class="cm cb">
-      <div class="cm-type">Otto · Yeti · 机场自治</div>
-      <div class="cm-name">机场/重装定制方向</div>
+      <div class="cm-type zh">Otto · Yeti · 机场自治</div><div class="cm-type en">Otto · Yeti · Airport Autonomy</div>
+      <div class="cm-name zh">机场/重装定制方向</div><div class="cm-name en">Airport/Heavy Custom</div>
       <div class="cm-rows">
-        <div class="cm-row"><span class="cm-row-key">工业级重载</span><span class="cm-row-val yes">✓ 是</span></div>
-        <div class="cm-row"><span class="cm-row-key">极寒运行</span><span class="cm-row-val yes">✓ 是</span></div>
-        <div class="cm-row"><span class="cm-row-key">无人值守自治</span><span class="cm-row-val partial">△ 受控环境</span></div>
-        <div class="cm-row"><span class="cm-row-key">商业园区产品化</span><span class="cm-row-val no">✗ 定制集成</span></div>
-        <div class="cm-row"><span class="cm-row-key">可复制标准产品</span><span class="cm-row-val no">✗ 试点阶段</span></div>
-        <div class="cm-row"><span class="cm-row-key">中小园区可用</span><span class="cm-row-val no">✗ 机场体系</span></div>
+        <div class="cm-row"><span class="cm-row-key zh">工业级重载</span><span class="cm-row-key en">Heavy-Load Industrial</span><span class="cm-row-val yes">✓ 是</span></div>
+        <div class="cm-row"><span class="cm-row-key zh">极寒运行</span><span class="cm-row-key en">Extreme Cold Ops</span><span class="cm-row-val yes">✓ 是</span></div>
+        <div class="cm-row"><span class="cm-row-key zh">无人值守自治</span><span class="cm-row-key en">Fully Autonomous</span><span class="cm-row-val partial"><span class="zh">△ 受控环境</span><span class="en">△ Controlled Env</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">商业园区产品化</span><span class="cm-row-key en">Campus Productized</span><span class="cm-row-val no"><span class="zh">✗ 定制集成</span><span class="en">✗ Custom Only</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">可复制标准产品</span><span class="cm-row-key en">Replicable Std Product</span><span class="cm-row-val no"><span class="zh">✗ 试点阶段</span><span class="en">✗ Pilot Stage</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">中小园区可用</span><span class="cm-row-key en">Mid-Size Campus Ready</span><span class="cm-row-val no"><span class="zh">✗ 机场体系</span><span class="en">✗ Airport Only</span></span></div>
       </div>
-      <div class="cm-gap">证明了冬季自治可行性，但机场是受控专属环境，不是园区级可复制的标准化产品。</div>
+      <div class="cm-gap zh">证明了冬季自治可行性，但机场是受控专属环境，不是园区级可复制的标准化产品。</div><div class="cm-gap en">Proves winter autonomy is viable, but airports are controlled dedicated environments — not a replicable standardized campus product.</div>
     </div>
   </div>
   <div style="margin-top:12px;padding:16px 18px;background:rgba(179,53,8,.05);border:1px solid rgba(179,53,8,.2);font-family:var(--serif);font-size:13.5px;color:var(--ink2);line-height:1.95;letter-spacing:.03em">
-    <strong style="color:var(--accent)">空白为什么还没被填？</strong>这是投资人应该问的问题，答案是：<strong>这个工况组合真的很难</strong>——极寒热管理、重载牵引控制、无人值守安全降级、可审计 LOS 合规，四个维度同时满足的工程门槛，让消费级团队碰不了，让机场重装集成商不屑于做标准品。恰好 ARCBOS 的创始团队组合——北美客户理解 × 中国工程执行速度 × 机器人系统集成经验——是填这个空白的稀缺组合。
+    <span class="zh"><strong style="color:var(--accent)">空白为什么还没被填？</strong>这是投资人应该问的问题，答案是：<strong>这个工况组合真的很难</strong>——极寒热管理、重载牵引控制、无人值守安全降级、可审计 LOS 合规，四个维度同时满足的工程门槛，让消费级团队碰不了，让机场重装集成商不屑于做标准品。恰好 ARCBOS 的创始团队组合——北美客户理解 × 中国工程执行速度 × 机器人系统集成经验——是填这个空白的稀缺组合。</span><span class="en"><strong style="color:var(--accent)">Why hasn't someone filled this gap?</strong> Because <strong>this combination of operating conditions is genuinely hard</strong> — extreme cold thermal management, heavy-load traction control, unattended fail-safe, auditable LOS compliance. Meeting all four simultaneously is an engineering threshold that stops consumer teams cold and that airport integrators don't bother productizing. ARCBOS's founding team — North American customer fluency × Chinese engineering execution speed × robotics systems integration — is the rare combination that can fill it.</span>
   </div>
 </div>
 
 <!-- ⑧ MOAT -->
 <div class="moat-sec z a d6">
-  <div class="sec-label">竞争壁垒 · Five Moats</div>
+  <div class="sec-label"><span class="zh">竞争壁垒 · Five Moats</span><span class="en">Five Moats</span></div>
   <div class="moat-grid">
     <div class="moat m1">
       <div class="moat-n">Moat 01</div>
-      <div class="moat-title">极寒 × 重载 × 自治 × 长时的耦合门槛</div>
-      <div class="moat-body">单点模块可被快速复制，但<strong>四个维度同时满足的工程复杂度极难复制</strong>。−30°C 热管理 · 重载履带牵引控制 · 无人值守感知决策 · 12h+ 连续可靠运行——每一项都是系统级难题，耦合后的边界远超部件叠加。</div>
+      <div class="moat-title zh">极寒 × 重载 × 自治 × 长时的耦合门槛</div>
+      <div class="moat-title en">Extreme Cold × Heavy Load × Autonomy × Endurance: Coupled Threshold</div>
+      <div class="moat-body zh">单点模块可被快速复制，但<strong>四个维度同时满足的工程复杂度极难复制</strong>。−30°C 热管理 · 重载履带牵引控制 · 无人值守感知决策 · 12h+ 连续可靠运行——每一项都是系统级难题，耦合后的边界远超部件叠加。</div>
+      <div class="moat-body en">Individual modules can be replicated quickly, but <strong>the engineering complexity of all four dimensions working simultaneously is nearly impossible to copy</strong>. −30°C thermal management · heavy-load track traction control · unattended perception-decision · 12h+ continuous reliable operation — each is a systems-level challenge; combined, the barrier far exceeds the sum of parts.</div>
     </div>
     <div class="moat m2">
       <div class="moat-n">Moat 02</div>
-      <div class="moat-title">产品定义视角：设施运维 · 不是"机器人"</div>
-      <div class="moat-body">我们从 SIMA-10-2025 LOS 标准出发定义产品验收指标，而非从机器人参数出发推销功能。<strong>触发阈值达标 · 关键时间窗通行率 · 优先区域覆盖 · 可审计事件日志</strong>——这是买方的验收语言，也是壁垒。</div>
+      <div class="moat-title zh">产品定义视角：设施运维 · 不是"机器人"</div>
+      <div class="moat-title en">Product Definition Lens: Facility Operations, Not "Robots"</div>
+      <div class="moat-body zh">我们从 SIMA-10-2025 LOS 标准出发定义产品验收指标，而非从机器人参数出发推销功能。<strong>触发阈值达标 · 关键时间窗通行率 · 优先区域覆盖 · 可审计事件日志</strong>——这是买方的验收语言，也是壁垒。</div>
+      <div class="moat-body en">We define product acceptance criteria starting from SIMA-10-2025 LOS standards, not robot specs. <strong>Trigger threshold response · Time-window clearance rate · Priority zone coverage · Auditable event logs</strong> — this is the buyer's acceptance language, and it's a moat.</div>
     </div>
     <div class="moat m3">
       <div class="moat-n">Moat 03</div>
-      <div class="moat-title">AI 与自治决策：系统级能力 · 非单点算法</div>
-      <div class="moat-body">强化学习 + 世界模型 + 安全降级三层架构，覆盖感知失效、任务冲突、环境突变三类不确定性场景。<strong>这是从自动化设备走向工业级自治系统的关键分水岭</strong>。普林斯顿 RL 实验室科学支撑，非一般团队可快速复制。</div>
+      <div class="moat-title zh">AI 与自治决策：系统级能力 · 非单点算法</div>
+      <div class="moat-title en">AI & Autonomous Decision-Making: System-Level, Not Point Algorithm</div>
+      <div class="moat-body zh">强化学习 + 世界模型 + 安全降级三层架构，覆盖感知失效、任务冲突、环境突变三类不确定性场景。<strong>这是从自动化设备走向工业级自治系统的关键分水岭</strong>。普林斯顿 RL 实验室科学支撑，非一般团队可快速复制。</div>
+      <div class="moat-body en">RL + world model + safety degradation three-layer architecture, covering sensor failure, task conflict, and environment disruption. <strong>This is the critical divide between automated equipment and industrial autonomous systems.</strong> Backed by Princeton RL Lab — not replicable by typical teams quickly.</div>
     </div>
     <div class="moat m4">
       <div class="moat-n">Moat 04</div>
-      <div class="moat-title">北美客户渠道 · 先发进入壁垒</div>
-      <div class="moat-body">CBRE、Colliers 等顶级商业地产管理公司已是现有客户关系。<strong>采购时间窗口（5月 RFP·9月授标）具有强路径依赖性</strong>——一旦进入某机构的供应商体系，续约粘性高，后来者入场成本极高。</div>
+      <div class="moat-title zh">北美客户渠道 · 先发进入壁垒</div>
+      <div class="moat-title en">North American Client Channel · First-Mover Barrier</div>
+      <div class="moat-body zh">CBRE、Colliers 等顶级商业地产管理公司已是现有客户关系。<strong>采购时间窗口（5月 RFP·9月授标）具有强路径依赖性</strong>——一旦进入某机构的供应商体系，续约粘性高，后来者入场成本极高。</div>
+      <div class="moat-body en">CBRE and Colliers are existing client relationships. <strong>The procurement window (RFP by May · awarded by Sept 1) creates strong path dependency</strong> — once inside an institution's vendor system, renewal stickiness is high, and late entrant costs are prohibitive.</div>
     </div>
     <div class="moat m5">
-      <div class="moat-n">Moat 05 · 最终壁垒</div>
-      <div class="moat-title">极端环境数据飞轮：冬季作业数据 → 决策模型持续迭代</div>
-      <div class="moat-body">每一个冬季作业季积累的极寒感知数据、故障模式数据库、多站点 LOS 履约记录，将持续强化世界模型决策能力。<strong>数据飞轮一旦启动，后来者无论在算法还是在产品可靠性上都将面临越来越难以弥合的差距</strong>。早进场的公司不只是先到，而是在飞轮效应下越跑越快。</div>
+      <div class="moat-n zh">Moat 05 · 最终壁垒</div><div class="moat-n en">Moat 05 · The Ultimate Barrier</div>
+      <div class="moat-title zh">极端环境数据飞轮：冬季作业数据 → 决策模型持续迭代</div>
+      <div class="moat-title en">Extreme Environment Data Flywheel: Winter Operation Data → Continuous Model Improvement</div>
+      <div class="moat-body zh">每一个冬季作业季积累的极寒感知数据、故障模式数据库、多站点 LOS 履约记录，将持续强化世界模型决策能力。<strong>数据飞轮一旦启动，后来者无论在算法还是在产品可靠性上都将面临越来越难以弥合的差距</strong>。早进场的公司不只是先到，而是在飞轮效应下越跑越快。</div>
+      <div class="moat-body en">Every winter season accumulates extreme-cold perception data, failure mode databases, and multi-site LOS fulfillment records — continuously strengthening the world model. <strong>Once the data flywheel starts, late entrants face an ever-widening gap in both algorithm quality and product reliability.</strong> First movers don't just arrive first — they accelerate while others are still catching up.</div>
     </div>
   </div>
 </div>
 
 <!-- ⑧·5 TRACTION — 现在手里有什么 -->
 <div class="moat-sec z a d7" style="background:rgba(20,36,58,.03)">
-  <div class="sec-label">当前进展 · 我们手里已经有什么</div>
+  <div class="sec-label"><span class="zh">当前进展 · 我们手里已经有什么</span><span class="en">Current Traction · What We Already Have</span></div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px">
     <div style="background:var(--card);border:1px solid var(--rule);padding:18px;position:relative;overflow:hidden">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)"></div>
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:8px">工程进度</div>
-      <div style="font-family:var(--disp);font-size:26px;color:var(--navy);line-height:1;margin-bottom:10px">零件到货</div>
-      <div style="font-family:var(--serif);font-size:13px;color:var(--ink2);line-height:1.85;letter-spacing:.03em">关键硬件选型已完成，核心零件已采购到货，工程样机进入组装阶段。<strong>这不是停留在 CAD 图纸上的项目</strong>，实物组件已经在桌上。</div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:8px"><span class="zh">工程进度</span><span class="en">Engineering</span></div>
+      <div style="font-family:var(--disp);font-size:26px;color:var(--navy);line-height:1;margin-bottom:10px"><span class="zh">零件到货</span><span class="en">Parts In Hand</span></div>
+      <div style="font-family:var(--serif);font-size:13px;color:var(--ink2);line-height:1.85;letter-spacing:.03em"><span class="zh">关键硬件选型已完成，核心零件已采购到货，工程样机进入组装阶段。<strong>这不是停留在 CAD 图纸上的项目</strong>，实物组件已经在桌上。</span><span class="en">Key hardware selection complete, core components purchased and arrived, engineering prototype in assembly. <strong>This is not a CAD-only project</strong> — physical components are on the bench.</span></div>
     </div>
     <div style="background:var(--card);border:1px solid var(--rule);padding:18px;position:relative;overflow:hidden">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--signal)"></div>
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:8px">客户进展</div>
-      <div style="font-family:var(--disp);font-size:26px;color:var(--navy);line-height:1;margin-bottom:10px">试点意向确认</div>
-      <div style="font-family:var(--serif);font-size:13px;color:var(--ink2);line-height:1.85;letter-spacing:.03em">通过 CBRE/Colliers 现有客户渠道，首批设施管理负责人已<strong>明确表达冬季试点意向</strong>（邮件/会议记录可查），管理 50+ 大型商业设施。这是真实的意向，不是"认识"。</div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:8px"><span class="zh">客户进展</span><span class="en">Customer Traction</span></div>
+      <div style="font-family:var(--disp);font-size:26px;color:var(--navy);line-height:1;margin-bottom:10px"><span class="zh">试点意向确认</span><span class="en">Pilot Intent Confirmed</span></div>
+      <div style="font-family:var(--serif);font-size:13px;color:var(--ink2);line-height:1.85;letter-spacing:.03em"><span class="zh">通过 CBRE/Colliers 现有客户渠道，首批设施管理负责人已<strong>明确表达冬季试点意向</strong>（邮件/会议记录可查），管理 50+ 大型商业设施。这是真实的意向，不是"认识"。</span><span class="en">Through existing CBRE/Colliers client channels, facility managers have <strong>confirmed winter pilot intent</strong> (email/meeting records available), managing 50+ large commercial facilities. This is real intent, not a warm introduction.</span></div>
     </div>
     <div style="background:var(--card);border:1px solid var(--rule);padding:18px;position:relative;overflow:hidden">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--cold)"></div>
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:8px">团队状态</div>
-      <div style="font-family:var(--disp);font-size:26px;color:var(--navy);line-height:1;margin-bottom:10px">核心团队就位</div>
-      <div style="font-family:var(--serif);font-size:13px;color:var(--ink2);line-height:1.85;letter-spacing:.03em">CTO（飞利浦机器人量产经历）+ COO（头部机器人公司 To B 落地经验）+ 产业顾问（全产业链供应商直连）<strong>均已全程参与，不是挂名</strong>。公司 2026年4月正式注册。</div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:8px"><span class="zh">团队状态</span><span class="en">Team Status</span></div>
+      <div style="font-family:var(--disp);font-size:26px;color:var(--navy);line-height:1;margin-bottom:10px"><span class="zh">核心团队就位</span><span class="en">Core Team Assembled</span></div>
+      <div style="font-family:var(--serif);font-size:13px;color:var(--ink2);line-height:1.85;letter-spacing:.03em"><span class="zh">CTO（飞利浦机器人量产经历）+ COO（头部机器人公司 To B 落地经验）+ 产业顾问（全产业链供应商直连）<strong>均已全程参与，不是挂名</strong>。公司 2026年4月正式注册。</span><span class="en">CTO (Philips medical robotics mass production) + COO (leading robotics firm B2B delivery) + Industry Advisor (full supply chain direct access) <strong>are all fully engaged, not advisory titles</strong>. Company incorporated April 2026.</span></div>
     </div>
   </div>
   <div style="margin-top:14px;padding:16px 18px;background:rgba(25,64,106,.05);border:1px solid rgba(25,64,106,.2);font-family:var(--serif);font-size:13.5px;color:var(--ink2);line-height:1.95;letter-spacing:.03em">
-    <strong style="color:var(--signal)">坦白说：</strong>我们现在处于"工程样机组装中、首批客户意向在手、等待冬季验证窗口"的阶段。<strong>这$200万不是用来验证想法的，而是用来把已经开始的事情做完的。</strong>样机完成 → 冬季工况验证 → 3–5个付费试点 LOI → A 轮。路径清晰，不模糊。
+    <span class="zh"><strong style="color:var(--signal)">坦白说：</strong>我们现在处于"工程样机组装中、首批客户意向在手、等待冬季验证窗口"的阶段。<strong>这$200万不是用来验证想法的，而是用来把已经开始的事情做完的。</strong>样机完成 → 冬季工况验证 → 3–5个付费试点 LOI → A 轮。路径清晰，不模糊。</span><span class="en"><strong style="color:var(--signal)">Plainly stated:</strong> We are in the "prototype in assembly, first pilot intent confirmed, waiting for winter validation window" stage. <strong>This $2M is not to validate an idea — it's to finish what's already been started.</strong> Prototype complete → Winter validation → 3–5 paid pilot LOIs → Series A. The path is clear, not ambiguous.</span>
   </div>
 </div>
 
 
 <div class="team-sec z a d7">
-  <div class="sec-label">团队 · 四人闭环 · 每个人都不可替代</div>
+  <div class="sec-label"><span class="zh">团队 · 四人闭环 · 每个人都不可替代</span><span class="en">Team · Four-Part Loop · Each One Irreplaceable</span></div>
   <div class="founder-wrap">
     <div class="founder-spine"></div>
     <div class="founder-card">
       <div class="f-role">Founder · CEO · System Architect</div>
       <div class="f-name">龚铁靖</div>
       <div class="f-tags">
-        <span class="f-tag">加拿大籍</span>
-        <span class="f-tag">北美 C&I 能源</span>
-        <span class="f-tag">CBRE · Colliers 现有客户</span>
-        <span class="f-tag">跨境系统集成</span>
-        <span class="f-tag">融资与路径判断</span>
+        <span class="f-tag zh">加拿大籍</span><span class="f-tag en">Canadian Citizen</span>
+        <span class="f-tag zh">北美 C&I 能源</span><span class="f-tag en">North America C&I Energy</span>
+        <span class="f-tag zh">CBRE · Colliers 现有客户</span><span class="f-tag en">CBRE · Colliers Active Clients</span>
+        <span class="f-tag zh">跨境系统集成</span><span class="f-tag en">Cross-Border Systems Integration</span>
+        <span class="f-tag zh">融资与路径判断</span><span class="f-tag en">Fundraising &amp; Path Judgment</span>
       </div>
       <div class="f-desc">
-        在北美工商业储能与能源系统领域深耕多年，真正在加拿大冬夜里经历过"工人没来、设施停摆"的第一手痛点。<strong>CBRE、Colliers 两大商业地产管理公司均为其现有客户关系</strong>，首批试点意向即来自这一网络——这不是"认识"，而是对方在邮件/会议中明确表达了冬季试点意向。
-        <br><br>
-        加拿大籍、上海创业：这个组合意味着他<strong>同时理解北美客户的采购语言和中国供应链的执行逻辑</strong>，两者缺一不可。大多数竞争者只有其中一个。
+        <span class="zh">在北美工商业储能与能源系统领域深耕多年，真正在加拿大冬夜里经历过"工人没来、设施停摆"的第一手痛点。<strong>CBRE、Colliers 两大商业地产管理公司均为其现有客户关系</strong>，首批试点意向即来自这一网络——这不是"认识"，而是对方在邮件/会议中明确表达了冬季试点意向。<br><br>加拿大籍、上海创业：这个组合意味着他<strong>同时理解北美客户的采购语言和中国供应链的执行逻辑</strong>，两者缺一不可。大多数竞争者只有其中一个。</span>
+        <span class="en">Years of deep work in North American C&amp;I energy and storage systems — has personally experienced a Canadian winter night where the crew didn't show and the facility went dark. <strong>CBRE and Colliers are existing client relationships</strong>, not contacts. The first pilot intent came directly from these networks — expressed in email and meetings, not in casual conversation.<br><br>Canadian citizen, building in Shanghai: this means he simultaneously <strong>understands North American procurement language and Chinese supply chain execution logic</strong>. Most competitors have one. He has both.</span>
       </div>
     </div>
   </div>
   <div class="team-grid">
     <div class="tm t-ind">
-      <div class="tm-role">产业顾问 · Industry Advisor</div>
+      <div class="tm-role zh">产业顾问 · Industry Advisor</div><div class="tm-role en">Industry Advisor · 产业顾问</div>
       <div class="tm-name">杨光华</div>
-      <div class="tm-bg">机器人产业链顶级专家 · 清华具身智能产业协会副会长</div>
-      <div class="tm-hook"><strong>全产业链上下游核心供应商直连</strong>——从驱动器、传感器到底盘结构件，关键供应商均有直接合作关系。这意味着样机阶段的选型速度和成本，以及量产阶段的产业化路径，都有不可替代的资源护航。</div>
+      <div class="tm-bg zh">机器人产业链顶级专家 · 清华具身智能产业协会副会长</div>
+      <div class="tm-bg en">Top Robotics Supply Chain Expert · VP, Tsinghua Embodied AI Industry Association</div>
+      <div class="tm-hook zh"><strong>全产业链上下游核心供应商直连</strong>——从驱动器、传感器到底盘结构件，关键供应商均有直接合作关系。这意味着样机阶段的选型速度和成本，以及量产阶段的产业化路径，都有不可替代的资源护航。</div>
+      <div class="tm-hook en"><strong>Direct access to core suppliers across the full robotics value chain</strong> — from actuators and sensors to chassis components. This means prototype selection speed and cost, and the industrialization path to mass production, are backed by irreplaceable relationships.</div>
     </div>
     <div class="tm t-sci">
       <div class="tm-role">科学顾问 · RL & Autonomy</div>
       <div class="tm-name">王梦迪 教授</div>
-      <div class="tm-bg">普林斯顿大学正教授 · 清华本科 · MIT 博士 · 谷歌学术引用 11,644 次</div>
-      <div class="tm-hook"><strong>强化学习 + 随机优化 + 控制论</strong> · NSF Career Award · Google Faculty Award · MIT TR35 · Donald P. Eckman Award · NeurIPS / ICML 领域主席。自治决策算法路径的科学权威背书，不是装饰，是真实技术方向的护栏。</div>
+      <div class="tm-bg">Full Professor, Princeton · Tsinghua BS · MIT PhD · Google Scholar citations: 11,644</div>
+      <div class="tm-hook"><strong>Reinforcement Learning + Stochastic Optimization + Control Theory</strong> · NSF Career Award · Google Faculty Award · MIT TR35 · Donald P. Eckman Award · NeurIPS / ICML Area Chair. Scientific authority backing for the autonomous decision algorithm path — not decorative, but a real guardrail for technology direction.</div>
     </div>
     <div class="tm t-cto">
-      <div class="tm-role">CTO · 整机工程</div>
+      <div class="tm-role zh">CTO · 整机工程</div><div class="tm-role en">CTO · Full-System Engineering</div>
       <div class="tm-name">陈超</div>
-      <div class="tm-bg">前飞利浦医疗机器人负责人 · 主导多款量产机器人系统工程落地</div>
-      <div class="tm-hook"><strong>有过真实量产经历</strong>——不只是做过样机，而是把样机变成可维修、可迭代、可交付的工业系统。这一点在种子轮团队里极其稀缺。负责 SnowBot 整机工程实现、结构平台工程化、样机到小批量衔接。</div>
+      <div class="tm-bg zh">前飞利浦医疗机器人负责人 · 主导多款量产机器人系统工程落地</div>
+      <div class="tm-bg en">Former Philips Medical Robotics Lead · Delivered multiple mass-production robot systems</div>
+      <div class="tm-hook zh"><strong>有过真实量产经历</strong>——不只是做过样机，而是把样机变成可维修、可迭代、可交付的工业系统。这一点在种子轮团队里极其稀缺。负责 SnowBot 整机工程实现、结构平台工程化、样机到小批量衔接。</div>
+      <div class="tm-hook en"><strong>Has real mass production experience</strong> — not just building prototypes, but turning prototypes into maintainable, iterable, deliverable industrial systems. Extremely rare in a seed-stage team. Leads SnowBot full-system engineering, platform structuring, and prototype-to-small-batch transition.</div>
     </div>
     <div class="tm t-coo">
-      <div class="tm-role">COO · 商业化</div>
+      <div class="tm-role zh">COO · 商业化</div><div class="tm-role en">COO · Commercialization</div>
       <div class="tm-name">甄文胜</div>
-      <div class="tm-bg">前头部机器人公司市场负责人 · 主导多个 To B 大客户项目落地</div>
-      <div class="tm-hook"><strong>会说客户语言</strong>——懂得如何把"机器人能做什么"翻译成"你的设施风险会降低多少、你的采购合规要求如何满足"。负责客户验证、试点推进、商务路径设计。</div>
+      <div class="tm-bg zh">前头部机器人公司市场负责人 · 主导多个 To B 大客户项目落地</div>
+      <div class="tm-bg en">Former Market Lead at top robotics firm · Led multiple enterprise B2B project closures</div>
+      <div class="tm-hook zh"><strong>会说客户语言</strong>——懂得如何把"机器人能做什么"翻译成"你的设施风险会降低多少、你的采购合规要求如何满足"。负责客户验证、试点推进、商务路径设计。</div>
+      <div class="tm-hook en"><strong>Speaks client language</strong> — knows how to translate "what the robot can do" into "how much your facility risk decreases and how your procurement compliance is satisfied." Leads customer validation, pilot advancement, and commercial path design.</div>
     </div>
     <div class="tm t-ops full">
-      <div class="tm-role">联合创始人 · 产业链</div>
+      <div class="tm-role zh">联合创始人 · 产业链</div><div class="tm-role en">Co-Founder · Supply Chain</div>
       <div class="tm-name">龚继锋</div>
-      <div class="tm-bg">供应链与工程资源协同</div>
-      <div class="tm-hook"><strong>保障样机阶段不卡在供应链上</strong>——零件选型、外协加工、关键件到货节奏，本轮已进入实操阶段。为后续小批量与量产衔接做提前布局。</div>
+      <div class="tm-bg zh">供应链与工程资源协同</div>
+      <div class="tm-bg en">Supply Chain & Engineering Resource Coordination</div>
+      <div class="tm-hook zh"><strong>保障样机阶段不卡在供应链上</strong>——零件选型、外协加工、关键件到货节奏，本轮已进入实操阶段。为后续小批量与量产衔接做提前布局。</div>
+      <div class="tm-hook en"><strong>Ensures the prototype doesn't stall on supply chain issues</strong> — parts selection, contract manufacturing, key component delivery timing are all in active execution. Laying the groundwork for small-batch and mass production transition.</div>
     </div>
   </div>
   <div class="closure">
-    <span class="cl-badge">四角闭环团队</span>
-    <span class="cl-note">北美客户理解 · 产业链直连 · 算法科学 · 整机工程 · 商业转化——每个维度都有可验证的具体背书，没有凑数成员</span>
+    <span class="cl-badge zh">四角闭环团队</span><span class="cl-badge en">Four-Part Closed Loop</span>
+    <span class="cl-note zh">北美客户理解 · 产业链直连 · 算法科学 · 整机工程 · 商业转化——每个维度都有可验证的具体背书，没有凑数成员</span>
+    <span class="cl-note en">North American client fluency · Supply chain access · Algorithm science · Full-system engineering · Commercial conversion — every dimension has verifiable, specific credentials. No filler members.</span>
   </div>
 </div>
 
 <!-- ⑩ ENGINEERING & MILESTONES -->
 <div class="eng-sec z a d7">
-  <div class="sec-label">工程路径 · 样机定义 · 里程碑</div>
+  <div class="sec-label"><span class="zh">工程路径 · 样机定义 · 里程碑</span><span class="en">Engineering Path · Prototype Definition · Milestones</span></div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
     <div>
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:10px">五大验证能力 · 五大工程风险</div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:10px"><span class="zh">五大验证能力 · 五大工程风险</span><span class="en">Five Key Validations · Five Engineering Risks</span></div>
       <table class="risk-table">
-        <thead><tr><th>工程风险</th><th>影响</th><th>验证方式</th><th>状态</th></tr></thead>
+        <thead><tr><th><span class="zh">工程风险</span><span class="en">Risk</span></th><th><span class="zh">影响</span><span class="en">Impact</span></th><th><span class="zh">验证方式</span><span class="en">Validation</span></th><th><span class="zh">状态</span><span class="en">Status</span></th></tr></thead>
         <tbody>
-          <tr><td>低温电池衰减</td><td>续航下降</td><td>低温启动+长时运行测试</td><td><span class="risk-warn">→ 验证中</span></td></tr>
-          <tr><td>湿雪堵塞</td><td>作业中断</td><td>连续作业多雪况测试</td><td><span class="risk-warn">→ 验证中</span></td></tr>
-          <tr><td>履带打滑/陷</td><td>无法行走</td><td>雪地低附着牵引测试</td><td><span class="risk-warn">→ 验证中</span></td></tr>
-          <tr><td>感知失效</td><td>安全风险</td><td>暴雪/低可见度降级测试</td><td><span class="risk-warn">→ 验证中</span></td></tr>
-          <tr><td>长时运行不稳定</td><td>停机风险</td><td>模块化隔离+长时运行</td><td><span class="risk-warn">→ 验证中</span></td></tr>
+          <tr><td><span class="zh">低温电池衰减</span><span class="en">Battery degradation in cold</span></td><td><span class="zh">续航下降</span><span class="en">Range reduction</span></td><td><span class="zh">低温启动+长时运行测试</span><span class="en">Cold start + long runtime test</span></td><td><span class="risk-warn zh">→ 验证中</span><span class="risk-warn en">→ In Progress</span></td></tr>
+          <tr><td><span class="zh">湿雪堵塞</span><span class="en">Wet snow clogging</span></td><td><span class="zh">作业中断</span><span class="en">Operation halt</span></td><td><span class="zh">连续作业多雪况测试</span><span class="en">Continuous multi-condition test</span></td><td><span class="risk-warn zh">→ 验证中</span><span class="risk-warn en">→ In Progress</span></td></tr>
+          <tr><td><span class="zh">履带打滑/陷</span><span class="en">Track slip/sink</span></td><td><span class="zh">无法行走</span><span class="en">Cannot move</span></td><td><span class="zh">雪地低附着牵引测试</span><span class="en">Low-traction snow test</span></td><td><span class="risk-warn zh">→ 验证中</span><span class="risk-warn en">→ In Progress</span></td></tr>
+          <tr><td><span class="zh">感知失效</span><span class="en">Perception failure</span></td><td><span class="zh">安全风险</span><span class="en">Safety risk</span></td><td><span class="zh">暴雪/低可见度降级测试</span><span class="en">Blizzard/low-vis degradation test</span></td><td><span class="risk-warn zh">→ 验证中</span><span class="risk-warn en">→ In Progress</span></td></tr>
+          <tr><td><span class="zh">长时运行不稳定</span><span class="en">Long-run instability</span></td><td><span class="zh">停机风险</span><span class="en">Shutdown risk</span></td><td><span class="zh">模块化隔离+长时运行</span><span class="en">Modular isolation + endurance test</span></td><td><span class="risk-warn zh">→ 验证中</span><span class="risk-warn en">→ In Progress</span></td></tr>
         </tbody>
       </table>
     </div>
     <div>
-      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:10px">里程碑路径 · Seed → A 轮</div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:10px"><span class="zh">里程碑路径 · Seed → A 轮</span><span class="en">Milestone Path · Seed → Series A</span></div>
       <div class="milestone-flow">
         <div class="ms active">
-          <div class="ms-ph ph-now">当前</div>
+          <div class="ms-ph ph-now zh">当前</div><div class="ms-ph ph-now en">Now</div>
           <div class="ms-line"></div>
           <div class="ms-content">
-            <div class="ms-title">工程样机验证 + 首批 LOI</div>
-            <div class="ms-items">整机联调 · 低温测试 · 首批客户意向确认 · 物业管理方（50+ 大型物业）明确意向</div>
+            <div class="ms-title zh">工程样机验证 + 首批 LOI</div><div class="ms-title en">Prototype Assembly + First LOI</div>
+            <div class="ms-items zh">整机联调 · 低温测试 · 首批客户意向确认 · 物业管理方（50+ 大型物业）明确意向</div><div class="ms-items en">Full system integration · Cold testing · First customer intent confirmed · Property manager (50+ large facilities) intent on record</div>
           </div>
         </div>
         <div class="ms">
-          <div class="ms-ph ph-next">M1–M3</div>
+          <div class="ms-ph ph-next zh">M1–M3</div><div class="ms-ph ph-next en">M1–M3</div>
           <div class="ms-line"></div>
           <div class="ms-content">
-            <div class="ms-title">系统方案冻结 → 运动平台跑通 → 关键模块联调</div>
-            <div class="ms-items">底盘 + 作业机构联动 · 控制链路打通 · 状态回传与基础监控可用</div>
+            <div class="ms-title zh">系统方案冻结 → 运动平台跑通 → 关键模块联调</div><div class="ms-title en">System Freeze → Motion Platform → Module Integration</div>
+            <div class="ms-items zh">底盘 + 作业机构联动 · 控制链路打通 · 状态回传与基础监控可用</div><div class="ms-items en">Chassis + work mechanism linkage · Control chain established · Status telemetry and basic monitoring operational</div>
           </div>
         </div>
         <div class="ms">
-          <div class="ms-ph ph-next">M4–M5</div>
+          <div class="ms-ph ph-next zh">M4–M5</div><div class="ms-ph ph-next en">M4–M5</div>
           <div class="ms-line"></div>
           <div class="ms-content">
-            <div class="ms-title">低温策略验证 → 工程样机完成</div>
-            <div class="ms-items">热管理策略 · Fail-safe / Fail-degraded 验证 · 样机可运行 · 可演示 · 可进入试点</div>
+            <div class="ms-title zh">低温策略验证 → 工程样机完成</div><div class="ms-title en">Cold Strategy Validated → Prototype Complete</div>
+            <div class="ms-items zh">热管理策略 · Fail-safe / Fail-degraded 验证 · 样机可运行 · 可演示 · 可进入试点</div><div class="ms-items en">Thermal management strategy · Fail-safe / Fail-degraded validated · Prototype operable · Demonstrable · Pilot-ready</div>
           </div>
         </div>
         <div class="ms">
-          <div class="ms-ph ph-a">M6 → A 轮</div>
+          <div class="ms-ph ph-a zh">M6 → A 轮</div><div class="ms-ph ph-a en">M6 → Series A</div>
           <div class="ms-line"></div>
           <div class="ms-content">
-            <div class="ms-title">冬季验证 + 试点 LOI + A 轮就绪</div>
-            <div class="ms-items">3–5个可命名标杆站点试点/LOI · 站点卡 ROI 数据 · 工程稳定性报告 · A 轮材料成型</div>
+            <div class="ms-title zh">冬季验证 + 试点 LOI + A 轮就绪</div><div class="ms-title en">Winter Validation + Pilot LOIs + Series A Ready</div>
+            <div class="ms-items zh">3–5个可命名标杆站点试点/LOI · 站点卡 ROI 数据 · 工程稳定性报告 · A 轮材料成型</div><div class="ms-items en">3–5 named benchmark site pilots/LOIs · Site ROI data cards · Engineering stability report · Series A materials ready</div>
           </div>
         </div>
       </div>
@@ -902,126 +1031,138 @@ body::before{
 
 <!-- ⑪ BUSINESS MODEL -->
 <div class="biz-sec z a d8">
-  <div class="sec-label">商业模式 · 主路径明确 · 早期验证三件事</div>
+  <div class="sec-label"><span class="zh">商业模式 · 主路径明确 · 早期验证三件事</span><span class="en">Business Model · Primary Path Clear · Three Early Validations</span></div>
   <div class="biz-grid">
     <div class="bcard b2">
-      <div class="bcard-n">主路径 · 我们最相信的</div>
-      <div class="bcard-title">RaaS 季节性服务合同</div>
+      <div class="bcard-n zh">主路径 · 我们最相信的</div><div class="bcard-n en">Primary Path · Our Highest Conviction</div>
+      <div class="bcard-title zh">RaaS 季节性服务合同</div><div class="bcard-title en">RaaS Seasonal Service Contract</div>
       <div class="bcard-items">
-        <div class="bcard-item">客户以 Opex 采购冬季除雪能力，无需 Capex 决策</div>
-        <div class="bcard-item">对标 SIMA 采购标准：合同含 LOS 验收、触发阈值、事件记录、责任闭环</div>
-        <div class="bcard-item">单站年服务价值约 $8–15万（RaaS，含远程监控+报告）</div>
-        <div class="bcard-item">多年可续合同 · 粘性强 · 数据飞轮同步启动</div>
+        <div class="bcard-item zh">客户以 Opex 采购冬季除雪能力，无需 Capex 决策</div>
+        <div class="bcard-item zh">对标 SIMA 采购标准：合同含 LOS 验收、触发阈值、事件记录、责任闭环</div>
+        <div class="bcard-item zh">单站年服务价值约 $8–15万（RaaS，含远程监控+报告）</div>
+        <div class="bcard-item zh">多年可续合同 · 粘性强 · 数据飞轮同步启动</div>
+        <div class="bcard-item en">Customer procures winter snow clearing as Opex — no Capex decision required</div>
+        <div class="bcard-item en">Maps to SIMA procurement standard: contract includes LOS acceptance, trigger thresholds, event records, liability closure</div>
+        <div class="bcard-item en">Per-site annual service value ~$80–150K (RaaS, incl. remote monitoring + reporting)</div>
+        <div class="bcard-item en">Multi-year renewable contract · High stickiness · Data flywheel starts simultaneously</div>
       </div>
       <div class="bcard-tag"><span class="badge">主路径 · 可持续性最强</span></div>
     </div>
     <div class="bcard b1">
-      <div class="bcard-n">早期补充路径</div>
-      <div class="bcard-title">设备直销（Capex）</div>
+      <div class="bcard-n zh">早期补充路径</div><div class="bcard-n en">Early Supplementary Path</div>
+      <div class="bcard-title zh">设备直销（Capex）</div><div class="bcard-title en">Direct Hardware Sales (Capex)</div>
       <div class="bcard-items">
-        <div class="bcard-item">面向有自营运维能力的大型数据中心/物流园区</div>
-        <div class="bcard-item">回款路径最直接，适合早期建立标杆案例</div>
-        <div class="bcard-item">客户需要强可靠性保证而非最低价</div>
-        <div class="bcard-item">样机验证后优先推进首笔销售</div>
+        <div class="bcard-item zh">面向有自营运维能力的大型数据中心/物流园区</div>
+        <div class="bcard-item zh">回款路径最直接，适合早期建立标杆案例</div>
+        <div class="bcard-item zh">客户需要强可靠性保证而非最低价</div>
+        <div class="bcard-item zh">样机验证后优先推进首笔销售</div>
+        <div class="bcard-item en">Targets large data centers / logistics parks with in-house O&M capability</div>
+        <div class="bcard-item en">Most direct revenue path — ideal for early benchmark case building</div>
+        <div class="bcard-item en">Customer needs strong reliability guarantee, not lowest price</div>
+        <div class="bcard-item en">Priority: close first sale after prototype validation</div>
       </div>
       <div class="bcard-tag"><span class="tag-accent">回款最快</span></div>
     </div>
     <div class="bcard b3">
-      <div class="bcard-n">渠道放大路径</div>
-      <div class="bcard-title">嵌入 FM 服务体系</div>
+      <div class="bcard-n zh">渠道放大路径</div><div class="bcard-n en">Channel Amplification Path</div>
+      <div class="bcard-title zh">嵌入 FM 服务体系</div><div class="bcard-title en">Embedded in FM Service System</div>
       <div class="bcard-items">
-        <div class="bcard-item">通过 CBRE/Colliers 等 FM 聚合商批量导入站点</div>
-        <div class="bcard-item">替代现有除雪服务合同中的人工部分</div>
-        <div class="bcard-item">单次谈判撬动多站点，A 轮放量的核心引擎</div>
-        <div class="bcard-item">首批试点意向即来自这一渠道</div>
+        <div class="bcard-item zh">通过 CBRE/Colliers 等 FM 聚合商批量导入站点</div>
+        <div class="bcard-item zh">替代现有除雪服务合同中的人工部分</div>
+        <div class="bcard-item zh">单次谈判撬动多站点，A 轮放量的核心引擎</div>
+        <div class="bcard-item zh">首批试点意向即来自这一渠道</div>
+        <div class="bcard-item en">Batch site introduction through CBRE/Colliers and other FM aggregators</div>
+        <div class="bcard-item en">Replaces the labor component in existing snow removal service contracts</div>
+        <div class="bcard-item en">One negotiation unlocks multiple sites — core engine for Series A scale-up</div>
+        <div class="bcard-item en">First pilot intent already came from this channel</div>
       </div>
       <div class="bcard-tag"><span class="badge">规模化天花板最高</span></div>
     </div>
   </div>
   <div style="margin-top:14px;padding:16px 18px;background:var(--warm);border:1px solid rgba(150,112,15,.22);font-family:var(--serif);font-size:13.5px;color:var(--ink2);line-height:1.95;letter-spacing:.03em">
-    <strong>本轮要验证的三件事：谁付钱 · 谁验收 · 谁承担运行责任。</strong>主路径已选定 RaaS，早期用直销建立标杆、积累可审计数据，再通过 FM 渠道规模化。这不是"我们还不知道怎么赚钱"，而是"我们知道最终形态，正在用最快的路径到达那里"。
+    <span class="zh"><strong>本轮要验证的三件事：谁付钱 · 谁验收 · 谁承担运行责任。</strong>主路径已选定 RaaS，早期用直销建立标杆、积累可审计数据，再通过 FM 渠道规模化。这不是"我们还不知道怎么赚钱"，而是"我们知道最终形态，正在用最快的路径到达那里"。</span><span class="en"><strong>Three things to validate this round: who pays · who accepts delivery · who bears operating responsibility.</strong> Primary path is RaaS. Use direct sales early to build benchmark cases and accumulate auditable data, then scale through FM channels. This is not "we don't know how to make money" — it's "we know the end state and we're taking the fastest path to get there."</span>
   </div>
 </div>
 
 <!-- ⑫ FUNDRAISE -->
 <div class="fund-sec z a d8">
-  <div class="sec-label">融资计划 · 钱买工程确定性与试点进入资格</div>
+  <div class="sec-label"><span class="zh">融资计划 · 钱买工程确定性与试点进入资格</span><span class="en">Fundraising Plan · Capital Buys Engineering Certainty &amp; Pilot Entry</span></div>
   <div class="fund-two">
     <div class="fund-use">
-      <div class="fu-title">资金用途结构</div>
+      <div class="fu-title"><span class="zh">资金用途结构</span><span class="en">Use of Funds</span></div>
       <div class="fu-rows">
         <div style="padding:9px 0;border-bottom:1px solid var(--rule2)">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-size:12px;color:var(--ink2)">机械底盘与作业机构开发</span>
+            <span style="font-size:12px;color:var(--ink2)"><span class="zh">机械底盘与作业机构开发</span><span class="en">Mechanical Chassis & Work Mechanism</span></span>
             <span style="font-family:var(--disp);font-size:20px;color:var(--navy)">35%</span>
           </div>
           <div style="height:3px;background:var(--rule);border-radius:1.5px"><div style="width:35%;height:100%;background:var(--accent);border-radius:1.5px"></div></div>
-          <div style="font-size:10.5px;color:var(--dim);margin-top:4px">底盘平台 · 结构件 · 作业机构 · 关键零部件</div>
+          <div style="font-size:10.5px;color:var(--dim);margin-top:4px"><span class="zh">底盘平台 · 结构件 · 作业机构 · 关键零部件</span><span class="en">Chassis platform · Structural parts · Work mechanism · Key components</span></div>
         </div>
         <div style="padding:9px 0;border-bottom:1px solid var(--rule2)">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-size:12px;color:var(--ink2)">电驱、能源与热管理系统</span>
+            <span style="font-size:12px;color:var(--ink2)"><span class="zh">电驱、能源与热管理系统</span><span class="en">Electric Drive, Energy & Thermal Management</span></span>
             <span style="font-family:var(--disp);font-size:20px;color:var(--navy)">28%</span>
           </div>
           <div style="height:3px;background:var(--rule);border-radius:1.5px"><div style="width:28%;height:100%;background:var(--signal);border-radius:1.5px"></div></div>
-          <div style="font-size:10.5px;color:var(--dim);margin-top:4px">电池包 + BMS · 电驱 · 低温热管理 · 保温系统</div>
+          <div style="font-size:10.5px;color:var(--dim);margin-top:4px"><span class="zh">电池包 + BMS · 电驱 · 低温热管理 · 保温系统</span><span class="en">Battery pack + BMS · Motor drive · Cold thermal mgmt · Insulation</span></div>
         </div>
         <div style="padding:9px 0;border-bottom:1px solid var(--rule2)">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-size:12px;color:var(--ink2)">感知、控制与计算平台</span>
+            <span style="font-size:12px;color:var(--ink2)"><span class="zh">感知、控制与计算平台</span><span class="en">Perception, Control & Compute Platform</span></span>
             <span style="font-family:var(--disp);font-size:20px;color:var(--navy)">22%</span>
           </div>
           <div style="height:3px;background:var(--rule);border-radius:1.5px"><div style="width:22%;height:100%;background:var(--cold);border-radius:1.5px"></div></div>
-          <div style="font-size:10.5px;color:var(--dim);margin-top:4px">传感器 · 控制器 · AI计算 · 远程回传系统</div>
+          <div style="font-size:10.5px;color:var(--dim);margin-top:4px"><span class="zh">传感器 · 控制器 · AI计算 · 远程回传系统</span><span class="en">Sensors · Controllers · AI compute · Remote telemetry</span></div>
         </div>
         <div style="padding:9px 0;border-bottom:1px solid var(--rule2)">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-size:12px;color:var(--ink2)">测试验证（冬季工况）</span>
+            <span style="font-size:12px;color:var(--ink2)"><span class="zh">测试验证（冬季工况）</span><span class="en">Testing & Validation (Winter Conditions)</span></span>
             <span style="font-family:var(--disp);font-size:20px;color:var(--navy)">10%</span>
           </div>
           <div style="height:3px;background:var(--rule);border-radius:1.5px"><div style="width:10%;height:100%;background:var(--gold);border-radius:1.5px"></div></div>
-          <div style="font-size:10.5px;color:var(--dim);margin-top:4px">环境测试 · 场地验证 · 冬季工况准备</div>
+          <div style="font-size:10.5px;color:var(--dim);margin-top:4px"><span class="zh">环境测试 · 场地验证 · 冬季工况准备</span><span class="en">Environmental tests · Field validation · Winter condition prep</span></div>
         </div>
         <div style="padding:9px 0">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-size:12px;color:var(--ink2)">团队与项目推进</span>
+            <span style="font-size:12px;color:var(--ink2)"><span class="zh">团队与项目推进</span><span class="en">Team & Project Execution</span></span>
             <span style="font-family:var(--disp);font-size:20px;color:var(--navy)">5%</span>
           </div>
           <div style="height:3px;background:var(--rule);border-radius:1.5px"><div style="width:5%;height:100%;background:#3A8650;border-radius:1.5px"></div></div>
-          <div style="font-size:10.5px;color:var(--dim);margin-top:4px">核心研发 · 工程协同 · 基础运营</div>
+          <div style="font-size:10.5px;color:var(--dim);margin-top:4px"><span class="zh">核心研发 · 工程协同 · 基础运营</span><span class="en">Core R&D · Engineering coordination · Base operations</span></div>
         </div>
       </div>
     </div>
     <div class="fund-ask">
       <div>
-        <div class="fa-eyebrow">Seed Round · 种子轮融资</div>
+        <div class="fa-eyebrow"><span class="zh">Seed Round · 种子轮融资</span><span class="en">Seed Round · Fundraising</span></div>
         <div class="fa-amt">$2M USD</div>
-        <div class="fa-rmb">≈ ¥1,500万人民币</div>
+        <div class="fa-rmb zh">≈ ¥1,500万人民币</div><div class="fa-rmb en">≈ ¥15M RMB</div>
       </div>
       <div class="fa-rows">
         <div class="fa-row">
-          <div class="fa-key">融资阶段</div>
-          <div class="fa-val">种子轮 · 工程样机验证期</div>
+          <div class="fa-key"><span class="zh">融资阶段</span><span class="en">Stage</span></div>
+          <div class="fa-val"><span class="zh">种子轮 · 工程样机验证期</span><span class="en">Seed Round · Engineering Prototype Validation</span></div>
         </div>
         <div class="fa-row">
-          <div class="fa-key">核心目标</div>
-          <div class="fa-val">完成可运行·可验证·可展示·可进入试点的工程样机</div>
+          <div class="fa-key"><span class="zh">核心目标</span><span class="en">Core Goal</span></div>
+          <div class="fa-val"><span class="zh">完成可运行·可验证·可展示·可进入试点的工程样机</span><span class="en">Complete a functional, verifiable, demonstrable, pilot-ready engineering prototype</span></div>
         </div>
         <div class="fa-row">
-          <div class="fa-key">18个月里程碑</div>
-          <div class="fa-val">3–5个标杆站点 LOI + A 轮就绪</div>
+          <div class="fa-key"><span class="zh">18个月里程碑</span><span class="en">18-Month Milestone</span></div>
+          <div class="fa-val"><span class="zh">3–5个标杆站点 LOI + A 轮就绪</span><span class="en">3–5 benchmark site LOIs + Series A ready</span></div>
         </div>
         <div class="fa-row">
-          <div class="fa-key">公司注册</div>
-          <div class="fa-val">上海阿克博斯技术有限公司<br>2026年04月09日 · 青浦区</div>
+          <div class="fa-key"><span class="zh">公司注册</span><span class="en">Company</span></div>
+          <div class="fa-val"><span class="zh">上海阿克博斯技术有限公司<br>2026年04月09日 · 青浦区</span><span class="en">Shanghai ARCBOS Systems Ltd<br>Incorporated Apr 9, 2026 · Qingpu District</span></div>
         </div>
         <div class="fa-row">
-          <div class="fa-key">股权结构</div>
-          <div class="fa-val">根据本轮估值与投资结构协商确定</div>
+          <div class="fa-key"><span class="zh">股权结构</span><span class="en">Equity</span></div>
+          <div class="fa-val"><span class="zh">根据本轮估值与投资结构协商确定</span><span class="en">To be determined based on valuation and investment structure</span></div>
         </div>
         <div class="fa-row">
-          <div class="fa-key">A 轮前提</div>
-          <div class="fa-val">样机完成 · 工况验证 · 核心 Failure modes 识别 · 首批 LOI</div>
+          <div class="fa-key"><span class="zh">A 轮前提</span><span class="en">Series A Prerequisites</span></div>
+          <div class="fa-val"><span class="zh">样机完成 · 工况验证 · 核心 Failure modes 识别 · 首批 LOI</span><span class="en">Prototype complete · Condition validated · Core failure modes identified · First LOIs</span></div>
         </div>
       </div>
     </div>
@@ -1030,8 +1171,9 @@ body::before{
 
 <!-- ⑬ CLOSING -->
 <div class="closing z a d9">
-  <div class="eyebrow" style="margin-bottom:12px">投资逻辑收口 · Why This · Why Now · Why Us</div>
-  <div class="closing-h">这笔钱买的是<br><span class="hl">最后一段确定性</span></div>
+  <div class="eyebrow" style="margin-bottom:12px"><span class="zh">投资逻辑收口 · Why This · Why Now · Why Us</span><span class="en">Investment Thesis Closing · Why This · Why Now · Why Us</span></div>
+  <div class="closing-h zh">这笔钱买的是<br><span class="hl">最后一段确定性</span></div>
+  <div class="closing-h en">This Capital Buys<br><span class="hl">The Last Mile of Certainty</span></div>
   <div class="closing-body">
     <p>
       ARCBOS 现在的状态：<strong>关键零件已到货，工程样机进入组装阶段；首批客户已通过 CBRE/Colliers 渠道明确表达试点意向；核心团队就位，每个人都有可验证的具体背书</strong>。缺的只是$200万美元把样机做完、撑过一个冬季验证、拿下首批付费试点。
@@ -1051,26 +1193,58 @@ body::before{
 <!-- ⑭ CTA -->
 <div class="cta-band z a d10">
   <div class="cta-l">
-    <div class="cta-eyebrow">下一步 · Next Step</div>
-    <div class="cta-label">联系我们 · 索取 NDA 尽调材料</div>
+    <div class="cta-eyebrow"><span class="zh">下一步 · Next Step</span><span class="en">Next Step</span></div>
+    <div class="cta-label zh">联系我们 · 索取 NDA 尽调材料</div>
+    <div class="cta-label en">Contact Us · Request NDA Due Diligence Pack</div>
     <div class="cta-disp">REQUEST NDA PACK</div>
   </div>
   <div class="cta-r">
     <div class="cta-info">
       <p><strong>龚铁靖 · Gong Tiejing · Founder & CEO</strong></p>
       <p>info@arcbos.com · arcbos.com</p>
-      <p>上海阿克博斯技术有限公司 · 青浦区</p>
+      <p class="zh">上海阿克博斯技术有限公司 · 青浦区</p><p class="en">Shanghai ARCBOS Systems Ltd · Qingpu District</p>
     </div>
-    <a href="mailto:info@arcbos.com" class="cta-btn">立即联系 →</a>
+    <a href="mailto:info@arcbos.com" class="cta-btn zh">立即联系 →</a>
+    <a href="mailto:info@arcbos.com" class="cta-btn en">Contact Now →</a>
   </div>
 </div>
 
 <!-- ⑮ CONF -->
 <div class="conf z">
-  <span>严格保密 · 仅供合格投资人 · 请勿转发 · Strictly Confidential · Not for Distribution</span>
+  <span class="zh">严格保密 · 仅供合格投资人 · 请勿转发 · Strictly Confidential · Not for Distribution</span>
+  <span class="en">Strictly Confidential · For Qualified Investors Only · Not for Distribution</span>
   <span>上海阿克博斯技术有限公司 · ARCBOS © 2026</span>
 </div>
 
-</div>
+</div><!-- /page -->
+</div><!-- /page-content -->
+
+<script>
+function setLang(lang){
+  var pc=document.getElementById('pc');
+  pc.classList.add('out');
+  setTimeout(function(){
+    document.documentElement.setAttribute('data-lang',lang);
+    document.documentElement.setAttribute('lang',lang==='zh'?'zh-CN':'en');
+    document.title=lang==='zh'
+      ?'ARCBOS · SnowBot 商业计划书 · Seed Round'
+      :'ARCBOS · SnowBot Business Plan · Seed Round';
+    document.getElementById('btn-zh').classList.toggle('active',lang==='zh');
+    document.getElementById('btn-en').classList.toggle('active',lang==='en');
+    pc.classList.remove('out');
+  },200);
+}
+// Auto-detect lang from URL param e.g. /teaser/bp/?lang=en
+(function(){
+  var p=new URLSearchParams(window.location.search).get('lang');
+  if(p==='en'){
+    document.documentElement.setAttribute('data-lang','en');
+    document.documentElement.setAttribute('lang','en');
+    document.getElementById('btn-zh').classList.remove('active');
+    document.getElementById('btn-en').classList.add('active');
+    document.title='ARCBOS · SnowBot Business Plan · Seed Round';
+  }
+})();
+</script>
 </body>
 </html>
