@@ -430,7 +430,7 @@ body::before{
     <div class="brand-eyebrow en">ARCBOS · Business Plan · Seed Round · 2026</div>
     <div class="brand-name">ARCBOS</div>
     <div class="brand-cn zh">上海阿克博斯技术有限公司 · Shanghai ARCBOS Systems Ltd</div>
-    <div class="brand-cn en" style="font-family:var(--sans-en);font-size:13px;letter-spacing:.06em;margin-top:7px;color:var(--signal)">Shanghai ARCBOS Systems Ltd · 上海阿克博斯技术有限公司</div>
+    <div class="brand-cn en" style="font-family:var(--sans-en);font-size:13px;letter-spacing:.06em;margin-top:7px;color:var(--signal)">Shanghai ARCBOS Systems Ltd</div>
     <div class="brand-sub">Engineered for Extreme Conditions · Physical AI × Extreme World</div>
   </div>
   <div class="doc-card">
@@ -465,13 +465,13 @@ body::before{
   <div class="thesis-h zh">一个已预算化的市场<br><span class="hl">正在等待被自动化</span></div>
   <div class="thesis-h en">A Budgeted Market<br><span class="hl">Waiting to Be Automated</span></div>
   <div class="thesis-badges" style="margin-top:12px">
-    <span class="badge zh">刚需 · 已预算 · 每年重复</span>
+    <span class="badge zh">刚需 · 已预算 · 每年重复</span><span class="badge en">Non-optional · Budgeted · Recurring</span>
     <span class="badge en">Non-optional · Budgeted · Recurring</span>
-    <span class="badge zh">工业级自治 · 非消费级设备</span>
+    <span class="badge zh">工业级自治 · 非消费级设备</span><span class="badge en">Industrial Autonomy · Not Consumer</span>
     <span class="badge en">Industrial Autonomy · Not Consumer</span>
     <span class="tag-accent zh">硬件选型完成 · 零件到货</span>
     <span class="tag-accent en">Hardware Selected · Parts Arrived</span>
-    <span class="badge zh">首批客户试点意向已确认</span>
+    <span class="badge zh">首批客户试点意向已确认</span><span class="badge en">First Pilot Intent Confirmed</span>
     <span class="badge en">First Pilot Intent Confirmed</span>
   </div>
   <div class="thesis-body">
@@ -698,18 +698,22 @@ body::before{
 
 <!-- ⑥ CUSTOMER SCENARIOS -->
 <div class="scenario-sec z a d5">
-  <div class="sec-label">客户分层 · Customer Tiers & ROI Logic</div>
+  <div class="sec-label"><span class="zh">客户分层 · Customer Tiers &amp; ROI Logic</span><span class="en">Customer Tiers &amp; ROI Logic</span></div>
   <div class="tier-grid">
     <div class="tcard t1">
-      <div class="tcard-badge">Tier 1 · 优先切入</div>
-      <div class="tcard-title">高失败成本场景</div>
+      <div class="tcard-badge zh">Tier 1 · 优先切入</div><div class="tcard-badge en">Tier 1 · Priority Entry</div>
+      <div class="tcard-title zh">高失败成本场景</div><div class="tcard-title en">High-Consequence Scenarios</div>
       <div class="tcard-items">
-        <div class="tcard-item">数据中心：通道不通 = 运维/交付风险，停机成本 >$10万/次</div>
-        <div class="tcard-item">物流/仓储园区：装卸坡道结冰 = 运营停摆，LOS 要求严格</div>
-        <div class="tcard-item">医疗园区：急救入口/无障碍通道，责任风险极高</div>
-        <div class="tcard-item">工业厂区：重要设施 + 夜班交接时间窗严格</div>
+        <div class="tcard-item zh">数据中心：通道不通 = 运维/交付风险，停机成本 &gt;$10万/次</div>
+        <div class="tcard-item en">Data centers: blocked access = ops/delivery risk, downtime &gt;$100K/event</div>
+        <div class="tcard-item zh">物流/仓储园区：装卸坡道结冰 = 运营停摆，LOS 要求严格</div>
+        <div class="tcard-item en">Logistics/warehouse: loading dock icing = operations halt, strict LOS</div>
+        <div class="tcard-item zh">医疗园区：急救入口/无障碍通道，责任风险极高</div>
+        <div class="tcard-item en">Medical campuses: emergency access, very high liability exposure</div>
+        <div class="tcard-item zh">工业厂区：重要设施 + 夜班交接时间窗严格</div>
+        <div class="tcard-item en">Industrial facilities: critical systems + strict shift-change windows</div>
       </div>
-      <div class="tcard-why"><strong>买点</strong>：可靠性 · 夜间保通 · 可审计 LOS · 责任闭环</div>
+      <div class="tcard-why zh"><strong>买点</strong>：可靠性 · 夜间保通 · 可审计 LOS · 责任闭环</div><div class="tcard-why en"><strong>Buying trigger:</strong> Reliability · Overnight clearance · Auditable LOS · Liability closure</div>
     </div>
     <div class="tcard t2">
       <div class="tcard-badge zh">Tier 2 · 中期放量</div>
@@ -762,21 +766,21 @@ body::before{
         <td><span class="zh">大型物流仓储园区<br><span class="sub">15–25 acres 硬化地面</span></span><span class="en">Large Logistics/Warehouse<br><span class="sub">15–25 acres hardscape</span></span></td>
         <td><span class="zh">推雪：$7.2万–12.6万/季<br><span class="sub">K=4台 · H=6h/次 · Np=15次</span></span><span class="en">Plowing: $72K–126K/season<br><span class="sub">4 units × 6h/event × 15 events</span></span></td>
         <td>$200–350/h</td>
-        <td class="highlight">1.5–2季</td>
+        <td class="highlight"><span class="zh">1.5–2季</span><span class="en">1.5–2 seasons</span></td>
         <td><span class="zh">夜间保通 · LOS 记录 · 坡道零事故</span><span class="en">Overnight clearance · LOS logs · Zero dock incidents</span></td>
       </tr>
       <tr>
         <td><span class="zh">数据中心园区<br><span class="sub">5–12 acres 关键通道</span></span><span class="en">Data Center Campus<br><span class="sub">5–12 acres critical paths</span></span></td>
         <td><span class="zh">高于一般场站<br><span class="sub">停机成本倒逼 WTP 溢价</span></span><span class="en">Above average sites<br><span class="sub">Downtime cost drives WTP premium</span></span></td>
         <td>$250–495/h</td>
-        <td class="highlight">2季（保守）</td>
+        <td class="highlight"><span class="zh">2季（保守）</span><span class="en">2 seasons (conservative)</span></td>
         <td><span class="zh">可审计日志 · SLA 达标证明 · 运维文化匹配</span><span class="en">Auditable logs · SLA compliance proof · Ops culture fit</span></td>
       </tr>
       <tr>
         <td><span class="zh">医疗园区<br><span class="sub">美国 6,100 家医院</span></span><span class="en">Medical Campus<br><span class="sub">6,100 US hospitals</span></span></td>
         <td><span class="zh">急救通道高频次 · 夜班人工调度最难</span><span class="en">High-frequency ER access · Night staffing hardest</span></td>
         <td>$145–350/h</td>
-        <td class="highlight">2–3季</td>
+        <td class="highlight"><span class="zh">2–3季</span><span class="en">2–3 seasons</span></td>
         <td><span class="zh">急救通道夜间零中断 · 滑倒索赔风险降低</span><span class="en">Zero ER access interruptions · Reduced slip liability</span></td>
       </tr>
     </tbody>
@@ -797,9 +801,9 @@ body::before{
         <div class="cm-row"><span class="cm-row-key zh">工业级重载</span><span class="cm-row-key en">Heavy-Load Industrial</span><span class="cm-row-val yes"><span class="zh">✓ 是</span><span class="en">✓ Yes</span></span></div>
         <div class="cm-row"><span class="cm-row-key zh">极寒 −30°C</span><span class="cm-row-key en">Extreme Cold −30°C</span><span class="cm-row-val yes"><span class="zh">✓ 目标</span><span class="en">✓ Target</span></span></div>
         <div class="cm-row"><span class="cm-row-key zh">无人值守自治</span><span class="cm-row-key en">Fully Autonomous</span><span class="cm-row-val yes"><span class="zh">✓ 全自治</span><span class="en">✓ Full Auto</span></span></div>
-        <div class="cm-row"><span class="cm-row-key zh">12h+ 连续运行</span><span class="cm-row-key en">12h+ Continuous Ops</span><span class="cm-row-val yes">✓ 是</span></div>
-        <div class="cm-row"><span class="cm-row-key zh">可审计 LOS 记录</span><span class="cm-row-key en">Auditable LOS Logs</span><span class="cm-row-val yes">✓ 是</span></div>
-        <div class="cm-row"><span class="cm-row-key zh">商业园区产品化</span><span class="cm-row-key en">Campus Productized</span><span class="cm-row-val yes">✓ 是</span></div>
+        <div class="cm-row"><span class="cm-row-key zh">12h+ 连续运行</span><span class="cm-row-key en">12h+ Continuous Ops</span><span class="cm-row-val yes"><span class="zh">✓ 是</span><span class="en">✓ Yes</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">可审计 LOS 记录</span><span class="cm-row-key en">Auditable LOS Logs</span><span class="cm-row-val yes"><span class="zh">✓ 是</span><span class="en">✓ Yes</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">商业园区产品化</span><span class="cm-row-key en">Campus Productized</span><span class="cm-row-val yes"><span class="zh">✓ 是</span><span class="en">✓ Yes</span></span></div>
       </div>
     </div>
     <div class="cm cb">
@@ -819,8 +823,8 @@ body::before{
       <div class="cm-type zh">Otto · Yeti · 机场自治</div><div class="cm-type en">Otto · Yeti · Airport Autonomy</div>
       <div class="cm-name zh">机场/重装定制方向</div><div class="cm-name en">Airport/Heavy Custom</div>
       <div class="cm-rows">
-        <div class="cm-row"><span class="cm-row-key zh">工业级重载</span><span class="cm-row-key en">Heavy-Load Industrial</span><span class="cm-row-val yes">✓ 是</span></div>
-        <div class="cm-row"><span class="cm-row-key zh">极寒运行</span><span class="cm-row-key en">Extreme Cold Ops</span><span class="cm-row-val yes">✓ 是</span></div>
+        <div class="cm-row"><span class="cm-row-key zh">工业级重载</span><span class="cm-row-key en">Heavy-Load Industrial</span><span class="cm-row-val yes"><span class="zh">✓ 是</span><span class="en">✓ Yes</span></span></div>
+        <div class="cm-row"><span class="cm-row-key zh">极寒运行</span><span class="cm-row-key en">Extreme Cold Ops</span><span class="cm-row-val yes"><span class="zh">✓ 是</span><span class="en">✓ Yes</span></span></div>
         <div class="cm-row"><span class="cm-row-key zh">无人值守自治</span><span class="cm-row-key en">Fully Autonomous</span><span class="cm-row-val partial"><span class="zh">△ 受控环境</span><span class="en">△ Controlled Env</span></span></div>
         <div class="cm-row"><span class="cm-row-key zh">商业园区产品化</span><span class="cm-row-key en">Campus Productized</span><span class="cm-row-val no"><span class="zh">✗ 定制集成</span><span class="en">✗ Custom Only</span></span></div>
         <div class="cm-row"><span class="cm-row-key zh">可复制标准产品</span><span class="cm-row-key en">Replicable Std Product</span><span class="cm-row-val no"><span class="zh">✗ 试点阶段</span><span class="en">✗ Pilot Stage</span></span></div>
@@ -911,7 +915,7 @@ body::before{
     <div class="founder-spine"></div>
     <div class="founder-card">
       <div class="f-role">Founder · CEO · System Architect</div>
-      <div class="f-name">龚铁靖</div>
+      <div class="f-name zh">龚铁靖</div><div class="f-name en">Gong Tiejing</div>
       <div class="f-tags">
         <span class="f-tag zh">北美现场经验</span><span class="f-tag en">North America Field Experience</span>
         <span class="f-tag zh">C&amp;I 能源客户网络</span><span class="f-tag en">C&amp;I Energy Client Network</span>
@@ -927,22 +931,22 @@ body::before{
   </div>
   <div class="team-grid">
     <div class="tm t-ind">
-      <div class="tm-role zh">产业顾问 · Industry Advisor</div><div class="tm-role en">Industry Advisor · 产业顾问</div>
-      <div class="tm-name">杨光华</div>
+      <div class="tm-role zh">产业顾问 · Industry Advisor</div><div class="tm-role en">Industry Advisor</div>
+      <div class="tm-name zh">杨光华</div><div class="tm-name en">Yang Guanghua</div>
       <div class="tm-bg zh">机器人产业链顶级专家 · 清华具身智能产业协会副会长</div>
       <div class="tm-bg en">Top Robotics Supply Chain Expert · VP, Tsinghua Embodied AI Industry Association</div>
       <div class="tm-hook zh"><strong>全产业链上下游核心供应商直连</strong>——从驱动器、传感器到底盘结构件，关键供应商均有直接合作关系。这意味着样机阶段的选型速度和成本，以及量产阶段的产业化路径，都有不可替代的资源护航。</div>
       <div class="tm-hook en"><strong>Direct access to core suppliers across the full robotics value chain</strong> — from actuators and sensors to chassis components. This means prototype selection speed and cost, and the industrialization path to mass production, are backed by irreplaceable relationships.</div>
     </div>
     <div class="tm t-sci">
-      <div class="tm-role">科学顾问 · RL & Autonomy</div>
-      <div class="tm-name">王梦迪 教授</div>
+      <div class="tm-role zh">科学顾问 · RL & Autonomy</div><div class="tm-role en">Scientific Advisor · RL & Autonomy</div>
+      <div class="tm-name zh">王梦迪 教授</div><div class="tm-name en">Prof. Mengdi Wang</div>
       <div class="tm-bg">Full Professor, Princeton · Tsinghua BS · MIT PhD · Google Scholar citations: 11,644</div>
       <div class="tm-hook"><strong>Reinforcement Learning + Stochastic Optimization + Control Theory</strong> · NSF Career Award · Google Faculty Award · MIT TR35 · Donald P. Eckman Award · NeurIPS / ICML Area Chair. Scientific authority backing for the autonomous decision algorithm path — not decorative, but a real guardrail for technology direction.</div>
     </div>
     <div class="tm t-cto">
       <div class="tm-role zh">CTO · 整机工程</div><div class="tm-role en">CTO · Full-System Engineering</div>
-      <div class="tm-name">陈超</div>
+      <div class="tm-name zh">陈超</div><div class="tm-name en">Chen Chao</div>
       <div class="tm-bg zh">前飞利浦医疗机器人负责人 · 主导多款量产机器人系统工程落地</div>
       <div class="tm-bg en">Former Philips Medical Robotics Lead · Delivered multiple mass-production robot systems</div>
       <div class="tm-hook zh"><strong>有过真实量产经历</strong>——不只是做过样机，而是把样机变成可维修、可迭代、可交付的工业系统。这一点在种子轮团队里极其稀缺。负责 SnowBot 整机工程实现、结构平台工程化、样机到小批量衔接。</div>
@@ -950,7 +954,7 @@ body::before{
     </div>
     <div class="tm t-coo">
       <div class="tm-role zh">COO · 商业化</div><div class="tm-role en">COO · Commercialization</div>
-      <div class="tm-name">甄文胜</div>
+      <div class="tm-name zh">甄文胜</div><div class="tm-name en">Zhen Wensheng</div>
       <div class="tm-bg zh">前头部机器人公司市场负责人 · 主导多个 To B 大客户项目落地</div>
       <div class="tm-bg en">Former Market Lead at top robotics firm · Led multiple enterprise B2B project closures</div>
       <div class="tm-hook zh"><strong>会说客户语言</strong>——懂得如何把"机器人能做什么"翻译成"你的设施风险会降低多少、你的采购合规要求如何满足"。负责客户验证、试点推进、商务路径设计。</div>
@@ -958,7 +962,7 @@ body::before{
     </div>
     <div class="tm t-ops full">
       <div class="tm-role zh">联合创始人 · 产业链</div><div class="tm-role en">Co-Founder · Supply Chain</div>
-      <div class="tm-name">龚继锋</div>
+      <div class="tm-name zh">龚继锋</div><div class="tm-name en">Gong Jifeng</div>
       <div class="tm-bg zh">供应链与工程资源协同</div>
       <div class="tm-bg en">Supply Chain & Engineering Resource Coordination</div>
       <div class="tm-hook zh"><strong>保障样机阶段不卡在供应链上</strong>——零件选型、外协加工、关键件到货节奏，本轮已进入实操阶段。为后续小批量与量产衔接做提前布局。</div>
@@ -1046,7 +1050,7 @@ body::before{
         <div class="bcard-item en">Per-site annual service value ~$80–150K (RaaS, incl. remote monitoring + reporting)</div>
         <div class="bcard-item en">Multi-year renewable contract · High stickiness · Data flywheel starts simultaneously</div>
       </div>
-      <div class="bcard-tag"><span class="badge">主路径 · 可持续性最强</span></div>
+      <div class="bcard-tag"><span class="badge zh">主路径 · 可持续性最强</span><span class="badge en">Primary Path · Most Sustainable</span></div>
     </div>
     <div class="bcard b1">
       <div class="bcard-n zh">早期补充路径</div><div class="bcard-n en">Early Supplementary Path</div>
@@ -1061,7 +1065,7 @@ body::before{
         <div class="bcard-item en">Customer needs strong reliability guarantee, not lowest price</div>
         <div class="bcard-item en">Priority: close first sale after prototype validation</div>
       </div>
-      <div class="bcard-tag"><span class="tag-accent">回款最快</span></div>
+      <div class="bcard-tag"><span class="tag-accent zh">回款最快</span><span class="tag-accent en">Fastest Revenue</span></div>
     </div>
     <div class="bcard b3">
       <div class="bcard-n zh">渠道放大路径</div><div class="bcard-n en">Channel Amplification Path</div>
@@ -1076,7 +1080,7 @@ body::before{
         <div class="bcard-item en">One negotiation unlocks multiple sites — core engine for Series A scale-up</div>
         <div class="bcard-item en">First pilot intent already came from this channel</div>
       </div>
-      <div class="bcard-tag"><span class="badge">规模化天花板最高</span></div>
+      <div class="bcard-tag"><span class="badge zh">规模化天花板最高</span><span class="badge en">Highest Scale Ceiling</span></div>
     </div>
   </div>
   <div style="margin-top:14px;padding:16px 18px;background:var(--warm);border:1px solid rgba(150,112,15,.22);font-family:var(--serif);font-size:13.5px;color:var(--ink2);line-height:1.95;letter-spacing:.03em">
@@ -1135,7 +1139,7 @@ body::before{
     </div>
     <div class="fund-ask">
       <div>
-        <div class="fa-eyebrow"><span class="zh">Seed Round · 种子轮融资</span><span class="en">Seed Round · Fundraising</span></div>
+        <div class="fa-eyebrow"><span class="zh">种子轮 · Seed Round</span><span class="en">Seed Round</span></div>
         <div class="fa-amt">$2M USD</div>
         <div class="fa-rmb zh">≈ ¥1,500万人民币</div><div class="fa-rmb en">≈ ¥15M RMB</div>
       </div>
@@ -1175,17 +1179,29 @@ body::before{
   <div class="closing-h zh">这笔钱买的是<br><span class="hl">最后一段确定性</span></div>
   <div class="closing-h en">This Capital Buys<br><span class="hl">The Last Mile of Certainty</span></div>
   <div class="closing-body">
-    <p>
+    <p class="zh">
       ARCBOS 现在的状态：<strong>关键零件已到货，工程样机进入组装阶段；首批客户已通过 CBRE/Colliers 渠道明确表达试点意向；核心团队就位，每个人都有可验证的具体背书</strong>。缺的只是$200万美元把样机做完、撑过一个冬季验证、拿下首批付费试点。
     </p>
-    <p>
+    <p class="en">
+      ARCBOS today: <strong>key components arrived, prototype in assembly; first customers have confirmed pilot intent through CBRE/Colliers channels; core team is in place, each with verifiable specific credentials.</strong> All that's missing is $2M to finish the prototype, survive one winter validation, and close the first paid pilots.
+    </p>
+    <p class="zh">
       这不是"有个想法需要钱去验证想法是否成立"的阶段——市场成立、客户意向真实、工程已经启动。<strong>这$200万买的是把一件已经开始的事情做完的确定性</strong>，而不是押注一个未知。
     </p>
-    <p>
+    <p class="en">
+      This is not the "we have an idea and need money to test it" stage — the market is real, customer intent is confirmed, engineering is underway. <strong>This $2M buys the certainty of finishing something already started</strong>, not a bet on an unknown.
+    </p>
+    <p class="zh">
       种子轮投资人判断这类项目，核心就看两件事：<strong>第一，创始团队有没有独特的非共识优势；第二，A 轮前的里程碑是否清晰可验证</strong>。ARCBOS 的非共识优势是：创始人在北美 C&amp;I 能源领域多年积累的真实客户关系——不是"认识"，是对方主动表达了冬季试点意向、多年现场建立起来的那种关系。A 轮里程碑是：样机完成 + 冬季工况验证 + 3–5个付费试点 LOI——18个月内可交付，不模糊。
     </p>
-    <p>
+    <p class="en">
+      Seed investors evaluating this type of project look at two things: <strong>first, does the founding team have a unique non-consensus advantage; second, are the Series A milestones clearly verifiable.</strong> ARCBOS's non-consensus advantage: the founder's years of real client relationships built on the ground in North American C&amp;I energy — not warm introductions, but the kind where the other side proactively expressed winter pilot interest. Series A milestones: prototype complete + winter validation + 3–5 paid pilot LOIs — deliverable in 18 months, no ambiguity.
+    </p>
+    <p class="zh">
       <strong>这个窗口期真实存在：2025年冬季是第一个可以进入北美市场完成冬季验证的窗口。</strong>错过这个窗口，就要再等一年——而这一年里，别人可能也发现了这个空白。
+    </p>
+    <p class="en">
+      <strong>This window is real: the 2025–26 winter is the first window to enter the North American market and complete winter validation.</strong> Miss it, wait another year — and in that year, someone else may find the same gap.
     </p>
   </div>
 </div>
@@ -1213,7 +1229,7 @@ body::before{
 <div class="conf z">
   <span class="zh">严格保密 · 仅供合格投资人 · 请勿转发 · Strictly Confidential · Not for Distribution</span>
   <span class="en">Strictly Confidential · For Qualified Investors Only · Not for Distribution</span>
-  <span>上海阿克博斯技术有限公司 · ARCBOS © 2026</span>
+  <span><span class="zh">上海阿克博斯技术有限公司 · </span>ARCBOS © 2026</span>
 </div>
 
 </div><!-- /page -->
