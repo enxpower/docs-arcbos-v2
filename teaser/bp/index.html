@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCBOS · SnowBot 商业计划书 · Seed Round</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#F3F1EB;--ink:#111318;--ink2:#232B3A;--dim:#70685F;
+  --rule:#CCC7BA;--rule2:#DEDAD2;
+  --navy:#14243A;--signal:#19406A;--accent:#B33508;
+  --gold:#96700F;--cold:#285A84;--ice:#E0EBF4;
+  --warm:rgba(150,112,15,.07);
+  --card:rgba(255,255,255,.85);--card2:rgba(255,255,255,.62);
+  --mono:'DM Mono',monospace;
+  --serif:'Noto Serif SC',serif;
+  --sans:'Noto Sans SC',sans-serif;
+  --sans-en:'Inter',sans-serif;
+  --disp:'Bebas Neue',sans-serif;
+}
+
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--sans);-webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background-image:
+    linear-gradient(var(--rule2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--rule2) 1px,transparent 1px);
+  background-size:56px 56px;opacity:.38;pointer-events:none;
+}
+
+/* ── page shell ── */
+.page{max-width:1160px;margin:0 auto;padding:0 52px;position:relative}
+.page::after{
+  content:'';position:absolute;left:52px;top:0;height:100%;width:2px;
+  background:linear-gradient(to bottom,var(--signal) 0%,var(--accent) 15%,var(--rule) 45%,transparent 100%);
+  z-index:1;
+}
+.z{position:relative;z-index:2}
+
+/* ── atoms ── */
+.eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase}
+.sec-label{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.22em;
+  color:var(--dim);text-transform:uppercase;margin-bottom:20px;
+}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--rule)}
+.badge{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  color:var(--signal);border:1.5px solid rgba(25,64,106,.28);
+  background:var(--ice);padding:4px 11px;
+}
+.tag-accent{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+  color:var(--accent);border:1.5px solid rgba(179,53,8,.25);
+  background:rgba(179,53,8,.05);padding:4px 11px;
+}
+
+/* ── animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.a{animation:fadeUp .65s ease both}
+.d1{animation-delay:.04s}.d2{animation-delay:.12s}.d3{animation-delay:.20s}
+.d4{animation-delay:.30s}.d5{animation-delay:.42s}.d6{animation-delay:.55s}
+.d7{animation-delay:.68s}.d8{animation-delay:.80s}.d9{animation-delay:.92s}
+.d10{animation-delay:1.05s}
+
+/* ══ HEADER BAND ══ */
+.header-band{
+  display:grid;grid-template-columns:1fr 340px;gap:24px;
+  align-items:end;padding:54px 0 22px 24px;
+  border-bottom:2px solid var(--rule);position:relative;z-index:2;
+}
+.brand-eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-bottom:7px}
+.brand-name{font-family:var(--disp);font-size:56px;letter-spacing:.07em;line-height:1;color:var(--navy)}
+.brand-cn{font-family:var(--serif);font-size:14px;font-weight:400;color:var(--signal);letter-spacing:.16em;margin-top:7px}
+.brand-sub{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-top:4px}
+
+.doc-card{position:relative;height:210px;background:var(--navy);overflow:hidden}
+.doc-card::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(140deg,rgba(20,36,58,.72) 0%,transparent 50%,rgba(20,36,58,.42) 100%)}
+.dc-inner{position:absolute;inset:0;z-index:2;padding:16px;display:flex;flex-direction:column;justify-content:space-between}
+.dc-top{display:flex;justify-content:space-between;align-items:flex-start}
+.dc-doc-type{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;color:rgba(255,255,255,.42);text-transform:uppercase}
+.dc-round{text-align:right}
+.dc-round-lbl{font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:rgba(255,255,255,.38);text-transform:uppercase;margin-bottom:3px}
+.dc-amt{font-family:var(--disp);font-size:28px;letter-spacing:.04em;color:#fff;line-height:1}
+.dc-amt2{font-family:var(--disp);font-size:16px;letter-spacing:.04em;color:rgba(255,210,100,.85);margin-top:2px}
+.dc-stage{font-family:var(--serif);font-size:10px;font-weight:600;color:rgba(255,195,70,.85);letter-spacing:.1em;margin-top:4px}
+.dc-bottom{display:flex;flex-direction:column;gap:4px}
+.dc-product{font-family:var(--disp);font-size:30px;letter-spacing:.1em;color:#fff;line-height:1}
+.dc-sub{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;color:rgba(255,255,255,.46);text-transform:uppercase;margin-top:3px}
+
+/* ══ THESIS BLOCK ══ */
+.thesis{
+  padding:28px 0 26px 24px;border-bottom:1px solid var(--rule);
+  position:relative;z-index:2;
+}
+.thesis::before{content:'';position:absolute;left:0;top:28px;bottom:26px;width:3px;background:linear-gradient(to bottom,var(--accent),var(--signal))}
+.thesis-h{font-family:var(--disp);font-size:clamp(36px,4.5vw,56px);line-height:.9;letter-spacing:.02em;color:var(--navy);margin-bottom:12px}
+.thesis-h .hl{color:var(--accent)}
+.thesis-badges{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.thesis-body{border-left:3px solid var(--accent);padding-left:16px;max-width:920px}
+.thesis-body p{font-family:var(--serif);font-size:14.5px;line-height:2.05;color:var(--ink2);letter-spacing:.04em}
+.thesis-body strong{font-weight:700;color:var(--navy)}
+.thesis-body .callout{
+  display:inline-block;background:var(--navy);color:#fff;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  padding:4px 12px;margin:2px 0;
+}
+
+/* ══ KEY NUMBERS STRIP ══ */
+.kn-strip{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  border-bottom:1px solid var(--rule);position:relative;z-index:2;
+}
+.kn{
+  padding:20px 18px 18px;border-right:1px solid var(--rule);
+  position:relative;overflow:hidden;
+}
+.kn:last-child{border-right:none}
+.kn::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.kn.k1::before{background:var(--accent)}.kn.k2::before{background:var(--signal)}
+.kn.k3::before{background:var(--cold)}.kn.k4::before{background:var(--gold)}
+.kn.k5::before{background:#3A8650}
+.kn-label{font-family:var(--mono);font-size:8.5px;letter-spacing:.15em;color:var(--dim);text-transform:uppercase;margin-bottom:6px}
+.kn-val{font-family:var(--disp);font-size:28px;letter-spacing:.04em;color:var(--navy);line-height:1;margin-bottom:4px}
+.kn-sub{font-family:var(--sans);font-size:11px;color:var(--dim);line-height:1.5;letter-spacing:.02em}
+
+/* ══ TWO-COL ══ */
+.two-col{display:grid;grid-template-columns:1fr 1.5px 1fr;border-bottom:1px solid var(--rule);position:relative;z-index:2}
+.vr{background:var(--rule)}
+.col-l{padding:28px 22px 28px 24px}
+.col-r{padding:28px 24px 28px 22px}
+
+/* ── Why grid ── */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.wcard{background:var(--card);border:1px solid var(--rule);padding:16px 17px;position:relative;overflow:hidden}
+.wcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.wcard.c1::before{background:var(--accent)}.wcard.c2::before{background:var(--signal)}
+.wcard.c3::before{background:var(--cold)}.wcard.c4::before{background:var(--gold)}
+.wcard.c5::before{background:#3A8650}.wcard.c6::before{background:#7A4A9A}
+.wc-n{font-family:var(--mono);font-size:9.5px;color:var(--dim);letter-spacing:.1em;margin-bottom:7px}
+.wc-title{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--navy);line-height:1.45;margin-bottom:9px;letter-spacing:.04em}
+.wc-body{font-size:12.5px;font-weight:400;color:var(--dim);line-height:1.75;letter-spacing:.02em}
+
+/* ── feature row ── */
+.feat-row{display:flex;flex-direction:column;gap:10px}
+.feat{display:grid;grid-template-columns:3px 1fr;gap:14px;background:var(--card2);border:1px solid var(--rule);padding:15px 16px}
+.feat-bar{background:linear-gradient(to bottom,var(--signal),var(--cold))}
+.feat-title{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--navy);margin-bottom:7px;letter-spacing:.04em}
+.feat-body{font-size:12.5px;color:var(--dim);line-height:1.75;letter-spacing:.02em}
+.feat-body strong{color:var(--ink2);font-weight:600}
+
+/* ══ MARKET SECTION ══ */
+.market-sec{padding:28px 0 28px 24px;border-bottom:1px solid var(--rule);position:relative;z-index:2}
+.market-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px}
+.mcard{background:var(--card);border:1px solid var(--rule);padding:18px 19px;position:relative;overflow:hidden}
+.mcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px}
+.mcard.m1::after{background:linear-gradient(90deg,var(--accent),var(--signal))}
+.mcard.m2::after{background:linear-gradient(90deg,var(--signal),var(--cold))}
+.mcard.m3::after{background:linear-gradient(90deg,var(--cold),var(--gold))}
+.mcard-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:10px}
+.mcard-val{font-family:var(--disp);font-size:38px;letter-spacing:.04em;color:var(--navy);line-height:1;margin-bottom:8px}
+.mcard-label{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--ink2);margin-bottom:10px;letter-spacing:.03em}
+.mcard-body{font-size:12px;color:var(--dim);line-height:1.75;letter-spacing:.02em}
+.mcard-body strong{color:var(--navy);font-weight:600}
+
+.market-proof{margin-top:14px;background:rgba(25,64,106,.05);border:1px solid rgba(25,64,106,.2);padding:16px 18px}
+.mp-lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;color:var(--cold);text-transform:uppercase;margin-bottom:10px}
+.mp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.mp-item{}
+.mp-val{font-family:var(--disp);font-size:20px;color:var(--navy);line-height:1;margin-bottom:3px}
+.mp-sub{font-size:11px;color:var(--dim);line-height:1.5;letter-spacing:.02em}
+
+/* ══ CUSTOMER / SCENARIO SECTION ══ */
+.scenario-sec{padding:28px 0 28px 24px;border-bottom:1px solid var(--rule);position:relative;z-index:2}
+.tier-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}
+.tcard{border:1px solid var(--rule);padding:18px 18px;position:relative;overflow:hidden;background:var(--card2)}
+.tcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3.5px}
+.tcard.t1::before{background:var(--accent)}.tcard.t2::before{background:var(--signal)}.tcard.t3::before{background:var(--cold)}
+.tcard-badge{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--accent);margin-bottom:8px;text-transform:uppercase}
+.tcard-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;letter-spacing:.04em}
+.tcard-items{display:flex;flex-direction:column;gap:6px}
+.tcard-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--dim);letter-spacing:.02em;line-height:1.6}
+.tcard-item::before{content:'→';font-family:var(--mono);font-size:9px;color:var(--signal);flex-shrink:0;margin-top:2px}
+.tcard-why{margin-top:13px;padding-top:11px;border-top:1px solid var(--rule2);font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--dim)}
+.tcard-why strong{color:var(--signal)}
+
+.roi-table{width:100%;border-collapse:collapse;margin-top:14px;font-size:12px}
+.roi-table th{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;padding:8px 12px;text-align:left;border-bottom:1px solid var(--rule);background:rgba(0,0,0,.02)}
+.roi-table td{padding:9px 12px;border-bottom:1px solid var(--rule2);color:var(--ink2);line-height:1.5;vertical-align:top}
+.roi-table tr:last-child td{border-bottom:none}
+.roi-table td:first-child{font-weight:600;color:var(--navy);font-size:11.5px;white-space:nowrap}
+.roi-table td.highlight{color:var(--accent);font-weight:700}
+.roi-table .sub{font-size:10.5px;color:var(--dim)}
+
+/* ══ COMPETITION ══ */
+.comp-sec{padding:28px 0 28px 24px;border-bottom:1px solid var(--rule);position:relative;z-index:2}
+.comp-matrix{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}
+.cm{background:var(--card2);border:1px solid var(--rule);padding:16px 17px;position:relative;overflow:hidden}
+.cm::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.cm.cx::before{background:linear-gradient(90deg,var(--accent),rgba(179,53,8,0))}
+.cm.ca::before{background:var(--accent)}
+.cm.cb::before{background:var(--dim)}
+.cm.cc::before{background:var(--cold)}
+.cm-type{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:7px}
+.cm-name{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px;letter-spacing:.04em}
+.cm-rows{display:flex;flex-direction:column;gap:0}
+.cm-row{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;padding:5px 0;border-bottom:1px solid var(--rule2)}
+.cm-row:last-child{border-bottom:none}
+.cm-row-key{color:var(--dim);letter-spacing:.02em}
+.cm-row-val{font-family:var(--mono);font-size:10px;letter-spacing:.06em}
+.cm-row-val.yes{color:#3A8650;font-weight:700}
+.cm-row-val.no{color:var(--accent)}
+.cm-row-val.partial{color:var(--gold)}
+.cm-gap{margin-top:12px;padding:9px 11px;background:rgba(179,53,8,.06);border:1px solid rgba(179,53,8,.2);font-size:11.5px;color:var(--accent);font-style:italic;line-height:1.65;letter-spacing:.02em}
+
+/* ══ MOAT ══ */
+.moat-sec{padding:28px 0 28px 24px;border-bottom:1px solid var(--rule);position:relative;z-index:2}
+.moat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.moat{background:var(--card);border:1px solid var(--rule);padding:18px 18px;position:relative;overflow:hidden}
+.moat::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.moat.m1::before{background:var(--accent)}.moat.m2::before{background:var(--signal)}
+.moat.m3::before{background:var(--cold)}.moat.m4::before{background:var(--gold)}
+.moat.m5::before{background:#3A8650}.moat.m5{grid-column:span 2}
+.moat-n{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:7px}
+.moat-title{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--navy);margin-bottom:10px;letter-spacing:.04em}
+.moat-body{font-size:12.5px;color:var(--dim);line-height:1.8;letter-spacing:.02em}
+.moat-body strong{color:var(--navy);font-weight:600}
+
+/* ══ TEAM ══ */
+.team-sec{padding:28px 0 28px 24px;border-bottom:1px solid var(--rule);position:relative;z-index:2}
+.founder-wrap{display:grid;grid-template-columns:3px 1fr;gap:14px;margin-bottom:14px}
+.founder-spine{background:linear-gradient(to bottom,var(--gold),var(--accent))}
+.founder-card{background:var(--warm);border:1px solid rgba(150,112,15,.22);padding:18px 20px;position:relative;overflow:hidden}
+.founder-card::after{content:'创始人';position:absolute;right:14px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:9px;color:rgba(150,112,15,.14);letter-spacing:.22em}
+.f-role{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:6px}
+.f-name{font-family:var(--serif);font-size:22px;font-weight:900;color:var(--navy);margin-bottom:10px;letter-spacing:.1em}
+.f-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:11px}
+.f-tag{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;color:var(--signal);border:1px solid rgba(25,64,106,.24);background:var(--ice);padding:4px 9px}
+.f-desc{font-size:12.5px;color:var(--dim);line-height:1.85;letter-spacing:.02em}
+.f-desc strong{color:var(--ink2);font-weight:600}
+
+.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.tm{background:var(--card2);border:1px solid var(--rule);padding:14px 16px;position:relative;overflow:hidden}
+.tm::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.tm.t-ind::before{background:var(--gold)}.tm.t-sci::before{background:var(--cold)}
+.tm.t-cto::before{background:var(--accent)}.tm.t-coo::before{background:#3A8650}
+.tm.t-ops::before{background:#7A4A9A}.tm.full{grid-column:span 2}
+.tm-role{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:5px}
+.tm-name{font-family:var(--serif);font-size:17px;font-weight:700;color:var(--navy);margin-bottom:5px;letter-spacing:.08em}
+.tm-bg{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--signal);margin-bottom:7px}
+.tm-hook{font-size:12px;color:var(--dim);line-height:1.75;letter-spacing:.02em}
+.tm-hook strong{color:var(--ink2);font-weight:600}
+.closure{display:flex;align-items:center;gap:10px;margin-top:4px}
+.cl-badge{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--signal);border:1px solid rgba(25,64,106,.26);background:var(--ice);padding:5px 11px;text-transform:uppercase;white-space:nowrap}
+.cl-note{font-size:12px;color:var(--dim);letter-spacing:.02em}
+
+/* ══ ENGINEERING ══ */
+.eng-sec{padding:28px 0 28px 24px;border-bottom:1px solid var(--rule);position:relative;z-index:2}
+.risk-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:12px}
+.risk-table th{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;padding:9px 13px;text-align:left;border-bottom:1px solid var(--rule);background:rgba(0,0,0,.02)}
+.risk-table td{padding:10px 13px;border-bottom:1px solid var(--rule2);color:var(--ink2);vertical-align:top;line-height:1.65}
+.risk-table tr:last-child td{border-bottom:none}
+.risk-table td:first-child{font-weight:600;color:var(--navy)}
+.risk-ok{font-family:var(--mono);font-size:10px;color:#3A8650;font-weight:700}
+.risk-warn{font-family:var(--mono);font-size:10px;color:var(--gold);font-weight:700}
+
+.milestone-flow{display:flex;flex-direction:column;gap:0;margin-top:16px}
+.ms{display:grid;grid-template-columns:96px 1px 1fr;gap:0;align-items:stretch}
+.ms-ph{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--dim);text-transform:uppercase;padding:14px 16px 14px 0;display:flex;align-items:center;text-align:right;justify-content:flex-end}
+.ms-ph.ph-now{color:var(--accent);font-weight:700}
+.ms-ph.ph-next{color:var(--signal)}
+.ms-ph.ph-a{color:var(--cold)}
+.ms-line{background:var(--rule);position:relative}
+.ms-line::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:8px;height:8px;border-radius:50%;background:var(--rule);border:2px solid var(--bg)}
+.ms.active .ms-line{background:var(--accent)}
+.ms.active .ms-line::before{background:var(--accent)}
+.ms-content{padding:14px 0 14px 20px;border-bottom:1px solid var(--rule2)}
+.ms:last-child .ms-content{border-bottom:none}
+.ms-title{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px;letter-spacing:.04em}
+.ms-items{font-size:12px;color:var(--dim);line-height:1.75;letter-spacing:.02em}
+
+/* ══ BUSINESS MODEL ══ */
+.biz-sec{padding:28px 0 28px 24px;border-bottom:1px solid var(--rule);position:relative;z-index:2}
+.biz-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}
+.bcard{background:var(--card);border:1px solid var(--rule);padding:18px 18px;position:relative;overflow:hidden}
+.bcard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px}
+.bcard.b1::after{background:var(--accent)}.bcard.b2::after{background:var(--signal)}.bcard.b3::after{background:var(--cold)}
+.bcard-n{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:7px}
+.bcard-title{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;letter-spacing:.04em}
+.bcard-items{display:flex;flex-direction:column;gap:6px}
+.bcard-item{font-size:12px;color:var(--dim);line-height:1.65;letter-spacing:.02em;display:flex;gap:8px;align-items:flex-start}
+.bcard-item::before{content:'·';color:var(--accent);font-size:15px;flex-shrink:0;line-height:1.3}
+.bcard-tag{margin-top:12px}
+
+/* ══ FUNDRAISE ══ */
+.fund-sec{padding:28px 0 28px 24px;border-bottom:1px solid var(--rule);position:relative;z-index:2}
+.fund-two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:16px}
+.fund-use{background:var(--card2);border:1px solid var(--rule);padding:18px}
+.fu-title{font-family:var(--serif);font-size:14px;font-weight:700;color:var(--navy);margin-bottom:13px;letter-spacing:.04em}
+.fu-rows{display:flex;flex-direction:column;gap:0}
+.fu-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--rule2)}
+.fu-row:last-child{border-bottom:none}
+.fu-row-name{font-size:12px;color:var(--ink2);letter-spacing:.02em}
+.fu-row-pct{font-family:var(--disp);font-size:18px;color:var(--navy)}
+.fu-row-bar{height:3px;background:var(--rule);border-radius:1.5px;margin-top:4px;overflow:hidden}
+.fu-row-fill{height:100%;border-radius:1.5px}
+.pct-bar-wrap{flex:1;margin:0 14px}
+
+.fund-ask{background:var(--navy);padding:20px;display:flex;flex-direction:column;justify-content:space-between}
+.fa-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,.38);text-transform:uppercase;margin-bottom:12px}
+.fa-amt{font-family:var(--disp);font-size:44px;color:#fff;line-height:1;margin-bottom:4px}
+.fa-rmb{font-family:var(--disp);font-size:22px;color:rgba(255,210,100,.85);margin-bottom:14px}
+.fa-rows{display:flex;flex-direction:column;gap:8px}
+.fa-row{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:8px}
+.fa-row:last-child{border-bottom:none;padding-bottom:0}
+.fa-key{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;color:rgba(255,255,255,.38);text-transform:uppercase}
+.fa-val{font-family:var(--serif);font-size:11.5px;color:rgba(255,255,255,.82);text-align:right;letter-spacing:.03em}
+
+/* ══ CLOSING / CTA ══ */
+.closing{padding:36px 0 34px 24px;border-bottom:1px solid var(--rule);position:relative;z-index:2}
+.closing::before{content:'';position:absolute;left:0;top:36px;bottom:34px;width:3px;background:linear-gradient(to bottom,var(--gold),var(--signal))}
+.closing-h{font-family:var(--disp);font-size:clamp(32px,4vw,50px);line-height:.92;letter-spacing:.02em;color:var(--navy);margin-bottom:18px}
+.closing-h .hl{color:var(--accent)}
+.closing-body{max-width:880px}
+.closing-body p{font-family:var(--serif);font-size:14.5px;line-height:2.1;color:var(--ink2);letter-spacing:.04em;margin-bottom:14px}
+.closing-body p:last-child{margin-bottom:0}
+.closing-body strong{color:var(--navy);font-weight:700}
+
+.cta-band{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:26px 24px;background:var(--navy);position:relative;z-index:2;
+}
+.cta-l .cta-eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,.36);text-transform:uppercase;margin-bottom:5px}
+.cta-l .cta-label{font-family:var(--serif);font-size:20px;font-weight:900;color:#fff;margin-bottom:3px;letter-spacing:.1em}
+.cta-l .cta-disp{font-family:var(--disp);font-size:36px;letter-spacing:.07em;color:rgba(255,195,70,.92);line-height:1}
+.cta-r{display:flex;align-items:center;gap:20px}
+.cta-info p{font-family:var(--sans-en);font-size:11px;color:rgba(255,255,255,.45);line-height:1.75;text-align:right;letter-spacing:.02em}
+.cta-info strong{color:rgba(255,255,255,.8);font-weight:600}
+.cta-btn{
+  display:inline-flex;align-items:center;
+  background:var(--accent);color:#fff;
+  font-family:var(--sans-en);font-size:13.5px;font-weight:700;
+  letter-spacing:.08em;padding:14px 26px;
+  text-decoration:none;white-space:nowrap;
+  transition:background .18s,transform .14s;
+}
+.cta-btn:hover{background:#982A06;transform:translateY(-1px)}
+
+.conf{padding:11px 24px;display:flex;justify-content:space-between;border-top:1px solid var(--rule);position:relative;z-index:2}
+.conf span{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;color:var(--dim);opacity:.45;text-transform:uppercase}
+
+/* ── responsive ── */
+@media(max-width:960px){
+  .page{padding:0 24px}.page::after{left:24px}
+  .header-band{grid-template-columns:1fr;gap:16px;padding:50px 0 18px 18px}
+  .doc-card{width:100%;height:195px}
+  .kn-strip{grid-template-columns:1fr 1fr;gap:0}
+  .kn{border-right:1px solid var(--rule)}
+  .kn:nth-child(2n){border-right:none}
+  .two-col{grid-template-columns:1fr}.vr{height:1px;width:100%}
+  .col-l,.col-r{padding:18px 0 18px 18px}
+  .why-grid{grid-template-columns:1fr}
+  .market-grid,.tier-grid,.biz-grid,.comp-matrix,.moat-grid{grid-template-columns:1fr}
+  .moat.m5{grid-column:span 1}
+  .team-grid{grid-template-columns:1fr}.tm.full{grid-column:span 1}
+  .fund-two{grid-template-columns:1fr}
+  .mp-grid{grid-template-columns:1fr 1fr}
+  .cta-band{flex-direction:column;align-items:flex-start;gap:16px;padding:20px 18px}
+  .cta-r{align-self:stretch;justify-content:space-between}
+}
+@media(max-width:540px){
+  .page{padding:0 14px}.page::after{left:14px}
+  .brand-name{font-size:44px}
+  .thesis-h{font-size:32px}
+  .kn-strip{grid-template-columns:1fr}
+  .kn{border-right:none}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ① HEADER -->
+<div class="header-band z a d1">
+  <div>
+    <div class="brand-eyebrow">ARCBOS · 商业计划书 · Seed Round · 2026</div>
+    <div class="brand-name">ARCBOS</div>
+    <div class="brand-cn">上海阿克博斯技术有限公司 · Shanghai ARCBOS Systems Ltd</div>
+    <div class="brand-sub">Engineered for Extreme Conditions · Physical AI × Extreme World</div>
+  </div>
+  <div class="doc-card">
+    <div class="dc-inner">
+      <div class="dc-top">
+        <div class="dc-doc-type">Full Business Plan · 完整版商业计划书</div>
+        <div class="dc-round">
+          <div class="dc-round-lbl">种子轮 · Raising</div>
+          <div class="dc-amt">$2M USD</div>
+          <div class="dc-amt2">≈ ¥1,500万人民币</div>
+          <div class="dc-stage">工程样机验证轮</div>
+        </div>
+      </div>
+      <div class="dc-bottom">
+        <div class="dc-product">SNOWBOT</div>
+        <div class="dc-sub">Physical AI · Extreme Env. · Industrial Autonomy</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ② CORE THESIS -->
+<div class="thesis z a d2">
+  <div class="eyebrow" style="margin-bottom:11px">核心判断 · Core Thesis</div>
+  <div class="thesis-h">一个已预算化的市场<br><span class="hl">正在等待被自动化</span></div>
+  <div class="thesis-badges" style="margin-top:12px">
+    <span class="badge">刚需 · 已预算 · 每年重复</span>
+    <span class="badge">工业级自治 · 非消费级设备</span>
+    <span class="tag-accent">硬件选型完成 · 零件到货</span>
+    <span class="badge">首批客户试点意向已确认</span>
+  </div>
+  <div class="thesis-body">
+    <p>
+      北美商业设施的冬季除雪，每年消耗超过 <strong>US$225亿</strong>的运维预算。这不是新需求，不需要教育市场——它已经存在、每年重复、采购流程完全标准化（SIMA-10-2025，5月 RFP、9月授标）。问题从来不是"有没有需求"，而是：<strong>现有方案在极寒工况下太不可靠、太难管理、太依赖人工夜班</strong>。
+    </p>
+    <p>
+      机场自治除雪（Otto、Yeti）已证明极寒工况下无人化物理可行；消费级产品（Yarbo）止步于住宅吞吐量与 −25°C 边界。<span class="callout">商业园区 · 数据中心 · 物流场站</span>这个区间——工业级需求、园区规模、可复制部署——目前没有一个成熟的标准化产品。
+    </p>
+    <p>
+      ARCBOS 正在填补这个空白。<strong>SnowBot 的关键硬件选型已完成、核心零件已到货</strong>，工程样机进入组装阶段。与此同时，创始人通过多年北美 C&I 能源客户网络，已从 CBRE、Colliers 管理体系内的设施负责人获得<strong>明确的试点意向确认</strong>。本轮融资的目标只有一个：<strong>用$200万美元把样机做出来，进入冬季验证，拿下首批付费试点</strong>。
+    </p>
+  </div>
+</div>
+
+<!-- ③ KEY NUMBERS -->
+<div class="kn-strip z a d3">
+  <div class="kn k1">
+    <div class="kn-label">工程进度</div>
+    <div class="kn-val" style="font-size:20px;line-height:1.1">零件<br>到货</div>
+    <div class="kn-sub">关键硬件选型完成<br>工程样机进入组装阶段</div>
+  </div>
+  <div class="kn k2">
+    <div class="kn-label">客户试点意向</div>
+    <div class="kn-val">50<span style="font-size:16px">+</span></div>
+    <div class="kn-sub">首批意向方管理的<br>大型商业设施数量</div>
+  </div>
+  <div class="kn k3">
+    <div class="kn-label">公开招标时租锚点</div>
+    <div class="kn-val" style="font-size:20px">$145–495</div>
+    <div class="kn-sub">设备+操作员/小时<br>政府·学校公开招标实证</div>
+  </div>
+  <div class="kn k4">
+    <div class="kn-label">每季作业频次</div>
+    <div class="kn-val">35<span style="font-size:16px">+</span></div>
+    <div class="kn-sub">推雪 13–16次 + 融冰 20–25次<br>高频刚需 · 不可中断</div>
+  </div>
+  <div class="kn k5">
+    <div class="kn-label">北美市场规模</div>
+    <div class="kn-val">$225<span style="font-size:16px">亿</span></div>
+    <div class="kn-sub">商业设施除雪与融冰服务（2023）<br>88,200家企业 · 高度分散</div>
+  </div>
+</div>
+
+<!-- ④ WHY NOW + WHY US -->
+<div class="two-col z a d4">
+  <div class="col-l">
+    <div class="sec-label">为什么是现在 · Four Convergences</div>
+    <div class="why-grid">
+      <div class="wcard c1">
+        <div class="wc-n">01 · 用工结构性压力</div>
+        <div class="wc-title">劳动力成本上升 · 收缩</div>
+        <div class="wc-body">SIMA 行业报告直接点名：劳动力成本持续上升、劳动力收缩是除雪运营最大挑战。BLS 数据：私营福利负担占雇主成本 <strong>29.9%</strong>，夜班溢价另计。"找不到稳定夜班工人"是客户最高频抱怨。</div>
+      </div>
+      <div class="wcard c2">
+        <div class="wc-n">02 · 采购标准化完成</div>
+        <div class="wc-title">买方已知道怎么买</div>
+        <div class="wc-body">SIMA-10-2025（ANSI 标准）将采购流程全面规范化：<strong>5月 RFP · 9月1日授标</strong>，合同明确 LOS/触发阈值/关键时间窗/监测记录/融冻再结冰处置。我们直接对标标准交付，不需要教育买方。</div>
+      </div>
+      <div class="wcard c3">
+        <div class="wc-n">03 · 气候波动复杂化</div>
+        <div class="wc-title">极端事件 + 冻融循环上升</div>
+        <div class="wc-body">IPCC AR6：极端降水随变暖增强，高置信度。五大湖效应降雪时空格局变化，局地强降雪更突发。<strong>冻融循环增加</strong>提升二次巡检/处置需求——对无人化巡检与记录系统尤为利好。</div>
+      </div>
+      <div class="wcard c4">
+        <div class="wc-n">04 · 自治可行性已验证</div>
+        <div class="wc-title">缺的是产品化 · 不是技术</div>
+        <div class="wc-body">温尼伯机场（Otto 自治雪犁）、挪威法格内斯机场（Yeti 编队自治）证明<strong>冬季极端工况自治可行</strong>。机场是受控环境，商业园区缺的是可复制的标准化产品——这正是 SnowBot 要填补的空白。</div>
+      </div>
+      <div class="wcard c5">
+        <div class="wc-n">05 · 高失败成本场景已明确</div>
+        <div class="wc-title">客户付可靠性 · 不付便宜</div>
+        <div class="wc-body">数据中心停机成本：Uptime Institute 调研显示超过 50% 企业单次重大停机成本 <strong>>US$10万</strong>，部分超过 US$100万。物流仓储坡道结冰直接导致运营停摆。<strong>可靠性与责任闭环</strong>才是真实购买动机。</div>
+      </div>
+      <div class="wcard c6">
+        <div class="wc-n">06 · 渠道已具备</div>
+        <div class="wc-title">CBRE · Colliers 现有客户</div>
+        <div class="wc-body">创始人深耕北美 C&I 能源市场多年，<strong>CBRE、Colliers 两大商业地产管理公司均为现有客户关系</strong>。首批意向方管理 50+ 大型商业设施。采购时间窗已知，进入路径无需从零建立。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vr"></div>
+
+  <div class="col-r">
+    <div class="sec-label">核心差异化 · The Unfair Advantage</div>
+    <div class="feat-row">
+      <div class="feat">
+        <div class="feat-bar"></div>
+        <div>
+          <div class="feat-title">极寒 × 重载 × 自治 × 长时：四维耦合门槛</div>
+          <div class="feat-body">单点模块可被复制，<strong>四个维度同时成立的工程复杂度不可复制</strong>。−30°C 启动 · 重载履带牵引 · 无人值守决策 · 12小时连续运行——这是当前市场无任何已量产商业产品能覆盖的工况边界。</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-bar"></div>
+        <div>
+          <div class="feat-title">从设施运维视角定义产品</div>
+          <div class="feat-body">我们卖的不是"能跑的机器人"，而是<strong>"必须完成任务的工业级系统"</strong>。产品指标直接映射到 SIMA LOS 验收框架：触发阈值达标时间、关键时间窗通行率、优先区域覆盖率、事件日志可审计性。</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-bar"></div>
+        <div>
+          <div class="feat-title">世界模型 + 强化学习决策内核</div>
+          <div class="feat-body">非单点规则算法。<strong>极端感知数据 × 强化学习决策 × 工业级自治执行</strong>——感知失效降级、任务优先级动态调整、长时不确定环境持续正确决策，这是从自动化设备走向工业级自治系统的分水岭。顾问王梦迪（普林斯顿正教授，引用11,644次）提供科学护航。</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-bar"></div>
+        <div>
+          <div class="feat-title">平台入口 · 非单一季节设备</div>
+          <div class="feat-body">极寒感知 + 自治决策能力横向复用：<strong>除草 → 巡检 → 安防</strong>。一次极端工况验证，多场景扩展。投资价值不止于除雪季节，而是 ARCBOS 建立"极端环境工业级自治系统"第一块工程基石。</div>
+        </div>
+      </div>
+      <div class="feat">
+        <div class="feat-bar"></div>
+        <div>
+          <div class="feat-title">供应链直连 · 产业化不可替代</div>
+          <div class="feat-body">产业顾问杨光华（机器人产业链顶级专家、清华具身智能产业协会副会长）<strong>全产业链上下游核心供应商直连</strong>，从样机到量产的产业化路径具有不可替代的人脉与资源优势。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑤ MARKET -->
+<div class="market-sec z a d5">
+  <div class="sec-label">市场规模 · 自上而下 × 自下而上双重验证</div>
+  <div class="market-grid">
+    <div class="mcard m1">
+      <div class="mcard-eyebrow">TAM · 总市场（自上而下）</div>
+      <div class="mcard-val">$225亿</div>
+      <div class="mcard-label">北美商业设施除雪与融冰服务（2023）</div>
+      <div class="mcard-body">包含人工、设备、材料、外包合同全口径。美国占 <strong>74.4%（约$167亿）</strong>，加拿大约$58亿。这是已预算化的现有支出，不是需要创造的新需求。</div>
+    </div>
+    <div class="mcard m2">
+      <div class="mcard-eyebrow">SAM · 可服务市场（自下而上锚定）</div>
+      <div class="mcard-val">$12–18亿</div>
+      <div class="mcard-label">北美工业级高可靠场站 · SnowBot 真实可替代份额</div>
+      <div class="mcard-body">保守测算：北美 <strong>~30,000个</strong> 工业/物流/医疗高可靠站点，年均除雪外包支出约 $4–6万/站点，对应 $12–18亿可替代 OPEX。这是 SnowBot 真正能拿走的份额，不是全市场幻觉。</div>
+    </div>
+    <div class="mcard m3">
+      <div class="mcard-eyebrow">SOM · 5年目标（执行驱动）</div>
+      <div class="mcard-val">$3,000–6,000万</div>
+      <div class="mcard-label">SAM 的 2%–5% · 受交付产能限制</div>
+      <div class="mcard-body">基于 <strong>300–500个站点部署</strong>，每站点平均年服务价值约 $10万（RaaS 口径）。这个数字完全受我们自己的交付能力约束，而非需求约束——市场端完全不是问题。</div>
+    </div>
+  </div>
+  <div class="market-proof">
+    <div class="mp-lbl">自下而上锚点 · 可量化高可靠站点底座</div>
+    <div class="mp-grid">
+      <div class="mp-item">
+        <div class="mp-val">23,539</div>
+        <div class="mp-sub">美国仓储物流企业<br>（Q3 2025，NAICS 493）</div>
+      </div>
+      <div class="mp-item">
+        <div class="mp-val">6,100</div>
+        <div class="mp-sub">美国医院（FY2024）<br>急救通道零容错，失败成本极高</div>
+      </div>
+      <div class="mp-item">
+        <div class="mp-val">5,172</div>
+        <div class="mp-sub">加拿大仓储机构（2024）<br>极寒气候 · 冬季运维依赖度更高</div>
+      </div>
+      <div class="mp-item">
+        <div class="mp-val">$4–6万</div>
+        <div class="mp-sub">典型工业站点年均除雪外包支出<br>（公开招标费率 × 作业频次推算）</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑥ CUSTOMER SCENARIOS -->
+<div class="scenario-sec z a d5">
+  <div class="sec-label">客户分层 · Customer Tiers & ROI Logic</div>
+  <div class="tier-grid">
+    <div class="tcard t1">
+      <div class="tcard-badge">Tier 1 · 优先切入</div>
+      <div class="tcard-title">高失败成本场景</div>
+      <div class="tcard-items">
+        <div class="tcard-item">数据中心：通道不通 = 运维/交付风险，停机成本 >$10万/次</div>
+        <div class="tcard-item">物流/仓储园区：装卸坡道结冰 = 运营停摆，LOS 要求严格</div>
+        <div class="tcard-item">医疗园区：急救入口/无障碍通道，责任风险极高</div>
+        <div class="tcard-item">工业厂区：重要设施 + 夜班交接时间窗严格</div>
+      </div>
+      <div class="tcard-why"><strong>买点</strong>：可靠性 · 夜间保通 · 可审计 LOS · 责任闭环</div>
+    </div>
+    <div class="tcard t2">
+      <div class="tcard-badge">Tier 2 · 中期放量</div>
+      <div class="tcard-title">规模化标准场景</div>
+      <div class="tcard-items">
+        <div class="tcard-item">校园/教育机构：多人流 · 多区域路径 · 夜间安全</div>
+        <div class="tcard-item">多点商业地产组合：全国型 FM 聚合商管理的标准化物业</div>
+        <div class="tcard-item">外包承包商：作为设备供应商进入，渠道放大器</div>
+        <div class="tcard-item">市政外包合同：保险/合规体系完善后进入</div>
+      </div>
+      <div class="tcard-why"><strong>进入路径</strong>：通过 CBRE/Colliers 等 FM 渠道批量导入</div>
+    </div>
+    <div class="tcard t3">
+      <div class="tcard-badge">Tier 3 · 后期</div>
+      <div class="tcard-title">价格敏感标准场景</div>
+      <div class="tcard-items">
+        <div class="tcard-item">普通零售停车场：失败成本相对低，价格竞争更激烈</div>
+        <div class="tcard-item">一般办公园区：标准化但预算压力较大</div>
+        <div class="tcard-item">住宅/轻商业：留给 Yarbo 类产品，非 SnowBot 目标</div>
+      </div>
+      <div class="tcard-why"><strong>条件</strong>：需价格与可靠性双优后才可大规模替换</div>
+    </div>
+  </div>
+
+  <table class="roi-table" style="margin-top:16px">
+    <thead>
+      <tr>
+        <th>场景（Tier 1）</th>
+        <th>传统年度成本估算（推算）</th>
+        <th>时租锚点</th>
+        <th>回本周期预判</th>
+        <th>核心非财务价值</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>大型物流仓储园区<br><span class="sub">15–25 acres 硬化地面</span></td>
+        <td>推雪：$7.2万–12.6万/季<br><span class="sub">K=4台 · H=6h/次 · Np=15次</span></td>
+        <td>$200–350/h</td>
+        <td class="highlight">1.5–2季</td>
+        <td>夜间保通 · LOS 记录 · 坡道零事故</td>
+      </tr>
+      <tr>
+        <td>数据中心园区<br><span class="sub">5–12 acres 关键通道</span></td>
+        <td>高于一般场站<br><span class="sub">停机成本倒逼 WTP 溢价</span></td>
+        <td>$250–495/h</td>
+        <td class="highlight">2季（保守）</td>
+        <td>可审计日志 · SLA 达标证明 · 运维文化匹配</td>
+      </tr>
+      <tr>
+        <td>医疗园区<br><span class="sub">美国 6,100 家医院</span></td>
+        <td>急救通道高频次 · 夜班人工调度最难</td>
+        <td>$145–350/h</td>
+        <td class="highlight">2–3季</td>
+        <td>急救通道夜间零中断 · 滑倒索赔风险降低</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--dim);margin-top:8px">
+    * 费率数据来源：政府/学校公开招标表（$145–$495/h实证）+ BLS 劳动力成本。面积/频次/回本为推算，将由试点站点数据校正。
+  </div>
+</div>
+
+<!-- ⑦ COMPETITION -->
+<div class="comp-sec z a d6">
+  <div class="sec-label">竞争格局 · 为什么中间存在空白</div>
+  <div class="comp-matrix">
+    <div class="cm cx ca">
+      <div class="cm-type">SnowBot · ARCBOS</div>
+      <div class="cm-name">目标定位</div>
+      <div class="cm-rows">
+        <div class="cm-row"><span class="cm-row-key">工业级重载</span><span class="cm-row-val yes">✓ 是</span></div>
+        <div class="cm-row"><span class="cm-row-key">极寒 −30°C</span><span class="cm-row-val yes">✓ 目标</span></div>
+        <div class="cm-row"><span class="cm-row-key">无人值守自治</span><span class="cm-row-val yes">✓ 全自治</span></div>
+        <div class="cm-row"><span class="cm-row-key">12h+ 连续运行</span><span class="cm-row-val yes">✓ 是</span></div>
+        <div class="cm-row"><span class="cm-row-key">可审计 LOS 记录</span><span class="cm-row-val yes">✓ 是</span></div>
+        <div class="cm-row"><span class="cm-row-key">商业园区产品化</span><span class="cm-row-val yes">✓ 是</span></div>
+      </div>
+    </div>
+    <div class="cm cb">
+      <div class="cm-type">Yarbo · 消费级</div>
+      <div class="cm-name">住宅/轻商业方向</div>
+      <div class="cm-rows">
+        <div class="cm-row"><span class="cm-row-key">工业级重载</span><span class="cm-row-val no">✗ 住宅吞吐</span></div>
+        <div class="cm-row"><span class="cm-row-key">温度边界</span><span class="cm-row-val partial">△ −25°C</span></div>
+        <div class="cm-row"><span class="cm-row-key">无人值守自治</span><span class="cm-row-val partial">△ 有限</span></div>
+        <div class="cm-row"><span class="cm-row-key">连续运行能力</span><span class="cm-row-val no">✗ 单次约6,000sqft</span></div>
+        <div class="cm-row"><span class="cm-row-key">可审计 LOS 记录</span><span class="cm-row-val no">✗ 无工业级</span></div>
+        <div class="cm-row"><span class="cm-row-key">目标市场</span><span class="cm-row-val no">住宅</span></div>
+      </div>
+      <div class="cm-gap">住宅级吞吐与 −25°C 边界，与工业园区 −30°C 重载无人值守在产品定义上不是同类问题。</div>
+    </div>
+    <div class="cm cb">
+      <div class="cm-type">Otto · Yeti · 机场自治</div>
+      <div class="cm-name">机场/重装定制方向</div>
+      <div class="cm-rows">
+        <div class="cm-row"><span class="cm-row-key">工业级重载</span><span class="cm-row-val yes">✓ 是</span></div>
+        <div class="cm-row"><span class="cm-row-key">极寒运行</span><span class="cm-row-val yes">✓ 是</span></div>
+        <div class="cm-row"><span class="cm-row-key">无人值守自治</span><span class="cm-row-val partial">△ 受控环境</span></div>
+        <div class="cm-row"><span class="cm-row-key">商业园区产品化</span><span class="cm-row-val no">✗ 定制集成</span></div>
+        <div class="cm-row"><span class="cm-row-key">可复制标准产品</span><span class="cm-row-val no">✗ 试点阶段</span></div>
+        <div class="cm-row"><span class="cm-row-key">中小园区可用</span><span class="cm-row-val no">✗ 机场体系</span></div>
+      </div>
+      <div class="cm-gap">证明了冬季自治可行性，但机场是受控专属环境，不是园区级可复制的标准化产品。</div>
+    </div>
+  </div>
+  <div style="margin-top:12px;padding:16px 18px;background:rgba(179,53,8,.05);border:1px solid rgba(179,53,8,.2);font-family:var(--serif);font-size:13.5px;color:var(--ink2);line-height:1.95;letter-spacing:.03em">
+    <strong style="color:var(--accent)">空白为什么还没被填？</strong>这是投资人应该问的问题，答案是：<strong>这个工况组合真的很难</strong>——极寒热管理、重载牵引控制、无人值守安全降级、可审计 LOS 合规，四个维度同时满足的工程门槛，让消费级团队碰不了，让机场重装集成商不屑于做标准品。恰好 ARCBOS 的创始团队组合——北美客户理解 × 中国工程执行速度 × 机器人系统集成经验——是填这个空白的稀缺组合。
+  </div>
+</div>
+
+<!-- ⑧ MOAT -->
+<div class="moat-sec z a d6">
+  <div class="sec-label">竞争壁垒 · Five Moats</div>
+  <div class="moat-grid">
+    <div class="moat m1">
+      <div class="moat-n">Moat 01</div>
+      <div class="moat-title">极寒 × 重载 × 自治 × 长时的耦合门槛</div>
+      <div class="moat-body">单点模块可被快速复制，但<strong>四个维度同时满足的工程复杂度极难复制</strong>。−30°C 热管理 · 重载履带牵引控制 · 无人值守感知决策 · 12h+ 连续可靠运行——每一项都是系统级难题，耦合后的边界远超部件叠加。</div>
+    </div>
+    <div class="moat m2">
+      <div class="moat-n">Moat 02</div>
+      <div class="moat-title">产品定义视角：设施运维 · 不是"机器人"</div>
+      <div class="moat-body">我们从 SIMA-10-2025 LOS 标准出发定义产品验收指标，而非从机器人参数出发推销功能。<strong>触发阈值达标 · 关键时间窗通行率 · 优先区域覆盖 · 可审计事件日志</strong>——这是买方的验收语言，也是壁垒。</div>
+    </div>
+    <div class="moat m3">
+      <div class="moat-n">Moat 03</div>
+      <div class="moat-title">AI 与自治决策：系统级能力 · 非单点算法</div>
+      <div class="moat-body">强化学习 + 世界模型 + 安全降级三层架构，覆盖感知失效、任务冲突、环境突变三类不确定性场景。<strong>这是从自动化设备走向工业级自治系统的关键分水岭</strong>。普林斯顿 RL 实验室科学支撑，非一般团队可快速复制。</div>
+    </div>
+    <div class="moat m4">
+      <div class="moat-n">Moat 04</div>
+      <div class="moat-title">北美客户渠道 · 先发进入壁垒</div>
+      <div class="moat-body">CBRE、Colliers 等顶级商业地产管理公司已是现有客户关系。<strong>采购时间窗口（5月 RFP·9月授标）具有强路径依赖性</strong>——一旦进入某机构的供应商体系，续约粘性高，后来者入场成本极高。</div>
+    </div>
+    <div class="moat m5">
+      <div class="moat-n">Moat 05 · 最终壁垒</div>
+      <div class="moat-title">极端环境数据飞轮：冬季作业数据 → 决策模型持续迭代</div>
+      <div class="moat-body">每一个冬季作业季积累的极寒感知数据、故障模式数据库、多站点 LOS 履约记录，将持续强化世界模型决策能力。<strong>数据飞轮一旦启动，后来者无论在算法还是在产品可靠性上都将面临越来越难以弥合的差距</strong>。早进场的公司不只是先到，而是在飞轮效应下越跑越快。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑧·5 TRACTION — 现在手里有什么 -->
+<div class="moat-sec z a d7" style="background:rgba(20,36,58,.03)">
+  <div class="sec-label">当前进展 · 我们手里已经有什么</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px">
+    <div style="background:var(--card);border:1px solid var(--rule);padding:18px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)"></div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:8px">工程进度</div>
+      <div style="font-family:var(--disp);font-size:26px;color:var(--navy);line-height:1;margin-bottom:10px">零件到货</div>
+      <div style="font-family:var(--serif);font-size:13px;color:var(--ink2);line-height:1.85;letter-spacing:.03em">关键硬件选型已完成，核心零件已采购到货，工程样机进入组装阶段。<strong>这不是停留在 CAD 图纸上的项目</strong>，实物组件已经在桌上。</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--rule);padding:18px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--signal)"></div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:8px">客户进展</div>
+      <div style="font-family:var(--disp);font-size:26px;color:var(--navy);line-height:1;margin-bottom:10px">试点意向确认</div>
+      <div style="font-family:var(--serif);font-size:13px;color:var(--ink2);line-height:1.85;letter-spacing:.03em">通过 CBRE/Colliers 现有客户渠道，首批设施管理负责人已<strong>明确表达冬季试点意向</strong>（邮件/会议记录可查），管理 50+ 大型商业设施。这是真实的意向，不是"认识"。</div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--rule);padding:18px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--cold)"></div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin-bottom:8px">团队状态</div>
+      <div style="font-family:var(--disp);font-size:26px;color:var(--navy);line-height:1;margin-bottom:10px">核心团队就位</div>
+      <div style="font-family:var(--serif);font-size:13px;color:var(--ink2);line-height:1.85;letter-spacing:.03em">CTO（飞利浦机器人量产经历）+ COO（头部机器人公司 To B 落地经验）+ 产业顾问（全产业链供应商直连）<strong>均已全程参与，不是挂名</strong>。公司 2026年4月正式注册。</div>
+    </div>
+  </div>
+  <div style="margin-top:14px;padding:16px 18px;background:rgba(25,64,106,.05);border:1px solid rgba(25,64,106,.2);font-family:var(--serif);font-size:13.5px;color:var(--ink2);line-height:1.95;letter-spacing:.03em">
+    <strong style="color:var(--signal)">坦白说：</strong>我们现在处于"工程样机组装中、首批客户意向在手、等待冬季验证窗口"的阶段。<strong>这$200万不是用来验证想法的，而是用来把已经开始的事情做完的。</strong>样机完成 → 冬季工况验证 → 3–5个付费试点 LOI → A 轮。路径清晰，不模糊。
+  </div>
+</div>
+
+
+<div class="team-sec z a d7">
+  <div class="sec-label">团队 · 四人闭环 · 每个人都不可替代</div>
+  <div class="founder-wrap">
+    <div class="founder-spine"></div>
+    <div class="founder-card">
+      <div class="f-role">Founder · CEO · System Architect</div>
+      <div class="f-name">龚铁靖</div>
+      <div class="f-tags">
+        <span class="f-tag">加拿大籍</span>
+        <span class="f-tag">北美 C&I 能源</span>
+        <span class="f-tag">CBRE · Colliers 现有客户</span>
+        <span class="f-tag">跨境系统集成</span>
+        <span class="f-tag">融资与路径判断</span>
+      </div>
+      <div class="f-desc">
+        在北美工商业储能与能源系统领域深耕多年，真正在加拿大冬夜里经历过"工人没来、设施停摆"的第一手痛点。<strong>CBRE、Colliers 两大商业地产管理公司均为其现有客户关系</strong>，首批试点意向即来自这一网络——这不是"认识"，而是对方在邮件/会议中明确表达了冬季试点意向。
+        <br><br>
+        加拿大籍、上海创业：这个组合意味着他<strong>同时理解北美客户的采购语言和中国供应链的执行逻辑</strong>，两者缺一不可。大多数竞争者只有其中一个。
+      </div>
+    </div>
+  </div>
+  <div class="team-grid">
+    <div class="tm t-ind">
+      <div class="tm-role">产业顾问 · Industry Advisor</div>
+      <div class="tm-name">杨光华</div>
+      <div class="tm-bg">机器人产业链顶级专家 · 清华具身智能产业协会副会长</div>
+      <div class="tm-hook"><strong>全产业链上下游核心供应商直连</strong>——从驱动器、传感器到底盘结构件，关键供应商均有直接合作关系。这意味着样机阶段的选型速度和成本，以及量产阶段的产业化路径，都有不可替代的资源护航。</div>
+    </div>
+    <div class="tm t-sci">
+      <div class="tm-role">科学顾问 · RL & Autonomy</div>
+      <div class="tm-name">王梦迪 教授</div>
+      <div class="tm-bg">普林斯顿大学正教授 · 清华本科 · MIT 博士 · 谷歌学术引用 11,644 次</div>
+      <div class="tm-hook"><strong>强化学习 + 随机优化 + 控制论</strong> · NSF Career Award · Google Faculty Award · MIT TR35 · Donald P. Eckman Award · NeurIPS / ICML 领域主席。自治决策算法路径的科学权威背书，不是装饰，是真实技术方向的护栏。</div>
+    </div>
+    <div class="tm t-cto">
+      <div class="tm-role">CTO · 整机工程</div>
+      <div class="tm-name">陈超</div>
+      <div class="tm-bg">前飞利浦医疗机器人负责人 · 主导多款量产机器人系统工程落地</div>
+      <div class="tm-hook"><strong>有过真实量产经历</strong>——不只是做过样机，而是把样机变成可维修、可迭代、可交付的工业系统。这一点在种子轮团队里极其稀缺。负责 SnowBot 整机工程实现、结构平台工程化、样机到小批量衔接。</div>
+    </div>
+    <div class="tm t-coo">
+      <div class="tm-role">COO · 商业化</div>
+      <div class="tm-name">甄文胜</div>
+      <div class="tm-bg">前头部机器人公司市场负责人 · 主导多个 To B 大客户项目落地</div>
+      <div class="tm-hook"><strong>会说客户语言</strong>——懂得如何把"机器人能做什么"翻译成"你的设施风险会降低多少、你的采购合规要求如何满足"。负责客户验证、试点推进、商务路径设计。</div>
+    </div>
+    <div class="tm t-ops full">
+      <div class="tm-role">联合创始人 · 产业链</div>
+      <div class="tm-name">龚继锋</div>
+      <div class="tm-bg">供应链与工程资源协同</div>
+      <div class="tm-hook"><strong>保障样机阶段不卡在供应链上</strong>——零件选型、外协加工、关键件到货节奏，本轮已进入实操阶段。为后续小批量与量产衔接做提前布局。</div>
+    </div>
+  </div>
+  <div class="closure">
+    <span class="cl-badge">四角闭环团队</span>
+    <span class="cl-note">北美客户理解 · 产业链直连 · 算法科学 · 整机工程 · 商业转化——每个维度都有可验证的具体背书，没有凑数成员</span>
+  </div>
+</div>
+
+<!-- ⑩ ENGINEERING & MILESTONES -->
+<div class="eng-sec z a d7">
+  <div class="sec-label">工程路径 · 样机定义 · 里程碑</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:10px">五大验证能力 · 五大工程风险</div>
+      <table class="risk-table">
+        <thead><tr><th>工程风险</th><th>影响</th><th>验证方式</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td>低温电池衰减</td><td>续航下降</td><td>低温启动+长时运行测试</td><td><span class="risk-warn">→ 验证中</span></td></tr>
+          <tr><td>湿雪堵塞</td><td>作业中断</td><td>连续作业多雪况测试</td><td><span class="risk-warn">→ 验证中</span></td></tr>
+          <tr><td>履带打滑/陷</td><td>无法行走</td><td>雪地低附着牵引测试</td><td><span class="risk-warn">→ 验证中</span></td></tr>
+          <tr><td>感知失效</td><td>安全风险</td><td>暴雪/低可见度降级测试</td><td><span class="risk-warn">→ 验证中</span></td></tr>
+          <tr><td>长时运行不稳定</td><td>停机风险</td><td>模块化隔离+长时运行</td><td><span class="risk-warn">→ 验证中</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:10px">里程碑路径 · Seed → A 轮</div>
+      <div class="milestone-flow">
+        <div class="ms active">
+          <div class="ms-ph ph-now">当前</div>
+          <div class="ms-line"></div>
+          <div class="ms-content">
+            <div class="ms-title">工程样机验证 + 首批 LOI</div>
+            <div class="ms-items">整机联调 · 低温测试 · 首批客户意向确认 · 物业管理方（50+ 大型物业）明确意向</div>
+          </div>
+        </div>
+        <div class="ms">
+          <div class="ms-ph ph-next">M1–M3</div>
+          <div class="ms-line"></div>
+          <div class="ms-content">
+            <div class="ms-title">系统方案冻结 → 运动平台跑通 → 关键模块联调</div>
+            <div class="ms-items">底盘 + 作业机构联动 · 控制链路打通 · 状态回传与基础监控可用</div>
+          </div>
+        </div>
+        <div class="ms">
+          <div class="ms-ph ph-next">M4–M5</div>
+          <div class="ms-line"></div>
+          <div class="ms-content">
+            <div class="ms-title">低温策略验证 → 工程样机完成</div>
+            <div class="ms-items">热管理策略 · Fail-safe / Fail-degraded 验证 · 样机可运行 · 可演示 · 可进入试点</div>
+          </div>
+        </div>
+        <div class="ms">
+          <div class="ms-ph ph-a">M6 → A 轮</div>
+          <div class="ms-line"></div>
+          <div class="ms-content">
+            <div class="ms-title">冬季验证 + 试点 LOI + A 轮就绪</div>
+            <div class="ms-items">3–5个可命名标杆站点试点/LOI · 站点卡 ROI 数据 · 工程稳定性报告 · A 轮材料成型</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑪ BUSINESS MODEL -->
+<div class="biz-sec z a d8">
+  <div class="sec-label">商业模式 · 主路径明确 · 早期验证三件事</div>
+  <div class="biz-grid">
+    <div class="bcard b2">
+      <div class="bcard-n">主路径 · 我们最相信的</div>
+      <div class="bcard-title">RaaS 季节性服务合同</div>
+      <div class="bcard-items">
+        <div class="bcard-item">客户以 Opex 采购冬季除雪能力，无需 Capex 决策</div>
+        <div class="bcard-item">对标 SIMA 采购标准：合同含 LOS 验收、触发阈值、事件记录、责任闭环</div>
+        <div class="bcard-item">单站年服务价值约 $8–15万（RaaS，含远程监控+报告）</div>
+        <div class="bcard-item">多年可续合同 · 粘性强 · 数据飞轮同步启动</div>
+      </div>
+      <div class="bcard-tag"><span class="badge">主路径 · 可持续性最强</span></div>
+    </div>
+    <div class="bcard b1">
+      <div class="bcard-n">早期补充路径</div>
+      <div class="bcard-title">设备直销（Capex）</div>
+      <div class="bcard-items">
+        <div class="bcard-item">面向有自营运维能力的大型数据中心/物流园区</div>
+        <div class="bcard-item">回款路径最直接，适合早期建立标杆案例</div>
+        <div class="bcard-item">客户需要强可靠性保证而非最低价</div>
+        <div class="bcard-item">样机验证后优先推进首笔销售</div>
+      </div>
+      <div class="bcard-tag"><span class="tag-accent">回款最快</span></div>
+    </div>
+    <div class="bcard b3">
+      <div class="bcard-n">渠道放大路径</div>
+      <div class="bcard-title">嵌入 FM 服务体系</div>
+      <div class="bcard-items">
+        <div class="bcard-item">通过 CBRE/Colliers 等 FM 聚合商批量导入站点</div>
+        <div class="bcard-item">替代现有除雪服务合同中的人工部分</div>
+        <div class="bcard-item">单次谈判撬动多站点，A 轮放量的核心引擎</div>
+        <div class="bcard-item">首批试点意向即来自这一渠道</div>
+      </div>
+      <div class="bcard-tag"><span class="badge">规模化天花板最高</span></div>
+    </div>
+  </div>
+  <div style="margin-top:14px;padding:16px 18px;background:var(--warm);border:1px solid rgba(150,112,15,.22);font-family:var(--serif);font-size:13.5px;color:var(--ink2);line-height:1.95;letter-spacing:.03em">
+    <strong>本轮要验证的三件事：谁付钱 · 谁验收 · 谁承担运行责任。</strong>主路径已选定 RaaS，早期用直销建立标杆、积累可审计数据，再通过 FM 渠道规模化。这不是"我们还不知道怎么赚钱"，而是"我们知道最终形态，正在用最快的路径到达那里"。
+  </div>
+</div>
+
+<!-- ⑫ FUNDRAISE -->
+<div class="fund-sec z a d8">
+  <div class="sec-label">融资计划 · 钱买工程确定性与试点进入资格</div>
+  <div class="fund-two">
+    <div class="fund-use">
+      <div class="fu-title">资金用途结构</div>
+      <div class="fu-rows">
+        <div style="padding:9px 0;border-bottom:1px solid var(--rule2)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-size:12px;color:var(--ink2)">机械底盘与作业机构开发</span>
+            <span style="font-family:var(--disp);font-size:20px;color:var(--navy)">35%</span>
+          </div>
+          <div style="height:3px;background:var(--rule);border-radius:1.5px"><div style="width:35%;height:100%;background:var(--accent);border-radius:1.5px"></div></div>
+          <div style="font-size:10.5px;color:var(--dim);margin-top:4px">底盘平台 · 结构件 · 作业机构 · 关键零部件</div>
+        </div>
+        <div style="padding:9px 0;border-bottom:1px solid var(--rule2)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-size:12px;color:var(--ink2)">电驱、能源与热管理系统</span>
+            <span style="font-family:var(--disp);font-size:20px;color:var(--navy)">28%</span>
+          </div>
+          <div style="height:3px;background:var(--rule);border-radius:1.5px"><div style="width:28%;height:100%;background:var(--signal);border-radius:1.5px"></div></div>
+          <div style="font-size:10.5px;color:var(--dim);margin-top:4px">电池包 + BMS · 电驱 · 低温热管理 · 保温系统</div>
+        </div>
+        <div style="padding:9px 0;border-bottom:1px solid var(--rule2)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-size:12px;color:var(--ink2)">感知、控制与计算平台</span>
+            <span style="font-family:var(--disp);font-size:20px;color:var(--navy)">22%</span>
+          </div>
+          <div style="height:3px;background:var(--rule);border-radius:1.5px"><div style="width:22%;height:100%;background:var(--cold);border-radius:1.5px"></div></div>
+          <div style="font-size:10.5px;color:var(--dim);margin-top:4px">传感器 · 控制器 · AI计算 · 远程回传系统</div>
+        </div>
+        <div style="padding:9px 0;border-bottom:1px solid var(--rule2)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-size:12px;color:var(--ink2)">测试验证（冬季工况）</span>
+            <span style="font-family:var(--disp);font-size:20px;color:var(--navy)">10%</span>
+          </div>
+          <div style="height:3px;background:var(--rule);border-radius:1.5px"><div style="width:10%;height:100%;background:var(--gold);border-radius:1.5px"></div></div>
+          <div style="font-size:10.5px;color:var(--dim);margin-top:4px">环境测试 · 场地验证 · 冬季工况准备</div>
+        </div>
+        <div style="padding:9px 0">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-size:12px;color:var(--ink2)">团队与项目推进</span>
+            <span style="font-family:var(--disp);font-size:20px;color:var(--navy)">5%</span>
+          </div>
+          <div style="height:3px;background:var(--rule);border-radius:1.5px"><div style="width:5%;height:100%;background:#3A8650;border-radius:1.5px"></div></div>
+          <div style="font-size:10.5px;color:var(--dim);margin-top:4px">核心研发 · 工程协同 · 基础运营</div>
+        </div>
+      </div>
+    </div>
+    <div class="fund-ask">
+      <div>
+        <div class="fa-eyebrow">Seed Round · 种子轮融资</div>
+        <div class="fa-amt">$2M USD</div>
+        <div class="fa-rmb">≈ ¥1,500万人民币</div>
+      </div>
+      <div class="fa-rows">
+        <div class="fa-row">
+          <div class="fa-key">融资阶段</div>
+          <div class="fa-val">种子轮 · 工程样机验证期</div>
+        </div>
+        <div class="fa-row">
+          <div class="fa-key">核心目标</div>
+          <div class="fa-val">完成可运行·可验证·可展示·可进入试点的工程样机</div>
+        </div>
+        <div class="fa-row">
+          <div class="fa-key">18个月里程碑</div>
+          <div class="fa-val">3–5个标杆站点 LOI + A 轮就绪</div>
+        </div>
+        <div class="fa-row">
+          <div class="fa-key">公司注册</div>
+          <div class="fa-val">上海阿克博斯技术有限公司<br>2026年04月09日 · 青浦区</div>
+        </div>
+        <div class="fa-row">
+          <div class="fa-key">股权结构</div>
+          <div class="fa-val">根据本轮估值与投资结构协商确定</div>
+        </div>
+        <div class="fa-row">
+          <div class="fa-key">A 轮前提</div>
+          <div class="fa-val">样机完成 · 工况验证 · 核心 Failure modes 识别 · 首批 LOI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ⑬ CLOSING -->
+<div class="closing z a d9">
+  <div class="eyebrow" style="margin-bottom:12px">投资逻辑收口 · Why This · Why Now · Why Us</div>
+  <div class="closing-h">这笔钱买的是<br><span class="hl">最后一段确定性</span></div>
+  <div class="closing-body">
+    <p>
+      ARCBOS 现在的状态：<strong>关键零件已到货，工程样机进入组装阶段；首批客户已通过 CBRE/Colliers 渠道明确表达试点意向；核心团队就位，每个人都有可验证的具体背书</strong>。缺的只是$200万美元把样机做完、撑过一个冬季验证、拿下首批付费试点。
+    </p>
+    <p>
+      这不是"有个想法需要钱去验证想法是否成立"的阶段——市场成立、客户意向真实、工程已经启动。<strong>这$200万买的是把一件已经开始的事情做完的确定性</strong>，而不是押注一个未知。
+    </p>
+    <p>
+      种子轮投资人判断这类项目，核心就看两件事：<strong>第一，创始团队有没有独特的非共识优势；第二，A 轮前的里程碑是否清晰可验证</strong>。ARCBOS 的非共识优势是：加拿大籍创始人在北美 C&I 能源领域多年积累的真实客户关系，不是"认识"，是对方主动表达了冬季试点意向的那种关系。A 轮里程碑是：样机完成 + 冬季工况验证 + 3–5个付费试点 LOI——18个月内可交付，不模糊。
+    </p>
+    <p>
+      <strong>这个窗口期真实存在：2025年冬季是第一个可以进入北美市场完成冬季验证的窗口。</strong>错过这个窗口，就要再等一年——而这一年里，别人可能也发现了这个空白。
+    </p>
+  </div>
+</div>
+
+<!-- ⑭ CTA -->
+<div class="cta-band z a d10">
+  <div class="cta-l">
+    <div class="cta-eyebrow">下一步 · Next Step</div>
+    <div class="cta-label">联系我们 · 索取 NDA 尽调材料</div>
+    <div class="cta-disp">REQUEST NDA PACK</div>
+  </div>
+  <div class="cta-r">
+    <div class="cta-info">
+      <p><strong>龚铁靖 · Gong Tiejing · Founder & CEO</strong></p>
+      <p>info@arcbos.com · arcbos.com</p>
+      <p>上海阿克博斯技术有限公司 · 青浦区</p>
+    </div>
+    <a href="mailto:info@arcbos.com" class="cta-btn">立即联系 →</a>
+  </div>
+</div>
+
+<!-- ⑮ CONF -->
+<div class="conf z">
+  <span>严格保密 · 仅供合格投资人 · 请勿转发 · Strictly Confidential · Not for Distribution</span>
+  <span>上海阿克博斯技术有限公司 · ARCBOS © 2026</span>
+</div>
+
+</div>
+</body>
+</html>
