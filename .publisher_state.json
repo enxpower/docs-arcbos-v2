@@ -75,17 +75,20 @@
     "35b95c29-2b0e-81f9-af2d-da3786f31790": "2026-05-09T04:38:00.000Z",
     "35c95c29-2b0e-81b6-bd55-f68d610ec93b": "2026-05-11T03:37:00.000Z",
     "35d95c29-2b0e-8194-9ae2-c54bd2a53fed": "2026-05-11T08:49:00.000Z",
-    "35e95c29-2b0e-817a-ae93-eea45c5a5021": "2026-05-12T04:45:00.000Z"
+    "35e95c29-2b0e-817a-ae93-eea45c5a5021": "2026-05-12T04:45:00.000Z",
+    "36295c29-2b0e-8150-9583-d948c2e36ede": "2026-05-16T04:40:00.000Z",
+    "36295c29-2b0e-81f2-8ec5-e79326d11bf2": "2026-05-16T04:40:00.000Z",
+    "36295c29-2b0e-81b4-9451-e5f66559ca2c": "2026-05-16T04:40:00.000Z"
   },
   "build_stats": {
     "last_run": {
-      "ts": "2026-05-16T01:57:11.796Z",
-      "run_id": "25949818822",
-      "pages_total": 47,
-      "pages_built": 0,
+      "ts": "2026-05-17T01:57:48.059Z",
+      "run_id": "25978520348",
+      "pages_total": 50,
+      "pages_built": 3,
       "pages_skipped": 27,
       "pages_failed": 15,
-      "writeback_success": 0,
+      "writeback_success": 3,
       "writeback_failed": 0,
       "notion_429_count": 0,
       "max_retry_after_seen": 0,
