@@ -82,13 +82,13 @@
   },
   "build_stats": {
     "last_run": {
-      "ts": "2026-05-17T01:57:48.059Z",
-      "run_id": "25978520348",
+      "ts": "2026-05-18T01:58:03.788Z",
+      "run_id": "26009475715",
       "pages_total": 50,
-      "pages_built": 3,
-      "pages_skipped": 27,
+      "pages_built": 0,
+      "pages_skipped": 30,
       "pages_failed": 15,
-      "writeback_success": 3,
+      "writeback_success": 0,
       "writeback_failed": 0,
       "notion_429_count": 0,
       "max_retry_after_seen": 0,
