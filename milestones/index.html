@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Snowbot · 整机系统里程碑</title>
+<meta property="og:title" content="Snowbot · 整机系统里程碑">
+<meta property="og:description" content="ARCBOS Snowbot Alpha/Beta 工程里程碑路线图">
+<meta property="og:image" content="https://ref.arcbos.com/milestones/preview.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #f2f0ec;
+  --surface:  #ffffff;
+  --steel:    #e8e5df;
+  --rule:     #c8c3bb;
+  --signal:   #e8920a;
+  --signal-lt:#fff3e0;
+  --signal-bd:#f5a623;
+  --ice:      #0f7bb0;
+  --ice-lt:   #e3f3fb;
+  --ice-bd:   #5bb8e8;
+  --ink:      #1a1a1a;
+  --ink2:     #3a3a3a;
+  --dim:      #888078;
+  --tag-bg:   #edeae4;
+
+  --disp: 'Bebas Neue', sans-serif;
+  --cond: 'Barlow Condensed', sans-serif;
+  --body: 'Barlow', sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── HEADER ─── */
+.hdr {
+  background: var(--ink);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+.hdr-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 36px 20px 32px;
+  position: relative;
+  z-index: 2;
+}
+/* diagonal stripe texture */
+.hdr::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 12px,
+    rgba(255,255,255,0.025) 12px,
+    rgba(255,255,255,0.025) 13px
+  );
+  z-index: 1;
+}
+.hdr-eyebrow {
+  font-family: var(--cond);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--signal-bd);
+  margin-bottom: 6px;
+}
+.hdr-title {
+  font-family: var(--disp);
+  font-size: clamp(56px, 15vw, 86px);
+  letter-spacing: 2px;
+  line-height: 0.92;
+  color: #fff;
+}
+.hdr-title em { font-style:normal; color: var(--signal-bd); }
+.hdr-sub {
+  font-family: var(--cond);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.45);
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+/* Signal bar bottom of header */
+.hdr-bar {
+  height: 4px;
+  background: linear-gradient(90deg, var(--signal) 0%, var(--signal-bd) 40%, var(--ice) 100%);
+}
+
+/* ─── MAIN ─── */
+.main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 16px 64px;
+}
+
+/* ─── PHASE HEADER ─── */
+.phase-wrap { margin-top: 32px; }
+
+.phase-head {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-top: 3px solid;
+  padding-top: 18px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.phase-head.alpha { border-color: var(--signal); }
+.phase-head.beta  { border-color: var(--ice); }
+
+.phase-badge {
+  font-family: var(--disp);
+  font-size: 64px;
+  letter-spacing: 1px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-right: 16px;
+}
+.phase-head.alpha .phase-badge { color: var(--signal); }
+.phase-head.beta  .phase-badge { color: var(--ice); }
+
+.phase-info {}
+.phase-mode {
+  font-family: var(--cond);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.phase-sub {
+  font-family: var(--cond);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  color: var(--dim);
+  margin-top: 3px;
+  text-transform: uppercase;
+}
+
+/* ─── MILESTONE CARD ─── */
+.ms-row {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 0 14px;
+  margin-bottom: 4px;
+  animation: slideUp .4s ease both;
+}
+.ms-row:nth-child(1){animation-delay:.04s}
+.ms-row:nth-child(2){animation-delay:.08s}
+.ms-row:nth-child(3){animation-delay:.12s}
+.ms-row:nth-child(4){animation-delay:.16s}
+.ms-row:nth-child(5){animation-delay:.20s}
+
+@keyframes slideUp {
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* spine */
+.spine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 16px;
+}
+.dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.alpha .dot { background: var(--signal); }
+.beta  .dot { background: var(--ice); }
+
+.vline {
+  width: 2px;
+  flex: 1;
+  margin-top: 4px;
+  min-height: 12px;
+}
+.alpha .vline { background: rgba(232,146,10,0.2); }
+.beta  .vline { background: rgba(15,123,176,0.15); }
+
+/* card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+}
+
+/* top accent line */
+.card-accent {
+  height: 3px;
+}
+.alpha .card-accent { background: linear-gradient(90deg, var(--signal) 0%, transparent 70%); }
+.beta  .card-accent { background: linear-gradient(90deg, var(--ice) 0%, transparent 70%); }
+
+.card-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 16px 8px;
+  border-bottom: 1px solid var(--steel);
+}
+.ms-id {
+  font-family: var(--disp);
+  font-size: 36px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.alpha .ms-id { color: var(--signal); }
+.beta  .ms-id { color: var(--ice); }
+
+.ms-title {
+  font-family: var(--cond);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+}
+
+/* rows */
+.card-body {
+  padding: 10px 16px 0;
+}
+.row {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 4px 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--steel);
+  align-items: flex-start;
+}
+.row:last-child { border-bottom: none; }
+
+.row-lbl {
+  font-family: var(--cond);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding-top: 4px;
+}
+.alpha .row-lbl { color: var(--signal); }
+.beta  .row-lbl { color: var(--ice); }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 2px 0;
+}
+.tag {
+  font-family: var(--cond);
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--ink2);
+  background: var(--tag-bg);
+  border-radius: 3px;
+  padding: 2px 8px;
+  line-height: 1.6;
+  border: 1px solid var(--rule);
+}
+
+/* gate */
+.card-gate {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 10px 16px 12px;
+  margin-top: 0;
+}
+.alpha .card-gate { background: var(--signal-lt); border-top: 1px solid #ffd180; }
+.beta  .card-gate { background: var(--ice-lt);    border-top: 1px solid #b3ddf0; }
+
+.gate-mark {
+  font-family: var(--cond);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  padding: 3px 6px;
+  border-radius: 3px;
+  line-height: 1.4;
+  margin-top: 1px;
+}
+.alpha .gate-mark { color: var(--signal); background: rgba(232,146,10,0.15); border: 1px solid var(--signal-bd); }
+.beta  .gate-mark { color: var(--ice);    background: rgba(15,123,176,0.1);  border: 1px solid var(--ice-bd); }
+
+.gate-text {
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* B5 special */
+.card.final { position: relative; }
+.final-flag {
+  position: absolute;
+  top: 0; right: 12px;
+  font-family: var(--cond);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--signal);
+  padding: 3px 10px;
+  border-radius: 0 0 5px 5px;
+}
+
+/* footer */
+.footer {
+  text-align: center;
+  padding: 32px 20px 20px;
+  font-family: var(--cond);
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--dim);
+  max-width: 680px;
+  margin: 0 auto;
+}
+.footer-rule {
+  width: 40px; height: 1px;
+  background: var(--rule);
+  margin: 0 auto 14px;
+}
+
+/* mobile fine-tuning */
+@media (max-width: 400px) {
+  .hdr-title { font-size: 52px; }
+  .phase-badge { font-size: 52px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-inner">
+    <div class="hdr-eyebrow">ARCBOS · Engineering Roadmap</div>
+    <div class="hdr-title">SNOW<em>BOT</em></div>
+    <div class="hdr-sub">Alpha / Beta · System Milestones · 整机里程碑</div>
+  </div>
+  <div class="hdr-bar"></div>
+</header>
+
+<main class="main">
+
+  <!-- ══ ALPHA ══ -->
+  <div class="phase-wrap">
+    <div class="phase-head alpha">
+      <div class="phase-badge">A</div>
+      <div class="phase-info">
+        <div class="phase-mode">Alpha · Prototype / Assist</div>
+        <div class="phase-sub">工程原型机阶段 · A1 → A4</div>
+      </div>
+    </div>
+
+    <div class="alpha">
+
+      <div class="ms-row">
+        <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+        <div class="card">
+          <div class="card-accent"></div>
+          <div class="card-head">
+            <div class="ms-id">A1</div>
+            <div class="ms-title">系统架构冻结</div>
+          </div>
+          <div class="card-body">
+            <div class="row"><span class="row-lbl">结构</span><div class="tags"><span class="tag">总体布局</span><span class="tag">底盘方案</span><span class="tag">除雪模块接口</span></div></div>
+            <div class="row"><span class="row-lbl">嵌入式</span><div class="tags"><span class="tag">控制器</span><span class="tag">IO</span><span class="tag">通信架构</span></div></div>
+            <div class="row"><span class="row-lbl">电气</span><div class="tags"><span class="tag">电池</span><span class="tag">BMS</span><span class="tag">配电架构</span></div></div>
+            <div class="row"><span class="row-lbl">软件</span><div class="tags"><span class="tag">ROS2</span><span class="tag">控制框架</span></div></div>
+          </div>
+          <div class="card-gate">
+            <span class="gate-mark">✓ Gate</span>
+            <span class="gate-text">可进入采购、加工、装配</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ms-row">
+        <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+        <div class="card">
+          <div class="card-accent"></div>
+          <div class="card-head">
+            <div class="ms-id">A2</div>
+            <div class="ms-title">底盘与驱动系统打通</div>
+          </div>
+          <div class="card-body">
+            <div class="row"><span class="row-lbl">结构</span><div class="tags"><span class="tag">底盘</span><span class="tag">轮组/履带</span><span class="tag">驱动安装</span></div></div>
+            <div class="row"><span class="row-lbl">嵌入式</span><div class="tags"><span class="tag">左右驱动控制</span><span class="tag">编码器反馈</span></div></div>
+            <div class="row"><span class="row-lbl">电气</span><div class="tags"><span class="tag">驱动器</span><span class="tag">电池</span><span class="tag">配电</span></div></div>
+          </div>
+          <div class="card-gate">
+            <span class="gate-mark">✓ Gate</span>
+            <span class="gate-text">可前进、后退、转向、停车</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ms-row">
+        <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+        <div class="card">
+          <div class="card-accent"></div>
+          <div class="card-head">
+            <div class="ms-id">A3</div>
+            <div class="ms-title">除雪作业模块完成</div>
+          </div>
+          <div class="card-body">
+            <div class="row"><span class="row-lbl">结构</span><div class="tags"><span class="tag">前端安装结构</span><span class="tag">作业支撑结构</span></div></div>
+            <div class="row"><span class="row-lbl">嵌入式</span><div class="tags"><span class="tag">作业机构控制</span></div></div>
+            <div class="row"><span class="row-lbl">电气</span><div class="tags"><span class="tag">作业电机</span><span class="tag">供电</span></div></div>
+          </div>
+          <div class="card-gate">
+            <span class="gate-mark">✓ Gate</span>
+            <span class="gate-text">可完成基础推雪 / 除雪动作</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ms-row">
+        <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+        <div class="card">
+          <div class="card-accent"></div>
+          <div class="card-head">
+            <div class="ms-id">A4</div>
+            <div class="ms-title">Alpha 工程原型机完成</div>
+          </div>
+          <div class="card-body">
+            <div class="row"><span class="row-lbl">整机</span><div class="tags"><span class="tag">结构</span><span class="tag">电气</span><span class="tag">嵌入式</span><span class="tag">基础软件</span></div></div>
+            <div class="row"><span class="row-lbl">测试</span><div class="tags"><span class="tag">基础运行测试</span><span class="tag">基础除雪测试</span></div></div>
+            <div class="row"><span class="row-lbl">Demo</span><div class="tags"><span class="tag">工程演示视频</span></div></div>
+          </div>
+          <div class="card-gate">
+            <span class="gate-mark">✓ Gate</span>
+            <span class="gate-text">人可以安全控制机器完成基础作业</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ BETA ══ -->
+  <div class="phase-wrap">
+    <div class="phase-head beta">
+      <div class="phase-badge">B</div>
+      <div class="phase-info">
+        <div class="phase-mode">Beta · Task / Product Demo</div>
+        <div class="phase-sub">产品验证阶段 · B1 → B5</div>
+      </div>
+    </div>
+
+    <div class="beta">
+
+      <div class="ms-row">
+        <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+        <div class="card">
+          <div class="card-accent"></div>
+          <div class="card-head">
+            <div class="ms-id">B1</div>
+            <div class="ms-title">产品化结构重构</div>
+          </div>
+          <div class="card-body">
+            <div class="row"><span class="row-lbl">结构</span><div class="tags"><span class="tag">模块化</span><span class="tag">一体化</span><span class="tag">装甲</span><span class="tag">维护接口</span></div></div>
+            <div class="row"><span class="row-lbl">ID</span><div class="tags"><span class="tag">工业设计</span><span class="tag">整体产品感</span></div></div>
+          </div>
+          <div class="card-gate">
+            <span class="gate-mark">✓ Gate</span>
+            <span class="gate-text">整机具备产品感，而非拼装原型状态</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ms-row">
+        <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+        <div class="card">
+          <div class="card-accent"></div>
+          <div class="card-head">
+            <div class="ms-id">B2</div>
+            <div class="ms-title">定位与路线系统完成</div>
+          </div>
+          <div class="card-body">
+            <div class="row"><span class="row-lbl">导航</span><div class="tags"><span class="tag">RTK</span><span class="tag">IMU</span><span class="tag">Odometry</span></div></div>
+            <div class="row"><span class="row-lbl">软件</span><div class="tags"><span class="tag">Teach &amp; Repeat</span></div></div>
+            <div class="row"><span class="row-lbl">嵌入式</span><div class="tags"><span class="tag">运动执行接口</span></div></div>
+          </div>
+          <div class="card-gate">
+            <span class="gate-mark">✓ Gate</span>
+            <span class="gate-text">可录制、保存、回放路线</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ms-row">
+        <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+        <div class="card">
+          <div class="card-accent"></div>
+          <div class="card-head">
+            <div class="ms-id">B3</div>
+            <div class="ms-title">任务执行闭环完成</div>
+          </div>
+          <div class="card-body">
+            <div class="row"><span class="row-lbl">导航</span><div class="tags"><span class="tag">路径跟踪</span></div></div>
+            <div class="row"><span class="row-lbl">软件</span><div class="tags"><span class="tag">任务状态机</span></div></div>
+            <div class="row"><span class="row-lbl">嵌入式</span><div class="tags"><span class="tag">速度执行</span><span class="tag">转向执行</span></div></div>
+            <div class="row"><span class="row-lbl">安全</span><div class="tags"><span class="tag">障碍停车</span><span class="tag">降级逻辑</span></div></div>
+          </div>
+          <div class="card-gate">
+            <span class="gate-mark">✓ Gate</span>
+            <span class="gate-text">固定场地内可按路线完成基础作业</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ms-row">
+        <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+        <div class="card">
+          <div class="card-accent"></div>
+          <div class="card-head">
+            <div class="ms-id">B4</div>
+            <div class="ms-title">Beta 展示状态完成</div>
+          </div>
+          <div class="card-body">
+            <div class="row"><span class="row-lbl">结构</span><div class="tags"><span class="tag">外壳</span><span class="tag">装甲</span><span class="tag">维护结构</span></div></div>
+            <div class="row"><span class="row-lbl">测试</span><div class="tags"><span class="tag">夜间测试</span><span class="tag">低温测试</span><span class="tag">雪地测试</span></div></div>
+            <div class="row"><span class="row-lbl">Demo</span><div class="tags"><span class="tag">展示流程</span><span class="tag">展示视频</span></div></div>
+          </div>
+          <div class="card-gate">
+            <span class="gate-mark">✓ Gate</span>
+            <span class="gate-text">整机达到投资人 Demo 状态</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ms-row">
+        <div class="spine"><div class="dot"></div><div class="vline"></div></div>
+        <div class="card final" style="position:relative">
+          <div class="final-flag">INVESTOR DEMO</div>
+          <div class="card-accent"></div>
+          <div class="card-head">
+            <div class="ms-id">B5</div>
+            <div class="ms-title">Beta 投资人展示版完成</div>
+          </div>
+          <div class="card-body">
+            <div class="row"><span class="row-lbl">功能</span><div class="tags"><span class="tag">固定场地路线执行</span><span class="tag">Teach &amp; Repeat</span><span class="tag">基础障碍停车</span><span class="tag">人工接管 / 急停</span><span class="tag">日志记录</span><span class="tag">产品展示状态</span></div></div>
+          </div>
+          <div class="card-gate">
+            <span class="gate-mark">✓ Gate</span>
+            <span class="gate-text">可向投资人、合作伙伴、客户进行系统级演示</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-rule"></div>
+  ARCBOS · Snowbot Program · Confidential
+</footer>
+
+</body>
+</html>
