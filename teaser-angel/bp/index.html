@@ -16,148 +16,277 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#F3F1EB;--ink:#111318;--ink2:#232B3A;--dim:#70685F;
+  --bg:#F3F1EB;--ink:#111318;--ink2:#232B3A;--dim:#68615A;
   --rule:#CCC7BA;--rule2:#DEDAD2;
-  --navy:#14243A;--signal:#19406A;--accent:#B33508;
-  --gold:#96700F;--cold:#285A84;--ice:#E0EBF4;
-  --warm:rgba(150,112,15,.07);
-  --card:rgba(255,255,255,.85);--card2:rgba(255,255,255,.62);
+  --navy:#14243A;--signal:#19406A;--cold:#285A84;--ice:#E0EBF4;
+  --gold:#96700F;--gold-lt:rgba(150,112,15,.08);
+  --accent:#B33508;
+  --angel:#7B2D8B;--angel-lt:rgba(123,45,139,.09);
+  --card:#FFFFFF;--card2:rgba(255,255,255,.7);
   --mono:'DM Mono',monospace;
   --serif:'Noto Serif SC',serif;
-  --sans:'Noto Sans SC',sans-serif;
-  --sans-en:'Inter',sans-serif;
+  --sans:'Noto Sans SC','Inter',sans-serif;
+  --en:'Inter',sans-serif;
   --disp:'Bebas Neue',sans-serif;
-  --angel:#7B2D8B;
-  --angel-lt:rgba(123,45,139,.10);
 }
 [data-lang="zh"] .en{display:none!important}
 [data-lang="en"] .zh{display:none!important}
-[data-lang="en"]{--serif:'Georgia',serif;--sans:'Inter',sans-serif}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
-body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear-gradient(var(--rule2) 1px,transparent 1px),linear-gradient(90deg,var(--rule2) 1px,transparent 1px);background-size:56px 56px;opacity:.38;pointer-events:none;}
-/* LANG TOGGLE */
-.lang-toggle{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:9999;display:flex;align-items:center;background:var(--card);border:1.5px solid var(--rule);box-shadow:0 2px 14px rgba(0,0,0,.12);border-radius:3px;overflow:hidden;}
-.lang-btn{font-family:var(--mono);font-size:11px;letter-spacing:.14em;padding:8px 18px;cursor:pointer;border:none;background:transparent;color:var(--dim);transition:background .16s,color .16s;text-transform:uppercase;}
+
+/* ── RESET & BASE ── */
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;line-height:1.6;}
+body::before{content:'';position:fixed;inset:0;z-index:0;
+  background-image:linear-gradient(var(--rule2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--rule2) 1px,transparent 1px);
+  background-size:56px 56px;opacity:.35;pointer-events:none;}
+
+/* ── LANG TOGGLE ── */
+.lang-toggle{position:fixed;top:14px;left:50%;transform:translateX(-50%);
+  z-index:9999;display:flex;align-items:center;
+  background:var(--card);border:1.5px solid var(--rule);
+  box-shadow:0 2px 16px rgba(0,0,0,.14);border-radius:3px;overflow:hidden;}
+.lang-btn{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  padding:8px 20px;cursor:pointer;border:none;background:transparent;
+  color:var(--dim);transition:background .16s,color .16s;text-transform:uppercase;}
 .lang-btn.active{background:var(--navy);color:#fff}
 .lang-sep{width:1.5px;height:22px;background:var(--rule);flex-shrink:0}
-.page-content{transition:opacity .2s ease}
+.page-content{transition:opacity .18s ease}
 .page-content.out{opacity:0}
-/* PAGE */
-.page{max-width:880px;margin:0 auto;padding:0 40px;position:relative;}
-.page::after{content:'';position:absolute;left:40px;top:0;height:100%;width:2px;background:linear-gradient(to bottom,var(--angel) 0%,var(--signal) 18%,var(--rule) 50%,transparent 100%);z-index:1;}
+
+/* ── LAYOUT ── */
+.page{max-width:820px;margin:0 auto;padding:0 32px;position:relative;}
+.page::after{content:'';position:absolute;left:32px;top:0;height:100%;width:2px;
+  background:linear-gradient(to bottom,var(--angel) 0%,var(--signal) 20%,var(--rule) 55%,transparent 100%);
+  z-index:1;pointer-events:none;}
 .z{position:relative;z-index:2;}
-/* COVER */
-.cover{padding:72px 0 36px 28px;border-bottom:2px solid var(--rule);position:relative;z-index:2;}
-.cv-eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.25em;color:var(--angel);text-transform:uppercase;margin-bottom:10px;}
-.cv-brand{font-family:var(--disp);font-size:72px;letter-spacing:.06em;line-height:1;color:var(--navy);}
-.cv-product{font-family:var(--disp);font-size:48px;letter-spacing:.12em;color:var(--angel);line-height:1.1;}
-.cv-sub{font-family:var(--serif);font-size:15px;font-weight:400;color:var(--signal);letter-spacing:.16em;margin-top:12px;}
-.cv-sub-en{font-family:var(--sans-en);font-size:14px;color:var(--signal);letter-spacing:.05em;margin-top:12px;}
-.cv-meta{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap;align-items:center;}
-.cv-pill{font-family:var(--mono);font-size:11px;letter-spacing:.12em;padding:7px 16px;border:1.5px solid;text-transform:uppercase;}
-.cv-pill.a1{color:var(--angel);border-color:rgba(123,45,139,.4);background:var(--angel-lt);}
-.cv-pill.a2{color:var(--navy);border-color:var(--rule);background:var(--card2);}
-.cv-pill.a3{color:var(--cold);border-color:rgba(40,90,132,.3);background:var(--ice);}
-/* SECTION */
-.sec{padding:32px 0 32px 28px;border-bottom:1px solid var(--rule);position:relative;z-index:2;}
-.sec:last-child{border-bottom:none;}
-.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
-.sec-n{font-family:var(--disp);font-size:40px;color:var(--angel);line-height:1;flex-shrink:0;}
-.sec-title{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--navy);letter-spacing:.1em;}
-.sec-title-en{font-family:var(--sans-en);font-size:18px;font-weight:700;color:var(--navy);}
-.sec-rule{flex:1;height:1px;background:linear-gradient(to right,var(--angel),transparent);}
-/* PROSE */
-.prose{font-size:14px;line-height:1.75;color:var(--ink2);margin-bottom:16px;}
+
+/* ── COVER ── */
+.cover{padding:74px 0 36px 28px;border-bottom:2px solid var(--rule);}
+.cv-ey{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;
+  color:var(--angel);text-transform:uppercase;margin-bottom:12px;}
+.cv-brand{font-family:var(--disp);font-size:68px;letter-spacing:.06em;
+  line-height:1;color:var(--navy);}
+.cv-product{font-family:var(--disp);font-size:44px;letter-spacing:.12em;
+  color:var(--angel);line-height:1.1;margin-top:2px;}
+.cv-tagline{font-size:15px;font-weight:400;color:var(--signal);
+  letter-spacing:.12em;margin-top:12px;}
+.cv-tagline.zh{font-family:var(--serif);}
+.cv-tagline.en{font-family:var(--en);letter-spacing:.04em;}
+.cv-pills{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;}
+.pill{font-family:var(--mono);font-size:10px;letter-spacing:.12em;
+  padding:6px 14px;border:1.5px solid;text-transform:uppercase;}
+.pill.angel{color:var(--angel);border-color:rgba(123,45,139,.35);background:var(--angel-lt);}
+.pill.navy{color:var(--navy);border-color:rgba(20,36,58,.25);background:rgba(20,36,58,.04);}
+.pill.cold{color:var(--cold);border-color:rgba(40,90,132,.3);background:var(--ice);}
+
+/* ── HERO IMAGE ── */
+.hero{position:relative;height:280px;overflow:hidden;margin:0 0 0 28px;
+  border-bottom:2px solid var(--rule);}
+.hero img{width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  display:block;filter:brightness(.9) contrast(1.05) saturate(.95);}
+.hero::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(20,36,58,.55) 0%,rgba(20,36,58,.1) 50%,rgba(123,45,139,.25) 100%);}
+.hero-badge{position:absolute;bottom:18px;left:18px;z-index:2;}
+.hero-badge-label{font-family:var(--mono);font-size:9px;letter-spacing:.18em;
+  color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:3px;}
+.hero-badge-val{font-family:var(--disp);font-size:28px;color:#fff;line-height:1;
+  text-shadow:0 2px 12px rgba(0,0,0,.5);}
+.hero-badge-sub{font-family:var(--mono);font-size:9px;letter-spacing:.1em;
+  color:rgba(255,215,100,.85);text-transform:uppercase;margin-top:3px;}
+.hero-right{position:absolute;bottom:18px;right:18px;z-index:2;text-align:right;}
+.hero-right p{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  color:rgba(255,255,255,.55);text-transform:uppercase;line-height:1.9;
+  text-shadow:0 1px 6px rgba(0,0,0,.4);}
+.hero-right strong{color:rgba(255,215,100,.9);}
+
+/* ── SECTION ── */
+.sec{padding:32px 0 28px 28px;border-bottom:1px solid var(--rule);}
+.sec:last-of-type{border-bottom:none;}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+.sec-num{font-family:var(--disp);font-size:42px;color:var(--angel);line-height:1;flex-shrink:0;}
+.sec-title{font-size:18px;font-weight:700;color:var(--navy);}
+.sec-title.zh{font-family:var(--serif);letter-spacing:.1em;}
+.sec-title.en{font-family:var(--en);font-size:17px;}
+.sec-rule-line{flex:1;height:1px;background:linear-gradient(to right,rgba(123,45,139,.5),transparent);}
+
+/* ── PROSE ── */
+.prose{font-size:13.5px;line-height:1.75;color:var(--ink2);margin-bottom:14px;}
 .prose.zh{font-family:var(--serif);letter-spacing:.04em;}
-.prose.en{font-family:var(--sans-en);letter-spacing:.01em;line-height:1.7;}
+.prose.en{font-family:var(--en);letter-spacing:.01em;line-height:1.7;}
 .prose strong{color:var(--navy);font-weight:700;}
-/* GRID 2 */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px;}
-/* CARD */
-.card{background:var(--card);border:1px solid var(--rule);padding:16px 18px;position:relative;overflow:hidden;}
+.prose em{font-style:normal;color:var(--angel);font-weight:600;}
+
+/* ── STAT ROW ── */
+.stat-row{display:flex;gap:0;margin-bottom:20px;border:1px solid var(--rule);background:var(--card);}
+.stat{flex:1;padding:14px 16px;border-right:1px solid var(--rule);}
+.stat:last-child{border-right:none;}
+.stat-lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;
+  color:var(--dim);text-transform:uppercase;margin-bottom:5px;}
+.stat-val{font-family:var(--disp);font-size:26px;color:var(--angel);line-height:1;}
+.stat-sub{font-size:11px;color:var(--dim);margin-top:3px;line-height:1.4;}
+.stat-sub.zh{font-family:var(--sans);}
+.stat-sub.en{font-family:var(--en);}
+
+/* ── CARDS ── */
+.cards{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.card{background:var(--card);border:1px solid var(--rule);
+  padding:16px 18px;position:relative;overflow:hidden;}
 .card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
 .card.ca::before{background:var(--angel);}
 .card.cb::before{background:var(--signal);}
 .card.cc::before{background:var(--cold);}
 .card.cd::before{background:var(--gold);}
 .card.ce::before{background:var(--accent);}
-.card-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-bottom:6px;}
-.card-val{font-family:var(--disp);font-size:36px;color:var(--navy);line-height:1;}
-.card-val-sm{font-family:var(--disp);font-size:24px;color:var(--navy);line-height:1;}
-.card-desc{font-size:12px;color:var(--dim);line-height:1.6;margin-top:6px;}
-.card-desc.zh{font-family:var(--sans);letter-spacing:.02em;}
-.card-desc.en{font-family:var(--sans-en);}
-.card-h{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:6px;line-height:1.3;}
-.card-h.zh{font-family:var(--serif);letter-spacing:.05em;}
-.card-h.en{font-family:var(--sans-en);font-size:13px;}
-/* BUDGET TABLE */
-.btable{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:13px;}
-.btable th{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;border-bottom:1.5px solid var(--rule);padding:8px 12px;text-align:left;}
-.btable td{padding:8px 12px;border-bottom:1px solid var(--rule2);color:var(--ink2);line-height:1.5;}
-.btable td.zh{font-family:var(--serif);font-size:13px;letter-spacing:.03em;}
-.btable td.en{font-family:var(--sans-en);}
-.btable td.num{font-family:var(--mono);font-size:13px;color:var(--navy);font-weight:600;text-align:right;}
-.btable td.pct{font-family:var(--mono);font-size:11px;color:var(--dim);text-align:right;}
-.btable tr.total td{border-top:1.5px solid var(--rule);border-bottom:none;font-weight:700;color:var(--navy);background:rgba(123,45,139,.05);}
-.btable tr.total td.zh{font-family:var(--serif);}
-.btable tr.total td.en{font-family:var(--sans-en);}
-/* MILESTONE TABLE */
-.mstable{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;}
-.mstable th{font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:var(--dim);text-transform:uppercase;border-bottom:1.5px solid var(--rule);padding:8px 12px;text-align:left;}
-.mstable td{padding:9px 12px;border-bottom:1px solid var(--rule2);line-height:1.5;vertical-align:top;}
-.mstable .ms-id{font-family:var(--disp);font-size:22px;color:var(--angel);padding-right:8px;}
-.mstable .ms-name{font-size:13px;font-weight:700;color:var(--navy);}
-.mstable .ms-name.zh{font-family:var(--serif);letter-spacing:.04em;}
-.mstable .ms-name.en{font-family:var(--sans-en);}
-.mstable .ms-gate{font-size:12px;color:var(--dim);}
-.mstable .ms-gate.zh{font-family:var(--sans);letter-spacing:.02em;}
-.mstable .ms-gate.en{font-family:var(--sans-en);}
-.mstable .ms-phase{font-family:var(--mono);font-size:9px;letter-spacing:.14em;padding:2px 8px;border-radius:2px;display:inline-block;}
-.ms-alpha{color:var(--angel);background:var(--angel-lt);border:1px solid rgba(123,45,139,.25);}
-.ms-beta{color:var(--cold);background:var(--ice);border:1px solid rgba(40,90,132,.25);}
-/* RISK TABLE */
-.rtable{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:16px;}
-.rtable th{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;border-bottom:1.5px solid var(--rule);padding:7px 10px;text-align:left;}
-.rtable td{padding:7px 10px;border-bottom:1px solid var(--rule2);vertical-align:top;line-height:1.5;}
-.rtable td.risk-name{font-weight:600;color:var(--navy);white-space:nowrap;}
-.rtable td.risk-name.zh{font-family:var(--serif);}
-.rtable td.risk-name.en{font-family:var(--sans-en);}
-.rtable td.risk-desc{color:var(--dim);}
-.rtable td.risk-desc.zh{font-family:var(--sans);}
-.rtable td.risk-desc.en{font-family:var(--sans-en);}
-/* STAT ROW */
-.stat-row{display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
-.stat{background:var(--card2);border:1px solid var(--rule);padding:14px 18px;flex:1;min-width:120px;}
-.stat-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-bottom:5px;}
-.stat-val{font-family:var(--disp);font-size:28px;color:var(--angel);line-height:1;}
-.stat-sub{font-size:11.5px;color:var(--dim);margin-top:4px;line-height:1.4;}
-.stat-sub.zh{font-family:var(--sans);letter-spacing:.02em;}
-.stat-sub.en{font-family:var(--sans-en);}
-/* INLINE BADGE */
-.ibadge{display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.12em;padding:2px 8px;border-radius:2px;vertical-align:middle;}
-.ibadge.angel{color:var(--angel);background:var(--angel-lt);border:1px solid rgba(123,45,139,.3);}
-.ibadge.navy{color:var(--navy);background:var(--ice);border:1px solid rgba(25,64,106,.25);}
-/* FOOTER */
-.footer-bar{background:var(--navy);padding:24px 28px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;flex-wrap:wrap;gap:16px;overflow:hidden;}
-.footer-bar::before{content:'';position:absolute;inset:0;background:url('../../teaser/snowbot-og.jpg') center/cover no-repeat;opacity:.18;z-index:0;}
-.footer-bar > *{position:relative;z-index:1;}
-.footer-brand{font-family:var(--disp);font-size:28px;color:#fff;letter-spacing:.07em;}
-.footer-info p{font-family:var(--sans-en);font-size:11px;color:rgba(255,255,255,.45);line-height:1.75;text-align:right;}
-.footer-info strong{color:rgba(255,255,255,.8);}
-.footer-conf{padding:10px 28px;display:flex;justify-content:space-between;border-top:1px solid var(--rule);position:relative;z-index:2;}
-.footer-conf span{font-family:var(--mono);font-size:8px;letter-spacing:.1em;color:var(--dim);opacity:.45;text-transform:uppercase;}
-/* RESPONSIVE */
-@media(max-width:760px){
-  .page{padding:0 20px;}.page::after{left:20px;}
+.card-lbl{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;
+  color:var(--dim);text-transform:uppercase;margin-bottom:6px;}
+.card-h{font-size:14px;font-weight:700;color:var(--navy);
+  margin-bottom:6px;line-height:1.3;}
+.card-h.zh{font-family:var(--serif);letter-spacing:.04em;}
+.card-h.en{font-family:var(--en);font-size:13px;}
+.card-body{font-size:12.5px;color:var(--dim);line-height:1.65;}
+.card-body.zh{font-family:var(--sans);letter-spacing:.02em;}
+.card-body.en{font-family:var(--en);}
+.card-body strong{color:var(--ink2);font-weight:600;}
+/* 2-col card grid on desktop */
+.cards-2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.cards-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;}
+
+/* ── TEAM CARDS ── */
+.team-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.tm{background:var(--card);border:1px solid var(--rule);
+  padding:16px 18px 16px 22px;position:relative;overflow:hidden;}
+.tm::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;}
+.tm.ta::before{background:var(--angel);}
+.tm.tb::before{background:var(--accent);}
+.tm.tc::before{background:var(--gold);}
+.tm.td::before{background:var(--cold);}
+.tm.te::before{background:var(--signal);}
+.tm-role{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;
+  color:var(--dim);text-transform:uppercase;margin-bottom:5px;}
+.tm-name{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.2;}
+.tm-name.zh{font-family:var(--serif);letter-spacing:.06em;}
+.tm-name.en{font-family:var(--en);}
+.tm-body{font-size:13px;color:var(--dim);line-height:1.65;}
+.tm-body.zh{font-family:var(--sans);letter-spacing:.02em;}
+.tm-body.en{font-family:var(--en);}
+.tm-body strong{color:var(--ink2);font-weight:600;}
+
+/* ── TABLE ── */
+.tbl{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:12.5px;}
+.tbl th{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;
+  color:var(--dim);text-transform:uppercase;
+  border-bottom:1.5px solid var(--rule);padding:8px 12px;text-align:left;}
+.tbl td{padding:9px 12px;border-bottom:1px solid var(--rule2);
+  color:var(--ink2);line-height:1.5;vertical-align:top;}
+.tbl td.zh{font-family:var(--serif);font-size:12.5px;letter-spacing:.02em;}
+.tbl td.en{font-family:var(--en);}
+.tbl td.num{font-family:var(--mono);font-size:13px;
+  color:var(--navy);font-weight:600;text-align:right;white-space:nowrap;}
+.tbl td.pct{font-family:var(--mono);font-size:11px;color:var(--dim);text-align:right;}
+.tbl tr.total td{border-top:1.5px solid var(--rule);border-bottom:none;
+  font-weight:700;color:var(--navy);background:var(--angel-lt);}
+.tbl tr.total td.zh{font-family:var(--serif);}
+.tbl tr.total td.en{font-family:var(--en);}
+
+/* ── MILESTONE TABLE ── */
+.ms-tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:16px;}
+.ms-tbl th{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;
+  color:var(--dim);text-transform:uppercase;
+  border-bottom:1.5px solid var(--rule);padding:8px 10px;text-align:left;}
+.ms-tbl td{padding:9px 10px;border-bottom:1px solid var(--rule2);vertical-align:top;}
+.ms-id{font-family:var(--disp);font-size:22px;color:var(--angel);
+  line-height:1;white-space:nowrap;}
+.ms-badge{display:inline-block;font-family:var(--mono);font-size:8.5px;
+  letter-spacing:.12em;padding:2px 7px;border-radius:2px;margin-left:4px;vertical-align:middle;}
+.ms-badge.alpha{color:var(--angel);background:var(--angel-lt);border:1px solid rgba(123,45,139,.25);}
+.ms-badge.beta{color:var(--cold);background:var(--ice);border:1px solid rgba(40,90,132,.25);}
+.ms-name{font-size:13px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:3px;}
+.ms-name.zh{font-family:var(--serif);letter-spacing:.04em;}
+.ms-name.en{font-family:var(--en);}
+.ms-gate{font-size:11.5px;color:var(--dim);}
+.ms-gate.zh{font-family:var(--sans);letter-spacing:.02em;}
+.ms-gate.en{font-family:var(--en);}
+
+/* ── RISK TABLE ── */
+.risk-tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:16px;}
+.risk-tbl th{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;
+  color:var(--dim);text-transform:uppercase;
+  border-bottom:1.5px solid var(--rule);padding:7px 10px;text-align:left;}
+.risk-tbl td{padding:8px 10px;border-bottom:1px solid var(--rule2);vertical-align:top;line-height:1.55;}
+.risk-tbl .rk{font-weight:600;color:var(--navy);white-space:nowrap;}
+.risk-tbl .rk.zh{font-family:var(--serif);}
+.risk-tbl .rk.en{font-family:var(--en);}
+.risk-tbl .rd{color:var(--dim);}
+.risk-tbl .rd.zh{font-family:var(--sans);}
+.risk-tbl .rd.en{font-family:var(--en);}
+
+/* ── ROAD MAP STEPS ── */
+.road{display:flex;flex-direction:column;gap:0;margin-bottom:16px;}
+.road-step{display:grid;grid-template-columns:64px 1fr;gap:12px;
+  padding:14px 0;border-bottom:1px solid var(--rule2);}
+.road-step:last-child{border-bottom:none;}
+.road-ph{font-family:var(--mono);font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:600;padding-top:3px;line-height:1.4;}
+.road-ph.now{color:var(--angel);}
+.road-ph.next{color:var(--signal);}
+.road-ph.prea{color:var(--cold);}
+.road-ph.scale{color:var(--dim);}
+.road-title{font-size:13.5px;font-weight:700;color:var(--navy);line-height:1.3;margin-bottom:4px;}
+.road-title.zh{font-family:var(--serif);letter-spacing:.04em;}
+.road-title.en{font-family:var(--en);font-size:13px;}
+.road-sub{font-size:12px;color:var(--dim);line-height:1.6;}
+.road-sub.zh{font-family:var(--sans);letter-spacing:.02em;}
+.road-sub.en{font-family:var(--en);}
+
+/* ── HIGHLIGHT BOX ── */
+.hbox{border-left:3px solid var(--angel);padding:12px 16px;
+  background:var(--angel-lt);margin-bottom:14px;}
+.hbox p{font-size:13px;line-height:1.7;color:var(--ink2);}
+.hbox p.zh{font-family:var(--serif);letter-spacing:.04em;}
+.hbox p.en{font-family:var(--en);}
+.hbox strong{color:var(--navy);font-weight:700;}
+
+/* ── FOOTER ── */
+.footer{position:relative;overflow:hidden;background:var(--navy);
+  padding:28px 28px 24px 28px;}
+.footer::before{content:'';position:absolute;inset:0;
+  background:url('../snowbot-angel.jpg') center 30%/cover no-repeat;
+  opacity:.15;z-index:0;}
+.footer > *{position:relative;z-index:1;}
+.footer-brand{font-family:var(--disp);font-size:32px;color:#fff;
+  letter-spacing:.07em;margin-bottom:12px;}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.footer-block p{font-family:var(--en);font-size:11.5px;
+  color:rgba(255,255,255,.5);line-height:1.8;}
+.footer-block strong{color:rgba(255,255,255,.85);}
+.footer-conf{border-top:1px solid rgba(255,255,255,.12);
+  padding-top:12px;margin-top:4px;}
+.footer-conf span{font-family:var(--mono);font-size:8px;letter-spacing:.1em;
+  color:rgba(255,255,255,.3);text-transform:uppercase;line-height:2;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .page{padding:0 16px;}
+  .page::after{left:16px;}
   .cover{padding:60px 0 28px 16px;}
-  .cv-brand{font-size:52px;}.cv-product{font-size:36px;}
-  .sec{padding:24px 0 24px 16px;}
-  .grid2,.grid3{grid-template-columns:1fr;}
-  .grid2 [style*="grid-column:span 2"]{grid-column:span 1;}
-  .stat-row{gap:8px;}
-  .footer-bar{flex-direction:column;align-items:flex-start;}
-  .footer-info p{text-align:left;}
+  .cv-brand{font-size:52px;}
+  .cv-product{font-size:34px;}
+  .hero{height:220px;margin-left:16px;}
+  .sec{padding:24px 0 22px 16px;}
+  .stat-row{flex-direction:column;border:none;gap:0;}
+  .stat{border-right:none;border-bottom:1px solid var(--rule);
+    background:var(--card);border-left:1px solid var(--rule);}
+  .stat:first-child{border-top:1px solid var(--rule);}
+  .cards-2,.cards-3{grid-template-columns:1fr;}
+  .footer{padding:22px 16px 20px;}
+  .footer-grid{grid-template-columns:1fr;}
+  .road-step{grid-template-columns:52px 1fr;gap:8px;}
+}
+@media(max-width:400px){
+  .cv-brand{font-size:44px;}
+  .cv-product{font-size:28px;}
+  .hero{height:190px;}
 }
 </style>
 </head>
@@ -170,575 +299,649 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 
 <div class="page page-content" id="pc">
 
-  <!-- COVER -->
-  <div class="cover z">
-    <div class="cv-eyebrow zh">商业计划书 · 天使轮 · 严格保密 · 2026</div>
-    <div class="cv-eyebrow en">Business Plan · Angel Round · Strictly Confidential · 2026</div>
-    <div class="cv-brand">ARCBOS</div>
-    <div class="cv-product">SNOWBOT</div>
-    <div class="cv-sub zh">极端环境工业级自治系统 · 天使轮完整商业计划书</div>
-    <div class="cv-sub-en en">Industrial Autonomy for Extreme Environments · Angel Round Full Business Plan</div>
-    <div class="cv-meta">
-      <span class="cv-pill a1 zh">天使轮 · ¥400–600万人民币</span>
-      <span class="cv-pill a1 en">Angel Round · ¥4–6M RMB</span>
-      <span class="cv-pill a2 zh">工程样机验证轮 · Pre-A 前</span>
-      <span class="cv-pill a2 en">Prototype Validation · Pre-A Ready</span>
-      <span class="cv-pill a3 zh">6–8个月 · Alpha/Beta 完成</span>
-      <span class="cv-pill a3 en">6–8 Months · Alpha/Beta Complete</span>
+<!-- ══════════════════════════════════════════
+     COVER
+══════════════════════════════════════════ -->
+<div class="cover z">
+  <div class="cv-ey zh">商业计划书 · 天使轮 · 严格保密 · 2026</div>
+  <div class="cv-ey en">Business Plan · Angel Round · Strictly Confidential · 2026</div>
+  <div class="cv-brand">ARCBOS</div>
+  <div class="cv-product">SNOWBOT</div>
+  <div class="cv-tagline zh">极端环境工业级自治系统</div>
+  <div class="cv-tagline en">Industrial Autonomy for Extreme Environments</div>
+  <div class="cv-pills">
+    <span class="pill angel zh">天使轮 · ¥400–600万人民币</span>
+    <span class="pill angel en">Angel Round · ¥4–6M RMB</span>
+    <span class="pill navy zh">Pre-money ~¥4,500万</span>
+    <span class="pill navy en">Pre-money ~CNY 45M</span>
+    <span class="pill cold zh">出让 8–12% · 6–8个月</span>
+    <span class="pill cold en">8–12% Equity · 6–8 Months</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HERO IMAGE
+══════════════════════════════════════════ -->
+<div class="hero z">
+  <img src="../snowbot-angel.jpg" alt="SnowBot — Autonomous Snow Removal Robot">
+  <div class="hero-badge">
+    <div class="hero-badge-label zh">融资目标</div>
+    <div class="hero-badge-label en">Fundraising Target</div>
+    <div class="hero-badge-val zh">¥400–600万</div>
+    <div class="hero-badge-val en">¥4–6M RMB</div>
+    <div class="hero-badge-sub">Angel Round · Pre-money ~¥4,500万</div>
+  </div>
+  <div class="hero-right">
+    <p class="zh"><strong>夜间雪地 · 无人值守</strong><br>极寒启动 · 重载履带<br>12小时连续作业</p>
+    <p class="en"><strong>Night Snow · Unmanned</strong><br>Extreme Cold Start · Heavy Track<br>12hr Continuous Operation</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     01 · CORE THESIS
+══════════════════════════════════════════ -->
+<div class="sec z">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div class="sec-title zh">核心判断</div>
+    <div class="sec-title en">Core Thesis</div>
+    <div class="sec-rule-line"></div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-lbl zh">北美市场规模</div>
+      <div class="stat-lbl en">North America TAM</div>
+      <div class="stat-val">$22.5B</div>
+      <div class="stat-sub zh">商业设施除雪融冰（2023）</div>
+      <div class="stat-sub en">Commercial snow & ice mgmt (2023)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-lbl zh">公开招标时租锚点</div>
+      <div class="stat-lbl en">Public Tender Rate</div>
+      <div class="stat-val">$145–495</div>
+      <div class="stat-sub zh">设备+操作员/小时</div>
+      <div class="stat-sub en">Equipment + operator / hr</div>
+    </div>
+    <div class="stat">
+      <div class="stat-lbl zh">RaaS 目标定价</div>
+      <div class="stat-lbl en">RaaS Target</div>
+      <div class="stat-val zh">¥12–20万</div>
+      <div class="stat-val en">¥120–200K</div>
+      <div class="stat-sub zh">每站点/年</div>
+      <div class="stat-sub en">Per site / year</div>
+    </div>
+    <div class="stat">
+      <div class="stat-lbl zh">首批试点意向</div>
+      <div class="stat-lbl en">Pilot Intent</div>
+      <div class="stat-val">50+</div>
+      <div class="stat-sub zh">CBRE/Colliers 网络确认</div>
+      <div class="stat-sub en">CBRE/Colliers network confirmed</div>
     </div>
   </div>
 
-  <!-- 01 THESIS -->
-  <div class="sec z">
-    <div class="sec-head">
-      <div class="sec-n">01</div>
-      <div class="sec-title zh">核心判断</div>
-      <div class="sec-title-en en">Core Thesis</div>
-      <div class="sec-rule"></div>
-    </div>
+  <div class="prose zh">
+    北美商业设施每年为除雪与融冰支付超过 <strong>US$225亿（2023）</strong> 的运维预算。这不是新需求，不需要教育市场——它已经存在、每年重复、采购流程完全标准化（<strong>SIMA-10-2025 ANSI 国家标准</strong>，每年5月 RFP、9月1日授标）。问题从来不是"有没有需求"，而是：<strong>现有方案在极寒工况下太不可靠、太依赖人工夜班、太难规模化管理</strong>。
+  </div>
+  <div class="prose en">
+    North American commercial facilities spend over <strong>US$22.5B (2023)</strong> annually on snow and ice management. This is not a new category — it's budgeted, recurring, and fully standardized (<strong>SIMA-10-2025 ANSI standard</strong>: RFP by May, awarded September 1). The problem has never been demand — it's that existing solutions are too unreliable in extreme cold, too dependent on overnight labor, and impossible to manage at scale.
+  </div>
 
-    <div class="stat-row">
-      <div class="stat">
-        <div class="stat-lbl zh">北美市场规模</div>
-        <div class="stat-lbl en">North America Market</div>
-        <div class="stat-val">$225亿</div>
-        <div class="stat-sub zh">商业设施除雪融冰（2023）· 已预算化</div>
-        <div class="stat-sub en">Commercial snow & ice mgmt (2023) · Budgeted</div>
-      </div>
-      <div class="stat">
-        <div class="stat-lbl zh">公开招标时租锚点</div>
-        <div class="stat-lbl en">Public Procurement Rate</div>
-        <div class="stat-val">$145–495</div>
-        <div class="stat-sub zh">设备+操作员/小时（政府/学校标准）</div>
-        <div class="stat-sub en">Equipment + operator / hr (Gov/school benchmark)</div>
-      </div>
-      <div class="stat">
-        <div class="stat-lbl zh">RaaS 目标定价</div>
-        <div class="stat-lbl en">RaaS Target Pricing</div>
-        <div class="stat-val zh">¥12–20万</div>
-        <div class="stat-val en">¥120–200K</div>
-        <div class="stat-sub zh">每站点/年 · 已预算化支出直接替代</div>
-        <div class="stat-sub en">Per site / yr · Direct replacement of budgeted spend</div>
-      </div>
-      <div class="stat">
-        <div class="stat-lbl zh">首批试点意向</div>
-        <div class="stat-lbl en">First Pilot Intent</div>
-        <div class="stat-val">50+</div>
-        <div class="stat-sub zh">大型商业设施（CBRE/Colliers 网络确认）</div>
-        <div class="stat-sub en">Large facilities (CBRE/Colliers network confirmed)</div>
-      </div>
-    </div>
+  <div class="hbox">
+    <p class="zh">机场自治除雪（Otto、Yeti）已证明极寒工况下无人化物理可行；消费级产品（Yarbo）止步于住宅吞吐量与 −25°C 边界。<strong>商业园区 · 数据中心 · 物流场站</strong> 这个区间——工业级需求、园区规模、可复制部署——目前没有成熟的标准化产品。ARCBOS 正在填补这个空白。</p>
+    <p class="en">Airport autonomous snow removal (Otto, Yeti) has proven unmanned operation is physically viable in extreme cold. Consumer products (Yarbo) stop at residential throughput and −25°C. The gap — <strong>commercial parks · data centers · logistics yards</strong> — industrial-grade demand, campus scale, repeatable deployment — has no mature standardized product. ARCBOS is filling this gap.</p>
+  </div>
+</div>
 
-    <div class="prose zh">
-      北美商业设施每年为除雪与融冰支付超过 <strong>US$225亿（2023）</strong> 的运维预算。这不是新需求，不需要教育市场——它已经存在、每年重复、采购流程完全标准化（<strong>SIMA-10-2025 ANSI 国家标准</strong>，5月 RFP、9月1日授标）。问题从来不是"有没有需求"，而是：<strong>现有方案在极寒工况下太不可靠、太难管理、太依赖人工夜班</strong>。<br><br>
-      机场自治除雪（Otto、Yeti）已证明极寒工况下无人化物理可行；消费级产品（Yarbo）止步于住宅吞吐量与−25°C 边界。<strong>商业园区 · 数据中心 · 物流场站</strong>这个区间——工业级需求、园区规模、可复制部署——目前没有成熟的标准化产品。ARCBOS 正在填补这个空白。
+<!-- ══════════════════════════════════════════
+     02 · ANGEL ROUND PURPOSE
+══════════════════════════════════════════ -->
+<div class="sec z">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div class="sec-title zh">天使轮定位</div>
+    <div class="sec-title en">Angel Round Purpose</div>
+    <div class="sec-rule-line"></div>
+  </div>
+
+  <div class="prose zh">
+    天使轮的逻辑非常直接：<strong>这笔钱做一件事——把工程样机做出来，进雪地验证，拿到真实测试数据</strong>。融资目标 <strong>¥400–600万人民币</strong>，基准预算 ¥590万，含 11% 风险储备，6–8个月周期。创始人龚铁靖与龚继锋已共同出资 <strong>¥100万</strong> 启动，表明核心团队的资本承诺。
+  </div>
+  <div class="prose en">
+    The angel round logic is straightforward: <strong>this capital does one thing — build the engineering prototype, enter real snow-field validation, and produce real test data</strong>. Target: <strong>¥4–6M RMB</strong>, baseline budget ¥5.9M including 11% risk reserve, 6–8 month cycle. Founders Gong Tiejing and Gong Jifeng have already committed <strong>CNY 1M</strong> — demonstrating strong capital commitment from the core team.
+  </div>
+
+  <div class="cards-2">
+    <div class="card ca">
+      <div class="card-lbl zh">本轮唯一目标</div>
+      <div class="card-lbl en">Single Goal This Round</div>
+      <div class="card-h zh">样机 + 雪地测试视频</div>
+      <div class="card-h en">Prototype + Snow-Field Test Video</div>
+      <div class="card-body zh">Alpha/Beta 工程样机 + 雪地/低温/夜间真实测试视频 + 基础自治演示 = Pre-A 融资的核心技术资产</div>
+      <div class="card-body en">Alpha/Beta prototype + real snow/cold/night test video + basic autonomy demo = core technical asset for Pre-A fundraising</div>
     </div>
-    <div class="prose en">
-      North American commercial facilities spend over <strong>US$22.5B (2023)</strong> annually on snow and ice management. This is not a new category — it's budgeted, recurring, and fully standardized (<strong>SIMA-10-2025 ANSI standard</strong>: RFP by May, awarded September 1). The problem has never been demand — it's that existing solutions fail in extreme cold, are unmanageable at night, and collapse under labor scarcity.<br><br>
-      Airport autonomous snow removal (Otto, Yeti) has proven unmanned operation is physically viable in extreme cold. Consumer products (Yarbo) stop at residential throughput and −25°C. The gap — <strong>commercial parks · data centers · logistics yards</strong> — industrial-grade demand, campus scale, repeatable deployment — has no mature standardized product today. ARCBOS is filling this gap.
+    <div class="card cb">
+      <div class="card-lbl zh">融资结构</div>
+      <div class="card-lbl en">Deal Structure</div>
+      <div class="card-h zh">¥400–600万 · 出让 8–12%</div>
+      <div class="card-h en">¥4–6M · 8–12% Equity</div>
+      <div class="card-body zh">Pre-money ~¥4,500万。创始团队已投 ¥100万，天使投资人与创始人对齐利益。估值合理，为 Pre-A 留足上升空间。</div>
+      <div class="card-body en">Pre-money ~CNY 45M. Founders invested CNY 1M — angel investors and founders aligned. Valuation leaves significant upside for Pre-A.</div>
+    </div>
+    <div class="card cc">
+      <div class="card-lbl zh">里程碑透明度</div>
+      <div class="card-lbl en">Milestone Transparency</div>
+      <div class="card-h zh">无黑盒研发 · A1→B5 共9个门控</div>
+      <div class="card-h en">No Black-Box R&D · 9 Gate Checkpoints</div>
+      <div class="card-body zh">Alpha A1→A4 工程原型 · Beta B1→B5 产品演示版。每个节点有明确验收标准，能跑 → 能作业 → 能自治 → 能演示。</div>
+      <div class="card-body en">Alpha A1→A4 engineering prototype · Beta B1→B5 product demo. Every checkpoint: clear acceptance criteria — Move → Work → Autonomy → Demo.</div>
+    </div>
+    <div class="card cd">
+      <div class="card-lbl zh">市场进入就绪</div>
+      <div class="card-lbl en">Market Entry Ready</div>
+      <div class="card-h zh">CBRE/Colliers 渠道已激活</div>
+      <div class="card-h en">CBRE/Colliers Channel Activated</div>
+      <div class="card-body zh">创始人深耕北美 C&I 能源市场10年+，首批50+大型商业设施意向方已确认，采购路径（SIMA 标准 RFP 流程）无需从零建立。</div>
+      <div class="card-body en">Founder's 10+ years in North American C&I markets. 50+ large commercial facilities intent confirmed. Procurement path via SIMA standard RFP process — no cold-start required.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     03 · BUDGET
+══════════════════════════════════════════ -->
+<div class="sec z">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div class="sec-title zh">预算结构 · ¥590万基准</div>
+    <div class="sec-title en">Budget Structure · ¥5.9M Baseline</div>
+    <div class="sec-rule-line"></div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-lbl">Budget Baseline</div>
+      <div class="stat-val">¥590万</div>
+      <div class="stat-sub zh">融资目标 ¥400–600万</div>
+      <div class="stat-sub en">Fundraising target ¥4–6M</div>
+    </div>
+    <div class="stat">
+      <div class="stat-lbl">Monthly Avg</div>
+      <div class="stat-val">¥74万</div>
+      <div class="stat-sub zh">前高后低</div>
+      <div class="stat-sub en">Front-loaded</div>
+    </div>
+    <div class="stat">
+      <div class="stat-lbl">Timeline</div>
+      <div class="stat-val">6–8mo</div>
+      <div class="stat-sub zh">Alpha/Beta 完成</div>
+      <div class="stat-sub en">Alpha/Beta complete</div>
+    </div>
+    <div class="stat">
+      <div class="stat-lbl">Risk Reserve</div>
+      <div class="stat-val">11%</div>
+      <div class="stat-sub zh">¥65万 · 审慎不过度</div>
+      <div class="stat-sub en">¥650K · Prudent</div>
     </div>
   </div>
 
-  <!-- 02 ANGEL ROUND PURPOSE -->
-  <div class="sec z">
-    <div class="sec-head">
-      <div class="sec-n">02</div>
-      <div class="sec-title zh">天使轮定位与目的</div>
-      <div class="sec-title-en en">Angel Round Purpose</div>
-      <div class="sec-rule"></div>
-    </div>
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th class="zh">预算模块</th><th class="en">Module</th>
+        <th class="zh">金额</th><th class="en">Amount</th>
+        <th class="zh">占比</th><th class="en">%</th>
+        <th class="zh">主要用途</th><th class="en">Key Items</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="zh">底盘与机械系统</td><td class="en">Chassis & Mechanical</td>
+        <td class="num">¥120万</td><td class="pct">20%</td>
+        <td class="zh">底盘结构、电机减速机、电池BMS、推雪机构、CNC钣金、备件</td>
+        <td class="en">Chassis, motors/reducers, battery/BMS, snow-clearing mechanism, CNC/sheet metal, spares</td>
+      </tr>
+      <tr>
+        <td class="zh">导航与控制系统</td><td class="en">Navigation & Control</td>
+        <td class="num">¥55万</td><td class="pct">9%</td>
+        <td class="zh">工控机、MCU、IMU/GNSS、摄像头、超声波传感器、通信模块、遥控系统</td>
+        <td class="en">Industrial PC, MCU, IMU/GNSS, cameras, ultrasonic sensors, comms, remote control</td>
+      </tr>
+      <tr>
+        <td class="zh">软件与算法</td><td class="en">Software & Algorithms</td>
+        <td class="num">¥35万</td><td class="pct">6%</td>
+        <td class="zh">底盘控制、Teach & Repeat、路径执行、远程接管、低速避障、远程监控、OTA升级</td>
+        <td class="en">Chassis control, Teach & Repeat, path execution, teleoperation, obstacle avoidance, remote monitoring, OTA</td>
+      </tr>
+      <tr>
+        <td class="zh">测试与运营</td><td class="en">Testing & Operations</td>
+        <td class="num">¥85万</td><td class="pct">14%</td>
+        <td class="zh">雪地测试、低温极寒测试、夜间测试、场地协调、运输、返修缓冲、安全员</td>
+        <td class="en">Snow testing, cold/extreme testing, night testing, site coordination, transport, rework buffer, safety officer</td>
+      </tr>
+      <tr>
+        <td class="zh">工程人员（6–8人）</td><td class="en">Engineering Team (6–8)</td>
+        <td class="num">¥165万</td><td class="pct">28%</td>
+        <td class="zh">创始人/PM、机械1–2人、软件/导航、嵌入式、电气、测试/装配1–2人、外部顾问</td>
+        <td class="en">Founder/PM, mechanical ×1–2, SW/nav, embedded, electrical, test/assembly ×1–2, advisors</td>
+      </tr>
+      <tr>
+        <td class="zh">场地 · 合规 · 风险储备</td><td class="en">Office · Compliance · Reserve</td>
+        <td class="num">¥130万</td><td class="pct">22%</td>
+        <td class="zh">上海办公室、苏州研发组装场地、仓储测试场、安全合规（急停/Kill Switch/防撞/电池安全）、<strong>风险储备¥65万</strong></td>
+        <td class="en">Shanghai office, Suzhou R&D/assembly, storage/test site, safety compliance (e-stop/kill switch/anti-collision/battery), <strong>risk reserve ¥650K</strong></td>
+      </tr>
+      <tr class="total">
+        <td class="zh">合计</td><td class="en">Total</td>
+        <td class="num">¥590万</td><td class="pct">100%</td>
+        <td class="zh">硬件占比 &gt;45%，无黑盒预算</td>
+        <td class="en">Hardware &gt;45% · No black-box allocation</td>
+      </tr>
+    </tbody>
+  </table>
 
-    <div class="prose zh">
-      天使轮的逻辑非常直接：<strong>这笔钱用来做一件事——把工程样机做出来，进雪地验证，拿到真实测试数据</strong>。融资目标 <strong>¥400–600万人民币</strong>，基准预算 <strong>¥590万</strong>，含 11% 风险储备。<br><br>
-      本轮完成后，ARCBOS 将持有三项 Pre-A 融资的核心资产：<strong>可运行的 Alpha/Beta 样机</strong>（从图纸到实体）、<strong>雪地/低温真实测试视频</strong>（最有说服力的融资材料）、<strong>基础自治演示能力</strong>（Teach &amp; Repeat + 远程接管 + 基础避障）。结合已确认的试点意向方，Pre-A/A 轮融资讨论的技术基础已具备。
-    </div>
-    <div class="prose en">
-      The angel round logic is straightforward: <strong>this capital does one thing — build the engineering prototype, enter real snow-field validation, and produce real test data</strong>. Fundraising target: <strong>¥4–6M RMB</strong>, baseline budget: <strong>¥5.9M</strong>, including 11% risk reserve.<br><br>
-      Upon completion, ARCBOS will hold three core assets for Pre-A fundraising: <strong>a running Alpha/Beta prototype</strong> (from drawing to physical system), <strong>real snow/cold-field test video</strong> (the most compelling fundraising asset), and <strong>basic autonomy demonstration capability</strong> (Teach &amp; Repeat + remote takeover + basic obstacle avoidance). Combined with confirmed pilot intent, the technical foundation for Pre-A/Series A conversations is complete.
-    </div>
+  <div class="hbox">
+    <p class="zh"><strong>前高后低原则：</strong>月1–4集中采购与制造（月均约90万），月5–8重心转测试与演示优化（月均约55万）。11%风险储备覆盖六类主要风险——<strong>单点问题不中断样机进度</strong>。硬件投入逾45%，无管理层溢价，无办公室豪华开支。</p>
+    <p class="en"><strong>Front-loaded:</strong> months 1–4 concentrated on procurement and fabrication (~¥900K/mo avg); months 5–8 shift to testing and demo readiness (~¥550K/mo avg). 11% risk reserve covers six major risk categories — <strong>no single failure should halt prototype progress</strong>. Hardware &gt;45%, no management premium, no lavish office spend.</p>
+  </div>
+</div>
 
-    <div class="grid2">
-      <div class="card ca">
-        <div class="card-lbl zh">本轮用途原则</div>
-        <div class="card-lbl en">Capital Allocation Principles</div>
-        <div class="card-h zh">硬件优先 · 约 45% 直接投入硬件</div>
-        <div class="card-h en">Hardware First · ~45% Direct Hardware Spend</div>
-        <div class="card-desc zh">底盘、机械、测试、安全、风险储备。工业机器人项目的本质属性，资金不消耗在团队扩张或豪华办公上。</div>
-        <div class="card-desc en">Chassis, mechanical, testing, safety, risk reserves. Natural capital allocation for industrial robotics — not headcount expansion or lavish offices.</div>
-      </div>
-      <div class="card cb">
-        <div class="card-lbl zh">团队规模</div>
-        <div class="card-lbl en">Team Scale</div>
-        <div class="card-h zh">精干核心 6–8 人 + 专项外包顾问</div>
-        <div class="card-h en">Lean 6–8 Core + Specialist Advisors</div>
-        <div class="card-desc zh">固定人员：机械 + 软件/导航 + 嵌入式 + 电气 + 测试。导航、低温、电池等专项问题通过顾问机制解决，降低固定人力成本。</div>
-        <div class="card-desc en">Fixed roles: mechanical + SW/nav + embedded + electrical + test. Navigation, cold, and battery specialists handled through advisory engagements — minimizes fixed headcount.</div>
-      </div>
-      <div class="card cc">
-        <div class="card-lbl zh">里程碑透明度</div>
-        <div class="card-lbl en">Milestone Transparency</div>
-        <div class="card-h zh">无黑盒研发期 · 每月均有可验证交付物</div>
-        <div class="card-h en">No Black-Box R&D · Monthly Verifiable Deliverables</div>
-        <div class="card-desc zh">Alpha A1→A4 · Beta B1→B5，共 9 个门控节点，每个节点有明确验证标准（能跑 / 能作业 / 能自治 / 能演示）。</div>
-        <div class="card-desc en">Alpha A1→A4 · Beta B1→B5 — 9 gate checkpoints, each with clear acceptance criteria (can move / can work / can auto / can demo).</div>
-      </div>
-      <div class="card cd">
-        <div class="card-lbl zh">融资价值锚</div>
-        <div class="card-lbl en">Fundraising Value Anchors</div>
-        <div class="card-h zh">样机 + 测试视频 + 数据包 → Pre-A 就绪</div>
-        <div class="card-h en">Prototype + Test Video + Data Package → Pre-A Ready</div>
-        <div class="card-desc zh">雪地测试视频是工业机器人最有说服力的融资材料。数据包支撑量产 BOM 与成本模型，直接用于 Pre-A 融资文件。</div>
-        <div class="card-desc en">Snow-field test video is the most compelling asset for industrial robotics fundraising. Data package supports production BOM and cost model, directly used in Pre-A documents.</div>
-      </div>
+<!-- ══════════════════════════════════════════
+     04 · MILESTONES
+══════════════════════════════════════════ -->
+<div class="sec z">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div class="sec-title zh">工程里程碑 · Alpha / Beta</div>
+    <div class="sec-title en">Engineering Milestones · Alpha / Beta</div>
+    <div class="sec-rule-line"></div>
+  </div>
+
+  <table class="ms-tbl">
+    <thead>
+      <tr>
+        <th style="width:68px">ID</th>
+        <th class="zh">里程碑</th><th class="en">Milestone</th>
+        <th class="zh">验收门控</th><th class="en">Gate Criterion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="ms-id">A1</span><span class="ms-badge alpha">Alpha</span></td>
+        <td><div class="ms-name zh">系统架构冻结</div><div class="ms-name en">Architecture Frozen</div></td>
+        <td><div class="ms-gate zh">可进入采购、加工、装配</div><div class="ms-gate en">Ready for procurement, machining, assembly</div></td>
+      </tr>
+      <tr>
+        <td><span class="ms-id">A2</span><span class="ms-badge alpha">Alpha</span></td>
+        <td><div class="ms-name zh">底盘与驱动系统打通</div><div class="ms-name en">Chassis & Drive Functional</div></td>
+        <td><div class="ms-gate zh">可前进、后退、转向、停车</div><div class="ms-gate en">Move forward, reverse, steer, stop</div></td>
+      </tr>
+      <tr>
+        <td><span class="ms-id">A3</span><span class="ms-badge alpha">Alpha</span></td>
+        <td><div class="ms-name zh">除雪作业模块完成</div><div class="ms-name en">Snow-Clearing Module Complete</div></td>
+        <td><div class="ms-gate zh">可完成基础推雪/除雪动作</div><div class="ms-gate en">Performs basic plowing/clearing actions</div></td>
+      </tr>
+      <tr>
+        <td><span class="ms-id">A4</span><span class="ms-badge alpha">Alpha</span></td>
+        <td><div class="ms-name zh">Alpha 工程原型机完成</div><div class="ms-name en">Alpha Prototype Complete</div></td>
+        <td><div class="ms-gate zh">人可安全控制机器完成基础作业</div><div class="ms-gate en">Human can safely control machine for basic operation</div></td>
+      </tr>
+      <tr>
+        <td><span class="ms-id">B1</span><span class="ms-badge beta">Beta</span></td>
+        <td><div class="ms-name zh">产品化结构重构</div><div class="ms-name en">Product-Grade Redesign</div></td>
+        <td><div class="ms-gate zh">整机具备产品感，非拼装原型状态</div><div class="ms-gate en">Product-grade finish, not prototype assembly appearance</div></td>
+      </tr>
+      <tr>
+        <td><span class="ms-id">B2</span><span class="ms-badge beta">Beta</span></td>
+        <td><div class="ms-name zh">定位与路线系统完成</div><div class="ms-name en">Localization & Route System</div></td>
+        <td><div class="ms-gate zh">可录制、保存、回放路线</div><div class="ms-gate en">Can record, save, and replay routes</div></td>
+      </tr>
+      <tr>
+        <td><span class="ms-id">B3</span><span class="ms-badge beta">Beta</span></td>
+        <td><div class="ms-name zh">任务执行闭环完成</div><div class="ms-name en">Task Execution Loop Complete</div></td>
+        <td><div class="ms-gate zh">固定场地内按路线完成基础作业</div><div class="ms-gate en">Completes route-based work in fixed site</div></td>
+      </tr>
+      <tr>
+        <td><span class="ms-id">B4</span><span class="ms-badge beta">Beta</span></td>
+        <td><div class="ms-name zh">Beta 展示状态完成</div><div class="ms-name en">Beta Demo-Ready</div></td>
+        <td><div class="ms-gate zh">夜间 + 低温 + 雪地测试通过</div><div class="ms-gate en">Night + cold + snow field tests passed</div></td>
+      </tr>
+      <tr>
+        <td><span class="ms-id">B5</span><span class="ms-badge beta">Beta</span></td>
+        <td><div class="ms-name zh">Beta 投资人展示版完成</div><div class="ms-name en">Beta Investor Demo Complete</div></td>
+        <td><div class="ms-gate zh">可向投资人、合作伙伴、客户系统级演示</div><div class="ms-gate en">Ready for investor/partner/customer system-level demo</div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════
+     05 · MARKET & BUSINESS MODEL
+══════════════════════════════════════════ -->
+<div class="sec z">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div class="sec-title zh">市场规模与商业模式</div>
+    <div class="sec-title en">Market Size & Business Model</div>
+    <div class="sec-rule-line"></div>
+  </div>
+
+  <div class="cards-3">
+    <div class="card ca">
+      <div class="card-lbl">TAM</div>
+      <div class="card-h zh">US$22.5B</div>
+      <div class="card-h en">US$22.5B</div>
+      <div class="card-body zh">北美商业设施除雪融冰（2023）· 88,200家企业 · 高度分散</div>
+      <div class="card-body en">North America commercial snow & ice (2023) · 88,200 operators · Highly fragmented</div>
+    </div>
+    <div class="card cb">
+      <div class="card-lbl">SAM</div>
+      <div class="card-h zh">$12–18亿</div>
+      <div class="card-h en">$1.2–1.8B</div>
+      <div class="card-body zh">北美工业级高可靠站点 ~30,000个 · 年均除雪外包 $4–6万/站点</div>
+      <div class="card-body en">~30,000 high-reliability industrial sites in North America · $40–60K/site/yr snow outsourcing</div>
+    </div>
+    <div class="card cc">
+      <div class="card-lbl">SOM · 5年目标</div>
+      <div class="card-h zh">$4,500–7,500万</div>
+      <div class="card-h en">$45–75M</div>
+      <div class="card-body zh">SAM 的 2–5% · 300–500个站点 · 受交付产能约束</div>
+      <div class="card-body en">2–5% of SAM · 300–500 sites · Delivery-capacity constrained</div>
     </div>
   </div>
 
-  <!-- 03 BUDGET -->
-  <div class="sec z">
-    <div class="sec-head">
-      <div class="sec-n">03</div>
-      <div class="sec-title zh">预算结构 · ¥590万基准</div>
-      <div class="sec-title-en en">Budget Structure · ¥5.9M Baseline</div>
-      <div class="sec-rule"></div>
-    </div>
-
-    <div class="stat-row">
-      <div class="stat">
-        <div class="stat-lbl">Budget Total</div>
-        <div class="stat-val">¥590万</div>
-        <div class="stat-sub zh">融资区间 ¥500–650万</div>
-        <div class="stat-sub en">Fundraising target ¥4–6M · Budget baseline ¥5.9M</div>
-      </div>
-      <div class="stat">
-        <div class="stat-lbl">Monthly Avg</div>
-        <div class="stat-val">¥74万</div>
-        <div class="stat-sub zh">月均约 74万元 · 前高后低</div>
-        <div class="stat-sub en">~¥740K/month · Front-loaded</div>
-      </div>
-      <div class="stat">
-        <div class="stat-lbl">Timeline</div>
-        <div class="stat-val">6–8</div>
-        <div class="stat-sub zh">个月 · Alpha/Beta 完成</div>
-        <div class="stat-sub en">months · Alpha/Beta complete</div>
-      </div>
-      <div class="stat">
-        <div class="stat-lbl">Risk Reserve</div>
-        <div class="stat-val">11%</div>
-        <div class="stat-sub zh">¥65万风险储备 · 审慎不过度</div>
-        <div class="stat-sub en">¥650K reserve · Prudent, not excessive</div>
-      </div>
-    </div>
-
-    <table class="btable">
-      <thead>
-        <tr>
-          <th class="zh">模块</th><th class="en">Module</th>
-          <th class="zh">金额</th><th class="en">Amount</th>
-          <th class="zh">占比</th><th class="en">Share</th>
-          <th class="zh">主要用途</th><th class="en">Key Items</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="zh">底盘与机械系统</td>
-          <td class="en">Chassis & Mechanical</td>
-          <td class="num">¥120万</td>
-          <td class="pct">20%</td>
-          <td class="zh">底盘、电机减速机、电池BMS、推雪机构、CNC钣金加工、备件</td>
-          <td class="en">Chassis, motors/reducers, battery/BMS, snow-clearing mechanism, CNC/sheet metal, spares</td>
-        </tr>
-        <tr>
-          <td class="zh">导航与控制系统</td>
-          <td class="en">Navigation & Control</td>
-          <td class="num">¥55万</td>
-          <td class="pct">9%</td>
-          <td class="zh">工控机/边缘计算、MCU、IMU/GNSS、摄像头、超声波、通信模块、遥控系统</td>
-          <td class="en">Industrial PC, MCU, IMU/GNSS, cameras, ultrasonic, comms, remote control</td>
-        </tr>
-        <tr>
-          <td class="zh">软件与算法</td>
-          <td class="en">Software & Algorithms</td>
-          <td class="num">¥35万</td>
-          <td class="pct">6%</td>
-          <td class="zh">底盘控制、Teach &amp; Repeat、路径执行、遥控接管、低速避障、远程监控、OTA</td>
-          <td class="en">Chassis control, Teach &amp; Repeat, path execution, teleoperation, obstacle avoidance, remote monitoring, OTA</td>
-        </tr>
-        <tr>
-          <td class="zh">测试与运营</td>
-          <td class="en">Testing & Operations</td>
-          <td class="num">¥85万</td>
-          <td class="pct">14%</td>
-          <td class="zh">雪地测试、低温极寒测试、夜间测试、场地协调、运输、维修返修、意外损坏缓冲、安全员</td>
-          <td class="en">Snow testing, cold/extreme testing, night testing, site coordination, transport, rework, damage buffer, safety officer</td>
-        </tr>
-        <tr>
-          <td class="zh">人员成本</td>
-          <td class="en">Personnel</td>
-          <td class="num">¥165万</td>
-          <td class="pct">28%</td>
-          <td class="zh">创始人/PM、机械1–2人、软件/导航、嵌入式、电气、测试/装配1–2人、外部顾问</td>
-          <td class="en">Founder/PM, mechanical ×1–2, SW/nav, embedded, electrical, test/assembly ×1–2, external advisors</td>
-        </tr>
-        <tr>
-          <td class="zh">办公 · 合规 · 风险储备</td>
-          <td class="en">Office · Compliance · Reserve</td>
-          <td class="num">¥130万</td>
-          <td class="pct">22%</td>
-          <td class="zh">上海办公室、苏州研发/组装场地、仓储测试场地、安全合规（急停/Kill Switch/防撞/电池安全）、<strong>风险储备 ¥65万（11%）</strong></td>
-          <td class="en">Shanghai office, Suzhou R&D/assembly, storage/test site, safety compliance (e-stop/kill switch/anti-collision/battery), <strong>risk reserve ¥650K (11%)</strong></td>
-        </tr>
-        <tr class="total">
-          <td class="zh">合计</td>
-          <td class="en">Total</td>
-          <td class="num">¥590万</td>
-          <td class="pct">100%</td>
-          <td class="zh">融资目标 ¥400–600万 · 工程预算基准 ¥590万</td>
-          <td class="en">Fundraising target ¥4–6M · Engineering budget baseline ¥5.9M</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="prose zh">
-      <strong>前高后低原则：</strong>前期（月1–4）集中在采购与样机制造，后期（月5–8）重心转向测试、改进和演示优化。月均约 74万，符合硬件项目规律。11% 风险储备属于审慎但不过度保守的安排，覆盖供应链延期、机械返工、导航不稳定、测试窗口变化、外包交付偏差、样机损坏六大风险点，<strong>单点问题不应中断样机进度</strong>。
-    </div>
-    <div class="prose en">
-      <strong>Front-loaded principle:</strong> months 1–4 concentrated on procurement and prototype fabrication; months 5–8 shift focus to testing, iteration, and demo readiness. ~¥740K/month average, consistent with hardware project norms. The 11% risk reserve is prudent but not excessive — covering supply chain delays, mechanical rework, navigation instability, testing window variability, outsourcing delivery risk, and prototype damage. <strong>No single failure point should halt prototype progress.</strong>
-    </div>
+  <div class="prose zh">
+    <strong>商业模式：RaaS（Robot as a Service）</strong>。目标定价 <strong>¥12–20万/站点/年</strong>，对应当前人工+设备方案的明显折扣，同时提供24/7自治运行、可审计LOS记录、远程运维、OTA升级等人工方案无法提供的能力。采购流程标准化（SIMA 5月RFP · 9月授标），进入路径无需从零建立。
+  </div>
+  <div class="prose en">
+    <strong>Business Model: RaaS (Robot as a Service).</strong> Target pricing <strong>¥120–200K/site/year</strong> — a meaningful discount to current labor+equipment costs, while delivering 24/7 autonomous operation, auditable LOS records, remote monitoring, and OTA upgrades that manual solutions cannot match. Procurement is standardized (SIMA May RFP · September award); no new relationship building required.
   </div>
 
-  <!-- 04 MILESTONES -->
-  <div class="sec z">
-    <div class="sec-head">
-      <div class="sec-n">04</div>
-      <div class="sec-title zh">工程里程碑 · Alpha/Beta</div>
-      <div class="sec-title-en en">Engineering Milestones · Alpha/Beta</div>
-      <div class="sec-rule"></div>
-    </div>
+  <div class="hbox">
+    <p class="zh">优先切入客户（Tier 1）为高失败成本场景：<strong>数据中心、物流仓储园区、医疗园区、工业厂区</strong>。核心购买驱动：<strong>可靠性、夜间保通、可审计LOS、责任闭环</strong>，而非价格。通过CBRE/Colliers FM渠道批量导入，首批确认意向方覆盖50+大型商业设施。</p>
+    <p class="en">Priority (Tier 1) targets are high-consequence scenarios: <strong>data centers, logistics/warehouse parks, medical campuses, industrial facilities</strong>. Buying trigger: <strong>reliability, overnight clearance, auditable LOS, liability closure</strong> — not price. Batch introduction via CBRE/Colliers FM channels; first intent covers 50+ large commercial facilities.</p>
+  </div>
+</div>
 
-    <table class="mstable">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th class="zh">里程碑名称</th><th class="en">Milestone</th>
-          <th class="zh">验收门控</th><th class="en">Gate Criterion</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="ms-id">A1</span><span class="ms-phase ms-alpha">Alpha</span></td>
-          <td class="ms-name zh">系统架构冻结</td>
-          <td class="ms-name en">System Architecture Frozen</td>
-          <td class="ms-gate zh">可进入采购、加工、装配</td>
-          <td class="ms-gate en">Ready for procurement, machining, assembly</td>
-        </tr>
-        <tr>
-          <td><span class="ms-id">A2</span><span class="ms-phase ms-alpha">Alpha</span></td>
-          <td class="ms-name zh">底盘与驱动系统打通</td>
-          <td class="ms-name en">Chassis & Drive System Functional</td>
-          <td class="ms-gate zh">可前进、后退、转向、停车</td>
-          <td class="ms-gate en">Can move forward, reverse, steer, stop</td>
-        </tr>
-        <tr>
-          <td><span class="ms-id">A3</span><span class="ms-phase ms-alpha">Alpha</span></td>
-          <td class="ms-name zh">除雪作业模块完成</td>
-          <td class="ms-name en">Snow-Clearing Module Complete</td>
-          <td class="ms-gate zh">可完成基础推雪 / 除雪动作</td>
-          <td class="ms-gate en">Can perform basic plowing / snow-clearing actions</td>
-        </tr>
-        <tr>
-          <td><span class="ms-id">A4</span><span class="ms-phase ms-alpha">Alpha</span></td>
-          <td class="ms-name zh">Alpha 工程原型机完成</td>
-          <td class="ms-name en">Alpha Engineering Prototype Complete</td>
-          <td class="ms-gate zh">人可安全控制机器完成基础作业</td>
-          <td class="ms-gate en">Human can safely control machine to complete basic work</td>
-        </tr>
-        <tr>
-          <td><span class="ms-id">B1</span><span class="ms-phase ms-beta">Beta</span></td>
-          <td class="ms-name zh">产品化结构重构</td>
-          <td class="ms-name en">Product-Grade Structural Redesign</td>
-          <td class="ms-gate zh">整机具备产品感，而非拼装原型状态</td>
-          <td class="ms-gate en">Machine has product-grade finish, not prototype assembly appearance</td>
-        </tr>
-        <tr>
-          <td><span class="ms-id">B2</span><span class="ms-phase ms-beta">Beta</span></td>
-          <td class="ms-name zh">定位与路线系统完成</td>
-          <td class="ms-name en">Localization & Route System Complete</td>
-          <td class="ms-gate zh">可录制、保存、回放路线</td>
-          <td class="ms-gate en">Can record, save, and replay routes</td>
-        </tr>
-        <tr>
-          <td><span class="ms-id">B3</span><span class="ms-phase ms-beta">Beta</span></td>
-          <td class="ms-name zh">任务执行闭环完成</td>
-          <td class="ms-name en">Task Execution Loop Complete</td>
-          <td class="ms-gate zh">固定场地内可按路线完成基础作业</td>
-          <td class="ms-gate en">Can complete route-based work in fixed site</td>
-        </tr>
-        <tr>
-          <td><span class="ms-id">B4</span><span class="ms-phase ms-beta">Beta</span></td>
-          <td class="ms-name zh">Beta 展示状态完成</td>
-          <td class="ms-name en">Beta Demo-Ready State Complete</td>
-          <td class="ms-gate zh">夜间+低温+雪地测试通过</td>
-          <td class="ms-gate en">Night + cold + snow field tests passed</td>
-        </tr>
-        <tr>
-          <td><span class="ms-id">B5</span><span class="ms-phase ms-beta">Beta</span></td>
-          <td class="ms-name zh">Beta 投资人展示版完成</td>
-          <td class="ms-name en">Beta Investor Demo Version Complete</td>
-          <td class="ms-gate zh">可向投资人、合作伙伴、客户进行系统级演示</td>
-          <td class="ms-gate en">Ready for system-level demo to investors, partners, and customers</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="prose zh">
-      Alpha 阶段（A1→A4）聚焦工程原型机：从架构冻结到底盘驱动，再到作业模块集成，最终实现"人可安全控制的可运行实体"。Beta 阶段（B1→B5）聚焦产品化与自治能力：产品化外观、Teach &amp; Repeat 导航、任务自治闭环、雪地/低温/夜间测试，最终达到投资人演示状态。<strong>每个节点均有明确验收标准，无黑盒研发期。</strong>
-    </div>
-    <div class="prose en">
-      Alpha phase (A1→A4) focuses on engineering prototype: from architecture freeze through chassis/drive integration and work module assembly, to a running machine a human can safely control. Beta phase (B1→B5) focuses on productization and autonomy: product-grade design, Teach &amp; Repeat navigation, task execution loop, snow/cold/night validation, culminating in investor demo readiness. <strong>Every checkpoint has a clear acceptance criterion — no black-box R&D periods.</strong>
-    </div>
+<!-- ══════════════════════════════════════════
+     06 · COMPETITIVE MOAT
+══════════════════════════════════════════ -->
+<div class="sec z">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div class="sec-title zh">竞争护城河</div>
+    <div class="sec-title en">Competitive Moat</div>
+    <div class="sec-rule-line"></div>
   </div>
 
-  <!-- 05 MARKET -->
-  <div class="sec z">
-    <div class="sec-head">
-      <div class="sec-n">05</div>
-      <div class="sec-title zh">市场规模与商业模式</div>
-      <div class="sec-title-en en">Market Size & Business Model</div>
-      <div class="sec-rule"></div>
+  <div class="cards">
+    <div class="card ca">
+      <div class="card-lbl zh">01 · 四维工程门槛</div>
+      <div class="card-lbl en">01 · 4-Axis Engineering Barrier</div>
+      <div class="card-h zh">单点可复制，四维同时成立不可复制</div>
+      <div class="card-h en">Any single module can be copied — four together cannot</div>
+      <div class="card-body zh">−30°C 可靠启动 · 重载履带牵引（≥500kg有效载荷）· 无人值守决策 · 12小时连续作业。当前市场无任何已量产商业产品能覆盖此工况边界的全部四项。机场产品（Otto/Yeti）做到了可靠，但造价 &gt;$200万，无法商业普及；Yarbo 价格亲民，但止步于住宅级吞吐量与 −25°C 边界。</div>
+      <div class="card-body en">−30°C reliable cold start · heavy-load track traction (≥500kg payload) · unmanned decision-making · 12hr+ continuous operation. No existing commercial product covers all four simultaneously. Airport products (Otto/Yeti) deliver reliability but cost &gt;$2M — not commercially scalable. Yarbo is affordable but stops at residential throughput and −25°C.</div>
     </div>
-
-    <div class="grid3">
-      <div class="card ca">
-        <div class="card-lbl">TAM</div>
-        <div class="card-val-sm">$225亿</div>
-        <div class="card-desc zh">北美商业设施除雪融冰（2023）· 88,200 家企业 · 高度分散</div>
-        <div class="card-desc en">North America commercial snow & ice (2023) · 88,200 operators · Highly fragmented</div>
-      </div>
-      <div class="card cb">
-        <div class="card-lbl">SAM</div>
-        <div class="card-val-sm">$12–18亿</div>
-        <div class="card-desc zh">北美工业级高可靠站点 ~30,000 个 · 年均除雪外包 $4–6万/站点</div>
-        <div class="card-desc en">~30,000 high-reliability industrial sites in North America · $40–60K/site/yr snow outsourcing</div>
-      </div>
-      <div class="card cc">
-        <div class="card-lbl">SOM · 5年目标</div>
-        <div class="card-val-sm">$4,500–7,500万</div>
-        <div class="card-desc zh">SAM 的 2–5% · 300–500个站点 · 完全受交付产能约束</div>
-        <div class="card-desc en">2–5% of SAM · 300–500 sites · Fully delivery-capacity constrained</div>
-      </div>
+    <div class="card cb">
+      <div class="card-lbl zh">02 · 渠道先发</div>
+      <div class="card-lbl en">02 · Channel Head Start</div>
+      <div class="card-h zh">CBRE / Colliers — 现有客户关系，非初次接触</div>
+      <div class="card-h en">CBRE / Colliers — existing relationships, not cold contacts</div>
+      <div class="card-body zh">创始人深耕北美 C&I 能源市场10年+，CBRE、Colliers 是现有合作合伙方。首批试点意向即来自这一网络，<strong>进入路径无需从零建立</strong>。这是竞争对手需要数年才能复制的软性壁垒。</div>
+      <div class="card-body en">Founder's 10+ years in North American C&I markets. CBRE and Colliers are existing channel partners — not cold contacts. First pilot intent came directly from this network. <strong>No new relationship building required.</strong> This soft barrier takes competitors years to replicate.</div>
     </div>
-
-    <div class="prose zh">
-      <strong>商业模式：RaaS（Robot as a Service）</strong>。目标定价 <strong>¥12–20万/站点/年</strong>，对应当前人工+设备方案的明显折扣，同时提供 24/7 自治运行、可审计 LOS 记录、远程运维、OTA 升级等人工方案无法提供的能力。采购流程标准化（SIMA 5月 RFP · 9月授标），进入路径无需从零建立。<br><br>
-      优先切入客户（Tier 1）为高失败成本场景：<strong>数据中心、物流仓储园区、医疗园区、工业厂区</strong>。这类客户的核心购买驱动力是<strong>可靠性、夜间保通、可审计 LOS、责任闭环</strong>，而非价格。通过 CBRE/Colliers 渠道批量导入，首批意向方已管理 50+ 大型商业设施。
+    <div class="card cc">
+      <div class="card-lbl zh">03 · 产业链直连</div>
+      <div class="card-lbl en">03 · Supply Chain Direct Access</div>
+      <div class="card-h zh">杨光华 · 从样机到量产不可替代</div>
+      <div class="card-h en">Yang Guanghua · Irreplaceable from prototype to production</div>
+      <div class="card-body zh">产业顾问杨光华（机器人产业链顶级专家、清华具身智能产业协会副会长）直连全产业链核心供应商。从传感器、执行器到底盘部件，样机到量产的产业化路径具有不可替代的人脉与资源优势。</div>
+      <div class="card-body en">Industry advisor Yang Guanghua (top robotics supply chain expert, VP Tsinghua Embodied AI Association) — direct access to core suppliers across sensors, actuators, and chassis components. Irreplaceable industrialization advantage from prototype to production scale.</div>
     </div>
-    <div class="prose en">
-      <strong>Business Model: RaaS (Robot as a Service)</strong>. Target pricing <strong>¥120–200K/site/year</strong> — a clear discount to current labor+equipment costs, while delivering 24/7 autonomous operation, auditable LOS records, remote monitoring, and OTA upgrades that manual solutions cannot provide. Procurement is standardized (SIMA May RFP · September award); the entry path requires no new relationship building.<br><br>
-      Priority (Tier 1) customers are high-consequence scenarios: <strong>data centers, logistics/warehouse parks, medical campuses, industrial facilities</strong>. The buying trigger for these clients is <strong>reliability, overnight clearance, auditable LOS, and liability closure</strong> — not price. Batch introduction via CBRE/Colliers FM channels; first confirmed intent covers 50+ large commercial facilities.
+    <div class="card cd">
+      <div class="card-lbl zh">04 · 极端环境平台入口</div>
+      <div class="card-lbl en">04 · Extreme Environment Platform Entry</div>
+      <div class="card-h zh">不止除雪季节 · 极寒能力横向复用</div>
+      <div class="card-h en">Not just snow season · Cold-weather capability transfers laterally</div>
+      <div class="card-body zh">极寒感知 + 自治决策能力横向复用：<strong>除草 → 巡检 → 安防</strong>。一次极端工况验证，多场景扩展。SnowBot 是 ARCBOS 建立"极端环境工业级自治系统"的第一块工程基石，投资价值不止于除雪季节。</div>
+      <div class="card-body en">Extreme-cold perception + autonomous decision capabilities transfer laterally: <strong>mowing → inspection → security patrol</strong>. One extreme-environment validation, multiple scenario expansion. SnowBot is the first engineering cornerstone of ARCBOS's "extreme environment industrial autonomy" platform.</div>
     </div>
   </div>
+</div>
 
-  <!-- 06 COMPETITIVE MOAT -->
-  <div class="sec z">
-    <div class="sec-head">
-      <div class="sec-n">06</div>
-      <div class="sec-title zh">竞争护城河</div>
-      <div class="sec-title-en en">Competitive Moat</div>
-      <div class="sec-rule"></div>
+<!-- ══════════════════════════════════════════
+     07 · TEAM
+══════════════════════════════════════════ -->
+<div class="sec z">
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <div class="sec-title zh">团队</div>
+    <div class="sec-title en">Team</div>
+    <div class="sec-rule-line"></div>
+  </div>
+
+  <div class="team-cards">
+
+    <div class="tm ta">
+      <div class="tm-role">Founder · CEO</div>
+      <div class="tm-name zh">龚铁靖 · Gong Tiejing</div>
+      <div class="tm-name en">Gong Tiejing</div>
+      <div class="tm-body zh">北美工商业能源系统电气专家，深耕北美 C&I 市场超过 <strong>10年</strong>。主导交付 PepsiCo、Shell Energy、Black & Veatch、Blink Charging 等大型客户的能源管理全系统项目，带团队在客户设施里完成软硬件交付。CBRE、Colliers 是合作合伙方，首批试点意向即来自这一网络。<strong>SnowBot 是从十年现场里长出来的产品</strong>，不是实验室里想出来的。</div>
+      <div class="tm-body en">Electrical engineer and energy systems expert with <strong>10+ years</strong> in North American C&I markets. Led full-stack hardware and software delivery for PepsiCo, Shell Energy, Black & Veatch, and Blink Charging — managing engineering teams through real delivery on client sites. CBRE and Colliers are channel partners; first pilot intent came from this network. <strong>SnowBot came from ten years on the ground — not from a lab.</strong></div>
     </div>
 
-    <div class="grid2">
-      <div class="card ca">
-        <div class="card-h zh">四维耦合技术门槛</div>
-        <div class="card-h en">4-Axis Technical Barrier</div>
-        <div class="card-desc zh">单点模块可被复制，<strong>四个维度同时成立的工程复杂度不可复制</strong>：−30°C 启动 · 重载履带牵引 · 无人值守决策 · 12小时连续运行。当前市场无任何已量产商业产品能覆盖此工况边界。</div>
-        <div class="card-desc en">Single modules can be copied. <strong>Four dimensions working simultaneously cannot:</strong> −30°C cold start · heavy-load track traction · unmanned decision-making · 12+ hours continuous. No existing commercial product covers this envelope.</div>
+    <div class="tm tb">
+      <div class="tm-role zh">联合创始人 · 供应链</div>
+      <div class="tm-role en">Co-Founder · Supply Chain</div>
+      <div class="tm-name zh">龚继锋 · Gong Jifeng</div>
+      <div class="tm-name en">Gong Jifeng</div>
+      <div class="tm-body zh">联合创始人，与龚铁靖共同出资 <strong>¥100万</strong> 启动公司，表明核心创始团队对项目的强力资本承诺。负责供应链协同与工程资源调配，主导外协体系搭建及零部件采购协调，直连产业链上下游，支撑从工程样机到量产的衔接准备。</div>
+      <div class="tm-body en">Co-founder who, together with Gong Tiejing, committed <strong>CNY 1M</strong> to launch the company — demonstrating strong capital commitment from the core founding team. Responsible for supply chain coordination and engineering resource allocation; leads subcontracting framework and component procurement, providing direct supply chain access from prototype to production readiness.</div>
+    </div>
+
+    <div class="tm tc">
+      <div class="tm-role zh">产业顾问</div>
+      <div class="tm-role en">Industry Advisor</div>
+      <div class="tm-name zh">杨光华 · Yang Guanghua</div>
+      <div class="tm-name en">Yang Guanghua</div>
+      <div class="tm-body zh">机器人产业链顶级专家，<strong>清华具身智能产业协会副会长</strong>。全产业链上下游核心供应商直连，从传感器、执行器到底盘部件均有不可替代的直接资源。从样机到量产的产业化路径具有独特人脉与资源优势，并加速客户与合作伙伴路径导入。</div>
+      <div class="tm-body en">Top robotics supply chain expert, <strong>VP of Tsinghua Embodied AI Industry Association</strong>. Direct relationships with core suppliers across sensors, actuators, and chassis components — irreplaceable supply chain access. Unique advantages in the industrialization path from prototype to production, and accelerates customer and partner pipeline.</div>
+    </div>
+
+    <div class="tm td">
+      <div class="tm-role zh">结构与系统集成总工</div>
+      <div class="tm-role en">Chief Structural & Integration Engineer</div>
+      <div class="tm-name zh">陈超 · Chen Chao</div>
+      <div class="tm-name en">Chen Chao</div>
+      <div class="tm-body zh">前飞利浦医疗机器人，机械结构与系统集成背景。负责整机结构设计、底盘平台工程化及关键模块集成，与创始人协同推进样机从图纸到实物的完整转化过程。</div>
+      <div class="tm-body en">Former Philips Medical Robotics, background in mechanical structure and system integration. Leads structural design, chassis engineering, and module integration — working with the founder to drive the complete prototype journey from drawing to physical build.</div>
+    </div>
+
+    <div class="tm te">
+      <div class="tm-role zh">合伙人 · 市场与商业化</div>
+      <div class="tm-role en">Partner · Market & Commercialization</div>
+      <div class="tm-name zh">甄文胜 · Zhen Wensheng</div>
+      <div class="tm-name en">Zhen Wensheng</div>
+      <div class="tm-body zh">前头部机器人公司市场负责人，To B 大客户项目落地经验丰富。负责客户验证与试点推进，深度理解 To B 采购语言与流程，协助工程能力转化为可签约的商业合同。</div>
+      <div class="tm-body en">Former Market Lead at a top robotics firm, extensive B2B enterprise project experience. Leads customer validation and pilot advancement — deeply understands B2B procurement language and process, translates engineering capability into signable commercial contracts.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     08 · RISK & MITIGATION
+══════════════════════════════════════════ -->
+<div class="sec z">
+  <div class="sec-head">
+    <div class="sec-num">08</div>
+    <div class="sec-title zh">风险与应对</div>
+    <div class="sec-title en">Risk & Mitigation</div>
+    <div class="sec-rule-line"></div>
+  </div>
+
+  <div class="prose zh">预算中含 <strong>¥65万（11%）风险储备</strong>，覆盖以下六类主要风险。审慎但不过度保守——<strong>单点问题不应中断样机进度</strong>。</div>
+  <div class="prose en">Budget includes <strong>¥650K (11%) risk reserve</strong> covering six major categories. Prudent but not excessive — <strong>no single failure point should halt prototype progress.</strong></div>
+
+  <table class="risk-tbl">
+    <thead>
+      <tr>
+        <th class="zh" style="width:110px">风险类型</th><th class="en" style="width:130px">Risk</th>
+        <th class="zh">描述与应对</th><th class="en">Description & Mitigation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="rk zh">供应链延期</td><td class="rk en">Supply Chain Delays</td>
+        <td class="rd zh">关键零部件交期不确定，保持备用供应方、安全库存，预留弹性进度窗口</td>
+        <td class="rd en">Key component lead time uncertainty · backup sourcing, safety stock, flexible schedule buffers</td>
+      </tr>
+      <tr>
+        <td class="rk zh">机械返工</td><td class="rk en">Mechanical Rework</td>
+        <td class="rd zh">底盘、推雪机构须实测后优化，一次成型概率低，预留返工周期与材料费</td>
+        <td class="rd en">Chassis/snow mechanism require post-test optimization · rework cycle and materials budgeted</td>
+      </tr>
+      <tr>
+        <td class="rk zh">导航不稳定</td><td class="rk en">Navigation Instability</td>
+        <td class="rd zh">雪地低纹理、打滑、夜间光照影响 Teach & Repeat 执行，预留算法迭代与补丁时间</td>
+        <td class="rd en">Low-texture snow, slip, night lighting affect Teach & Repeat · algorithm iteration time budgeted</td>
+      </tr>
+      <tr>
+        <td class="rk zh">测试窗口变化</td><td class="rk en">Testing Window Variability</td>
+        <td class="rd zh">天气、场地窗口不可完全控制，备用测试场地清单，跨城市备选方案</td>
+        <td class="rd en">Weather and site windows can't be fully controlled · backup site list, multi-city fallback</td>
+      </tr>
+      <tr>
+        <td class="rk zh">外包交付偏差</td><td class="rk en">Outsourcing Delivery Risk</td>
+        <td class="rd zh">顾问或外协团队交付需要替代或内部消化，预留内部消化能力与替换成本</td>
+        <td class="rd en">External advisors or teams may require alternative solutions · internal absorption capacity and replacement cost budgeted</td>
+      </tr>
+      <tr>
+        <td class="rk zh">样机损坏</td><td class="rk en">Prototype Damage</td>
+        <td class="rd zh">测试中碰撞、进水、结构损伤，预留快速修复零件库与维修人工</td>
+        <td class="rd en">Collision, water ingress, structural damage in testing · rapid repair parts inventory and labor budgeted</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════
+     09 · CAPITAL PATH
+══════════════════════════════════════════ -->
+<div class="sec z">
+  <div class="sec-head">
+    <div class="sec-num">09</div>
+    <div class="sec-title zh">资金路径 · 天使 → Pre-A → A</div>
+    <div class="sec-title en">Capital Path · Angel → Pre-A → A</div>
+    <div class="sec-rule-line"></div>
+  </div>
+
+  <div class="road">
+    <div class="road-step">
+      <div class="road-ph now zh">天使轮</div><div class="road-ph now en">ANGEL</div>
+      <div>
+        <div class="road-title zh">¥400–600万 · 工程样机验证</div>
+        <div class="road-title en">¥4–6M · Engineering Prototype Validation</div>
+        <div class="road-sub zh">Alpha/Beta 样机 · 雪地测试视频 · 基础自治演示 · 首批试点 LOI 推进 · 量产 BOM 初稿</div>
+        <div class="road-sub en">Alpha/Beta prototype · snow-field test video · basic autonomy demo · first pilot LOI advancement · initial production BOM</div>
       </div>
-      <div class="card cb">
-        <div class="card-h zh">渠道先发 · CBRE/Colliers</div>
-        <div class="card-h en">Channel Head Start · CBRE/Colliers</div>
-        <div class="card-desc zh">创始人深耕北美 C&amp;I 能源市场 10年+，CBRE、Colliers 为现有客户关系，非初次接触。首批试点意向即来自这一网络，<strong>进入路径无需从零建立</strong>。</div>
-        <div class="card-desc en">Founder's 10+ years in North American C&amp;I markets. CBRE and Colliers are existing client relationships — not cold contacts. First pilot intent came directly from this network. <strong>Entry path requires no new relationship building.</strong></div>
+    </div>
+    <div class="road-step">
+      <div class="road-ph next zh">冬季验证</div><div class="road-ph next en">WINTER</div>
+      <div>
+        <div class="road-title zh">真实雪场验证 + 客户 LOI 转合同</div>
+        <div class="road-title en">Real Snow-Field Validation + LOI to Contract</div>
+        <div class="road-sub zh">真实场景演示视频 · LOI 转正式服务合同 · 数据飞轮启动 · Pre-A 融资材料完善</div>
+        <div class="road-sub en">Real-world demo video · LOI to signed service contract · data flywheel initiated · Pre-A materials finalized</div>
       </div>
-      <div class="card cc">
-        <div class="card-h zh">产业链直连 · 不可替代</div>
-        <div class="card-h en">Supply Chain Direct Access</div>
-        <div class="card-desc zh">产业顾问杨光华（机器人产业链顶级专家、清华具身智能产业协会副会长）全产业链上下游核心供应商直连，从样机到量产的产业化路径具有不可替代优势。</div>
-        <div class="card-desc en">Industry advisor Yang Guanghua (top robotics supply chain expert, VP Tsinghua Embodied AI Association) — direct access to core suppliers across the full robotics value chain. Irreplaceable industrialization path from prototype to production.</div>
+    </div>
+    <div class="road-step">
+      <div class="road-ph prea zh">Pre-A</div><div class="road-ph prea en">PRE-A</div>
+      <div>
+        <div class="road-title zh">工程稳定 + 商业闭环</div>
+        <div class="road-title en">Engineering Stability + Revenue Closure</div>
+        <div class="road-sub zh">量产 BOM 确认 · 首批付费合同 · 小批量产线准备 · 北美/欧洲合规认证启动</div>
+        <div class="road-sub en">Production BOM confirmed · first paid contracts · small-batch production line prep · North America/Europe compliance certifications initiated</div>
       </div>
-      <div class="card cd">
-        <div class="card-h zh">平台入口 · 非单季节设备</div>
-        <div class="card-h en">Platform Entry · Not Seasonal</div>
-        <div class="card-desc zh">极寒感知 + 自治决策能力横向复用：<strong>除草 → 巡检 → 安防</strong>。一次极端工况验证，多场景扩展。投资价值不止于除雪季节，而是 ARCBOS 建立"极端环境工业级自治系统"的第一块工程基石。</div>
-        <div class="card-desc en">Extreme-cold perception + autonomous decision capabilities transfer laterally: <strong>mowing → inspection → security</strong>. One extreme-environment validation, multiple scenario expansion. Investment value extends beyond the snow season.</div>
+    </div>
+    <div class="road-step">
+      <div class="road-ph scale zh">规模化</div><div class="road-ph scale en">SCALE</div>
+      <div>
+        <div class="road-title zh">平台化 · 多场景 · 海外部署</div>
+        <div class="road-title en">Platform · Multi-Scene · Overseas Deployment</div>
+        <div class="road-sub zh">北美 / 欧洲 · 除草/巡检/安防场景扩展 · 极端环境工业级自治平台</div>
+        <div class="road-sub en">North America / Europe · mowing/inspection/security scenario expansion · extreme-environment industrial autonomy platform</div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- 07 TEAM -->
-  <div class="sec z">
-    <div class="sec-head">
-      <div class="sec-n">07</div>
-      <div class="sec-title zh">团队</div>
-      <div class="sec-title-en en">Team</div>
-      <div class="sec-rule"></div>
-    </div>
-
-    <div class="grid2">
-      <div class="card ca" style="grid-column:span 2">
-        <div class="card-lbl">Founder · CEO</div>
-        <div class="card-h zh">龚铁靖 · Gong Tiejing</div>
-        <div class="card-h en">Gong Tiejing</div>
-        <div class="card-desc zh">北美工商业能源系统电气专家，深耕北美 C&amp;I 市场超过 10年。主导交付 PepsiCo、Shell Energy、Black &amp; Veatch、Blink Charging 等大型客户的能源管理全系统项目，带团队在客户设施里完成软硬件交付。CBRE、Colliers 是合作合伙方，首批试点意向即来自这一网络。<strong>SnowBot 是从十年现场里长出来的产品</strong>，不是实验室里想出来的。</div>
-        <div class="card-desc en">Electrical engineer and energy systems expert with 10+ years in North American C&amp;I markets. Led full-stack hardware and software delivery for PepsiCo, Shell Energy, Black &amp; Veatch, and Blink Charging — managing engineering teams through real delivery on client sites. CBRE and Colliers are channel partners; first pilot intent came from this network. <strong>SnowBot came from ten years on the ground — not from a lab.</strong></div>
-      </div>
-      <div class="card cb">
-        <div class="card-lbl zh">产业顾问</div><div class="card-lbl en">Industry Advisor</div>
-        <div class="card-h zh">杨光华 · Yang Guanghua</div>
-        <div class="card-h en">Yang Guanghua</div>
-        <div class="card-desc zh">机器人产业链顶级专家，清华具身智能产业协会副会长。全产业链上下游核心供应商直连，从样机到量产的产业化路径具有不可替代的人脉与资源优势，客户路径加速。</div>
-        <div class="card-desc en">Top robotics supply chain expert, VP of Tsinghua Embodied AI Industry Association. Direct access to core suppliers across full robotics value chain — irreplaceable industrialization advantage and customer pipeline acceleration.</div>
-      </div>
-      <div class="card cc">
-        <div class="card-lbl zh">结构与系统集成</div><div class="card-lbl en">Structural & Integration</div>
-        <div class="card-h zh">陈超 · Chen Chao</div>
-        <div class="card-h en">Chen Chao</div>
-        <div class="card-desc zh">前飞利浦医疗机器人，机械结构与系统集成。负责整机结构设计、底盘平台工程化及关键模块集成，与创始人协同推进样机实物转化。</div>
-        <div class="card-desc en">Former Philips Medical Robotics · Structural and system integration. Leads structural design, chassis engineering, and module integration — working with founder to drive prototype to physical build.</div>
-      </div>
-      <div class="card cd">
-        <div class="card-lbl zh">市场与商业化</div><div class="card-lbl en">Market & Commercialization</div>
-        <div class="card-h zh">甄文胜 · Zhen Wensheng</div>
-        <div class="card-h en">Zhen Wensheng</div>
-        <div class="card-desc zh">前头部机器人公司市场负责人，To B 大客户项目落地经验。负责客户验证与试点推进，理解 To B 采购语言，协助工程能力转化为可签约合同。</div>
-        <div class="card-desc en">Former Market Lead at top robotics firm, B2B enterprise project experience. Leads customer validation and pilot advancement — translates engineering capability into signable service contracts.</div>
-      </div>
-      <div class="card ce" style="grid-column:span 2">
-        <div class="card-lbl zh">联合创始人 · 供应链</div><div class="card-lbl en">Co-Founder · Supply Chain</div>
-        <div class="card-h zh">龚继锋 · Gong Jifeng</div>
-        <div class="card-h en">Gong Jifeng</div>
-        <div class="card-desc zh">联合创始人，与龚铁靖共同出资 <strong>¥100万</strong> 启动公司，表明核心创始团队对项目的强力资本承诺。负责供应链协同与工程资源调配，主导外协体系搭建及零部件采购协调，直连产业链上下游，支撑从工程样机到后续量产的衔接准备。</div>
-        <div class="card-desc en">Co-founder who, together with Gong Tiejing, has committed <strong>CNY 1M</strong> to launch the company — demonstrating strong capital commitment from the core founding team. Responsible for supply chain coordination and engineering resource allocation, leads the subcontracting framework and component procurement, providing direct access up and down the supply chain to support the bridge from engineering prototype to production readiness.</div>
-      </div>
-    </div>
+<!-- ══════════════════════════════════════════
+     10 · INVESTOR Q&A
+══════════════════════════════════════════ -->
+<div class="sec z">
+  <div class="sec-head">
+    <div class="sec-num">10</div>
+    <div class="sec-title zh">投资人常见问题</div>
+    <div class="sec-title en">Investor Q&A</div>
+    <div class="sec-rule-line"></div>
   </div>
 
-  <!-- 08 RISKS -->
-  <div class="sec z">
-    <div class="sec-head">
-      <div class="sec-n">08</div>
-      <div class="sec-title zh">风险储备与应对</div>
-      <div class="sec-title-en en">Risk Reserve & Mitigation</div>
-      <div class="sec-rule"></div>
+  <div class="cards">
+    <div class="card ca">
+      <div class="card-h zh">这是真实的工程项目，还是概念？</div>
+      <div class="card-h en">Is this a real engineering project, or a concept?</div>
+      <div class="card-body zh">关键零件已选型、到货，样机进入组装阶段。预算集中在底盘、机械、测试、安全和风险储备——硬件占总预算逾45%。里程碑A1–B5每个节点均有明确验收标准，无黑盒研发期。创始人与联合创始人已共同出资¥100万表明资本承诺。</div>
+      <div class="card-body en">Key components selected and arrived. Prototype in assembly. Budget concentrated in chassis, mechanical, testing, safety, and risk reserves — hardware &gt;45% of total. Every A1–B5 milestone has a clear acceptance criterion — no black-box R&D periods. Founders committed CNY 1M demonstrating capital commitment.</div>
     </div>
-
-    <div class="prose zh">
-      预算中含 <strong>¥65万（11%）风险储备</strong>，覆盖以下六类主要风险。审慎但不过度保守——单点问题不应中断样机进度。
+    <div class="card cb">
+      <div class="card-h zh">估值¥4,500万合理吗？</div>
+      <div class="card-h en">Is the CNY 45M pre-money valuation reasonable?</div>
+      <div class="card-body zh">对标同阶段工业机器人项目（样机期、北美市场切入）估值区间通常为¥3,000–8,000万。¥4,500万处于合理中间位，为Pre-A留足上升空间（Pre-A通常¥1.5–3亿），不存在高估风险，也不贱卖创始人股权。</div>
+      <div class="card-body en">Benchmark against comparable industrial robotics projects at prototype stage targeting North American markets: typical range CNY 30–80M. CNY 45M is a reasonable midpoint — leaves significant upside for Pre-A (typically CNY 150–300M), without overvaluation risk or undervaluing founder equity.</div>
     </div>
-    <div class="prose en">
-      Budget includes <strong>¥650K (11%) risk reserve</strong> covering six major risk categories. Prudent but not excessive — no single failure point should halt prototype progress.
+    <div class="card cc">
+      <div class="card-h zh">烧钱速度受控吗？</div>
+      <div class="card-h en">Is the burn rate under control?</div>
+      <div class="card-body zh">精干核心团队、轻资产场地、少管理层、重交付。月均约¥74万，前高后低，符合硬件项目规律。6–8个月周期，无过长研发黑盒。无豪华办公室支出，无管理层溢价，无大规模招聘——<strong>钱都在产品上</strong>。</div>
+      <div class="card-body en">Lean core team, asset-light facilities, minimal management overhead, delivery-focused. ~¥740K/month average, front-loaded per hardware project norms. 6–8 month cycle — no extended R&D black box. No lavish offices, no management premium, no large-scale hiring — <strong>capital goes to the product.</strong></div>
     </div>
-
-    <table class="rtable">
-      <thead>
-        <tr>
-          <th class="zh">风险类型</th><th class="en">Risk</th>
-          <th class="zh">描述</th><th class="en">Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="risk-name zh">供应链延期</td>
-          <td class="risk-name en">Supply Chain Delays</td>
-          <td class="risk-desc zh">关键零部件交期不确定，需备用供应方案与安全库存</td>
-          <td class="risk-desc en">Key component lead times uncertain; requires backup sourcing and safety stock</td>
-        </tr>
-        <tr>
-          <td class="risk-name zh">机械返工</td>
-          <td class="risk-name en">Mechanical Rework</td>
-          <td class="risk-desc zh">底盘、推雪机构须实测后优化，一次成型概率低</td>
-          <td class="risk-desc en">Chassis and snow-clearing mechanism require post-test optimization; first-pass yield is low</td>
-        </tr>
-        <tr>
-          <td class="risk-name zh">导航不稳定</td>
-          <td class="risk-name en">Navigation Instability</td>
-          <td class="risk-desc zh">雪地低纹理、打滑、夜间环境影响 Teach &amp; Repeat 执行</td>
-          <td class="risk-desc en">Low-texture snow, slip, and night conditions affect Teach &amp; Repeat path execution</td>
-        </tr>
-        <tr>
-          <td class="risk-name zh">测试窗口变化</td>
-          <td class="risk-name en">Testing Window Variability</td>
-          <td class="risk-desc zh">天气、场地窗口不可完全控制，需灵活调度与备用方案</td>
-          <td class="risk-desc en">Weather and site windows can't be fully controlled; requires flexible scheduling and fallbacks</td>
-        </tr>
-        <tr>
-          <td class="risk-name zh">外包交付偏差</td>
-          <td class="risk-name en">Outsourcing Delivery Risk</td>
-          <td class="risk-desc zh">顾问或外部团队交付可能需要替代方案或内部消化</td>
-          <td class="risk-desc en">External advisors or teams may require alternative solutions or internal absorption</td>
-        </tr>
-        <tr>
-          <td class="risk-name zh">样机损坏</td>
-          <td class="risk-name en">Prototype Damage</td>
-          <td class="risk-desc zh">测试中可能出现碰撞、进水、结构损伤，需快速修复能力</td>
-          <td class="risk-desc en">Collision, water ingress, or structural damage during testing requires rapid repair capability</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- 09 INVESTOR Q&A -->
-  <div class="sec z">
-    <div class="sec-head">
-      <div class="sec-n">09</div>
-      <div class="sec-title zh">投资人常见问题</div>
-      <div class="sec-title-en en">Investor Q&A</div>
-      <div class="sec-rule"></div>
+    <div class="card cd">
+      <div class="card-h zh">技术路线是否务实？</div>
+      <div class="card-h en">Is the technical approach pragmatic?</div>
+      <div class="card-body zh">当前采用低速自治、Teach & Repeat、远程接管路线，不做L4/L5短期承诺。务实可执行——先跑通，再进化。算法架构留有世界模型扩展入口，但不以此承诺Alpha阶段交付。这是工业机器人最合理的MVP技术选型。</div>
+      <div class="card-body en">Low-speed autonomy, Teach & Repeat, remote teleoperation — no L4/L5 short-term promises. Pragmatic and executable — run first, then evolve. Algorithm architecture has world model expansion hooks, but these are not committed to Alpha-stage delivery. This is the most rational MVP technical approach for industrial robotics.</div>
     </div>
-
-    <div class="grid2">
-      <div class="card ca">
-        <div class="card-h zh">这是真实的工程项目，而非概念？</div>
-        <div class="card-h en">Is this a real engineering project, not a concept?</div>
-        <div class="card-desc zh">关键零件已选型、到货，样机进入组装阶段。预算集中在底盘、机械、测试、安全和风险储备——硬件占总预算逾 45%。里程碑 A1–B5 每个节点均有明确验收标准。</div>
-        <div class="card-desc en">Key components have been selected and arrived. Prototype is in assembly. Budget is concentrated in chassis, mechanical, testing, safety, and risk reserves — hardware &gt;45% of total. Every A1–B5 milestone has a clear acceptance criterion.</div>
-      </div>
-      <div class="card cb">
-        <div class="card-h zh">烧钱速度是否受控？</div>
-        <div class="card-h en">Is burn rate under control?</div>
-        <div class="card-desc zh">小核心团队、轻资产场地、少管理层、重交付。月均约 74万元，前高后低，符合硬件项目规律。6–8个月周期，无过长研发黑盒。</div>
-        <div class="card-desc en">Lean core team, asset-light facilities, minimal management overhead, delivery-focused. ~¥740K/month average, front-loaded per hardware project norms. 6–8 month cycle — no extended R&D black box.</div>
-      </div>
-      <div class="card cc">
-        <div class="card-h zh">技术路线是否务实？</div>
-        <div class="card-h en">Is the technical approach pragmatic?</div>
-        <div class="card-desc zh">当前采用低速自治、Teach &amp; Repeat、远程接管路线，不做 L4/L5 短期承诺。务实可执行——先跑通，再进化。算法架构留有世界模型扩展入口，但不以此承诺 Alpha 阶段交付。</div>
-        <div class="card-desc en">Low-speed autonomy, Teach &amp; Repeat, remote takeover — no L4/L5 short-term promises. Pragmatic and executable — run first, then evolve. Algorithm architecture has world model expansion hooks, but these are not committed to Alpha-stage delivery.</div>
-      </div>
-      <div class="card cd">
-        <div class="card-h zh">这笔钱能支撑到 Pre-A 吗？</div>
-        <div class="card-h en">Can this capital bridge to Pre-A?</div>
-        <div class="card-desc zh">天使轮完成后持有：Alpha/Beta 样机 + 雪地测试视频 + 基础自治演示 + 首批 LOI 试点推进 + 量产 BOM + 测试数据包。这是 Pre-A/A 轮融资讨论所需的完整技术基础，Pre-A 融资窗口建立在可验证成果上，<strong>不依赖额外假设</strong>。</div>
-        <div class="card-desc en">Upon angel completion: Alpha/Beta prototype + snow test video + basic autonomy demo + first LOI pilot advancement + production BOM + test data package. This is the complete technical foundation for Pre-A/A fundraising conversations. The Pre-A window is built on verifiable milestones — <strong>no additional assumptions required.</strong></div>
-      </div>
+    <div class="card ce">
+      <div class="card-h zh">这笔钱能支撑到 Pre-A 吗？</div>
+      <div class="card-h en">Can this capital bridge to Pre-A?</div>
+      <div class="card-body zh">天使轮完成后持有：<strong>Alpha/Beta样机 + 雪地测试视频 + 基础自治演示 + 首批LOI推进 + 量产BOM初稿 + 测试数据包</strong>。这是Pre-A/A轮融资讨论所需的完整技术基础，Pre-A融资窗口建立在可验证成果上，<strong>不依赖额外假设</strong>。</div>
+      <div class="card-body en">Upon angel completion: <strong>Alpha/Beta prototype + snow test video + basic autonomy demo + first LOI advancement + initial production BOM + test data package</strong>. This is the complete technical foundation for Pre-A/Series A conversations. The Pre-A window is built on verifiable milestones — <strong>no additional assumptions required.</strong></div>
     </div>
   </div>
+</div>
 
-  <!-- FOOTER -->
-  <div class="footer-bar z">
-    <div class="footer-brand">ARCBOS</div>
-    <div class="footer-info">
-      <p><strong>龚铁靖 · Gong Tiejing · Founder / CEO</strong></p>
-      <p>info@arcbos.com · arcbos.com</p>
-      <p>天使轮 · ¥400–600万人民币 · Angel Round</p>
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<div class="footer z">
+  <div class="footer-brand">ARCBOS</div>
+  <div class="footer-grid">
+    <div class="footer-block">
+      <p><strong>龚铁靖 · Gong Tiejing</strong><br>Founder / CEO<br>info@arcbos.com<br>arcbos.com</p>
+    </div>
+    <div class="footer-block">
+      <p><strong>天使轮 · Angel Round</strong><br>¥400–600万人民币 · ¥4–6M RMB<br>Pre-money ~¥4,500万 · 出让 8–12%<br>ref.arcbos.com/teaser-angel/</p>
     </div>
   </div>
-  <div class="footer-conf z">
+  <div class="footer-conf">
     <span class="zh">严格保密 · 仅供合格投资人 · 天使轮 · 请勿转发 · 上海阿克博斯技术有限公司 · ARCBOS © 2026</span>
     <span class="en">Strictly Confidential · For Qualified Investors Only · Angel Round · Not for Distribution · Shanghai ARCBOS Systems Ltd. © 2026</span>
   </div>
-
 </div>
+
+</div><!-- /page -->
 
 <script>
 function setLang(lang){
