@@ -139,7 +139,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
 .ibadge.angel{color:var(--angel);background:var(--angel-lt);border:1px solid rgba(123,45,139,.3);}
 .ibadge.navy{color:var(--navy);background:var(--ice);border:1px solid rgba(25,64,106,.25);}
 /* FOOTER */
-.footer-bar{background:var(--navy);padding:24px 28px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;flex-wrap:wrap;gap:16px;}
+.footer-bar{background:var(--navy);padding:24px 28px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;flex-wrap:wrap;gap:16px;overflow:hidden;}
+.footer-bar::before{content:'';position:absolute;inset:0;background:url('../../teaser/snowbot-og.jpg') center/cover no-repeat;opacity:.18;z-index:0;}
+.footer-bar > *{position:relative;z-index:1;}
 .footer-brand{font-family:var(--disp);font-size:28px;color:#fff;letter-spacing:.07em;}
 .footer-info p{font-family:var(--sans-en);font-size:11px;color:rgba(255,255,255,.45);line-height:1.75;text-align:right;}
 .footer-info strong{color:rgba(255,255,255,.8);}
@@ -152,6 +154,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
   .cv-brand{font-size:52px;}.cv-product{font-size:36px;}
   .sec{padding:24px 0 24px 16px;}
   .grid2,.grid3{grid-template-columns:1fr;}
+  .grid2 [style*="grid-column:span 2"]{grid-column:span 1;}
   .stat-row{gap:8px;}
   .footer-bar{flex-direction:column;align-items:flex-start;}
   .footer-info p{text-align:left;}
@@ -582,7 +585,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;background-image:linear
     </div>
 
     <div class="grid2">
-      <div class="card ca">
+      <div class="card ca" style="grid-column:span 2">
         <div class="card-lbl">Founder · CEO</div>
         <div class="card-h zh">龚铁靖 · Gong Tiejing</div>
         <div class="card-h en">Gong Tiejing</div>
