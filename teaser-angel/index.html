@@ -3,284 +3,360 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARCBOS · SnowBot 天使轮 投资人摘要 | Physical AI × Extreme World</title>
+<title>ARCBOS · SnowBot 天使轮 投资人摘要</title>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ref.arcbos.com/teaser-angel/">
 <meta property="og:site_name" content="ARCBOS">
-<meta property="og:title" content="ARCBOS · SnowBot — 天使轮 ¥400–600万 · Physical AI × Extreme World">
-<meta property="og:description" content="极端环境工业级自治系统 · 天使轮 ¥400–600万人民币 · Angel Round ¥4–6M RMB · Industrial Autonomy for Extreme Environments">
+<meta property="og:title" content="ARCBOS · SnowBot — 天使轮 ¥400–600万 · Physical AI × Extreme Environments">
+<meta property="og:description" content="极端环境工业级自治系统 · 天使轮 ¥400–600万人民币 · 北美 US$22.5B 商业除雪市场">
 <meta property="og:image" content="https://ref.arcbos.com/teaser-angel/preview.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:locale:alternate" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ARCBOS · SnowBot — Angel Round ¥4–6M RMB">
-<meta name="twitter:description" content="Industrial Autonomy for Extreme Environments · Angel Round ¥4–6M RMB">
 <meta name="twitter:image" content="https://ref.arcbos.com/teaser-angel/preview.png">
-<meta name="description" content="ARCBOS SnowBot — 极端环境工业级自治系统 · 天使轮 ¥400–600万人民币 · Physical AI × Extreme World">
-<meta name="author" content="ARCBOS · 上海阿克博斯技术有限公司">
 <meta name="robots" content="noindex, nofollow">
-<meta name="apple-mobile-web-app-title" content="ARCBOS Angel">
-<link rel="apple-touch-icon" href="https://ref.arcbos.com/teaser/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#F3F1EB;--ink:#111318;--ink2:#232B3A;--dim:#70685F;
-  --rule:#CCC7BA;--rule2:#DEDAD2;
-  --navy:#14243A;--signal:#19406A;--accent:#B33508;
-  --gold:#96700F;--cold:#285A84;--ice:#E0EBF4;
-  --warm:rgba(150,112,15,.07);
-  --card:rgba(255,255,255,.85);--card2:rgba(255,255,255,.62);
+  --bg:#F2F0EA;--ink:#0F1319;--ink2:#1E2736;--dim:#6A6259;
+  --rule:#C8C3B6;--rule2:#DDD9D0;
+  --navy:#13223A;--signal:#17396A;--cold:#265280;--ice:#DCE8F2;
+  --gold:#8A6408;--gold-lt:rgba(138,100,8,.08);
+  --accent:#A83006;
+  --angel:#6E2880;--angel-lt:rgba(110,40,128,.10);
+  --card:#FFFFFF;--card2:rgba(255,255,255,.72);
   --mono:'DM Mono',monospace;
   --serif:'Noto Serif SC',serif;
-  --sans:'Noto Sans SC',sans-serif;
-  --sans-en:'Inter',sans-serif;
+  --sans:'Noto Sans SC','Inter',sans-serif;
+  --en:'Inter',sans-serif;
   --disp:'Bebas Neue',sans-serif;
-  --angel:#7B2D8B;
-  --angel-lt:rgba(123,45,139,.12);
 }
 [data-lang="zh"] .en{display:none!important}
 [data-lang="en"] .zh{display:none!important}
-[data-lang="en"]{--serif:'Georgia',serif;--sans:'Inter',sans-serif}
-.lang-toggle{
-  position:fixed;top:14px;left:50%;transform:translateX(-50%);
+
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;font-size:15px;line-height:1.7;}
+body::before{content:'';position:fixed;inset:0;z-index:0;
+  background-image:linear-gradient(var(--rule2) 1px,transparent 1px),
+    linear-gradient(90deg,var(--rule2) 1px,transparent 1px);
+  background-size:60px 60px;opacity:.32;pointer-events:none;}
+
+/* LANG TOGGLE */
+.lang-toggle{position:fixed;top:16px;left:50%;transform:translateX(-50%);
   z-index:9999;display:flex;align-items:center;
   background:var(--card);border:1.5px solid var(--rule);
-  box-shadow:0 2px 14px rgba(0,0,0,.12);border-radius:3px;
-  overflow:hidden;
-}
-.lang-btn{
-  font-family:var(--mono);font-size:11px;letter-spacing:.14em;
-  padding:8px 18px;cursor:pointer;border:none;
-  background:transparent;color:var(--dim);
-  transition:background .16s,color .16s;text-transform:uppercase;
-}
+  box-shadow:0 3px 18px rgba(0,0,0,.13);border-radius:4px;overflow:hidden;}
+.lang-btn{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+  padding:9px 22px;cursor:pointer;border:none;background:transparent;
+  color:var(--dim);transition:background .15s,color .15s;text-transform:uppercase;}
 .lang-btn.active{background:var(--navy);color:#fff}
-.lang-sep{width:1.5px;height:22px;background:var(--rule);flex-shrink:0}
-.page-content{transition:opacity .2s ease}
+.lang-sep{width:1.5px;height:24px;background:var(--rule);flex-shrink:0}
+.page-content{transition:opacity .18s ease}
 .page-content.out{opacity:0}
-body{
-  background:var(--bg);color:var(--ink);
-  font-family:var(--sans);-webkit-font-smoothing:antialiased;
-}
-body::before{
-  content:'';position:fixed;inset:0;z-index:0;
-  background-image:
-    linear-gradient(var(--rule2) 1px,transparent 1px),
-    linear-gradient(90deg,var(--rule2) 1px,transparent 1px);
-  background-size:56px 56px;opacity:.38;pointer-events:none;
-}
-.page{max-width:1160px;margin:0 auto;padding:0 52px;position:relative}
-.page::after{
-  content:'';position:absolute;left:52px;top:0;height:100%;width:2px;
-  background:linear-gradient(to bottom,var(--angel) 0%,var(--signal) 20%,var(--rule) 52%,transparent 100%);
-  z-index:1;
-}
-.z{position:relative;z-index:2}
-.eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase}
-.sec-label{
-  display:flex;align-items:center;gap:8px;
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;
-  color:var(--dim);text-transform:uppercase;margin-bottom:14px;
-}
-.sec-label::after{content:'';flex:1;height:1px;background:var(--rule)}
-.badge{
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
-  color:var(--signal);border:1.5px solid rgba(25,64,106,.28);
-  background:var(--ice);padding:3px 10px;
-}
-.badge-angel{
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
-  color:var(--angel);border:1.5px solid rgba(123,45,139,.3);
-  background:var(--angel-lt);padding:3px 10px;
-}
-/* ══ TOP BAND ══ */
-.top-band{
-  display:grid;grid-template-columns:1fr 348px;gap:24px;
-  align-items:end;padding:50px 0 20px 24px;
-  border-bottom:2px solid var(--rule);position:relative;z-index:2;
-}
-.brand-eyebrow{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-bottom:7px}
-.brand-name{font-family:var(--disp);font-size:56px;letter-spacing:.07em;line-height:1;color:var(--navy)}
-.brand-cn{font-family:var(--serif);font-size:15px;font-weight:400;color:var(--signal);letter-spacing:.16em;margin-top:7px}
-.brand-cn-en{font-family:var(--sans-en);font-size:13px;font-weight:400;color:var(--signal);letter-spacing:.06em;margin-top:7px}
-.brand-sub{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-top:4px}
-.robot-card{position:relative;height:205px;background:var(--navy);overflow:hidden}
-.robot-card img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block;mix-blend-mode:normal;opacity:1;filter:contrast(1.08) brightness(.88) saturate(.9)}
-.robot-card::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(20,36,58,.28) 0%,rgba(20,36,58,.10) 44%,rgba(20,36,58,.45) 100%);pointer-events:none}
-.rc-name{position:absolute;bottom:14px;left:15px;z-index:3;text-shadow:0 2px 10px rgba(0,0,0,.55)}
-.rc-product{font-family:var(--disp);font-size:27px;letter-spacing:.1em;color:#fff;line-height:1}
-.rc-sub{font-family:var(--mono);font-size:8.5px;letter-spacing:.2em;color:rgba(255,255,255,.48);text-transform:uppercase;margin-top:3px}
-.rc-raise{position:absolute;top:13px;right:13px;z-index:3;text-align:right;text-shadow:0 2px 10px rgba(0,0,0,.55)}
-.rc-round{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;color:rgba(255,255,255,.42);text-transform:uppercase;margin-bottom:3px}
-.rc-amt{font-family:var(--disp);font-size:24px;letter-spacing:.04em;color:#fff;line-height:1.15}
-.rc-amt2{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:rgba(255,210,100,.78);line-height:1;margin-top:5px;text-transform:uppercase}
-.rc-stage{font-family:var(--serif);font-size:10.5px;font-weight:600;color:rgba(255,195,70,.85);letter-spacing:.1em;margin-top:5px}
-/* ══ ANCHOR ══ */
-.anchor{padding:24px 0 22px 24px;border-bottom:1px solid var(--rule);position:relative;z-index:2}
-.anchor::before{content:'';position:absolute;left:0;top:24px;bottom:22px;width:3px;background:linear-gradient(to bottom,var(--angel),var(--signal))}
-.anchor-h{font-family:var(--disp);font-size:clamp(34px,4.2vw,52px);line-height:1.15;letter-spacing:.02em;color:var(--navy);margin-bottom:16px}
-.anchor-h .hl{color:var(--angel)}
-.anchor-sub-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:14px}
-.anchor-cn{font-family:var(--serif);font-size:17px;font-weight:900;color:var(--navy);letter-spacing:.18em}
-.anchor-cn-en{font-family:var(--sans-en);font-size:16px;font-weight:700;color:var(--navy);letter-spacing:.04em}
-.anchor-stmt{border-left:3px solid var(--angel);padding-left:15px;max-width:900px}
-.anchor-stmt p{font-size:14px;line-height:2.05;color:var(--ink2);letter-spacing:.04em}
-.anchor-stmt.zh p{font-family:var(--serif)}
-.anchor-stmt.en p{font-family:var(--sans-en);letter-spacing:.01em;line-height:1.9}
-.anchor-stmt strong{font-weight:700;color:var(--navy)}
-/* ══ MID ══ */
-.mid{display:grid;grid-template-columns:1fr 1.5px 1fr;border-bottom:1px solid var(--rule);position:relative;z-index:2}
-.vr{background:var(--rule)}
-.inv-col{padding:20px 20px 20px 24px;display:flex;flex-direction:column}
-.team-col{padding:20px 24px 20px 20px}
-.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
-.wcard{background:var(--card);border:1px solid var(--rule);padding:14px 15px;position:relative;overflow:hidden}
-.wcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.wcard.c1::before{background:var(--angel)}.wcard.c2::before{background:var(--signal)}
-.wcard.c3::before{background:var(--cold)}.wcard.c4::before{background:var(--gold)}
-.wc-n{font-family:var(--mono);font-size:9.5px;color:var(--dim);letter-spacing:.1em;margin-bottom:5px}
-.wc-title{font-size:14px;font-weight:700;color:var(--navy);line-height:1.4;margin-bottom:5px;letter-spacing:.05em}
-.wc-title.zh{font-family:var(--serif)}.wc-title.en{font-family:var(--sans-en);font-size:13px;letter-spacing:.01em}
-.wc-body{font-size:12px;font-weight:400;color:var(--dim);line-height:1.65}
-.wc-body.zh{font-family:var(--sans);letter-spacing:.02em}.wc-body.en{font-family:var(--sans-en);font-size:11.5px;letter-spacing:.01em}
-.mech{border:1px solid rgba(25,64,106,.2);background:rgba(25,64,106,.04);padding:14px 15px}
-.mech-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:var(--cold);text-transform:uppercase;margin-bottom:8px}
-.mech-f{font-size:13px;font-weight:600;color:var(--navy);line-height:1.8}
-.mech-f.zh{font-family:var(--serif);letter-spacing:.04em}.mech-f.en{font-family:var(--sans-en);font-size:12.5px;letter-spacing:.01em;line-height:1.75}
-.mech-f em{font-style:normal;color:var(--angel);font-weight:900}
-/* founder */
-.f-wrap{display:grid;grid-template-columns:3px 1fr;gap:11px;margin-bottom:10px}
-.f-spine{background:linear-gradient(to bottom,var(--gold),var(--angel))}
-.f-card{background:var(--warm);border:1px solid rgba(150,112,15,.22);padding:12px 14px;position:relative;overflow:hidden}
-.f-card::after{position:absolute;right:13px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:9px;color:rgba(150,112,15,.14);letter-spacing:.22em}
-[data-lang="zh"] .f-card::after{content:'创始人'}
-[data-lang="en"] .f-card::after{content:'Founder'}
-.f-role{font-family:var(--mono);font-size:8.5px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:4px}
-.f-name{font-size:20px;font-weight:900;color:var(--navy);margin-bottom:7px}
-.f-name.zh{font-family:var(--serif);letter-spacing:.1em}.f-name.en{font-family:var(--sans-en);font-size:18px;letter-spacing:.02em}
-.f-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px}
-.f-tag{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;color:var(--signal);border:1px solid rgba(25,64,106,.24);background:var(--ice);padding:3px 8px}
-.f-desc{font-size:12px;font-weight:400;color:var(--dim);line-height:1.7}
-.f-desc.zh{font-family:var(--sans);letter-spacing:.02em}.f-desc.en{font-family:var(--sans-en);font-size:11.5px;letter-spacing:.01em}
-.f-desc strong{color:var(--ink2);font-weight:600}
-/* team grid */
-.team-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
-.tm{background:var(--card2);border:1px solid var(--rule);padding:13px 14px;position:relative;overflow:hidden}
-.tm::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
-.tm.t-ind::before{background:var(--gold)}.tm.t-sci::before{background:var(--cold)}
-.tm.t-cto::before{background:var(--accent)}.tm.t-coo::before{background:#3A8650}
-.tm-role{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;color:var(--dim);text-transform:uppercase;margin-bottom:3px}
-.tm-name{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px}
-.tm-name.zh{font-family:var(--serif);letter-spacing:.08em}.tm-name.en{font-family:var(--sans-en);font-size:14px;letter-spacing:.02em;word-break:keep-all}
-.tm-bg{font-family:var(--sans-en);font-size:11px;font-weight:400;color:var(--signal);margin-bottom:4px;font-style:italic}
-.tm-hook{font-size:11.5px;font-weight:400;color:var(--dim);line-height:1.65}
-.tm-hook.zh{font-family:var(--sans);letter-spacing:.02em}.tm-hook.en{font-family:var(--sans-en);font-size:11px;letter-spacing:.01em}
-.tm-hook strong{color:var(--ink2);font-weight:600}
-.closure{display:flex;align-items:center;gap:9px}
-.cl-badge{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--signal);border:1px solid rgba(25,64,106,.26);background:var(--ice);padding:4px 10px;text-transform:uppercase;white-space:nowrap}
-.cl-note{font-size:11px;font-weight:400;color:var(--dim)}
-.cl-note.zh{font-family:var(--sans);letter-spacing:.02em}.cl-note.en{font-family:var(--sans-en);font-size:10.5px}
-/* ══ BOTTOM ══ */
-.bottom{display:grid;grid-template-columns:1.05fr 1.5px 1fr 1.5px 1fr;border-bottom:1px solid var(--rule);position:relative;z-index:2}
-.bvr{background:var(--rule)}
-.bc{padding:18px}.bc:first-child{padding-left:24px}.bc:last-child{padding-right:24px}
-.layers{display:flex;flex-direction:column;gap:6px}
-.lr{display:grid;grid-template-columns:64px 1fr;gap:7px;align-items:center}
-.l-tag{font-size:12px;font-weight:600;color:var(--dim)}
-.l-tag.zh{font-family:var(--serif)}.l-tag.en{font-family:var(--sans-en);font-size:11px}
-.l-bar{min-height:32px;border:1px solid var(--rule);background:var(--card2);display:flex;flex-direction:column;justify-content:center;padding:7px 11px 7px 15px;gap:3px;position:relative;}
-.l-bar::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3.5px}
-.l-bar.app::before{background:var(--angel)}.l-bar.sys::before{background:var(--signal)}.l-bar.env::before{background:var(--cold)}
-.l-name{font-size:12px;font-weight:700;color:var(--navy);letter-spacing:.04em;line-height:1.3}
-.l-name.zh{font-family:var(--serif)}.l-name.en{font-family:var(--sans-en);font-size:11.5px;letter-spacing:.01em}
-.l-detail{font-family:var(--mono);font-size:9px;color:var(--dim);line-height:1.2}
-.pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
-.pill{font-family:var(--mono);font-size:9.5px;letter-spacing:.07em;color:var(--signal);border:1px solid rgba(25,64,106,.2);background:var(--ice);padding:4px 10px}
-.road{display:flex;flex-direction:column;gap:12px}
-.ri{display:grid;grid-template-columns:52px 1fr;gap:9px}
-.ri-ph{font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding-top:3px;font-weight:500}
-.ri-ph.now{color:var(--angel)}.ri-ph.next{color:var(--signal)}.ri-ph.prea{color:var(--cold)}.ri-ph.scale{color:var(--dim)}
-.ri-main{font-size:13px;font-weight:700;color:var(--navy);line-height:1.3}
-.ri-main.zh{font-family:var(--serif);letter-spacing:.04em}.ri-main.en{font-family:var(--sans-en);font-size:12.5px;letter-spacing:.01em}
-.ri-sub{font-size:11px;font-weight:400;color:var(--dim);margin-top:2px;line-height:1.55}
-.ri-sub.zh{font-family:var(--sans);letter-spacing:.02em}.ri-sub.en{font-family:var(--sans-en);font-size:10.5px;letter-spacing:.01em}
-.use{display:flex;flex-direction:column;gap:7px}
-.uc{border:1px solid var(--rule);padding:13px 14px;background:var(--card2);position:relative;overflow:hidden}
-.uc::after{content:'';position:absolute;top:0;left:0;right:0;height:2.5px}
-.uc.u1::after{background:var(--angel)}.uc.u2::after{background:var(--signal);opacity:.7}.uc.u3::after{background:var(--cold);opacity:.55}
-.uc-idx{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--dim);margin-bottom:4px}
-.uc-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
-.uc-title.zh{font-family:var(--serif);letter-spacing:.05em}.uc-title.en{font-family:var(--sans-en);font-size:13px;letter-spacing:.01em}
-.uc-sub{font-size:11.5px;font-weight:400;color:var(--dim);line-height:1.6}
-.uc-sub.zh{font-family:var(--sans);letter-spacing:.02em}.uc-sub.en{font-family:var(--sans-en);font-size:11px;letter-spacing:.01em}
-/* ══ CTA ══ */
-.cta{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;background:var(--navy);position:relative;z-index:2}
-.cta-ey{font-family:var(--mono);font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,.36);text-transform:uppercase;margin-bottom:4px}
-.cta-label{font-size:18px;font-weight:900;color:#fff;margin-bottom:2px}
-.cta-label.zh{font-family:var(--serif);letter-spacing:.14em}.cta-label.en{font-family:var(--sans-en);font-size:16px;letter-spacing:.04em}
-.cta-disp{font-family:var(--disp);font-size:32px;letter-spacing:.07em;color:rgba(255,195,70,.92);line-height:1}
-.cta-r{display:flex;align-items:center;gap:20px}
-.cta-info p{font-family:var(--sans-en);font-size:11px;font-weight:400;color:rgba(255,255,255,.45);line-height:1.75;text-align:right;letter-spacing:.02em}
-.cta-info strong{color:rgba(255,255,255,.8);font-weight:600}
-.cta-btn{
-  display:inline-flex;align-items:center;gap:8px;
+
+/* LAYOUT */
+.page{max-width:1080px;margin:0 auto;padding:0 48px;position:relative;}
+.page::after{content:'';position:absolute;left:48px;top:0;height:100%;width:2px;
+  background:linear-gradient(to bottom,var(--angel) 0%,var(--signal) 22%,var(--rule) 55%,transparent 100%);
+  z-index:1;pointer-events:none;}
+.z{position:relative;z-index:2;}
+
+/* EYEBROW / LABEL */
+.ey{font-family:var(--mono);font-size:10px;letter-spacing:.22em;
+  color:var(--dim);text-transform:uppercase;}
+.sec-label{display:flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;
+  color:var(--dim);text-transform:uppercase;margin-bottom:20px;}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+/* TOP BAND */
+.top-band{display:grid;grid-template-columns:1fr 360px;gap:28px;
+  align-items:end;padding:60px 0 28px 28px;
+  border-bottom:2px solid var(--rule);}
+.brand-ey{font-family:var(--mono);font-size:10px;letter-spacing:.22em;
+  color:var(--dim);text-transform:uppercase;margin-bottom:10px;}
+.brand-name{font-family:var(--disp);font-size:62px;letter-spacing:.07em;
+  line-height:1;color:var(--navy);margin-bottom:10px;}
+.brand-tag{font-size:16px;font-weight:600;letter-spacing:.12em;
+  color:var(--signal);margin-bottom:6px;}
+.brand-tag.zh{font-family:var(--serif);}
+.brand-tag.en{font-family:var(--en);letter-spacing:.04em;font-size:15px;}
+.brand-sub{font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+  color:var(--dim);text-transform:uppercase;}
+
+/* ROBOT CARD */
+.robot-card{position:relative;height:218px;overflow:hidden;background:var(--navy);}
+.robot-card img{width:100%;height:100%;object-fit:cover;object-position:center 28%;
+  display:block;filter:brightness(.86) contrast(1.06) saturate(.92);}
+.robot-card::before{content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(135deg,rgba(19,34,58,.45) 0%,rgba(19,34,58,.08) 45%,rgba(110,40,128,.35) 100%);
+  pointer-events:none;}
+.rc-name{position:absolute;bottom:16px;left:16px;z-index:3;}
+.rc-product{font-family:var(--disp);font-size:30px;letter-spacing:.1em;
+  color:#fff;line-height:1;text-shadow:0 2px 12px rgba(0,0,0,.6);}
+.rc-raise{position:absolute;top:14px;right:14px;z-index:3;text-align:right;}
+.rc-round{font-family:var(--mono);font-size:9px;letter-spacing:.18em;
+  color:rgba(255,255,255,.45);text-transform:uppercase;margin-bottom:4px;}
+.rc-amt{font-family:var(--disp);font-size:26px;letter-spacing:.05em;
+  color:#fff;line-height:1.1;text-shadow:0 2px 10px rgba(0,0,0,.5);}
+.rc-meta{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  color:rgba(255,208,90,.88);text-transform:uppercase;margin-top:5px;line-height:1.5;}
+
+/* ANCHOR — CORE THESIS */
+.anchor{padding:32px 0 28px 28px;border-bottom:1px solid var(--rule);}
+.anchor::before{content:'';position:absolute;left:0;top:32px;bottom:28px;
+  width:3px;background:linear-gradient(to bottom,var(--angel),var(--signal));}
+.anchor-h{font-family:var(--disp);font-size:clamp(38px,4.5vw,58px);
+  line-height:1.2;letter-spacing:.02em;color:var(--navy);
+  margin-bottom:20px;}
+.anchor-h .hl{color:var(--angel);}
+.anchor-badges{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+.abadge{font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+  padding:5px 12px;border:1.5px solid;}
+.abadge.angel{color:var(--angel);border-color:rgba(110,40,128,.35);background:var(--angel-lt);}
+.abadge.navy{color:var(--signal);border-color:rgba(23,57,106,.3);background:var(--ice);}
+.anchor-body{border-left:3px solid var(--angel);padding-left:18px;max-width:860px;}
+.anchor-body p{font-size:15px;line-height:1.95;color:var(--ink2);margin-bottom:0;}
+.anchor-body p.zh{font-family:var(--serif);letter-spacing:.04em;}
+.anchor-body p.en{font-family:var(--en);letter-spacing:.01em;line-height:1.85;}
+.anchor-body strong{font-weight:700;color:var(--navy);}
+
+/* VALUE GRID */
+.value-section{padding:28px 0 28px 28px;border-bottom:1px solid var(--rule);}
+.vgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:0;}
+.vcard{background:var(--card);border:1px solid var(--rule);
+  padding:18px 18px;position:relative;overflow:hidden;}
+.vcard::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.vcard.v1::before{background:var(--angel);}
+.vcard.v2::before{background:var(--signal);}
+.vcard.v3::before{background:var(--cold);}
+.vcard.v4::before{background:var(--gold);}
+.vcard-n{font-family:var(--mono);font-size:10px;color:var(--dim);
+  letter-spacing:.12em;margin-bottom:8px;}
+.vcard-h{font-size:15px;font-weight:700;color:var(--navy);
+  line-height:1.4;margin-bottom:8px;}
+.vcard-h.zh{font-family:var(--serif);letter-spacing:.04em;}
+.vcard-h.en{font-family:var(--en);font-size:14px;}
+.vcard-b{font-size:13.5px;color:var(--dim);line-height:1.7;}
+.vcard-b.zh{font-family:var(--sans);letter-spacing:.02em;}
+.vcard-b.en{font-family:var(--en);}
+.vcard-b strong{color:var(--ink2);font-weight:600;}
+
+/* DELIVERABLE BOX */
+.deliver-box{border:1px solid rgba(110,40,128,.28);background:var(--angel-lt);
+  padding:16px 18px;margin-top:12px;}
+.deliver-lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;
+  color:var(--angel);text-transform:uppercase;margin-bottom:10px;}
+.deliver-f{font-size:14px;font-weight:600;color:var(--navy);line-height:1.85;}
+.deliver-f.zh{font-family:var(--serif);letter-spacing:.04em;}
+.deliver-f.en{font-family:var(--en);font-size:13.5px;}
+.deliver-f em{font-style:normal;color:var(--angel);font-weight:800;}
+
+/* COMPETITIVE TABLE */
+.comp-section{padding:28px 0 28px 28px;border-bottom:1px solid var(--rule);}
+.comp-tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:0;}
+.comp-tbl th{font-family:var(--mono);font-size:9px;letter-spacing:.18em;
+  color:var(--dim);text-transform:uppercase;
+  border-bottom:1.5px solid var(--rule);padding:8px 12px;text-align:left;}
+.comp-tbl td{padding:10px 12px;border-bottom:1px solid var(--rule2);
+  vertical-align:middle;line-height:1.5;}
+.comp-tbl td.zh{font-family:var(--serif);letter-spacing:.03em;}
+.comp-tbl td.en{font-family:var(--en);}
+.comp-tbl td.num{font-family:var(--mono);font-size:12.5px;color:var(--navy);
+  font-weight:600;white-space:nowrap;}
+.comp-tbl tr.ours td{background:var(--angel-lt);}
+.comp-tbl tr.ours td.co{font-weight:800;color:var(--angel);}
+.dot-yes{color:#2E7D32;font-weight:700;}
+.dot-no{color:#B71C1C;font-weight:700;}
+.dot-part{color:var(--gold);font-weight:700;}
+
+/* TEAM */
+.team-section{padding:28px 0 28px 28px;border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:1fr 1.5px 1fr;gap:0;}
+.tvr{background:var(--rule);}
+.t-left{padding-right:24px;}
+.t-right{padding-left:24px;}
+.founder-card{background:var(--gold-lt);border:1px solid rgba(138,100,8,.22);
+  padding:18px 18px 18px 22px;position:relative;overflow:hidden;margin-bottom:12px;}
+.founder-card::before{content:'';position:absolute;left:0;top:0;bottom:0;
+  width:3px;background:linear-gradient(to bottom,var(--gold),var(--angel));}
+.fc-role{font-family:var(--mono);font-size:9px;letter-spacing:.2em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
+.fc-name{font-size:22px;font-weight:900;color:var(--navy);margin-bottom:10px;line-height:1.2;}
+.fc-name.zh{font-family:var(--serif);letter-spacing:.1em;}
+.fc-name.en{font-family:var(--en);font-size:20px;}
+.fc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.fc-tag{font-family:var(--mono);font-size:9px;letter-spacing:.08em;
+  color:var(--signal);border:1px solid rgba(23,57,106,.22);
+  background:var(--ice);padding:4px 9px;}
+.fc-desc{font-size:13.5px;color:var(--dim);line-height:1.75;}
+.fc-desc.zh{font-family:var(--sans);letter-spacing:.02em;}
+.fc-desc.en{font-family:var(--en);}
+.fc-desc strong{color:var(--ink2);font-weight:600;}
+.team-cards{display:flex;flex-direction:column;gap:8px;}
+.tc{background:var(--card2);border:1px solid var(--rule);
+  padding:14px 14px 14px 18px;position:relative;overflow:hidden;}
+.tc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.tc.ti::before{background:var(--gold);}
+.tc.ts::before{background:var(--cold);}
+.tc.tm::before{background:var(--accent);}
+.tc.ta::before{background:var(--angel);}
+.tc-role{font-family:var(--mono);font-size:9px;letter-spacing:.16em;
+  color:var(--dim);text-transform:uppercase;margin-bottom:5px;}
+.tc-name{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:4px;line-height:1.2;}
+.tc-name.zh{font-family:var(--serif);letter-spacing:.08em;}
+.tc-name.en{font-family:var(--en);}
+.tc-bg{font-size:12px;font-style:italic;color:var(--signal);margin-bottom:5px;line-height:1.4;}
+.tc-bg.zh{font-family:var(--sans);}
+.tc-bg.en{font-family:var(--en);}
+.tc-hook{font-size:13px;color:var(--dim);line-height:1.6;}
+.tc-hook.zh{font-family:var(--sans);letter-spacing:.02em;}
+.tc-hook.en{font-family:var(--en);}
+.tc-hook strong{color:var(--ink2);font-weight:600;}
+.team-close{margin-top:10px;display:flex;align-items:flex-start;gap:10px;}
+.tc-badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+  color:var(--signal);border:1px solid rgba(23,57,106,.25);
+  background:var(--ice);padding:5px 12px;white-space:nowrap;flex-shrink:0;}
+.tc-note{font-size:12.5px;color:var(--dim);line-height:1.65;}
+.tc-note.zh{font-family:var(--sans);letter-spacing:.02em;}
+.tc-note.en{font-family:var(--en);}
+
+/* BOTTOM — MILESTONES + CAPITAL + USE OF FUNDS */
+.bottom-section{display:grid;grid-template-columns:1fr 1.5px 1fr 1.5px 1fr;
+  border-bottom:1px solid var(--rule);}
+.bvr{background:var(--rule);}
+.bc{padding:24px 20px 24px 24px;}
+.bc:last-child{padding-right:24px;}
+
+.ms-row{display:grid;grid-template-columns:60px 1fr;gap:10px;align-items:start;margin-bottom:10px;}
+.ms-tag{font-family:var(--mono);font-size:10.5px;font-weight:600;
+  color:var(--dim);padding-top:4px;}
+.ms-bar{border:1px solid var(--rule);background:var(--card2);
+  padding:9px 12px 9px 14px;position:relative;}
+.ms-bar::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.ms-bar.ma::before{background:var(--angel);}
+.ms-bar.mb::before{background:var(--signal);}
+.ms-bar.mc::before{background:var(--cold);}
+.ms-title{font-size:12.5px;font-weight:700;color:var(--navy);
+  line-height:1.35;margin-bottom:2px;}
+.ms-title.zh{font-family:var(--serif);letter-spacing:.03em;}
+.ms-title.en{font-family:var(--en);font-size:12px;}
+.ms-sub{font-family:var(--mono);font-size:9px;color:var(--dim);line-height:1.3;}
+.ms-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.mpill{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;
+  color:var(--signal);border:1px solid rgba(23,57,106,.2);
+  background:var(--ice);padding:5px 10px;}
+
+.road-list{display:flex;flex-direction:column;gap:0;}
+.road-item{display:grid;grid-template-columns:56px 1fr;gap:10px;
+  padding:12px 0;border-bottom:1px solid var(--rule2);}
+.road-item:last-child{border-bottom:none;}
+.road-ph{font-family:var(--mono);font-size:9px;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:600;padding-top:3px;line-height:1.5;}
+.rph-now{color:var(--angel);}
+.rph-next{color:var(--signal);}
+.rph-prea{color:var(--cold);}
+.rph-scale{color:var(--dim);}
+.road-main{font-size:13px;font-weight:700;color:var(--navy);
+  line-height:1.35;margin-bottom:4px;}
+.road-main.zh{font-family:var(--serif);letter-spacing:.03em;}
+.road-main.en{font-family:var(--en);font-size:12.5px;}
+.road-sub{font-size:11.5px;color:var(--dim);line-height:1.6;}
+.road-sub.zh{font-family:var(--sans);letter-spacing:.02em;}
+.road-sub.en{font-family:var(--en);}
+
+.use-list{display:flex;flex-direction:column;gap:8px;}
+.use-item{border:1px solid var(--rule);background:var(--card2);
+  padding:14px 14px;position:relative;overflow:hidden;}
+.use-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2.5px;}
+.ui1::before{background:var(--angel);}
+.ui2::before{background:var(--signal);}
+.ui3::before{background:var(--cold);}
+.ui-idx{font-family:var(--mono);font-size:9px;letter-spacing:.12em;
+  color:var(--dim);margin-bottom:5px;}
+.ui-title{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:5px;line-height:1.3;}
+.ui-title.zh{font-family:var(--serif);letter-spacing:.04em;}
+.ui-title.en{font-family:var(--en);font-size:13.5px;}
+.ui-body{font-size:12.5px;color:var(--dim);line-height:1.65;}
+.ui-body.zh{font-family:var(--sans);letter-spacing:.02em;}
+.ui-body.en{font-family:var(--en);}
+
+/* CTA */
+.cta-band{background:var(--navy);padding:28px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:relative;overflow:hidden;}
+.cta-band::before{content:'';position:absolute;inset:0;
+  background:url('snowbot-angel.jpg') center 30%/cover no-repeat;
+  opacity:.12;z-index:0;}
+.cta-band > *{position:relative;z-index:1;}
+.cta-ey{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;
+  color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:6px;}
+.cta-title{font-size:20px;font-weight:900;color:#fff;margin-bottom:4px;line-height:1.3;}
+.cta-title.zh{font-family:var(--serif);letter-spacing:.12em;}
+.cta-title.en{font-family:var(--en);font-size:18px;}
+.cta-disp{font-family:var(--disp);font-size:36px;letter-spacing:.07em;
+  color:rgba(255,200,70,.92);line-height:1;}
+.cta-right{display:flex;align-items:center;gap:24px;}
+.cta-contact p{font-family:var(--en);font-size:12px;
+  color:rgba(255,255,255,.45);line-height:1.8;text-align:right;}
+.cta-contact strong{color:rgba(255,255,255,.82);}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;
   background:var(--angel);color:#fff;
-  font-family:var(--sans-en);font-size:13.5px;font-weight:700;
-  letter-spacing:.08em;padding:14px 24px;
-  text-decoration:none;white-space:nowrap;
-  border:none;cursor:pointer;
-  transition:background .18s,transform .14s;
-}
-.cta-btn:hover{background:#621e74;transform:translateY(-1px)}
-.cta-btn:active{transform:translateY(0)}
-.conf{padding:11px 24px;display:flex;justify-content:space-between;border-top:1px solid var(--rule);position:relative;z-index:2}
-.conf span{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;color:var(--dim);opacity:.45;text-transform:uppercase}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.a{animation:fadeUp .6s ease both}
-.d1{animation-delay:.04s}.d2{animation-delay:.11s}.d3{animation-delay:.18s}
-.d4{animation-delay:.28s}.d5{animation-delay:.38s}.d6{animation-delay:.50s}.d7{animation-delay:.60s}
+  font-family:var(--en);font-size:14px;font-weight:700;
+  letter-spacing:.07em;padding:15px 26px;
+  text-decoration:none;white-space:nowrap;border:none;cursor:pointer;
+  transition:background .16s,transform .13s;}
+.cta-btn:hover{background:#561a6a;transform:translateY(-1px);}
+
+/* CONF */
+.conf-bar{padding:12px 28px;display:flex;justify-content:space-between;
+  border-top:1px solid var(--rule);}
+.conf-bar span{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;
+  color:var(--dim);opacity:.45;text-transform:uppercase;}
+
+/* RESPONSIVE ≤960px */
 @media(max-width:960px){
-  .page{padding:0 24px}.page::after{left:24px}
-  .top-band{grid-template-columns:1fr;padding:50px 0 18px 18px;gap:16px}
-  .robot-card{width:100%;height:195px}
-  .anchor{padding:22px 0 20px 18px}
-  .mid{grid-template-columns:1fr}
-  .vr{height:1px;width:100%;margin:0}
-  .inv-col{padding:18px 0 18px 18px}
-  .team-col{padding:18px 0 18px 18px}
-  .team-grid{grid-template-columns:1fr}
-  .bottom{grid-template-columns:1fr}
-  .bvr{height:1px;width:100%}
-  .bc{padding:18px 0 18px 18px}
-  .bc:first-child,.bc:last-child{padding-left:18px;padding-right:0}
-  .cta{flex-direction:column;align-items:flex-start;gap:18px;padding:20px 18px}
-  .cta-r{align-self:stretch;justify-content:space-between}
-  .conf{padding:11px 18px}
+  .page{padding:0 24px;}.page::after{left:24px;}
+  .top-band{grid-template-columns:1fr;padding:56px 0 22px 18px;gap:18px;}
+  .robot-card{height:200px;}
+  .anchor{padding:26px 0 24px 18px;}
+  .value-section{padding:24px 0 24px 18px;}
+  .comp-section{padding:24px 0 24px 18px;}
+  .team-section{grid-template-columns:1fr;padding:0;}
+  .tvr{height:1px;width:100%;}
+  .t-left{padding:24px 0 24px 18px;}
+  .t-right{padding:24px 0 24px 18px;}
+  .bottom-section{grid-template-columns:1fr;}
+  .bvr{height:1px;width:100%;}
+  .bc{padding:22px 0 22px 18px;}
+  .bc:last-child{padding-right:0;}
+  .cta-band{flex-direction:column;align-items:flex-start;gap:20px;padding:24px 18px;}
+  .cta-right{align-self:stretch;justify-content:space-between;}
+  .conf-bar{padding:12px 18px;}
 }
-@media(max-width:540px){
-  .lang-toggle{top:10px}
-  .page{padding:0 16px}.page::after{left:16px}
-  .top-band{padding:48px 0 16px 14px}
-  .brand-name{font-size:44px}
-  .robot-card{height:170px}
-  .rc-amt{font-size:19px}.rc-amt2{font-size:13px}
-  .anchor{padding:20px 0 18px 14px}
-  .anchor-h{font-size:32px;line-height:.94}
-  .anchor-stmt p{font-size:13px}
-  .why-grid{grid-template-columns:1fr;gap:7px}
-  .team-grid{grid-template-columns:1fr}
-  .bc{padding:16px 0 16px 14px}
-  .cta{padding:18px 16px;gap:16px}
-  .cta-r{flex-direction:column;align-items:stretch;gap:14px}
-  .cta-info p{text-align:left}
-  .cta-btn{width:100%;justify-content:center;font-size:13px;padding:14px 20px}
-  .conf{flex-direction:column;gap:5px;padding:10px 16px}
-  .conf span{font-size:8px}
+@media(max-width:560px){
+  .page{padding:0 16px;}.page::after{left:16px;}
+  .top-band{padding:52px 0 18px 14px;}
+  .brand-name{font-size:50px;}
+  .robot-card{height:180px;}
+  .anchor{padding:22px 0 20px 14px;}
+  .anchor-h{font-size:36px;}
+  .anchor-body p{font-size:14px;}
+  .value-section,.comp-section{padding:20px 0 20px 14px;}
+  .vgrid{grid-template-columns:1fr;}
+  .t-left,.t-right{padding-left:14px;}
+  .bc{padding:20px 0 20px 14px;}
+  .cta-band{padding:20px 14px;}
+  .cta-right{flex-direction:column;align-items:stretch;gap:14px;}
+  .cta-contact p{text-align:left;}
+  .cta-btn{width:100%;justify-content:center;font-size:13.5px;padding:14px 20px;}
+  .conf-bar{flex-direction:column;gap:5px;padding:10px 14px;}
 }
 </style>
 </head>
@@ -292,304 +368,378 @@ body::before{
 </div>
 
 <div class="page page-content" id="pc">
-  <!-- ① TOP -->
-  <div class="top-band z a d1">
-    <div>
-      <div class="brand-eyebrow">
-        <span class="zh">投资人摘要 · 天使轮 · 严格保密 · 2026</span>
-        <span class="en">Investor Teaser · Angel Round · Strictly Confidential · 2026</span>
-      </div>
-      <div class="brand-name">ARCBOS</div>
-      <div class="brand-cn zh">极端环境工业级自治系统</div>
-      <div class="brand-cn-en en">Industrial Autonomy for Extreme Environments</div>
-      <div class="brand-sub">Engineered for Extreme Conditions</div>
-    </div>
-    <div class="robot-card">
-      <img src="snowbot-angel.jpg" alt="SnowBot">
-      <div class="rc-name">
-        <div class="rc-product">SNOWBOT</div>
-      </div>
-      <div class="rc-raise">
-        <div class="rc-round zh">天使轮 · 融资金额</div>
-        <div class="rc-round en">Angel Round · Raising</div>
-        <div class="rc-amt zh">¥400–600万</div>
-        <div class="rc-amt en">¥4–6M RMB</div>
-        <div class="rc-amt2 zh">Pre-money ~¥4,500万</div>
-        <div class="rc-amt2 en">Pre-money ~CNY 45M</div>
-      </div>
-    </div>
-  </div>
 
-  <!-- ② ANCHOR -->
-  <div class="anchor z a d2">
-    <div class="eyebrow" style="margin-bottom:10px">
-      <span class="zh">核心判断 · Core Thesis</span>
-      <span class="en">Core Thesis</span>
-    </div>
-    <div class="anchor-h zh">¥590万工程预算<br><span class="hl">样机证明一切</span></div>
-    <div class="anchor-h en">¥5.9M Engineering Budget<br><span class="hl">Prototype Proves Everything</span></div>
-    <div class="anchor-sub-row">
-      <span class="anchor-cn zh">零件到货 · 样机组装中</span>
-      <span class="anchor-cn-en en">Parts In Hand · Prototype in Assembly</span>
-      <span class="badge-angel zh">天使轮 · 6–8个月交付</span>
-      <span class="badge-angel en">Angel · 6–8 Month Delivery</span>
-      <span class="badge zh">首批试点意向已确认</span>
-      <span class="badge en">First Pilot Intent Confirmed</span>
-    </div>
-    <div class="anchor-stmt zh">
-      <p>北美商业设施除雪市场 <strong>US$225亿（2023）</strong>，已预算化、每年重复。天使轮目标只有一个：<strong>用¥400–600万人民币完成工程样机 Alpha/Beta，进入冬季真实工况验证，产出雪地测试视频与基础自治演示</strong>，以此支撑 Pre-A/A 轮融资讨论。预算基准 <strong>¥590万</strong>，月均约 74万，6–8个月周期，含 <strong>11% 风险储备</strong>。钱用在底盘、作业机构、测试、安全——不是团队扩张、不是豪华办公。SnowBot 当前已完成关键零件选型与到货，工程样机进入组装阶段；CBRE、Colliers 管理体系内的设施负责人（管理 50+ 大型商业设施）已明确试点意向。</p>
-    </div>
-    <div class="anchor-stmt en">
-      <p>North American commercial snow management is a <strong>US$22.5B (2023)</strong> budgeted, recurring market. The Angel Round has one goal: <strong>¥4–6M RMB to complete Alpha/Beta engineering prototype, enter winter field validation, and produce snow-field test video and basic autonomy demo</strong> — assets that directly support Pre-A/Series A fundraising. Budget baseline: <strong>¥5.9M</strong>, ~¥740K/month avg, 6–8 month cycle, including <strong>11% risk reserve</strong>. Capital goes to chassis, work mechanism, testing, and safety — not headcount expansion or offices. Core components have arrived, prototype is in assembly; facility managers within CBRE and Colliers networks (50+ large facilities) have confirmed pilot intent.</p>
+<!-- TOP BAND -->
+<div class="top-band z">
+  <div>
+    <div class="brand-ey zh">投资人摘要 · 天使轮 · 严格保密 · 2026</div>
+    <div class="brand-ey en">Investor Teaser · Angel Round · Strictly Confidential · 2026</div>
+    <div class="brand-name">ARCBOS</div>
+    <div class="brand-tag zh">极端环境工业级自治系统</div>
+    <div class="brand-tag en">Industrial Autonomy for Extreme Environments</div>
+    <div class="brand-sub">Physical AI · Engineered for Extreme Conditions</div>
+  </div>
+  <div class="robot-card">
+    <img src="snowbot-angel.jpg" alt="SnowBot">
+    <div class="rc-name"><div class="rc-product">SNOWBOT</div></div>
+    <div class="rc-raise">
+      <div class="rc-round zh">天使轮 · 融资目标</div>
+      <div class="rc-round en">Angel Round · Target</div>
+      <div class="rc-amt zh">¥400–600万</div>
+      <div class="rc-amt en">¥4–6M RMB</div>
+      <div class="rc-meta zh">PRE-MONEY ~¥4,500万 · 出让 8–12%</div>
+      <div class="rc-meta en">PRE-MONEY ~CNY 45M · 8–12% EQUITY</div>
     </div>
   </div>
+</div>
 
-  <!-- ③ MID -->
-  <div class="mid z a d3">
-    <div class="inv-col">
-      <div class="sec-label">
-        <span class="zh">投资逻辑 · 天使轮价值锚</span>
-        <span class="en">Investment Logic · Angel Value Anchors</span>
-      </div>
-      <div class="why-grid">
-        <div class="wcard c1">
-          <div class="wc-n">01</div>
-          <div class="wc-title zh">预算对齐 · 钱用在哪</div>
-          <div class="wc-title en">Budget-Aligned Capital Use</div>
-          <div class="wc-body zh">¥590万基准：底盘机械 <strong>120万</strong>、导航控制 <strong>55万</strong>、测试运营 <strong>85万</strong>、人员 <strong>165万</strong>、安全合规 + 风险储备 <strong>130万</strong>。硬件占比逾 45%，无黑盒。</div>
-          <div class="wc-body en">¥5.9M baseline: Chassis ¥1.2M · Nav/Control ¥0.55M · Testing ¥0.85M · Personnel ¥1.65M · Safety + Reserve ¥1.3M. Hardware &gt;45% of total, no black boxes.</div>
-        </div>
-        <div class="wcard c2">
-          <div class="wc-n">02</div>
-          <div class="wc-title zh">里程碑清晰 · 无黑盒研发</div>
-          <div class="wc-title en">Clear Milestones · No Black Box</div>
-          <div class="wc-body zh">Alpha A1→A4 工程原型，Beta B1→B5 产品演示。每月均有可验证交付物：能跑 → 能作业 → 能自治 → 能演示，四阶段全透明</div>
-          <div class="wc-body en">Alpha A1→A4 engineering prototype, Beta B1→B5 product demo. Monthly verifiable deliverables: Move → Work → Autonomy → Demo — four transparent stages</div>
-        </div>
-        <div class="wcard c3">
-          <div class="wc-n">03</div>
-          <div class="wc-title zh">融资价值清晰 · 支撑 Pre-A</div>
-          <div class="wc-title en">Clear Fundraising Value · Pre-A Ready</div>
-          <div class="wc-body zh">天使轮产出：雪地测试视频 + Alpha/Beta 样机 + 基础自治能力 + 测试数据包 + 量产 BOM，直接支撑 Pre-A/A 轮融资文件</div>
-          <div class="wc-body en">Angel deliverables: snow-field test video + Alpha/Beta prototype + basic autonomy + test data package + production BOM — directly supports Pre-A/Series A docs</div>
-        </div>
-        <div class="wcard c4">
-          <div class="wc-n">04</div>
-          <div class="wc-title zh">市场背书已就绪</div>
-          <div class="wc-title en">Market Validation In Place</div>
-          <div class="wc-body zh">US$225亿市场，RaaS 定价 $16,000–28,000/年。CBRE/Colliers 渠道激活，50+ 大型设施意向方。采购流程标准化（SIMA 5月 RFP · 9月授标），进入路径清晰</div>
-          <div class="wc-body en">US$22.5B market, RaaS $16,000–28,000/yr. CBRE/Colliers channel activated, 50+ facilities intent confirmed. Standardized procurement (SIMA May RFP · Sept award). Clear entry path.</div>
-        </div>
-      </div>
-      <div class="mech" style="margin-top:auto">
-        <div class="mech-lbl">
-          <span class="zh">本轮交付物 · Angel Deliverables</span>
-          <span class="en">Angel Round Deliverables</span>
-        </div>
-        <div class="mech-f zh">雪地测试视频 × Alpha/Beta样机 × 基础自治演示<br>= <em>Pre-A/A 轮融资的核心技术资产</em></div>
-        <div class="mech-f en">Snow-Field Video × Alpha/Beta Prototype × Basic Autonomy Demo<br>= <em>Core Technical Asset for Pre-A/Series A Fundraising</em></div>
-      </div>
-    </div>
-    <div class="vr"></div>
-    <div class="team-col">
-      <div class="sec-label">
-        <span class="zh">团队 · 创始人主导</span>
-        <span class="en">Team · Founder-Led</span>
-      </div>
-      <div class="f-wrap">
-        <div class="f-spine"></div>
-        <div class="f-card">
-          <div class="f-role">Founder · CEO</div>
-          <div class="f-name zh">龚铁靖</div>
-          <div class="f-name en">Gong Tiejing</div>
-          <div class="f-tags">
-            <span class="f-tag zh">电气工程 · 能源系统</span><span class="f-tag en">Electrical Eng · Energy Systems</span>
-            <span class="f-tag zh">北美 C&amp;I 10年+</span><span class="f-tag en">10+ Years North America C&amp;I</span>
-            <span class="f-tag zh">PepsiCo · Shell · B&amp;V · Blink</span><span class="f-tag en">PepsiCo · Shell · B&amp;V · Blink</span>
-            <span class="f-tag zh">CBRE · Colliers 合作合伙</span><span class="f-tag en">CBRE · Colliers Channel Partner</span>
-          </div>
-          <div class="f-desc zh">北美工商业能源系统电气专家，深耕北美 C&amp;I 市场超过 <strong>10年</strong>。主导交付过 PepsiCo、Shell、B&amp;V、Blink Charging 等大型客户的能源管理全系统项目。CBRE、Colliers 是合作合伙方，首批试点意向即来自这一网络，<strong>SnowBot 是从十年现场里长出来的产品</strong>。</div>
-          <div class="f-desc en">Electrical engineer and energy systems expert with <strong>10+ years</strong> in North American C&amp;I markets. Led full-stack delivery for PepsiCo, Shell, B&amp;V, and Blink Charging. CBRE and Colliers are channel partners; first pilot intent came from this network. <strong>SnowBot came from ten years on the ground.</strong></div>
-        </div>
-      </div>
-      <div class="team-grid">
-        <div class="tm t-ind">
-          <div class="tm-role zh">产业顾问</div><div class="tm-role en">Industry Advisor</div>
-          <div class="tm-name zh">杨光华</div><div class="tm-name en">Yang Guanghua</div>
-          <div class="tm-bg zh">机器人产业链专家 · 清华具身智能产业协会副会长</div>
-          <div class="tm-bg en">Robotics Supply Chain Expert · VP, Tsinghua Embodied AI Assoc.</div>
-          <div class="tm-hook zh"><strong>全产业链直连</strong> · 样机到量产不可替代</div>
-          <div class="tm-hook en"><strong>Full supply chain direct access</strong> · Irreplaceable path to production</div>
-        </div>
-        <div class="tm t-cto">
-          <div class="tm-role zh">结构与系统集成</div><div class="tm-role en">Structural & Integration</div>
-          <div class="tm-name zh">陈超</div><div class="tm-name en">Chen Chao</div>
-          <div class="tm-bg zh">前飞利浦医疗机器人</div>
-          <div class="tm-bg en">Former Philips Medical Robotics</div>
-          <div class="tm-hook zh">底盘结构设计 + 样机装配</div>
-          <div class="tm-hook en">Chassis design + prototype assembly</div>
-        </div>
-        <div class="tm t-coo">
-          <div class="tm-role zh">市场与商业化</div><div class="tm-role en">Market & Commercialization</div>
-          <div class="tm-name zh">甄文胜</div><div class="tm-name en">Zhen Wensheng</div>
-          <div class="tm-bg zh">前头部机器人公司市场负责人</div>
-          <div class="tm-bg en">Former Market Lead, Top Robotics Co.</div>
-          <div class="tm-hook zh">客户验证 + 试点推进</div>
-          <div class="tm-hook en">Customer validation + pilot advancement</div>
-        </div>
-        <div class="tm" style="border-left:3px solid #7B2D8B">
-          <div class="tm-role zh">联合创始人 · 供应链</div><div class="tm-role en">Co-Founder · Supply Chain</div>
-          <div class="tm-name zh">龚继锋</div><div class="tm-name en">Gong Jifeng</div>
-          <div class="tm-bg zh">供应链与工程协同</div>
-          <div class="tm-bg en">Supply Chain & Engineering Coordination</div>
-          <div class="tm-hook zh">外协体系 + 样机到量产衔接</div>
-          <div class="tm-hook en">Subcontracting + prototype-to-production</div>
-        </div>
-      </div>
-      <div class="closure">
-        <span class="cl-badge zh">6–8人精干团队</span>
-        <span class="cl-badge en">Lean 6–8 Team</span>
-        <span class="cl-note zh">10年北美交付 · 产业链直连 · 结构工程 · 商业转化 — 职责清晰，无凑数成员</span>
-        <span class="cl-note en">10yr NA delivery · Supply chain access · Structural eng · Commercial — clear roles, no filler</span>
-      </div>
-    </div>
+<!-- CORE THESIS -->
+<div class="anchor z">
+  <div class="ey" style="margin-bottom:14px">
+    <span class="zh">核心判断 · Core Thesis</span>
+    <span class="en">Core Thesis</span>
   </div>
+  <div class="anchor-h zh">¥590万工程预算<br><span class="hl">样机证明一切</span></div>
+  <div class="anchor-h en">¥5.9M Engineering Budget<br><span class="hl">Prototype Proves Everything</span></div>
+  <div class="anchor-badges">
+    <span class="abadge angel zh">天使轮 · 6–8个月交付</span>
+    <span class="abadge angel en">Angel Round · 6–8 Month Delivery</span>
+    <span class="abadge navy zh">零件到货 · 样机组装中</span>
+    <span class="abadge navy en">Parts In Hand · Prototype in Assembly</span>
+    <span class="abadge navy zh">首批试点意向已确认</span>
+    <span class="abadge navy en">First Pilot Intent Confirmed</span>
+  </div>
+  <div class="anchor-body zh">
+    <p>北美商业设施除雪市场 <strong>US$225亿（2023）</strong>，已预算化、每年重复，采购流程完全标准化（SIMA 5月 RFP · 9月授标）。天使轮目标只有一个：<strong>用¥400–600万人民币完成工程样机 Alpha/Beta，进入冬季真实工况验证，产出雪地测试视频与基础自治演示</strong>，以此支撑 Pre-A/A 轮融资讨论。预算基准 ¥590万，月均约74万，含 <strong>11% 风险储备</strong>。钱用在底盘、作业机构、测试、安全——不是团队扩张，不是豪华办公。当前关键零件已到货，样机进入组装阶段；CBRE、Colliers 渠道内 50+ 大型商业设施负责人已明确试点意向。</p>
+  </div>
+  <div class="anchor-body en">
+    <p>North American commercial snow management is a <strong>US$22.5B (2023)</strong> budgeted, recurring market with fully standardized procurement (SIMA May RFP · September award). The Angel Round has one goal: <strong>¥4–6M RMB to complete Alpha/Beta engineering prototype, enter winter field validation, and produce snow-field test video and basic autonomy demo</strong> — the assets that directly unlock Pre-A/Series A fundraising. Budget baseline: ¥5.9M, ~¥740K/month avg, including <strong>11% risk reserve</strong>. Capital goes to chassis, work mechanism, testing, and safety — not headcount or offices. Core components have arrived; prototype is in assembly. 50+ large facility managers within CBRE and Colliers networks have confirmed pilot intent.</p>
+  </div>
+</div>
 
-  <!-- ④ BOTTOM -->
-  <div class="bottom z a d5">
-    <div class="bc">
-      <div class="sec-label">
-        <span class="zh">工程里程碑 · Alpha/Beta</span>
-        <span class="en">Engineering Milestones · Alpha/Beta</span>
-      </div>
-      <div class="layers">
-        <div class="lr">
-          <span class="l-tag zh">Alpha</span><span class="l-tag en">Alpha</span>
-          <div class="l-bar app">
-            <span class="l-name zh">A1→A4 工程原型机</span><span class="l-name en">A1→A4 Engineering Prototype</span>
-            <span class="l-detail zh">架构→底盘→作业→联调</span><span class="l-detail en">Arch→Chassis→Work→Integrate</span>
-          </div>
-        </div>
-        <div class="lr">
-          <span class="l-tag zh">Beta</span><span class="l-tag en">Beta</span>
-          <div class="l-bar sys">
-            <span class="l-name zh">B1→B5 产品演示版</span><span class="l-name en">B1→B5 Product Demo</span>
-            <span class="l-detail zh">产品化→导航→自治→演示</span><span class="l-detail en">Product→Nav→Autonomy→Demo</span>
-          </div>
-        </div>
-        <div class="lr">
-          <span class="l-tag zh">门控</span><span class="l-tag en">Gate</span>
-          <div class="l-bar env">
-            <span class="l-name zh">B5 最终交付</span><span class="l-name en">B5 Final Deliverable</span>
-            <span class="l-detail zh">投资人 Demo 状态</span><span class="l-detail en">Investor Demo Ready</span>
-          </div>
-        </div>
-      </div>
-      <div class="pills">
-        <span class="pill zh">月均 ¥74万</span><span class="pill en">¥740K/mo avg</span>
-        <span class="pill zh">6–8 个月</span><span class="pill en">6–8 months</span>
-        <span class="pill zh">11% 风险储备</span><span class="pill en">11% risk reserve</span>
-        <span class="pill zh">无黑盒研发期</span><span class="pill en">No black-box R&amp;D</span>
-      </div>
+<!-- INVESTMENT LOGIC (4 cards) -->
+<div class="value-section z">
+  <div class="sec-label">
+    <span class="zh">投资逻辑 · 天使轮四个价值锚</span>
+    <span class="en">Investment Logic · Four Value Anchors</span>
+  </div>
+  <div class="vgrid">
+    <div class="vcard v1">
+      <div class="vcard-n">01</div>
+      <div class="vcard-h zh">预算清晰 · 无黑盒</div>
+      <div class="vcard-h en">Budget-Aligned · No Black Box</div>
+      <div class="vcard-b zh">¥590万全透明：底盘机械 <strong>¥120万</strong>、导航控制 <strong>¥55万</strong>、测试运营 <strong>¥85万</strong>、人员 <strong>¥165万</strong>、安全合规+风险储备 <strong>¥130万</strong>。硬件占比逾45%，每一分钱都在产品上。</div>
+      <div class="vcard-b en">Full transparency: Chassis ¥1.2M · Nav ¥0.55M · Testing ¥0.85M · Personnel ¥1.65M · Safety+Reserve ¥1.3M. Hardware &gt;45% of total. Every yuan on product.</div>
     </div>
-    <div class="bvr"></div>
-    <div class="bc">
-      <div class="sec-label">
-        <span class="zh">资金路径 · 天使→Pre-A→A</span>
-        <span class="en">Capital Path · Angel→Pre-A→A</span>
-      </div>
-      <div class="road">
-        <div class="ri">
-          <span class="ri-ph now zh">天使</span><span class="ri-ph now en">ANGEL</span>
-          <div>
-            <div class="ri-main zh">¥400–600万 · 样机工程</div><div class="ri-main en">¥4–6M · Prototype Engineering</div>
-            <div class="ri-sub zh">Alpha/Beta 样机 · 雪地测试视频 · 基础自治 · 首批试点意向转化</div>
-            <div class="ri-sub en">Alpha/Beta prototype · Snow-field test video · Basic autonomy · First pilot LOI conversion</div>
-          </div>
-        </div>
-        <div class="ri">
-          <span class="ri-ph next zh">冬季</span><span class="ri-ph next en">WINTER</span>
-          <div>
-            <div class="ri-main zh">冬季工况验证 + 客户试点</div><div class="ri-main en">Winter Field Validation + Pilot</div>
-            <div class="ri-sub zh">真实雪场演示 · LOI 转签约 · 数据飞轮启动 · Pre-A 融资材料完善</div>
-            <div class="ri-sub en">Real snow demo · LOI to contract · Data flywheel · Pre-A materials complete</div>
-          </div>
-        </div>
-        <div class="ri">
-          <span class="ri-ph prea zh">Pre-A</span><span class="ri-ph prea en">PRE-A</span>
-          <div>
-            <div class="ri-main zh">工程稳定 + 商业闭环</div><div class="ri-main en">Engineering Stability + Revenue Closure</div>
-            <div class="ri-sub zh">量产 BOM · 首批付费合同 · 海外部署准备</div>
-            <div class="ri-sub en">Production BOM · First paid contracts · Overseas deployment prep</div>
-          </div>
-        </div>
-        <div class="ri">
-          <span class="ri-ph scale zh">扩展</span><span class="ri-ph scale en">SCALE</span>
-          <div>
-            <div class="ri-main zh">平台化 · 多场景扩展</div><div class="ri-main en">Platform · Multi-Scene Scale</div>
-            <div class="ri-sub zh">北美 / 欧洲 · 极端环境自治平台</div>
-            <div class="ri-sub en">North America / Europe · Extreme-env autonomy platform</div>
-          </div>
-        </div>
-      </div>
+    <div class="vcard v2">
+      <div class="vcard-n">02</div>
+      <div class="vcard-h zh">里程碑可验证 · A1→B5 九个门控</div>
+      <div class="vcard-h en">Verifiable Milestones · A1→B5 Nine Gates</div>
+      <div class="vcard-b zh">Alpha 工程原型（A1–A4）→ Beta 产品演示版（B1–B5）。每个门控有明确验收标准：<strong>能跑 → 能作业 → 能自治 → 能演示</strong>。投资人每月可核查进展，无黑盒研发期。</div>
+      <div class="vcard-b en">Alpha engineering prototype (A1–A4) → Beta product demo (B1–B5). Each gate has clear acceptance criteria: <strong>Move → Work → Autonomy → Demo</strong>. Monthly verifiable progress — no black-box R&D.</div>
     </div>
-    <div class="bvr"></div>
-    <div class="bc">
-      <div class="sec-label">
-        <span class="zh">融资用途 · 钱买什么能力</span>
-        <span class="en">Use of Funds · Capability Delivered</span>
-      </div>
-      <div class="use">
-        <div class="uc u1">
-          <div class="uc-idx zh">01 · 首要 — ¥120万 · 底盘机械</div>
-          <div class="uc-idx en">01 · Priority — ¥1.2M · Chassis & Mechanical</div>
-          <div class="uc-title zh">整机工程化</div><div class="uc-title en">Full Machine Engineering</div>
-          <div class="uc-sub zh">底盘 + 电机 + 电池系统 + 推雪机构 · 从图纸到可运行实体的核心投入</div>
-          <div class="uc-sub en">Chassis + motors + battery + snow-clearing mechanism · Core investment from drawing to running hardware</div>
-        </div>
-        <div class="uc u2">
-          <div class="uc-idx zh">02 — ¥85万 · 测试与运营</div>
-          <div class="uc-idx en">02 — ¥850K · Testing & Operations</div>
-          <div class="uc-title zh">雪地 / 低温 / 夜间验证</div><div class="uc-title en">Snow / Cold / Night Validation</div>
-          <div class="uc-sub zh">场地协调 · 夜间测试 · 极寒测试 · 损坏缓冲 · 安全员 — 产出最有说服力的融资材料</div>
-          <div class="uc-sub en">Site coordination · Night testing · Cold testing · Damage buffer · Safety officer — produces the most compelling fundraising assets</div>
-        </div>
-        <div class="uc u3">
-          <div class="uc-idx zh">03 — ¥165万 · 工程人员（6–8人）</div>
-          <div class="uc-idx en">03 — ¥1.65M · Engineering Team (6–8 people)</div>
-          <div class="uc-title zh">精干核心 + 专项顾问</div><div class="uc-title en">Lean Core + Specialist Advisors</div>
-          <div class="uc-sub zh">机械 + 软件/导航 + 嵌入式 + 电气 + 测试 · 外部顾问应对导航/低温/电池专项问题</div>
-          <div class="uc-sub en">Mechanical + SW/nav + embedded + electrical + test · External advisors for nav, cold, battery specialists</div>
-        </div>
-      </div>
+    <div class="vcard v3">
+      <div class="vcard-n">03</div>
+      <div class="vcard-h zh">直接支撑 Pre-A · 钱用来买资产</div>
+      <div class="vcard-h en">Directly Unlocks Pre-A · Capital Buys Assets</div>
+      <div class="vcard-b zh">天使轮产出的<strong>雪地测试视频 + Alpha/Beta 样机 + 基础自治演示 + 量产 BOM</strong>，是 Pre-A/A 轮投资人做决策所需的核心技术证明。这笔钱不是消耗，是升值投入。</div>
+      <div class="vcard-b en">Angel Round produces: <strong>snow-field test video + Alpha/Beta prototype + basic autonomy demo + production BOM</strong> — exactly what Pre-A/A investors need to make decisions. This capital doesn't burn; it creates hard assets.</div>
+    </div>
+    <div class="vcard v4">
+      <div class="vcard-n">04</div>
+      <div class="vcard-h zh">渠道已就绪 · 进入成本低</div>
+      <div class="vcard-h en">Channel Ready · Low Market-Entry Cost</div>
+      <div class="vcard-b zh">创始人深耕北美 C&I 能源市场 <strong>10年+</strong>，CBRE、Colliers 是现有合作方，50+ 大型设施试点意向已确认。采购流程（SIMA RFP 标准）完全标准化——<strong>进入路径无需从零建立</strong>。</div>
+      <div class="vcard-b en">Founder's <strong>10+ years</strong> in North American C&I markets. CBRE and Colliers are existing channel partners. 50+ large facilities confirmed pilot intent. SIMA RFP procurement is standardized — <strong>no cold-start required.</strong></div>
     </div>
   </div>
+  <div class="deliver-box">
+    <div class="deliver-lbl zh">本轮核心交付物</div>
+    <div class="deliver-lbl en">Angel Round Core Deliverables</div>
+    <div class="deliver-f zh">雪地测试视频 × Alpha/Beta 样机 × 基础自治演示 × 量产 BOM<br>= <em>Pre-A/A 轮融资的不可替代技术资产</em></div>
+    <div class="deliver-f en">Snow-Field Test Video × Alpha/Beta Prototype × Basic Autonomy Demo × Production BOM<br>= <em>Irreplaceable Technical Assets for Pre-A/Series A Fundraising</em></div>
+  </div>
+</div>
 
-  <!-- ⑤ CTA -->
-  <div class="cta z a d6">
-    <div>
-      <div class="cta-ey">Ready to go deeper?</div>
-      <div class="cta-label zh">阅读完整商业计划书</div>
-      <div class="cta-label en">Request the Full Business Plan</div>
-      <div class="cta-disp zh">VIEW FULL BP →</div>
-      <div class="cta-disp en">VIEW FULL BP →</div>
-    </div>
-    <div class="cta-r">
-      <div class="cta-info">
-        <p><strong>龚铁靖 · Gong Tiejing · Founder</strong></p>
-        <p>info@arcbos.com · arcbos.com</p>
-      </div>
-      <a href="/teaser-angel/bp/" target="_blank" rel="noopener" class="cta-btn zh">完整版 BP（中文）→</a>
-      <a href="/teaser-angel/bp/?lang=en" target="_blank" rel="noopener" class="cta-btn en">View Full BP →</a>
-    </div>
+<!-- COMPETITIVE LANDSCAPE -->
+<div class="comp-section z">
+  <div class="sec-label">
+    <span class="zh">竞争格局 · 市场空白在哪</span>
+    <span class="en">Competitive Landscape · Where the Gap Is</span>
   </div>
+  <table class="comp-tbl">
+    <thead>
+      <tr>
+        <th class="zh">产品/公司</th><th class="en">Product / Co.</th>
+        <th class="zh">定位</th><th class="en">Segment</th>
+        <th class="zh">极寒工况</th><th class="en">Extreme Cold</th>
+        <th class="zh">商业规模</th><th class="en">Comm. Scale</th>
+        <th class="zh">价格区间</th><th class="en">Price</th>
+        <th class="zh">问题</th><th class="en">Gap</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="co zh">Otto / Yeti</td><td class="co en">Otto / Yeti</td>
+        <td class="zh">机场跑道级</td><td class="en">Airport runway</td>
+        <td class="dot-yes">✓</td>
+        <td class="dot-yes">✓</td>
+        <td class="num">&gt;$2M/台</td>
+        <td class="zh">造价过高，商业地产无法普及</td><td class="en">Too expensive for commercial real estate</td>
+      </tr>
+      <tr>
+        <td class="co zh">Left Hand / Toro</td><td class="co en">Left Hand / Toro</td>
+        <td class="zh">商业除草平台改</td><td class="en">Lawn→snow adapt</td>
+        <td class="dot-no">✗</td>
+        <td class="dot-part">△</td>
+        <td class="num">$80–120K</td>
+        <td class="zh">北方极寒下可靠性存疑，产品不成熟</td><td class="en">Cold-weather reliability unproven; immature</td>
+      </tr>
+      <tr>
+        <td class="co zh">Yarbo</td><td class="co en">Yarbo</td>
+        <td class="zh">消费级住宅</td><td class="en">Consumer residential</td>
+        <td class="dot-part">△</td>
+        <td class="dot-no">✗</td>
+        <td class="num">$3–8K</td>
+        <td class="zh">吞吐量、可靠性、安全级别均不足</td><td class="en">Throughput, reliability, safety all insufficient</td>
+      </tr>
+      <tr>
+        <td class="co zh">Swap Robotics</td><td class="co en">Swap Robotics</td>
+        <td class="zh">模块化除雪/草</td><td class="en">Modular snow/mow</td>
+        <td class="dot-part">△</td>
+        <td class="dot-part">△</td>
+        <td class="num">$50–90K</td>
+        <td class="zh">仍在融资验证阶段，北美市场有限</td><td class="en">Still in validation stage; limited NA market presence</td>
+      </tr>
+      <tr class="ours">
+        <td class="co zh" style="color:var(--angel);font-weight:800">ARCBOS SnowBot</td>
+        <td class="co en" style="color:var(--angel);font-weight:800">ARCBOS SnowBot</td>
+        <td class="zh">商业园区/工业</td><td class="en">Commercial / Industrial</td>
+        <td class="dot-yes">✓</td>
+        <td class="dot-yes">✓</td>
+        <td class="num zh">¥12–20万/年</td><td class="num en">$16–28K/yr</td>
+        <td class="zh" style="color:var(--angel);font-weight:600">RaaS 订阅 · 可量产 · 渠道就绪</td>
+        <td class="en" style="color:var(--angel);font-weight:600">RaaS subscription · Scalable · Channel ready</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="font-family:var(--mono);font-size:9.5px;color:var(--dim);margin-top:8px;letter-spacing:.05em">
+    <span class="zh">✓ 具备 · △ 部分具备 · ✗ 不具备 · 数据来源：公开信息整理</span>
+    <span class="en">✓ Yes · △ Partial · ✗ No · Source: Public information</span>
+  </div>
+</div>
 
-  <!-- ⑥ CONF -->
-  <div class="conf z a d7">
-    <span class="zh">严格保密 · 仅供合格投资人 · 天使轮 · 请勿转发 · Strictly Confidential · Not for Distribution</span>
-    <span class="en">Strictly Confidential · For Qualified Investors Only · Angel Round · Not for Distribution</span>
-    <span>上海阿克博斯技术有限公司 · ARCBOS © 2026</span>
+<!-- TEAM -->
+<div class="team-section z">
+  <div class="t-left">
+    <div class="sec-label">
+      <span class="zh">创始人 · Founder</span>
+      <span class="en">Founder</span>
+    </div>
+    <div class="founder-card">
+      <div class="fc-role">Founder · CEO</div>
+      <div class="fc-name zh">龚铁靖</div>
+      <div class="fc-name en">Gong Tiejing</div>
+      <div class="fc-tags">
+        <span class="fc-tag zh">电气工程 · 能源系统</span><span class="fc-tag en">Electrical Eng · Energy Systems</span>
+        <span class="fc-tag zh">北美 C&I 10年+</span><span class="fc-tag en">10+ Years North America C&I</span>
+        <span class="fc-tag">PepsiCo · Shell · B&V · Blink</span>
+        <span class="fc-tag zh">CBRE · Colliers 渠道合伙</span><span class="fc-tag en">CBRE · Colliers Channel Partner</span>
+      </div>
+      <div class="fc-desc zh">北美工商业能源系统电气专家，深耕北美 C&I 市场超过 <strong>10年</strong>。主导交付过 PepsiCo、Shell、B&V、Blink Charging 等大型客户的能源管理全系统项目。CBRE、Colliers 是合作合伙方，首批试点意向即来自这一网络。<strong>SnowBot 是从十年现场里长出来的产品</strong>，不是实验室里想出来的。</div>
+      <div class="fc-desc en">Electrical engineer and energy systems expert with <strong>10+ years</strong> in North American C&I markets. Led full-stack delivery for PepsiCo, Shell, B&V, and Blink Charging. CBRE and Colliers are channel partners; first pilot intent came directly from this network. <strong>SnowBot came from ten years on the ground — not from a lab.</strong></div>
+    </div>
   </div>
+  <div class="tvr"></div>
+  <div class="t-right">
+    <div class="sec-label">
+      <span class="zh">核心团队 · 6–8人</span>
+      <span class="en">Core Team · 6–8 People</span>
+    </div>
+    <div class="team-cards">
+      <div class="tc ta">
+        <div class="tc-role zh">联合创始人 · 供应链</div><div class="tc-role en">Co-Founder · Supply Chain</div>
+        <div class="tc-name zh">龚继锋</div><div class="tc-name en">Gong Jifeng</div>
+        <div class="tc-bg zh">供应链与工程协同 · 共同出资 ¥100万启动</div>
+        <div class="tc-bg en">Supply Chain & Engineering · Co-invested CNY 1M to launch</div>
+        <div class="tc-hook zh">外协体系 + 零部件采购 + <strong>样机到量产衔接</strong></div>
+        <div class="tc-hook en">Subcontracting + procurement + <strong>prototype-to-production bridge</strong></div>
+      </div>
+      <div class="tc ti">
+        <div class="tc-role zh">产业顾问</div><div class="tc-role en">Industry Advisor</div>
+        <div class="tc-name zh">杨光华</div><div class="tc-name en">Yang Guanghua</div>
+        <div class="tc-bg zh">机器人产业链顶级专家 · 清华具身智能产业协会副会长</div>
+        <div class="tc-bg en">Top Robotics Supply Chain Expert · VP, Tsinghua Embodied AI Assoc.</div>
+        <div class="tc-hook zh"><strong>全产业链直连</strong> · 从样机到量产不可替代</div>
+        <div class="tc-hook en"><strong>Full supply chain direct access</strong> · Irreplaceable path to production</div>
+      </div>
+      <div class="tc ts">
+        <div class="tc-role zh">结构与系统集成</div><div class="tc-role en">Structural & Integration</div>
+        <div class="tc-name zh">陈超</div><div class="tc-name en">Chen Chao</div>
+        <div class="tc-bg zh">前飞利浦医疗机器人</div><div class="tc-bg en">Former Philips Medical Robotics</div>
+        <div class="tc-hook zh">底盘结构设计 + 样机装配 + 模块集成</div>
+        <div class="tc-hook en">Chassis design + prototype assembly + module integration</div>
+      </div>
+      <div class="tc tm">
+        <div class="tc-role zh">合伙人 · 市场与商业化</div><div class="tc-role en">Partner · Market & Commercialization</div>
+        <div class="tc-name zh">甄文胜</div><div class="tc-name en">Zhen Wensheng</div>
+        <div class="tc-bg zh">前头部机器人公司市场负责人</div><div class="tc-bg en">Former Market Lead, Top Robotics Co.</div>
+        <div class="tc-hook zh">客户验证 + 试点推进 + <strong>To B 采购语言</strong></div>
+        <div class="tc-hook en">Customer validation + pilot advancement + <strong>B2B procurement expertise</strong></div>
+      </div>
+    </div>
+    <div class="team-close">
+      <span class="tc-badge zh">精干 6–8 人</span>
+      <span class="tc-badge en">Lean 6–8</span>
+      <span class="tc-note zh">10年北美交付经验 · 产业链直连 · 结构工程 · 商业转化 — 职责清晰，无凑数成员</span>
+      <span class="tc-note en">10yr North America delivery · Supply chain access · Structural eng · B2B commercial — clear roles, no filler</span>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM: MILESTONES + CAPITAL PATH + USE OF FUNDS -->
+<div class="bottom-section z">
+  <div class="bc">
+    <div class="sec-label">
+      <span class="zh">工程里程碑</span>
+      <span class="en">Engineering Milestones</span>
+    </div>
+    <div class="ms-row">
+      <span class="ms-tag zh">Alpha</span><span class="ms-tag en">Alpha</span>
+      <div class="ms-bar ma">
+        <div class="ms-title zh">A1→A4 工程原型机</div>
+        <div class="ms-title en">A1→A4 Engineering Prototype</div>
+        <div class="ms-sub zh">架构 → 底盘 → 作业 → 联调</div>
+        <div class="ms-sub en">Arch → Chassis → Work → Integrate</div>
+      </div>
+    </div>
+    <div class="ms-row">
+      <span class="ms-tag zh">Beta</span><span class="ms-tag en">Beta</span>
+      <div class="ms-bar mb">
+        <div class="ms-title zh">B1→B5 产品演示版</div>
+        <div class="ms-title en">B1→B5 Product Demo</div>
+        <div class="ms-sub zh">产品化 → 导航 → 自治 → 演示</div>
+        <div class="ms-sub en">Product → Nav → Autonomy → Demo</div>
+      </div>
+    </div>
+    <div class="ms-row">
+      <span class="ms-tag zh">门控</span><span class="ms-tag en">Gate</span>
+      <div class="ms-bar mc">
+        <div class="ms-title zh">B5 投资人 Demo 就绪</div>
+        <div class="ms-title en">B5 Investor Demo Ready</div>
+        <div class="ms-sub zh">夜间 + 低温 + 雪地测试通过</div>
+        <div class="ms-sub en">Night + Cold + Snow tests passed</div>
+      </div>
+    </div>
+    <div class="ms-pills">
+      <span class="mpill zh">月均 ¥74万</span><span class="mpill en">¥740K/mo</span>
+      <span class="mpill zh">6–8 个月</span><span class="mpill en">6–8 months</span>
+      <span class="mpill zh">11% 风险储备</span><span class="mpill en">11% risk reserve</span>
+      <span class="mpill zh">无黑盒研发</span><span class="mpill en">No black-box R&D</span>
+    </div>
+  </div>
+  <div class="bvr"></div>
+  <div class="bc">
+    <div class="sec-label">
+      <span class="zh">资金路径</span>
+      <span class="en">Capital Path</span>
+    </div>
+    <div class="road-list">
+      <div class="road-item">
+        <span class="road-ph rph-now zh">天使</span><span class="road-ph rph-now en">ANGEL</span>
+        <div>
+          <div class="road-main zh">¥400–600万 · 样机工程</div>
+          <div class="road-main en">¥4–6M · Prototype Engineering</div>
+          <div class="road-sub zh">Alpha/Beta 样机 · 雪地测试视频 · 基础自治 · 首批 LOI</div>
+          <div class="road-sub en">Alpha/Beta prototype · Snow-field test video · Basic autonomy · First pilot LOI</div>
+        </div>
+      </div>
+      <div class="road-item">
+        <span class="road-ph rph-next zh">冬季</span><span class="road-ph rph-next en">WINTER</span>
+        <div>
+          <div class="road-main zh">冬季验证 + 客户 LOI 转合同</div>
+          <div class="road-main en">Winter Validation + LOI to Contract</div>
+          <div class="road-sub zh">雪场演示 · LOI 转签约 · Pre-A 材料完善</div>
+          <div class="road-sub en">Snow demo · LOI to contract · Pre-A materials</div>
+        </div>
+      </div>
+      <div class="road-item">
+        <span class="road-ph rph-prea zh">Pre-A</span><span class="road-ph rph-prea en">PRE-A</span>
+        <div>
+          <div class="road-main zh">工程稳定 + 商业闭环</div>
+          <div class="road-main en">Engineering Stability + Revenue Closure</div>
+          <div class="road-sub zh">量产 BOM · 首批付费合同 · 海外部署准备</div>
+          <div class="road-sub en">Production BOM · First paid contracts · Overseas prep</div>
+        </div>
+      </div>
+      <div class="road-item">
+        <span class="road-ph rph-scale zh">扩展</span><span class="road-ph rph-scale en">SCALE</span>
+        <div>
+          <div class="road-main zh">平台化 · 多场景</div>
+          <div class="road-main en">Platform · Multi-Scene</div>
+          <div class="road-sub zh">北美/欧洲 · 除草/巡检/安防场景扩展</div>
+          <div class="road-sub en">North America/Europe · Mowing/Inspection/Security</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bvr"></div>
+  <div class="bc">
+    <div class="sec-label">
+      <span class="zh">融资用途</span>
+      <span class="en">Use of Funds</span>
+    </div>
+    <div class="use-list">
+      <div class="use-item ui1">
+        <div class="ui-idx zh">01 · ¥120万 · 底盘与机械</div>
+        <div class="ui-idx en">01 · ¥1.2M · Chassis & Mechanical</div>
+        <div class="ui-title zh">整机工程化</div><div class="ui-title en">Full Machine Engineering</div>
+        <div class="ui-body zh">底盘 + 电机 + 电池 + 推雪机构 · 从图纸到可运行实体</div>
+        <div class="ui-body en">Chassis + motors + battery + snow mechanism · Drawing to running hardware</div>
+      </div>
+      <div class="use-item ui2">
+        <div class="ui-idx zh">02 · ¥85万 · 测试与运营</div>
+        <div class="ui-idx en">02 · ¥850K · Testing & Operations</div>
+        <div class="ui-title zh">雪地 / 低温 / 夜间验证</div><div class="ui-title en">Snow / Cold / Night Validation</div>
+        <div class="ui-body zh">场地 · 夜间测试 · 极寒 · 损坏缓冲 · 安全员 — 最有说服力的融资材料</div>
+        <div class="ui-body en">Site · Night testing · Cold · Damage buffer · Safety — most compelling fundraising assets</div>
+      </div>
+      <div class="use-item ui3">
+        <div class="ui-idx zh">03 · ¥165万 · 工程人员</div>
+        <div class="ui-idx en">03 · ¥1.65M · Engineering Team</div>
+        <div class="ui-title zh">精干核心 + 外部顾问</div><div class="ui-title en">Lean Core + Specialist Advisors</div>
+        <div class="ui-body zh">机械 + 软件/导航 + 嵌入式 + 电气 + 测试 · 外部顾问覆盖专项问题</div>
+        <div class="ui-body en">Mechanical + SW/nav + embedded + electrical + test · External advisors for specialist challenges</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band z">
+  <div>
+    <div class="cta-ey">Ready to go deeper?</div>
+    <div class="cta-title zh">阅读完整商业计划书</div>
+    <div class="cta-title en">View the Full Business Plan</div>
+    <div class="cta-disp">VIEW FULL BP →</div>
+  </div>
+  <div class="cta-right">
+    <div class="cta-contact">
+      <p><strong>龚铁靖 · Gong Tiejing · Founder</strong></p>
+      <p>info@arcbos.com · arcbos.com</p>
+    </div>
+    <a href="/teaser-angel/bp/" target="_blank" rel="noopener" class="cta-btn zh">完整版 BP →</a>
+    <a href="/teaser-angel/bp/?lang=en" target="_blank" rel="noopener" class="cta-btn en">View Full BP →</a>
+  </div>
+</div>
+
+<!-- CONF -->
+<div class="conf-bar z">
+  <span class="zh">严格保密 · 仅供合格投资人 · 天使轮 · 请勿转发 · Not for Distribution</span>
+  <span class="en">Strictly Confidential · For Qualified Investors Only · Angel Round · Not for Distribution</span>
+  <span>上海阿克博斯技术有限公司 · ARCBOS © 2026</span>
+</div>
+
 </div>
 
 <script>
@@ -605,7 +755,6 @@ function setLang(lang){
     pc.classList.remove('out');
   },200);
 }
-// Support ?lang=en
 (function(){var p=new URLSearchParams(location.search);if(p.get('lang')==='en')setLang('en');})();
 </script>
 </body>
