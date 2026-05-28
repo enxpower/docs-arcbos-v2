@@ -39,9 +39,9 @@
 [data-lang="zh"] .en{display:none!important}
 [data-lang="en"] .zh{display:none!important}
 
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);
-  -webkit-font-smoothing:antialiased;font-size:15px;line-height:1.7;}
+  -webkit-font-smoothing:antialiased;font-size:15px;line-height:1.7;overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;z-index:0;
   background-image:linear-gradient(var(--rule2) 1px,transparent 1px),
     linear-gradient(90deg,var(--rule2) 1px,transparent 1px);
@@ -77,7 +77,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 
 /* TOP BAND */
 .top-band{display:grid;grid-template-columns:1fr 360px;gap:28px;
-  align-items:end;padding:60px 0 28px 28px;
+  align-items:end;padding:76px 0 28px 28px;
   border-bottom:2px solid var(--rule);}
 .brand-ey{font-family:var(--mono);font-size:10px;letter-spacing:.22em;
   color:var(--dim);text-transform:uppercase;margin-bottom:10px;}
@@ -323,7 +323,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 /* RESPONSIVE ≤960px */
 @media(max-width:960px){
   .page{padding:0 24px;}.page::after{left:24px;}
-  .top-band{grid-template-columns:1fr;padding:56px 0 22px 18px;gap:18px;}
+  .top-band{grid-template-columns:1fr;padding:72px 0 22px 18px;gap:18px;}
   .robot-card{height:200px;}
   .anchor{padding:26px 0 24px 18px;}
   .value-section{padding:24px 0 24px 18px;}
@@ -342,7 +342,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 }
 @media(max-width:560px){
   .page{padding:0 16px;}.page::after{left:16px;}
-  .top-band{padding:52px 0 18px 14px;}
+  .top-band{padding:70px 0 18px 14px;}
   .brand-name{font-size:50px;}
   .robot-card{height:180px;}
   .anchor{padding:22px 0 20px 14px;}
@@ -358,6 +358,32 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   .cta-btn{width:100%;justify-content:center;font-size:13.5px;padding:14px 20px;}
   .conf-bar{flex-direction:column;gap:5px;padding:10px 14px;}
 }
+
+/* COMPETITIVE CARDS (replaces table) */
+.comp-cards{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule);background:var(--card);margin-bottom:10px;}
+.cc-head{display:grid;grid-template-columns:1fr 80px 60px 72px;gap:0;
+  padding:8px 14px;background:var(--navy);
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:rgba(255,255,255,.55);text-transform:uppercase;}
+.cch-dots{display:flex;gap:16px;}
+.cch-price{text-align:right;}
+.cc-row{border-bottom:1px solid var(--rule2);}
+.cc-row:last-child{border-bottom:none;}
+.cc-row.ours{background:var(--angel-lt);}
+.cc-main{display:grid;grid-template-columns:1fr 80px 60px 72px;gap:0;
+  padding:11px 14px;align-items:center;}
+.cc-name{font-size:13.5px;font-weight:700;color:var(--navy);}
+.cc-seg{font-size:11.5px;color:var(--dim);}
+.cc-seg.zh{font-family:var(--sans);}
+.cc-seg.en{font-family:var(--en);}
+.cc-dots{display:flex;gap:16px;font-size:15px;font-weight:700;}
+.cc-price{font-family:var(--mono);font-size:12px;font-weight:600;
+  color:var(--navy);text-align:right;white-space:nowrap;}
+.cc-why{font-size:12px;color:var(--dim);padding:0 14px 10px 14px;line-height:1.5;}
+.cc-why.zh{font-family:var(--sans);}
+.cc-why.en{font-family:var(--en);}
+.dy{color:#2E7D32;}.dn{color:#B71C1C;}.dp{color:var(--gold);}
+/* Remove old table styles */
+.comp-tbl{display:none;}
 </style>
 </head>
 <body>
@@ -467,64 +493,74 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
     <span class="zh">竞争格局 · 市场空白在哪</span>
     <span class="en">Competitive Landscape · Where the Gap Is</span>
   </div>
-  <table class="comp-tbl">
-    <thead>
-      <tr>
-        <th class="zh">产品/公司</th><th class="en">Product / Co.</th>
-        <th class="zh">定位</th><th class="en">Segment</th>
-        <th class="zh">极寒工况</th><th class="en">Extreme Cold</th>
-        <th class="zh">商业规模</th><th class="en">Comm. Scale</th>
-        <th class="zh">价格区间</th><th class="en">Price</th>
-        <th class="zh">问题</th><th class="en">Gap</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="co zh">Otto / Yeti</td><td class="co en">Otto / Yeti</td>
-        <td class="zh">机场跑道级</td><td class="en">Airport runway</td>
-        <td class="dot-yes">✓</td>
-        <td class="dot-yes">✓</td>
-        <td class="num">&gt;$2M/台</td>
-        <td class="zh">造价过高，商业地产无法普及</td><td class="en">Too expensive for commercial real estate</td>
-      </tr>
-      <tr>
-        <td class="co zh">Left Hand / Toro</td><td class="co en">Left Hand / Toro</td>
-        <td class="zh">商业除草平台改</td><td class="en">Lawn→snow adapt</td>
-        <td class="dot-no">✗</td>
-        <td class="dot-part">△</td>
-        <td class="num">$80–120K</td>
-        <td class="zh">北方极寒下可靠性存疑，产品不成熟</td><td class="en">Cold-weather reliability unproven; immature</td>
-      </tr>
-      <tr>
-        <td class="co zh">Yarbo</td><td class="co en">Yarbo</td>
-        <td class="zh">消费级住宅</td><td class="en">Consumer residential</td>
-        <td class="dot-part">△</td>
-        <td class="dot-no">✗</td>
-        <td class="num">$3–8K</td>
-        <td class="zh">吞吐量、可靠性、安全级别均不足</td><td class="en">Throughput, reliability, safety all insufficient</td>
-      </tr>
-      <tr>
-        <td class="co zh">Swap Robotics</td><td class="co en">Swap Robotics</td>
-        <td class="zh">模块化除雪/草</td><td class="en">Modular snow/mow</td>
-        <td class="dot-part">△</td>
-        <td class="dot-part">△</td>
-        <td class="num">$50–90K</td>
-        <td class="zh">仍在融资验证阶段，北美市场有限</td><td class="en">Still in validation stage; limited NA market presence</td>
-      </tr>
-      <tr class="ours">
-        <td class="co zh" style="color:var(--angel);font-weight:800">ARCBOS SnowBot</td>
-        <td class="co en" style="color:var(--angel);font-weight:800">ARCBOS SnowBot</td>
-        <td class="zh">商业园区/工业</td><td class="en">Commercial / Industrial</td>
-        <td class="dot-yes">✓</td>
-        <td class="dot-yes">✓</td>
-        <td class="num zh">¥12–20万/年</td><td class="num en">$16–28K/yr</td>
-        <td class="zh" style="color:var(--angel);font-weight:600">RaaS 订阅 · 可量产 · 渠道就绪</td>
-        <td class="en" style="color:var(--angel);font-weight:600">RaaS subscription · Scalable · Channel ready</td>
-      </tr>
-    </tbody>
-  </table>
-  <div style="font-family:var(--mono);font-size:9.5px;color:var(--dim);margin-top:8px;letter-spacing:.05em">
-    <span class="zh">✓ 具备 · △ 部分具备 · ✗ 不具备 · 数据来源：公开信息整理</span>
+  <div class="comp-cards">
+    <div class="cc-head zh">
+      <span class="cch-n">产品/公司</span>
+      <span class="cch-seg">定位</span>
+      <span class="cch-dots"><span>极寒</span><span>规模</span></span>
+      <span class="cch-price">价格</span>
+    </div>
+    <div class="cc-head en">
+      <span class="cch-n">Product</span>
+      <span class="cch-seg">Segment</span>
+      <span class="cch-dots"><span>Cold</span><span>Scale</span></span>
+      <span class="cch-price">Price</span>
+    </div>
+    <div class="cc-row">
+      <div class="cc-main">
+        <span class="cc-name">Otto / Yeti</span>
+        <span class="cc-seg zh">机场跑道级</span><span class="cc-seg en">Airport runway</span>
+        <span class="cc-dots"><span class="dy">✓</span><span class="dy">✓</span></span>
+        <span class="cc-price">&gt;$2M</span>
+      </div>
+      <div class="cc-why zh">⚠ 造价极高，商业地产无法承受</div>
+      <div class="cc-why en">⚠ Unit cost makes commercial real estate impossible</div>
+    </div>
+    <div class="cc-row">
+      <div class="cc-main">
+        <span class="cc-name">Left Hand / Toro</span>
+        <span class="cc-seg zh">商业除草改型</span><span class="cc-seg en">Lawn→snow adapt</span>
+        <span class="cc-dots"><span class="dn">✗</span><span class="dp">△</span></span>
+        <span class="cc-price">$80–120K</span>
+      </div>
+      <div class="cc-why zh">⚠ 极寒可靠性存疑，产品不成熟</div>
+      <div class="cc-why en">⚠ Cold-weather reliability unproven; product immature</div>
+    </div>
+    <div class="cc-row">
+      <div class="cc-main">
+        <span class="cc-name">Yarbo</span>
+        <span class="cc-seg zh">消费级住宅</span><span class="cc-seg en">Consumer residential</span>
+        <span class="cc-dots"><span class="dp">△</span><span class="dn">✗</span></span>
+        <span class="cc-price">$3–8K</span>
+      </div>
+      <div class="cc-why zh">⚠ 吞吐量、可靠性、安全级别均不足</div>
+      <div class="cc-why en">⚠ Throughput, reliability, safety all insufficient</div>
+    </div>
+    <div class="cc-row">
+      <div class="cc-main">
+        <span class="cc-name">Swap Robotics</span>
+        <span class="cc-seg zh">模块化除雪草</span><span class="cc-seg en">Modular snow/mow</span>
+        <span class="cc-dots"><span class="dp">△</span><span class="dp">△</span></span>
+        <span class="cc-price">$50–90K</span>
+      </div>
+      <div class="cc-why zh">⚠ 仍在融资验证阶段，市场渗透有限</div>
+      <div class="cc-why en">⚠ Still in validation; limited market penetration</div>
+    </div>
+    <div class="cc-row ours">
+      <div class="cc-main">
+        <span class="cc-name" style="color:var(--angel);font-weight:800">ARCBOS SnowBot</span>
+        <span class="cc-seg zh">商业/工业园区</span><span class="cc-seg en">Commercial/Industrial</span>
+        <span class="cc-dots"><span class="dy">✓</span><span class="dy">✓</span></span>
+        <span class="cc-price zh">¥12–20万/年</span><span class="cc-price en">$16–28K/yr</span>
+      </div>
+      <div class="cc-why" style="color:var(--angel);font-weight:600">
+        <span class="zh">✓ RaaS 订阅 · 可量产 · 10年渠道就绪</span>
+        <span class="en">✓ RaaS subscription · Scalable · 10yr channel ready</span>
+      </div>
+    </div>
+  </div>
+  <div style="font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:6px;letter-spacing:.05em">
+    <span class="zh">✓ 具备 · △ 部分具备 · ✗ 不具备 · 数据来源：公开信息</span>
     <span class="en">✓ Yes · △ Partial · ✗ No · Source: Public information</span>
   </div>
 </div>

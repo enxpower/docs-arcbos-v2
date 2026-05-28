@@ -32,9 +32,9 @@
 [data-lang="zh"] .en{display:none!important}
 [data-lang="en"] .zh{display:none!important}
 
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{background:var(--bg);color:var(--ink);font-family:var(--sans);
-  -webkit-font-smoothing:antialiased;font-size:15px;line-height:1.7;}
+  -webkit-font-smoothing:antialiased;font-size:15px;line-height:1.7;overflow-x:hidden;}
 body::before{content:'';position:fixed;inset:0;z-index:0;
   background-image:linear-gradient(var(--rule2) 1px,transparent 1px),
     linear-gradient(90deg,var(--rule2) 1px,transparent 1px);
@@ -195,7 +195,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .tbl tr.total td.en{font-family:var(--en);}
 
 /* MILESTONE TABLE */
-.ms-tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:18px;}
+.ms-tbl{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:18px;}
+.ms-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:18px;}
+.ms-wrap .ms-tbl{margin-bottom:0;min-width:460px;}
 .ms-tbl th{font-family:var(--mono);font-size:9px;letter-spacing:.18em;
   color:var(--dim);text-transform:uppercase;
   border-bottom:1.5px solid var(--rule);padding:9px 10px;text-align:left;}
@@ -213,7 +215,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .ms-gate.en{font-family:var(--en);}
 
 /* RISK TABLE */
-.rtbl{width:100%;border-collapse:collapse;font-size:13.5px;margin-bottom:18px;}
+.rtbl{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:18px;}
+.rtbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:18px;}
+.rtbl-wrap .rtbl{margin-bottom:0;min-width:360px;}
 .rtbl th{font-family:var(--mono);font-size:9px;letter-spacing:.18em;
   color:var(--dim);text-transform:uppercase;
   border-bottom:1.5px solid var(--rule);padding:8px 10px;text-align:left;}
@@ -295,6 +299,49 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   .cv-brand{font-size:44px;}.cv-product{font-size:28px;}
   .hero{height:200px;}
 }
+
+/* COMP CARDS */
+.comp-cards{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule);background:var(--card);margin-bottom:18px;}
+.cc-head{display:grid;grid-template-columns:1fr 80px 60px 80px;gap:0;
+  padding:9px 16px;background:var(--navy);
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:rgba(255,255,255,.55);text-transform:uppercase;}
+.cch-dots{display:flex;gap:18px;}
+.cch-price{text-align:right;}
+.cc-row{border-bottom:1px solid var(--rule2);}
+.cc-row:last-child{border-bottom:none;}
+.cc-row.ours{background:var(--angel-lt);}
+.cc-main{display:grid;grid-template-columns:1fr 80px 60px 80px;gap:0;
+  padding:12px 16px;align-items:center;}
+.cc-name{font-size:14px;font-weight:700;color:var(--navy);line-height:1.2;}
+.cc-seg{font-size:12px;color:var(--dim);}
+.cc-seg.zh{font-family:var(--sans);}
+.cc-seg.en{font-family:var(--en);}
+.cc-dots{display:flex;gap:18px;font-size:16px;font-weight:700;}
+.cc-price{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--navy);text-align:right;white-space:nowrap;}
+.cc-why{font-size:12.5px;color:var(--dim);padding:0 16px 11px;line-height:1.55;}
+.cc-why.zh{font-family:var(--sans);}
+.cc-why.en{font-family:var(--en);}
+.dy{color:#2E7D32;font-weight:700;}.dn{color:#B71C1C;font-weight:700;}.dp{color:var(--gold);font-weight:700;}
+
+/* BUDGET ROWS (replaces table) */
+.budget-list{display:flex;flex-direction:column;gap:0;border:1px solid var(--rule);background:var(--card);margin-bottom:18px;}
+.bl-head{display:grid;grid-template-columns:1fr 70px 38px;
+  padding:9px 16px;background:var(--navy);
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;color:rgba(255,255,255,.55);text-transform:uppercase;}
+.bl-head span:last-child{text-align:right;}
+.bl-row{display:grid;grid-template-columns:1fr 70px 38px;
+  padding:12px 16px;border-bottom:1px solid var(--rule2);align-items:start;gap:6px;}
+.bl-row:last-child{border-bottom:none;}
+.bl-row.total-row{background:var(--angel-lt);border-top:1.5px solid var(--rule);}
+.bl-mod{font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:3px;line-height:1.25;}
+.bl-mod.zh{font-family:var(--serif);}
+.bl-mod.en{font-family:var(--en);}
+.bl-items{font-size:12px;color:var(--dim);line-height:1.55;}
+.bl-items.zh{font-family:var(--sans);}
+.bl-items.en{font-family:var(--en);}
+.bl-amt{font-family:var(--mono);font-size:13.5px;font-weight:700;color:var(--navy);
+  text-align:right;padding-top:2px;white-space:nowrap;}
+.bl-pct{font-family:var(--mono);font-size:11px;color:var(--dim);text-align:right;padding-top:4px;}
 </style>
 </head>
 <body>
@@ -467,60 +514,76 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
       <div class="stat-sub en">¥650K · Prudent, not excessive</div>
     </div>
   </div>
-  <table class="tbl">
-    <thead>
-      <tr>
-        <th class="zh">模块</th><th class="en">Module</th>
-        <th class="zh">金额</th><th class="en">Amount</th>
-        <th class="zh">占比</th><th class="en">%</th>
-        <th class="zh">主要用途</th><th class="en">Key Items</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="zh">底盘与机械系统</td><td class="en">Chassis & Mechanical</td>
-        <td class="num zh">¥120万</td><td class="num en">¥1.2M</td><td class="pct">20%</td>
-        <td class="zh">底盘结构、电机减速机、电池BMS、推雪机构、CNC钣金、备件</td>
-        <td class="en">Chassis, motors/reducers, battery/BMS, snow-clearing mechanism, CNC/sheet metal, spares</td>
-      </tr>
-      <tr>
-        <td class="zh">导航与控制系统</td><td class="en">Navigation & Control</td>
-        <td class="num zh">¥55万</td><td class="num en">¥550K</td><td class="pct">9%</td>
-        <td class="zh">工控机、MCU、IMU/GNSS、摄像头、超声波、通信模块、遥控系统</td>
-        <td class="en">Industrial PC, MCU, IMU/GNSS, cameras, ultrasonic sensors, comms, remote control</td>
-      </tr>
-      <tr>
-        <td class="zh">软件与算法</td><td class="en">Software & Algorithms</td>
-        <td class="num zh">¥35万</td><td class="num en">¥350K</td><td class="pct">6%</td>
-        <td class="zh">底盘控制、Teach & Repeat、路径执行、远程接管、低速避障、远程监控、OTA</td>
-        <td class="en">Chassis control, Teach & Repeat, path execution, teleoperation, obstacle avoidance, remote monitoring, OTA</td>
-      </tr>
-      <tr>
-        <td class="zh">测试与运营</td><td class="en">Testing & Operations</td>
-        <td class="num zh">¥85万</td><td class="num en">¥850K</td><td class="pct">14%</td>
-        <td class="zh">雪地测试、极寒测试、夜间测试、场地协调、运输、返修缓冲、安全员</td>
-        <td class="en">Snow testing, cold/extreme testing, night testing, site coordination, transport, rework buffer, safety officer</td>
-      </tr>
-      <tr>
-        <td class="zh">工程人员（6–8人）</td><td class="en">Engineering Team (6–8)</td>
-        <td class="num zh">¥165万</td><td class="num en">¥1.65M</td><td class="pct">28%</td>
-        <td class="zh">创始人/PM、机械1–2人、软件/导航、嵌入式、电气、测试/装配1–2人、外部顾问</td>
-        <td class="en">Founder/PM, mechanical ×1–2, SW/nav, embedded, electrical, test/assembly ×1–2, advisors</td>
-      </tr>
-      <tr>
-        <td class="zh">场地 · 合规 · 风险储备</td><td class="en">Office · Compliance · Reserve</td>
-        <td class="num zh">¥130万</td><td class="num en">¥1.3M</td><td class="pct">22%</td>
-        <td class="zh">上海办公室、苏州研发组装、仓储测试场、安全合规（急停/防撞/电池），<strong>风险储备¥65万</strong></td>
-        <td class="en">Shanghai office, Suzhou R&D/assembly, storage/test site, safety compliance (e-stop/anti-collision/battery), <strong>risk reserve ¥650K</strong></td>
-      </tr>
-      <tr class="total">
-        <td class="zh">合计</td><td class="en">Total</td>
-        <td class="num zh">¥590万</td><td class="num en">¥5.9M</td><td class="pct">100%</td>
-        <td class="zh">硬件占比 &gt;45%，无黑盒预算</td>
-        <td class="en">Hardware &gt;45% · No black-box allocation</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="budget-list">
+    <div class="bl-head">
+      <span class="zh">模块 / 用途</span><span class="en">Module / Items</span>
+      <span class="zh">金额</span><span class="en">Amount</span>
+      <span>%</span>
+    </div>
+    <div class="bl-row">
+      <div>
+        <div class="bl-mod zh">底盘与机械系统</div><div class="bl-mod en">Chassis & Mechanical</div>
+        <div class="bl-items zh">底盘结构 · 电机减速机 · 电池BMS · 推雪机构 · CNC钣金 · 备件</div>
+        <div class="bl-items en">Chassis · motors/reducers · battery/BMS · snow-clearing mechanism · CNC/sheet metal · spares</div>
+      </div>
+      <div class="bl-amt zh">¥120万</div><div class="bl-amt en">¥1.2M</div>
+      <div class="bl-pct">20%</div>
+    </div>
+    <div class="bl-row">
+      <div>
+        <div class="bl-mod zh">导航与控制系统</div><div class="bl-mod en">Navigation & Control</div>
+        <div class="bl-items zh">工控机 · MCU · IMU/GNSS · 摄像头 · 超声波 · 通信 · 遥控</div>
+        <div class="bl-items en">Industrial PC · MCU · IMU/GNSS · cameras · ultrasonic · comms · remote control</div>
+      </div>
+      <div class="bl-amt zh">¥55万</div><div class="bl-amt en">¥550K</div>
+      <div class="bl-pct">9%</div>
+    </div>
+    <div class="bl-row">
+      <div>
+        <div class="bl-mod zh">软件与算法</div><div class="bl-mod en">Software & Algorithms</div>
+        <div class="bl-items zh">底盘控制 · Teach & Repeat · 路径执行 · 远程接管 · 避障 · 监控 · OTA</div>
+        <div class="bl-items en">Chassis control · Teach & Repeat · path execution · teleoperation · obstacle avoidance · OTA</div>
+      </div>
+      <div class="bl-amt zh">¥35万</div><div class="bl-amt en">¥350K</div>
+      <div class="bl-pct">6%</div>
+    </div>
+    <div class="bl-row">
+      <div>
+        <div class="bl-mod zh">测试与运营</div><div class="bl-mod en">Testing & Operations</div>
+        <div class="bl-items zh">雪地 · 极寒 · 夜间测试 · 场地协调 · 运输 · 返修缓冲 · 安全员</div>
+        <div class="bl-items en">Snow · cold · night testing · site coordination · transport · rework buffer · safety officer</div>
+      </div>
+      <div class="bl-amt zh">¥85万</div><div class="bl-amt en">¥850K</div>
+      <div class="bl-pct">14%</div>
+    </div>
+    <div class="bl-row">
+      <div>
+        <div class="bl-mod zh">工程人员（6–8人）</div><div class="bl-mod en">Engineering Team (6–8)</div>
+        <div class="bl-items zh">创始人/PM · 机械×1–2 · 软件/导航 · 嵌入式 · 电气 · 测试×1–2 · 外部顾问</div>
+        <div class="bl-items en">Founder/PM · mechanical ×1–2 · SW/nav · embedded · electrical · test ×1–2 · advisors</div>
+      </div>
+      <div class="bl-amt zh">¥165万</div><div class="bl-amt en">¥1.65M</div>
+      <div class="bl-pct">28%</div>
+    </div>
+    <div class="bl-row">
+      <div>
+        <div class="bl-mod zh">场地 · 合规 · 风险储备</div><div class="bl-mod en">Office · Compliance · Reserve</div>
+        <div class="bl-items zh">上海办公 · 苏州研发组装 · 测试场地 · 安全合规 · <strong>风险储备¥65万（11%）</strong></div>
+        <div class="bl-items en">Shanghai office · Suzhou R&D/assembly · test site · safety compliance · <strong>risk reserve ¥650K (11%)</strong></div>
+      </div>
+      <div class="bl-amt zh">¥130万</div><div class="bl-amt en">¥1.3M</div>
+      <div class="bl-pct">22%</div>
+    </div>
+    <div class="bl-row total-row">
+      <div>
+        <div class="bl-mod zh">合计</div><div class="bl-mod en">Total</div>
+        <div class="bl-items zh">硬件占比 &gt;45% · 无黑盒预算</div>
+        <div class="bl-items en">Hardware &gt;45% · No black-box allocation</div>
+      </div>
+      <div class="bl-amt zh">¥590万</div><div class="bl-amt en">¥5.9M</div>
+      <div class="bl-pct">100%</div>
+    </div>
+  </div>
   <div class="hbox">
     <p class="zh"><strong>前高后低原则：</strong>月1–4集中采购与制造（月均约¥90万），月5–8转向测试与演示优化（月均约¥55万）。11% 风险储备覆盖六类主要风险——<strong>单点问题不应中断样机进度</strong>。硬件投入逾45%，无管理层溢价，无豪华办公室开支。</p>
     <p class="en"><strong>Front-loaded principle:</strong> months 1–4 concentrated on procurement and fabrication (~¥900K/mo avg); months 5–8 shift to testing and demo readiness (~¥550K/mo avg). 11% risk reserve covers six major categories — <strong>no single failure should halt prototype progress.</strong> Hardware &gt;45%, no management premium, no lavish office spend.</p>
@@ -535,7 +598,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
     <div class="sec-h en">Engineering Milestones · Alpha / Beta</div>
     <div class="sec-rule"></div>
   </div>
-  <table class="ms-tbl">
+  <div class="ms-wrap"><table class="ms-tbl">
     <thead>
       <tr>
         <th style="width:80px">ID</th>
@@ -590,10 +653,9 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
         <td><div class="ms-gate zh">可向投资人、合作伙伴、客户系统级演示</div><div class="ms-gate en">Ready for system-level demo to investors, partners, and customers</div></td>
       </tr>
     </tbody>
-  </table>
-</div>
+  </table></div>
 
-<!-- 05 MARKET & BUSINESS MODEL -->
+  <!-- 05 MARKET & BUSINESS MODEL -->
 <div class="sec z">
   <div class="sec-head">
     <div class="sec-num">05</div>
@@ -641,57 +703,72 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
     <div class="sec-h en">Competitive Landscape & Moat</div>
     <div class="sec-rule"></div>
   </div>
-  <table class="comp-tbl">
-    <thead>
-      <tr>
-        <th class="zh">产品/公司</th><th class="en">Product / Co.</th>
-        <th class="zh">定位</th><th class="en">Segment</th>
-        <th class="zh">极寒</th><th class="en">Cold</th>
-        <th class="zh">商业规模</th><th class="en">Scale</th>
-        <th class="zh">价格区间</th><th class="en">Price</th>
-        <th class="zh">核心局限</th><th class="en">Key Limitation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="co zh">Otto / Yeti</td><td class="co en">Otto / Yeti</td>
-        <td class="zh">机场跑道</td><td class="en">Airport runway</td>
-        <td class="dy">✓</td><td class="dy">✓</td>
-        <td class="num">&gt;$2M/台</td>
-        <td class="zh">造价极高，商业地产无法承受</td><td class="en">Price makes commercial real estate deployment impossible</td>
-      </tr>
-      <tr>
-        <td class="co zh">Left Hand / Toro</td><td class="co en">Left Hand / Toro</td>
-        <td class="zh">商业草坪改型</td><td class="en">Lawn→snow adapt</td>
-        <td class="dn">✗</td><td class="dp">△</td>
-        <td class="num">$80–120K</td>
-        <td class="zh">极寒工况可靠性存疑，产品不成熟</td><td class="en">Cold-weather reliability unproven; product immature</td>
-      </tr>
-      <tr>
-        <td class="co zh">Yarbo</td><td class="co en">Yarbo</td>
-        <td class="zh">消费级住宅</td><td class="en">Consumer residential</td>
-        <td class="dp">△</td><td class="dn">✗</td>
-        <td class="num">$3–8K</td>
-        <td class="zh">吞吐量、可靠性、安全级别均不足</td><td class="en">Throughput, reliability, safety all insufficient</td>
-      </tr>
-      <tr>
-        <td class="co zh">Swap Robotics</td><td class="co en">Swap Robotics</td>
-        <td class="zh">模块化除雪草</td><td class="en">Modular snow/mow</td>
-        <td class="dp">△</td><td class="dp">△</td>
-        <td class="num">$50–90K</td>
-        <td class="zh">仍在融资验证阶段，市场渗透有限</td><td class="en">Still in validation stage; limited market penetration</td>
-      </tr>
-      <tr class="ours">
-        <td class="co zh" style="color:var(--angel);font-weight:800">ARCBOS SnowBot</td>
-        <td class="co en" style="color:var(--angel);font-weight:800">ARCBOS SnowBot</td>
-        <td class="zh">商业/工业园区</td><td class="en">Commercial/Industrial</td>
-        <td class="dy">✓</td><td class="dy">✓</td>
-        <td class="num">$16–28K/yr</td>
-        <td class="zh" style="color:var(--angel);font-weight:600">RaaS 订阅 · 可量产 · 10年渠道就绪</td>
-        <td class="en" style="color:var(--angel);font-weight:600">RaaS subscription · Scalable · 10yr channel ready</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="comp-cards">
+    <div class="cc-head zh">
+      <span class="cch-n">产品/公司</span>
+      <span class="cch-seg">定位</span>
+      <span class="cch-dots"><span>极寒</span><span>规模</span></span>
+      <span class="cch-price">价格</span>
+    </div>
+    <div class="cc-head en">
+      <span class="cch-n">Product</span>
+      <span class="cch-seg">Segment</span>
+      <span class="cch-dots"><span>Cold</span><span>Scale</span></span>
+      <span class="cch-price">Price</span>
+    </div>
+    <div class="cc-row">
+      <div class="cc-main">
+        <span class="cc-name">Otto / Yeti</span>
+        <span class="cc-seg zh">机场跑道级</span><span class="cc-seg en">Airport runway</span>
+        <span class="cc-dots"><span class="dy">✓</span><span class="dy">✓</span></span>
+        <span class="cc-price">&gt;$2M</span>
+      </div>
+      <div class="cc-why zh">⚠ 造价极高，商业地产无法承受</div>
+      <div class="cc-why en">⚠ Unit cost makes commercial real estate deployment impossible</div>
+    </div>
+    <div class="cc-row">
+      <div class="cc-main">
+        <span class="cc-name">Left Hand / Toro</span>
+        <span class="cc-seg zh">商业除草改型</span><span class="cc-seg en">Lawn→snow adapt</span>
+        <span class="cc-dots"><span class="dn">✗</span><span class="dp">△</span></span>
+        <span class="cc-price">$80–120K</span>
+      </div>
+      <div class="cc-why zh">⚠ 极寒可靠性存疑，产品不成熟</div>
+      <div class="cc-why en">⚠ Cold-weather reliability unproven; product immature</div>
+    </div>
+    <div class="cc-row">
+      <div class="cc-main">
+        <span class="cc-name">Yarbo</span>
+        <span class="cc-seg zh">消费级住宅</span><span class="cc-seg en">Consumer residential</span>
+        <span class="cc-dots"><span class="dp">△</span><span class="dn">✗</span></span>
+        <span class="cc-price">$3–8K</span>
+      </div>
+      <div class="cc-why zh">⚠ 吞吐量、可靠性、安全级别均不足</div>
+      <div class="cc-why en">⚠ Throughput, reliability, safety all insufficient</div>
+    </div>
+    <div class="cc-row">
+      <div class="cc-main">
+        <span class="cc-name">Swap Robotics</span>
+        <span class="cc-seg zh">模块化除雪草</span><span class="cc-seg en">Modular snow/mow</span>
+        <span class="cc-dots"><span class="dp">△</span><span class="dp">△</span></span>
+        <span class="cc-price">$50–90K</span>
+      </div>
+      <div class="cc-why zh">⚠ 仍在融资验证阶段，市场渗透有限</div>
+      <div class="cc-why en">⚠ Still in validation; limited market penetration</div>
+    </div>
+    <div class="cc-row ours">
+      <div class="cc-main">
+        <span class="cc-name" style="color:var(--angel);font-weight:800">ARCBOS SnowBot</span>
+        <span class="cc-seg zh">商业/工业园区</span><span class="cc-seg en">Commercial/Industrial</span>
+        <span class="cc-dots"><span class="dy">✓</span><span class="dy">✓</span></span>
+        <span class="cc-price">$16–28K/yr</span>
+      </div>
+      <div class="cc-why" style="color:var(--angel);font-weight:600">
+        <span class="zh">✓ RaaS 订阅 · 可量产 · 10年渠道就绪</span>
+        <span class="en">✓ RaaS subscription · Scalable · 10yr channel ready</span>
+      </div>
+    </div>
+  </div>
   <div class="cards">
     <div class="card ca">
       <div class="card-lbl zh">01 · 四维工程门槛</div><div class="card-lbl en">01 · 4-Axis Engineering Barrier</div>
@@ -767,7 +844,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   </div>
   <div class="prose zh">预算中含 <strong>¥65万（11%）风险储备</strong>，覆盖以下六类主要风险。审慎但不过度保守——<strong>单点问题不应中断样机进度</strong>。</div>
   <div class="prose en">Budget includes <strong>¥650K (11%) risk reserve</strong> covering six major categories. Prudent but not excessive — <strong>no single failure point should halt prototype progress.</strong></div>
-  <table class="rtbl">
+  <div class="rtbl-wrap"><table class="rtbl">
     <thead>
       <tr>
         <th class="zh" style="width:110px">风险类型</th><th class="en" style="width:130px">Risk</th>
