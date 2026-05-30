@@ -1,0 +1,201 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>附件三《交付物与披露清单》</title><meta name="description" content="ARCBOS SnowBot Alpha/Beta contract package"><meta property="og:title" content="附件三《交付物与披露清单》"><meta property="og:description" content="ARCBOS SnowBot Alpha/Beta 合同与技术附件"><meta property="og:image" content="preview.png"><style>
+:root{--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--paper:#fff;--bg:#f7f7f5}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","Microsoft YaHei",Arial,sans-serif;line-height:1.72}.page{max-width:980px;margin:0 auto;padding:38px 20px 80px}.doc{background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 28px rgba(17,24,39,.06);padding:42px 52px}.top{display:flex;justify-content:space-between;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:26px}.brand{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}.nav a{color:var(--muted);text-decoration:none;margin-left:12px;font-size:13px}h1{font-size:30px;line-height:1.25;margin:14px 0 20px}h2{font-size:21px;margin:34px 0 12px;border-bottom:1px solid var(--line);padding-bottom:8px}h3{font-size:17px;margin:24px 0 8px}h4{font-size:15px;margin:20px 0 6px}p{margin:10px 0}ul{padding-left:24px}li{margin:4px 0}pre{background:#f6f6f6;border:1px solid var(--line);padding:14px 16px;overflow:auto;white-space:pre-wrap}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:14px}td,th{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}th{background:#f3f4f6}.footer{margin-top:36px;color:var(--muted);font-size:12px;text-align:center}.toc{display:grid;gap:10px}.toc a{display:block;border:1px solid var(--line);padding:14px 16px;text-decoration:none;color:var(--ink);background:#fafafa}.toc a:hover{background:#f1f5f9}@media(max-width:720px){.doc{padding:26px 18px}.top{display:block}.nav a{display:inline-block;margin:8px 10px 0 0}h1{font-size:23px}}@media print{body{background:#fff}.page{padding:0}.doc{box-shadow:none;border:0;padding:0}.nav{display:none}}
+</style></head><body><main class="page"><article class="doc"><div class="top"><div class="brand">ARCBOS · ENGINEERED FOR EXTREME CONDITIONS</div><nav class="nav"><a href="index.html">主合同</a><a href="attachment-1a-navigation.html">附件1A</a><a href="attachment-1b-embedded.html">附件1B</a><a href="attachment-2-milestones.html">附件2</a><a href="attachment-3-deliverables.html">附件3</a></nav></div><h1>附件三《交付物与披露清单》</h1>
+<h2>ARCBOS</h2>
+<p>ENGINEERED FOR EXTREME CONDITIONS</p>
+<h1>附件三｜交付物与披露清单</h1>
+<p>版本：v1.1  </p>
+<p>文件性质：合同附件 / 交付清单 / 背景技术披露 / 第三方组件披露  </p>
+<p>适用项目：SnowBot Alpha补齐 + Beta闭环  </p>
+<p>适用合同：PUB-2605-0039-AGR  </p>
+<p>---</p>
+<h2>1. 文件定位</h2>
+<p>本附件用于统一 SnowBot Alpha/Beta 阶段的正式交付物、背景技术披露和第三方组件披露要求。</p>
+<p>本附件与以下文件共同使用：</p>
+<pre><code>├─ 附件一-A：《SnowBot Alpha/Beta 导航与自主系统技术基线 v2.1》
+├─ 附件一-B：《SnowBot Alpha/Beta 嵌入式与电控系统技术基线 v2.1》
+├─ 附件二：《SnowBot Alpha/Beta System Milestones 整机系统里程碑纲领》
+└─ 主合同：《PUB-2605-0039-AGR》</code></pre>
+<p>本附件不扩大附件一-A、附件一-B、附件二或主合同约定的开发范围；仅用于明确纳入合同范围内成果的交付形式、披露要求和验收资料。</p>
+<p>---</p>
+<h2>2. Release Package 交付总原则</h2>
+<p>乙方每一阶段正式交付均应形成可追踪、可复现、可接管的 Release Package。</p>
+<p>Release Package 至少应包含：</p>
+<pre><code>Release Package
+├─ Source Code
+├─ Configuration
+├─ Protocol
+├─ IO List
+├─ Wiring Diagram
+├─ Test Data
+├─ Test Report
+├─ Known Issues
+├─ Deployment / Build / Run Instructions
+├─ Version / Commit / Release Record
+└─ Handover Notes</code></pre>
+<p>未进入甲方指定 GitHub 仓库、双方确认的正式工程交付包，或未形成可追踪版本记录的内容，不视为正式交付。</p>
+<p>---</p>
+<h2>3. 通用交付物清单</h2>
+<p>适用于导航、嵌入式、电控联调和系统级交付。</p>
+<pre><code>General Delivery Items
+├─ Source Code
+├─ Configuration
+├─ Deployment Instructions
+├─ Build Instructions
+├─ Run Instructions
+├─ Interface Documents
+├─ Protocol Documents
+├─ Test Scripts or Test Procedures
+├─ Test Data
+├─ Test Report
+├─ Runtime Logs / CAN Logs / System Logs
+├─ Known Issues
+├─ Release Notes
+└─ Handover Notes</code></pre>
+<p>禁止作为唯一交付：</p>
+<pre><code>Invalid Delivery Alone
+├─ 只交视频演示
+├─ 只交二进制程序或固件
+├─ 只交口头说明
+├─ 只在乙方电脑、乙方账号或乙方远程环境可运行
+├─ 只交截图或照片
+├─ 只交成品控制器但不交参数、接线和协议
+└─ 只交演示结果但不交测试报告和已知问题清单</code></pre>
+<p>---</p>
+<h2>4. Navigation 交付物清单</h2>
+<p>适用于附件一-A《SnowBot Alpha/Beta 导航与自主系统技术基线 v2.1》。</p>
+<pre><code>Navigation Delivery Items
+├─ ROS2 Package 或等效软件模块
+├─ Navigation Source Code
+├─ Navigation Configuration
+├─ Launch / Startup Scripts
+├─ ROS2 Topic / Service / Action 文档
+├─ Sensor Interface Documents
+├─ RTK / IMU / Odometry / Lidar 数据接入说明
+├─ Coordinate System / TF Definition
+├─ Localization Interface Description
+├─ Teach &amp; Repeat 路线录制说明
+├─ Teach &amp; Repeat 路线保存 / 路线加载 / 路线回放说明
+├─ Route File Format
+├─ Task State Machine Description
+├─ Safety Stop / Manual Takeover Interface Description
+├─ Obstacle Safe Stop Test Record
+├─ Log Format
+├─ Test Data
+├─ Test Report
+├─ Known Issues
+└─ Release Package</code></pre>
+<p>Beta 阶段障碍处理的最低交付要求为基础障碍安全停车；局部避障属于可选增强能力，除非主合同或专项 SOW 另行明确。</p>
+<p>---</p>
+<h2>5. Embedded / Electromechanical 交付物清单</h2>
+<p>适用于附件一-B《SnowBot Alpha/Beta 嵌入式与电控系统技术基线 v2.1》。</p>
+<pre><code>Embedded Delivery Items
+├─ Embedded Source Code / Firmware Source Code（如乙方开发）
+├─ Controller Configuration
+├─ Controller Parameter Backup
+├─ CAN Protocol / CAN ID Table / DBC（如适用）
+├─ Protocol Field Definition
+├─ IO List
+├─ Wiring Diagram
+├─ Controller Model / BOM
+├─ Chassis Control Interface
+├─ Chassis Feedback Interface
+├─ Manual Takeover Interface
+├─ E-Stop / Software Stop Interface
+├─ Work Unit Control Interface
+├─ Work Unit Status Feedback
+├─ Fault Code Table
+├─ Safety Logic Description
+├─ CAN Logs / Runtime Logs
+├─ Alpha Test Report
+├─ Beta Test Report
+├─ System Integration Test Report
+├─ Known Issues
+└─ Release Package</code></pre>
+<p>除雪机构相关交付仅限于主合同和附件一-B明确的成品 CAN 控制器联调、上位机/遥控启停、状态反馈、安全互锁、测试记录和必要联调。</p>
+<p>以下内容不因本附件自动纳入：</p>
+<pre><code>Excluded Unless Separate SOW
+├─ 自研控制器硬件
+├─ 自研电机驱动板
+├─ 功率电路设计
+├─ PCB设计
+├─ BMS硬件设计
+├─ 高电流保护硬件设计
+├─ 量产级电控开发
+├─ 整机认证
+└─ 最终产品安全认证</code></pre>
+<p>---</p>
+<h2>6. System Milestones 对齐交付</h2>
+<p>本附件交付物应按附件二整机系统里程碑组织，不得自建脱离整机 Gate 的交付节奏。</p>
+<table>
+<tr><th>整机 Gate</th><th>交付重点</th><th>Release Package 要求</th></tr>
+<tr><td>A1 系统架构冻结</td><td>架构、接口、控制器、IO、协议初版</td><td>架构图、接口清单、CAN协议草案、IO点表、控制器选型</td></tr>
+<tr><td>A2 底盘与驱动系统打通</td><td>底盘运动执行与反馈</td><td>底盘控制代码/配置、CAN日志、运行测试报告</td></tr>
+<tr><td>A3 除雪作业模块完成</td><td>除雪机构成品控制器联调</td><td>控制器型号、接线图、参数配置、启停测试、联调报告</td></tr>
+<tr><td>A4 Alpha 工程原型机完成</td><td>Alpha 联合运行</td><td>Alpha Test Report、Known Issues、基础运行日志</td></tr>
+<tr><td>B2 定位与路线系统完成</td><td>Teach &amp; Repeat 基础能力</td><td>路线录制/保存/加载/回放资料、测试数据、路线回放报告</td></tr>
+<tr><td>B3 任务执行闭环完成</td><td>路线执行、任务状态机、安全停车</td><td>联合测试报告、障碍安全停车记录、异常停车记录</td></tr>
+<tr><td>B5 System Demonstration &amp; Engineering Handover</td><td>系统演示能力与工程交付</td><td>完整 Release Package、交接记录、培训记录、最终 Known Issues</td></tr>
+</table>
+<p>说明：B1 产品化结构重构、B4 Beta 展示状态完成属于整机协同 Gate，不应被解释为单一导航或嵌入式供应商的独立交付责任，除非合同另行明确。</p>
+<p>---</p>
+<h2>7. GitHub / 工程资产交付要求</h2>
+<p>正式交付应进入甲方指定 GitHub 仓库或双方确认的正式工程交付包。</p>
+<p>建议仓库结构：</p>
+<pre><code>snowbot-autonomy
+├─ Navigation / Autonomy / IPC / ROS2 / Route / Safety / Task Manager
+└─ Release / Test / Docs
+
+snowbot-embedded
+├─ Embedded Control / CAN / IO / Motor Control Interface / Firmware or Controller Configuration
+└─ Release / Test / Docs</code></pre>
+<p>最低要求：</p>
+<pre><code>├─ Source Code 或 Configuration 必须可追踪
+├─ Protocol 必须可版本化
+├─ IO List 与 Wiring Diagram 必须提交
+├─ Test Data 与 Test Report 必须对应版本
+├─ Controller Configuration 与参数必须备份
+├─ Known Issues 必须随 Release Package 提交
+└─ 每个付款节点应能对应一个可追踪版本记录</code></pre>
+<p>---</p>
+<h2>8. 背景技术披露表</h2>
+<p>乙方如使用其签约前已合法拥有的背景技术，应在本表中披露。未披露的背景技术，不得作为限制甲方使用、复制、部署、修改、二次开发或商业化的理由。</p>
+<table>
+<tr><th>序号</th><th>技术/模块名称</th><th>所属权利人</th><th>是否用于本项目</th><th>使用位置</th><th>是否限制甲方商业使用</th><th>授权范围</th><th>备注</th></tr>
+<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<p>背景技术不得产生以下限制，除非主合同或专项 SOW 明确约定并经甲方书面确认：</p>
+<pre><code>├─ 限制甲方运行本项目成果
+├─ 限制甲方部署本项目成果
+├─ 限制甲方复制本项目成果
+├─ 限制甲方修改或二次开发
+├─ 限制甲方商业使用
+├─ 限制甲方委托第三方继续开发
+└─ 导致甲方额外支付未披露授权费用</code></pre>
+<p>---</p>
+<h2>9. 第三方组件披露表</h2>
+<p>乙方使用任何开源软件、第三方库、SDK、算法模型、工具链、控制器配置软件、云服务或外部 API，应在本表中披露。</p>
+<table>
+<tr><th>序号</th><th>名称</th><th>版本</th><th>类型</th><th>许可证/授权方式</th><th>使用模块</th><th>是否修改源码</th><th>是否影响甲方闭源商业化</th><th>是否产生额外费用</th><th>替代方案/备注</th></tr>
+<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<p>未经甲方书面确认，乙方不得引入以下组件：</p>
+<pre><code>├─ 要求甲方核心代码开源的组件
+├─ 限制甲方商业化使用的组件
+├─ 限制甲方复制、销售或部署的组件
+├─ 需持续向第三方付费但未事先披露的组件
+├─ 依赖乙方个人账号、服务器或不可控云服务的组件
+├─ 影响甲方后续二次开发或商业化交付的组件
+└─ 存在已知重大安全风险的组件</code></pre>
+<p>---</p>
+<h2>10. 最终确认原则</h2>
+<pre><code>交付必须可运行、可复现、可接管、可追踪。
+导航交付必须对齐附件一-A。
+嵌入式交付必须对齐附件一-B。
+阶段交付必须对齐附件二 System Milestones。
+知识产权、背景技术和第三方组件必须按本附件披露。
+未披露的限制，不得作为限制甲方使用、二次开发或商业化的理由。</code></pre><div class="footer">ARCBOS · SnowBot Program · Confidential</div></article></main></body></html>

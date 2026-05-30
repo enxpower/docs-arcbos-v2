@@ -1,0 +1,410 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>附件一B：《SnowBot Alpha Beta 嵌入式与电控系统技术基线 v2 1》</title><meta name="description" content="ARCBOS SnowBot Alpha/Beta contract package"><meta property="og:title" content="附件一B：《SnowBot Alpha Beta 嵌入式与电控系统技术基线 v2 1》"><meta property="og:description" content="ARCBOS SnowBot Alpha/Beta 合同与技术附件"><meta property="og:image" content="preview.png"><style>
+:root{--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--paper:#fff;--bg:#f7f7f5}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","Microsoft YaHei",Arial,sans-serif;line-height:1.72}.page{max-width:980px;margin:0 auto;padding:38px 20px 80px}.doc{background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 28px rgba(17,24,39,.06);padding:42px 52px}.top{display:flex;justify-content:space-between;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:26px}.brand{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}.nav a{color:var(--muted);text-decoration:none;margin-left:12px;font-size:13px}h1{font-size:30px;line-height:1.25;margin:14px 0 20px}h2{font-size:21px;margin:34px 0 12px;border-bottom:1px solid var(--line);padding-bottom:8px}h3{font-size:17px;margin:24px 0 8px}h4{font-size:15px;margin:20px 0 6px}p{margin:10px 0}ul{padding-left:24px}li{margin:4px 0}pre{background:#f6f6f6;border:1px solid var(--line);padding:14px 16px;overflow:auto;white-space:pre-wrap}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:14px}td,th{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}th{background:#f3f4f6}.footer{margin-top:36px;color:var(--muted);font-size:12px;text-align:center}.toc{display:grid;gap:10px}.toc a{display:block;border:1px solid var(--line);padding:14px 16px;text-decoration:none;color:var(--ink);background:#fafafa}.toc a:hover{background:#f1f5f9}@media(max-width:720px){.doc{padding:26px 18px}.top{display:block}.nav a{display:inline-block;margin:8px 10px 0 0}h1{font-size:23px}}@media print{body{background:#fff}.page{padding:0}.doc{box-shadow:none;border:0;padding:0}.nav{display:none}}
+</style></head><body><main class="page"><article class="doc"><div class="top"><div class="brand">ARCBOS · ENGINEERED FOR EXTREME CONDITIONS</div><nav class="nav"><a href="index.html">主合同</a><a href="attachment-1a-navigation.html">附件1A</a><a href="attachment-1b-embedded.html">附件1B</a><a href="attachment-2-milestones.html">附件2</a><a href="attachment-3-deliverables.html">附件3</a></nav></div><h1>附件一B：《SnowBot Alpha/Beta 嵌入式与电控系统技术基线 v2.1》</h1>
+<h2>ARCBOS</h2>
+<p>ENGINEERED FOR EXTREME CONDITIONS</p>
+<h1>SnowBot Alpha/Beta Embedded &amp; Electromechanical Control Stack</h1>
+<h2>嵌入式与电控系统开发需求与验收基线 v2.1</h2>
+<p>版本：v2.1  </p>
+<p>文件性质：技术基线 / 合同附件候选文件 / 里程碑验收基线  </p>
+<p>适用阶段：SnowBot Alpha补齐 + Beta闭环  </p>
+<p>适用范围：嵌入式控制、底盘执行、除雪机构电控联调、IO安全、CAN通信、故障码、底层状态反馈</p>
+<p>---</p>
+<h2>1. 文件定位</h2>
+<p>本文件定义 SnowBot Alpha/Beta 阶段嵌入式与电控系统的开发范围、接口、交付物和验收标准。</p>
+<p>本文件与以下文件共同使用：</p>
+<pre><code>├─ Navigation &amp; Autonomy Stack v2.1
+│  └─ 定义导航、定位、路线、感知、决策、控制输出与上位机安全逻辑
+│
+├─ Embedded &amp; Electromechanical Control Stack v2.1
+│  └─ 定义底层执行、CAN、IO、急停、遥控接管、除雪机构控制、故障码和底层反馈
+│
+└─ System Milestones
+   └─ 定义 A1-A4 / B1-B5 整机 Gate</code></pre>
+<p>解释原则：</p>
+<pre><code>├─ 上位机算法、导航、路线、定位、感知、决策：以导航 v2.1 为准
+├─ MCU/控制器、执行接口、IO、安全链路、故障码、CAN执行：以本文件为准
+├─ 整机阶段和 Gate：以整机系统里程碑为准
+├─ 合同付款：以主合同付款节点为准
+└─ 供应商责任边界：以主合同、专项需求和正式 SOW 为准</code></pre>
+<p>---</p>
+<h2>2. 开发边界</h2>
+<p>当前阶段目标：</p>
+<pre><code>工程样机可运行、可测试、可接管、可复盘、可继续开发。</code></pre>
+<p>本文件不默认包含：</p>
+<pre><code>├─ 自研电机驱动板
+├─ 功率电路设计
+├─ PCB设计
+├─ MOSFET / IGBT 驱动电路
+├─ 高电流保护硬件设计
+├─ 电池包硬件设计
+├─ BMS硬件设计
+├─ 高压/大电流安规设计
+├─ 量产级 EMC/EMI 设计
+├─ 整机功能安全认证
+├─ 整机法规认证
+└─ 长期雪地可靠性认证</code></pre>
+<p>如需纳入以上内容，必须另行签署专项 SOW，明确范围、价格、交付物、验收标准和责任边界。</p>
+<p>---</p>
+<h2>3. 范围分层</h2>
+<h3>3.1 Level 1：必须包含</h3>
+<pre><code>Level 1 Mandatory Scope
+├─ 底盘 CAN 指令执行
+├─ 底盘状态反馈
+├─ 上位机运动控制接口
+├─ 速度 / 转向 / 停车指令接收与执行
+├─ 遥控器接管状态读取与反馈
+├─ 急停 / 停车状态读取与反馈
+├─ 软件停车指令执行
+├─ 基础 IO 状态采集
+├─ 故障码上报
+├─ 心跳与通信超时检测
+├─ 与导航系统状态机联调
+└─ 与导航系统测试数据联调</code></pre>
+<h3>3.2 Level 2：可纳入当前合同</h3>
+<p>本层为成品 CAN 控制器除雪机构联调。若纳入合同，必须明确型号、接线、参数、测试边界和交付物。</p>
+<pre><code>Level 2 Contractable Scope
+├─ 成品 CAN 电机控制器选型建议
+├─ 成品 CAN 电机控制器型号冻结
+├─ 除雪电机遥控启停控制
+├─ 除雪电机上位机启停控制
+├─ 除雪电机方向 / 速度 / 状态读取（如控制器支持）
+├─ 过流 / 过温 / 堵转 / 故障状态读取（如控制器支持）
+├─ 除雪机构运行状态反馈
+├─ 除雪机构启停与底盘运动安全互锁
+├─ 除雪机构联调测试报告
+├─ 接线图 / 参数配置 / 控制器配置备份
+└─ 与导航任务状态机接口联调</code></pre>
+<h3>3.3 Level 3：默认不包含</h3>
+<pre><code>Level 3 Excluded Unless Separate SOW
+├─ 自研底盘控制器硬件
+├─ 自研除雪电机控制器硬件
+├─ 自研电机驱动板
+├─ 功率电路设计
+├─ PCB设计
+├─ BMS硬件开发
+├─ 整机认证
+└─ 量产级可靠性认证</code></pre>
+<p>---</p>
+<h2>4. Alpha / Beta 能力定义</h2>
+<h3>4.1 Alpha 嵌入式能力</h3>
+<p>Alpha 阶段应实现：</p>
+<pre><code>├─ 控制器 / MCU / 成品控制器可上电运行
+├─ 底盘可执行前进 / 后退 / 转向 / 停车
+├─ 上位机可通过 CAN 或约定协议控制底盘
+├─ 底盘状态可反馈给上位机
+├─ 遥控器可接管
+├─ 急停可触发安全停车
+├─ 软件停车可触发安全停车
+├─ 通信丢失时进入安全状态
+├─ 基础 IO 可读取
+├─ 基础故障码可上报
+├─ 除雪机构电控方案冻结或成品控制器联调计划冻结
+└─ 代码 / 配置 / 接口 / 参数可交付</code></pre>
+<h3>4.2 Beta 嵌入式能力</h3>
+<p>Beta 阶段应实现：</p>
+<pre><code>├─ 稳定执行导航系统下发的速度 / 转向 / 停车指令
+├─ 提供底盘反馈、执行状态、通信健康状态
+├─ 支持路径跟踪所需的运动执行稳定性
+├─ 支持障碍停车、降级停车、异常停车
+├─ 支持人工接管优先
+├─ 支持急停最高优先级
+├─ 除雪机构启停状态可接入任务状态机
+├─ 除雪机构可由遥控器或上位机按约定方式控制
+├─ 底层故障码可记录并上报
+├─ 控制器配置、参数、固件/代码、接口文档可交付
+└─ 支持 Beta 固定场地演示和工程复盘</code></pre>
+<p>---</p>
+<h2>5. 全局里程碑对齐</h2>
+<p>嵌入式/电控开发必须对齐整机系统里程碑，不得自建一套脱离整机 Gate 的验收节奏。</p>
+<h3>5.1 Alpha · Prototype / Assist</h3>
+<table>
+<tr><th>整机 Gate</th><th>嵌入式/电控目标</th><th>必须交付</th><th>Gate 判断</th></tr>
+<tr><td>A1 系统架构冻结</td><td>嵌入式架构、控制器、IO、通信、安全链路冻结</td><td>控制器选型、CAN协议草案、IO点表、急停/遥控/安全链路定义、除雪电机控制方案、成品控制器型号建议</td><td>可进入采购、加工、装配</td></tr>
+<tr><td>A2 底盘与驱动系统打通</td><td>底盘运动执行链路打通</td><td>底盘前进/后退/转向/停车、上位机CAN控制、底盘反馈、遥控接管、急停/软件停车</td><td>可前进、后退、转向、停车</td></tr>
+<tr><td>A3 除雪作业模块完成</td><td>除雪机构电控联调完成至工程样机级</td><td>成品CAN控制器接入、遥控器控制、上位机启停、运行状态反馈、基础保护状态读取、联调报告</td><td>可完成基础推雪/除雪动作</td></tr>
+<tr><td>A4 Alpha 工程原型机完成</td><td>嵌入式、电气、基础软件联合运行</td><td>安全停车、遥控接管、除雪启停、基础运行测试、基础除雪测试、Alpha测试报告、已知问题清单</td><td>人可以安全控制机器完成基础作业</td></tr>
+</table>
+<h3>5.2 Beta · Task / Product Demo</h3>
+<table>
+<tr><th>整机 Gate</th><th>嵌入式/电控目标</th><th>必须交付</th><th>Gate 判断</th></tr>
+<tr><td>B1 产品化结构重构</td><td>提供嵌入式安装、线束、维护接口建议</td><td>控制器安装约束、线束接口建议、维护接口建议</td><td>不承担结构产品化责任</td></tr>
+<tr><td>B2 定位与路线系统完成</td><td>稳定执行导航运动接口</td><td>运动执行接口、状态反馈、通信健康状态、Teach &amp; Repeat 路线回放执行测试</td><td>可录制、保存、回放路线</td></tr>
+<tr><td>B3 任务执行闭环完成</td><td>支持固定场地任务闭环执行</td><td>速度执行、转向执行、障碍停车、降级逻辑、除雪机构状态接入、异常停车</td><td>固定场地内可按路线完成基础作业</td></tr>
+<tr><td>B4 Beta 展示状态完成</td><td>配合展示状态调试</td><td>线束/控制器/接口整改建议、展示前问题清单</td><td>不承担外壳、低温、雪地最终验证责任</td></tr>
+<tr><td>B5 System Demonstration &amp; Engineering Handover</td><td>完成嵌入式/电控工程交付</td><td>固定路线执行、Teach &amp; Repeat、基础障碍安全停车、人工接管/急停、除雪启停演示、日志、源码/配置/文档/测试报告</td><td>支持系统演示能力与工程交付</td></tr>
+</table>
+<p>---</p>
+<h2>6. 系统架构</h2>
+<pre><code>SnowBot Embedded &amp; Electromechanical Control Stack
+├─ Control Authority Layer
+│  ├─ Physical E-Stop
+│  ├─ Remote Controller / Manual Takeover
+│  ├─ Embedded Safety Guard
+│  ├─ Navigation Command
+│  └─ Work Unit Command
+│
+├─ MCU / Controller Layer
+│  ├─ Main MCU or Industrial Controller
+│  ├─ CAN Interface
+│  ├─ IO Interface
+│  ├─ Safety Input
+│  ├─ Fault Handling
+│  └─ Heartbeat Monitor
+│
+├─ Chassis Execution Layer
+│  ├─ Left / Right Track or Wheel Drive Interface
+│  ├─ Speed Command Execution
+│  ├─ Steering / Differential Control
+│  ├─ Brake / Stop Command
+│  └─ Chassis Feedback
+│
+├─ Work Unit Control Layer
+│  ├─ Snow Motor CAN Controller
+│  ├─ Work Unit Start / Stop
+│  ├─ Direction / Speed if supported
+│  ├─ Work Unit Status
+│  └─ Work Unit Fault Feedback
+│
+├─ Power &amp; IO Layer
+│  ├─ Power Status Input
+│  ├─ BMS Status Interface if available
+│  ├─ E-Stop Input
+│  ├─ Remote Mode Input
+│  ├─ Limit / Sensor IO
+│  └─ Warning Output
+│
+├─ Communication Layer
+│  ├─ CAN Bus
+│  ├─ Serial / Ethernet if required
+│  ├─ Heartbeat
+│  ├─ Timeout Detection
+│  └─ Fault Code Reporting
+│
+└─ Delivery Layer
+   ├─ Source Code / Firmware if developed
+   ├─ Controller Configuration
+   ├─ CAN DBC or Protocol Table
+   ├─ IO List
+   ├─ Wiring Diagram
+   ├─ Test Script
+   ├─ Test Data
+   └─ Test Report</code></pre>
+<p>---</p>
+<h2>7. 安全优先级</h2>
+<table>
+<tr><th>优先级</th><th>来源</th><th>原则</th></tr>
+<tr><td>1</td><td>物理急停</td><td>最高优先级，任何自动控制不得覆盖</td></tr>
+<tr><td>2</td><td>遥控器 / 人工接管</td><td>人工控制优先于自动控制</td></tr>
+<tr><td>3</td><td>嵌入式底层保护</td><td>可拒绝危险指令</td></tr>
+<tr><td>4</td><td>软件安全停车</td><td>上位机/导航系统可请求停车</td></tr>
+<tr><td>5</td><td>自动导航控制</td><td>只在安全条件满足时执行</td></tr>
+<tr><td>6</td><td>除雪作业控制</td><td>不得高于运动安全和急停</td></tr>
+</table>
+<p>安全规则：</p>
+<pre><code>├─ 急停触发：立即禁止自动运动与除雪作业输出
+├─ 遥控接管：自动控制释放，人工优先
+├─ 通信超时：底盘进入安全停车或保持安全状态
+├─ CAN异常：停车或进入故障状态
+├─ 控制器故障：停止运动并上报故障码
+├─ 除雪机构故障：停止作业机构，必要时停止底盘
+├─ 定位/感知异常由导航判定，嵌入式执行停车请求
+└─ 安全状态恢复必须经人工确认，不得自动恢复作业</code></pre>
+<p>---</p>
+<h2>8. 接口与数据契约</h2>
+<h3>8.1 控制指令</h3>
+<table>
+<tr><th>指令</th><th>来源</th><th>目标</th><th>必须字段</th><th>备注</th></tr>
+<tr><td>HEARTBEAT</td><td>上位机/嵌入式双向</td><td>系统健康</td><td>timestamp, source, status</td><td>超时触发安全策略</td></tr>
+<tr><td>MODE_CMD</td><td>上位机/遥控</td><td>嵌入式控制器</td><td>manual/auto/safe/fault</td><td>模式切换需记录</td></tr>
+<tr><td>MOTION_CMD</td><td>导航上位机</td><td>底盘执行层</td><td>speed, steering/angular, enable, timestamp</td><td>需限幅与安全校验</td></tr>
+<tr><td>STOP_CMD</td><td>上位机/安全模块</td><td>底盘执行层</td><td>stop_type, reason, timestamp</td><td>soft_stop / emergency_request</td></tr>
+<tr><td>WORK_UNIT_CMD</td><td>上位机/遥控</td><td>除雪机构控制层</td><td>start/stop, direction, speed_if_available</td><td>speed字段视控制器能力</td></tr>
+<tr><td>RESET_CMD</td><td>人工确认</td><td>嵌入式控制器</td><td>target, reason, operator</td><td>急停后不得自动reset</td></tr>
+</table>
+<h3>8.2 状态反馈</h3>
+<table>
+<tr><th>状态</th><th>方向</th><th>必须字段</th><th>备注</th></tr>
+<tr><td>CHASSIS_FEEDBACK</td><td>嵌入式 → 上位机</td><td>speed_actual, steering_actual, motion_state</td><td>可由底盘控制器提供</td></tr>
+<tr><td>MODE_STATUS</td><td>嵌入式 → 上位机</td><td>manual/auto/safe/fault</td><td>与状态机一致</td></tr>
+<tr><td>ESTOP_STATUS</td><td>嵌入式 → 上位机</td><td>active, source, timestamp</td><td>急停最高优先级</td></tr>
+<tr><td>MANUAL_TAKEOVER_STATUS</td><td>嵌入式 → 上位机</td><td>active, source, timestamp</td><td>人工优先</td></tr>
+<tr><td>WORK_UNIT_STATUS</td><td>嵌入式 → 上位机</td><td>running, direction, speed_if_available, fault</td><td>控制器能力不足需说明</td></tr>
+<tr><td>POWER_STATUS</td><td>嵌入式 → 上位机</td><td>voltage, current_if_available, bms_state_if_available</td><td>如BMS接口可用</td></tr>
+<tr><td>FAULT_CODE</td><td>嵌入式 → 上位机</td><td>code, severity, module, description, timestamp</td><td>必须可复盘</td></tr>
+<tr><td>SYSTEM_HEALTH</td><td>嵌入式 → 上位机</td><td>controller, can, io, work_unit, chassis</td><td>用于任务状态机</td></tr>
+</table>
+<h3>8.3 CAN / 协议交付</h3>
+<p>必须交付：</p>
+<pre><code>├─ CAN ID 表
+├─ 报文字段定义
+├─ 字节序 / 数据类型 / 缩放比例
+├─ 发送周期
+├─ 超时阈值
+├─ 默认安全状态
+├─ 故障码定义
+├─ DBC 文件（如适用）
+├─ 示例报文
+└─ 测试记录</code></pre>
+<p>---</p>
+<h2>9. IO 点表</h2>
+<table>
+<tr><th>类别</th><th>点位</th><th>方向</th><th>必须说明</th></tr>
+<tr><td>急停</td><td>E-Stop Input</td><td>Input</td><td>常开/常闭、触发逻辑、安全状态</td></tr>
+<tr><td>遥控</td><td>Manual Mode Input</td><td>Input</td><td>接管状态来源</td></tr>
+<tr><td>底盘</td><td>Chassis Enable</td><td>Output/Input</td><td>使能与反馈</td></tr>
+<tr><td>除雪</td><td>Work Unit Enable</td><td>Output</td><td>启停控制</td></tr>
+<tr><td>除雪</td><td>Work Unit Fault</td><td>Input</td><td>故障反馈，如控制器支持</td></tr>
+<tr><td>电源</td><td>Power/BMS Status</td><td>Input</td><td>如接口可用</td></tr>
+<tr><td>安全</td><td>Safety Relay / Safety State</td><td>Input/Output</td><td>如硬件支持</td></tr>
+<tr><td>调试</td><td>Debug / Service Port</td><td>Interface</td><td>调试方式和限制</td></tr>
+</table>
+<p>---</p>
+<h2>10. 故障码体系</h2>
+<p>故障码至少覆盖：</p>
+<pre><code>├─ 通信故障：CAN timeout / heartbeat lost / invalid command
+├─ 底盘故障：drive fault / motor feedback lost / command rejected
+├─ 安全故障：estop active / manual takeover active / reset required
+├─ 除雪机构故障：controller fault / overcurrent / overtemperature / stall / status unknown
+└─ 电源故障：low voltage / bms alarm / power abnormal（如接口可用）</code></pre>
+<p>每个故障码应包含：</p>
+<pre><code>code / severity / module / trigger condition / action / recovery method / log requirement</code></pre>
+<p>---</p>
+<h2>11. Alpha 阶段需求</h2>
+<table>
+<tr><th>模块</th><th>必须交付能力</th><th>验收标准</th><th>主要交付物</th></tr>
+<tr><td>控制器环境</td><td>控制器/MCU/成品控制器可运行</td><td>可上电、可通信、可调试</td><td>配置说明、接线说明</td></tr>
+<tr><td>CAN通信</td><td>与上位机/底盘控制器通信</td><td>可收发报文，周期稳定</td><td>CAN表、测试记录</td></tr>
+<tr><td>底盘控制</td><td>前进/后退/转向/停车</td><td>上位机和遥控基础控制通过</td><td>控制代码/配置、测试报告</td></tr>
+<tr><td>底盘反馈</td><td>读取速度、状态、故障</td><td>上位机可显示或记录</td><td>状态接口、日志样例</td></tr>
+<tr><td>遥控接管</td><td>人工接管优先</td><td>自动控制释放</td><td>接管测试记录</td></tr>
+<tr><td>急停/停车</td><td>急停最高优先级</td><td>急停触发后自动控制失效</td><td>安全测试报告</td></tr>
+<tr><td>IO采集</td><td>基础IO状态读取</td><td>状态可记录</td><td>IO点表</td></tr>
+<tr><td>除雪方案</td><td>除雪电控方案冻结</td><td>控制器型号/接口/边界明确</td><td>选型说明、接口草案</td></tr>
+<tr><td>工程交付</td><td>源码/配置/协议/测试资料提交</td><td>可复现、可接管</td><td>GitHub或工程交付包</td></tr>
+</table>
+<p>---</p>
+<h2>12. Beta 阶段需求</h2>
+<table>
+<tr><th>模块</th><th>必须交付能力</th><th>验收标准</th><th>主要交付物</th></tr>
+<tr><td>运动执行</td><td>稳定执行导航速度/转向指令</td><td>固定路线低速执行稳定</td><td>控制代码/配置、测试记录</td></tr>
+<tr><td>执行反馈</td><td>上报速度、状态、健康</td><td>导航可用于状态机判断</td><td>反馈接口、日志</td></tr>
+<tr><td>除雪控制</td><td>遥控/上位机启停除雪机构</td><td>可完成基础启停和状态反馈</td><td>控制器配置、联调报告</td></tr>
+<tr><td>安全互锁</td><td>除雪与底盘运动安全互锁</td><td>异常时优先停机或停作业</td><td>安全逻辑说明</td></tr>
+<tr><td>障碍停车执行</td><td>执行导航停车请求</td><td>遇障停车动作可靠</td><td>测试报告</td></tr>
+<tr><td>降级执行</td><td>通信/控制异常停车或安全状态</td><td>异常不继续危险运行</td><td>异常测试报告</td></tr>
+<tr><td>故障码</td><td>故障可上报、可复盘</td><td>故障码清晰、日志完整</td><td>故障码表、日志样例</td></tr>
+<tr><td>最终交付</td><td>源码/配置/协议/接线/测试完整</td><td>甲方可接管继续开发</td><td>完整工程交付包</td></tr>
+</table>
+<p>---</p>
+<h2>13. 测试场景矩阵</h2>
+<table>
+<tr><th>测试场景</th><th>所属阶段</th><th>期望结果</th><th>验收依据</th></tr>
+<tr><td>控制器上电</td><td>Alpha</td><td>控制器可运行</td><td>测试记录</td></tr>
+<tr><td>CAN通信</td><td>Alpha</td><td>报文可收发</td><td>CAN日志</td></tr>
+<tr><td>上位机控制底盘</td><td>Alpha</td><td>可前进/后退/转向/停车</td><td>真机测试</td></tr>
+<tr><td>遥控接管</td><td>Alpha/Beta</td><td>自动控制释放</td><td>测试视频/报告</td></tr>
+<tr><td>急停触发</td><td>Alpha/Beta</td><td>自动运动和除雪作业失效</td><td>急停测试报告</td></tr>
+<tr><td>软件停车</td><td>Alpha/Beta</td><td>底盘安全停车</td><td>测试记录</td></tr>
+<tr><td>通信超时</td><td>Beta</td><td>停车或安全状态</td><td>异常测试报告</td></tr>
+<tr><td>除雪电机遥控启停</td><td>Alpha/Beta</td><td>可启停作业机构</td><td>联调报告</td></tr>
+<tr><td>除雪电机上位机启停</td><td>Beta</td><td>可由任务系统控制启停</td><td>联调报告</td></tr>
+<tr><td>除雪故障反馈</td><td>Beta</td><td>故障可上报或说明不支持</td><td>故障测试记录</td></tr>
+<tr><td>Teach &amp; Repeat 路线执行底盘控制</td><td>Beta</td><td>稳定执行导航指令</td><td>联合测试报告</td></tr>
+<tr><td>遇障停车执行</td><td>Beta</td><td>执行停车请求</td><td>视频/日志/报告</td></tr>
+<tr><td>最终交付复现</td><td>Beta结束</td><td>甲方可按说明部署/运行</td><td>交接记录</td></tr>
+</table>
+<p>---</p>
+<h2>14. 交付清单</h2>
+<pre><code>Release Package
+├─ 源码 / 固件源码（如乙方开发）
+├─ 控制器配置文件
+├─ CAN协议 / DBC / 报文字段表
+├─ IO点表
+├─ 接线图
+├─ 控制器型号与BOM
+├─ 参数配置说明
+├─ 启动 / 刷写 / 部署说明
+├─ 故障码表
+├─ 安全逻辑说明
+├─ 测试脚本或测试步骤
+├─ 测试数据 / CAN日志
+├─ Alpha测试报告
+├─ Beta测试报告
+├─ 全系统联调报告
+├─ 已知问题清单
+└─ 交接培训记录</code></pre>
+<p>禁止作为唯一交付：</p>
+<pre><code>├─ 只交测试视频
+├─ 只交二进制固件
+├─ 只交口头说明
+├─ 只交成品控制器但不交参数
+├─ 只交接线但不交协议
+├─ 只交演示结果但不交测试报告
+└─ 只在乙方电脑或乙方账号环境可运行</code></pre>
+<p>---</p>
+<h2>15. 工程资产交付</h2>
+<p>建议路径：</p>
+<pre><code>snowbot-embedded
+├─ 00_admin
+├─ 01_system
+├─ 02_mcu
+├─ 03_motor-control
+├─ 04_power-bms
+├─ 05_sensors
+├─ 06_io-safety
+├─ 07_comm
+├─ 08_firmware
+├─ 09_test
+├─ docs
+├─ exports
+└─ release</code></pre>
+<p>最低要求：</p>
+<pre><code>├─ 源码或配置必须可追踪
+├─ 协议文档必须可版本化
+├─ 测试报告必须对应版本
+├─ 参数配置必须备份
+├─ 成品控制器配置必须导出
+├─ 接线图和IO表必须提交
+└─ 未提交的内容不视为正式交付</code></pre>
+<p>---</p>
+<h2>16. 验收原则</h2>
+<pre><code>├─ 与整机 Gate 对齐
+├─ 与导航 v2.1 接口对齐
+├─ 与主合同付款节点对齐
+├─ 不确定时停车
+├─ 人工接管优先
+├─ 急停最高优先级
+├─ 交付必须可复现
+├─ 问题必须可复盘
+└─ 甲方必须可接管继续开发</code></pre>
+<p>任何纳入合同的嵌入式/电控内容，均不得只以“功能可演示”为最终验收；必须同时提交对应源码、配置、协议、接线、测试记录和已知问题清单。</p>
+<p>---</p>
+<h2>17. 责任边界</h2>
+<p>乙方如承接本文件范围内工作，应承担其交付范围内的设计、开发、配置、联调、测试和文档交付责任。</p>
+<p>本文件不得被解释为：</p>
+<pre><code>├─ 乙方承担整机 Engineer of Record 责任
+├─ 乙方承担最终产品安全认证责任
+├─ 乙方承担法规认证责任
+├─ 乙方承担底盘硬件制造责任
+├─ 乙方承担除雪机构机械设计责任
+├─ 乙方承担BMS硬件设计责任
+├─ 乙方承担自研功率电路责任
+└─ 乙方承担无人值守商业运行责任</code></pre>
+<p>---</p>
+<h2>18. 中科合同草案吸收原则</h2>
+<p>中科智驰草案中提到的“除雪机构独立电控”“通过CAN总线实现底盘与除雪机构分布式控制”“除雪电机接口协议”“购买成品CAN控制器实现除雪电机遥控控制”，按以下原则处理：</p>
+<pre><code>├─ 可吸收：底盘CAN控制、底盘反馈、遥控接管、急停/停车
+├─ 可吸收：除雪机构成品CAN控制器联调
+├─ 可吸收：除雪电机遥控控制、上位机启停、状态反馈、联调测试报告
+├─ 必须明确：控制器型号、接线、参数、协议、测试条件、交付物
+├─ 不自动吸收：自研电机驱动板、功率电路、PCB、BMS硬件、认证责任
+└─ 不接受：只写“除雪机构电控”但不定义交付物、验收标准和责任边界</code></pre>
+<p>---</p>
+<h2>19. 最终原则</h2>
+<pre><code>嵌入式可以外包；控制权不能外包。
+电控可以由供应商联调；协议、源码、配置、参数、IO、测试数据必须回到 ARCBOS。
+成品控制器可以使用；型号、参数、接线、配置、故障码必须交付。
+除雪机构可以纳入 Alpha/Beta；但必须严格对齐 A1/A2/A3/A4/B2/B3/B5。
+Beta阶段障碍处理最低要求为安全停车；局部避障属于可选增强能力，除非合同另行明确。
+不能因为“控制”二字，把功率硬件、PCB、BMS和最终认证责任混入当前合同。</code></pre><div class="footer">ARCBOS · SnowBot Program · Confidential</div></article></main></body></html>

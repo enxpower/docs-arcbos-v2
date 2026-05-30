@@ -1,0 +1,900 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>附件一A：《SnowBot Alpha Beta 导航与自主系统技术基线 v2 1》</title><meta name="description" content="ARCBOS SnowBot Alpha/Beta contract package"><meta property="og:title" content="附件一A：《SnowBot Alpha Beta 导航与自主系统技术基线 v2 1》"><meta property="og:description" content="ARCBOS SnowBot Alpha/Beta 合同与技术附件"><meta property="og:image" content="preview.png"><style>
+:root{--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--paper:#fff;--bg:#f7f7f5}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC","Microsoft YaHei",Arial,sans-serif;line-height:1.72}.page{max-width:980px;margin:0 auto;padding:38px 20px 80px}.doc{background:var(--paper);border:1px solid var(--line);box-shadow:0 8px 28px rgba(17,24,39,.06);padding:42px 52px}.top{display:flex;justify-content:space-between;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:16px;margin-bottom:26px}.brand{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}.nav a{color:var(--muted);text-decoration:none;margin-left:12px;font-size:13px}h1{font-size:30px;line-height:1.25;margin:14px 0 20px}h2{font-size:21px;margin:34px 0 12px;border-bottom:1px solid var(--line);padding-bottom:8px}h3{font-size:17px;margin:24px 0 8px}h4{font-size:15px;margin:20px 0 6px}p{margin:10px 0}ul{padding-left:24px}li{margin:4px 0}pre{background:#f6f6f6;border:1px solid var(--line);padding:14px 16px;overflow:auto;white-space:pre-wrap}code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}table{width:100%;border-collapse:collapse;margin:14px 0 22px;font-size:14px}td,th{border:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}th{background:#f3f4f6}.footer{margin-top:36px;color:var(--muted);font-size:12px;text-align:center}.toc{display:grid;gap:10px}.toc a{display:block;border:1px solid var(--line);padding:14px 16px;text-decoration:none;color:var(--ink);background:#fafafa}.toc a:hover{background:#f1f5f9}@media(max-width:720px){.doc{padding:26px 18px}.top{display:block}.nav a{display:inline-block;margin:8px 10px 0 0}h1{font-size:23px}}@media print{body{background:#fff}.page{padding:0}.doc{box-shadow:none;border:0;padding:0}.nav{display:none}}
+</style></head><body><main class="page"><article class="doc"><div class="top"><div class="brand">ARCBOS · ENGINEERED FOR EXTREME CONDITIONS</div><nav class="nav"><a href="index.html">主合同</a><a href="attachment-1a-navigation.html">附件1A</a><a href="attachment-1b-embedded.html">附件1B</a><a href="attachment-2-milestones.html">附件2</a><a href="attachment-3-deliverables.html">附件3</a></nav></div><h1>附件一A：《SnowBot Alpha/Beta 导航与自主系统技术基线 v2.1》</h1>
+<h2>ARCBOS</h2>
+<p>ENGINEERED FOR EXTREME CONDITIONS</p>
+<h2>SnowBot Alpha/Beta 导航控制系统开发需求与验收基线 v2.1</h2>
+<p>版本：v2.1   </p>
+<p>文件编号：PUB-2605-0021-SPEC  </p>
+<p>文件性质：成熟需求基线 / 技术对齐文件 / 合同附件候选文件 / 里程碑验收基线  </p>
+<p>适用项目：SnowBot 工程样机 Alpha补齐 + Beta闭环 阶段</p>
+<p>---</p>
+<h2>1. 文件定位</h2>
+<p>本文件用于定义 SnowBot Alpha/Beta 阶段导航与自主系统开发需求、交付边界、GitHub治理、里程碑验收与付款基线。</p>
+<p>本文件用于：</p>
+<pre><code>├─ 供应商技术对齐
+├─ 正式报价
+├─ 合同附件
+├─ 开发管理
+├─ GitHub 交付
+├─ 里程碑验收
+└─ 付款结算</code></pre>
+<p>本文件不定义：</p>
+<pre><code>├─ Gamma
+├─ Delta
+├─ Fleet
+└─ 长期云平台运营系统</code></pre>
+<h3>1.1 文档关系</h3>
+<ul>
+<li>PUB-2605-0014-BRF：开发愿景与对外征询文件，用于让外包方理解产品方向并反馈开发清单；不作为正式 SOW、合同附件或付款验收依据。</li>
+<li>PUB-2604-0038-SPEC：原导航控制系统主需求文档，本文件在其基础上吸收外包方阶段开发计划并补齐接口数据契约与量化验收指标后形成 v2.1 成熟需求基线。</li>
+<li>PUB-2604-0039-SPEC：软件外包工程任务清单，用于任务拆解和执行管理；如与本文件存在阶段边界、验收标准或交付规则不一致，以本文件为准。</li>
+<li>嵌入式系统外包主需求文档：定义 MCU、底层控制、电机/执行器、BMS、电源、安全急停、IO采集、底层故障码和通信协议实现；本文件仅定义导航/上位机侧需求及与嵌入式层的接口要求。</li>
+<li>机械结构相关文档：定义机械结构、底盘、除雪机构、外壳装甲、样机加工装配和结构交付；本文件不定义机械结构设计责任。</li>
+<li>整机系统架构相关文档：作为长期架构参考，不作为当前 Alpha/Beta 导航外包报价、合同或验收依据。</li>
+</ul>
+<p>如不同文档之间存在解释冲突：</p>
+<pre><code>当前 Alpha/Beta 导航控制系统需求、报价、交付、验收、付款：
+以本文件 v2.1 为优先基线。
+
+嵌入式底层控制：
+以嵌入式系统外包主需求文档为优先基线。
+
+机械结构与样机实物：
+以机械结构正式需求文档或后续正式机械 SOW 为优先基线。
+
+长期整机架构：
+仅作为方向参考，不直接扩大当前外包范围。</code></pre>
+<p>本文件不得被解释为整机最终工程责任、机械设计责任、嵌入式底层安全认证责任、法规认证责任或无人值守产品级交付承诺。</p>
+<p>---</p>
+<h2>2. 当前开发边界</h2>
+<p>本阶段只包含：</p>
+<pre><code>Alpha补齐 + Beta闭环</code></pre>
+<p>不包含：</p>
+<pre><code>Gamma：有监督自动优化
+Delta：无人值守
+Fleet：多机协同
+Service：云平台与长期运营</code></pre>
+<p>供应商可以提出后续路线建议，但不得将后续能力默认纳入当前报价、开发、验收或付款范围。</p>
+<p>---</p>
+<h2>3. 阶段定义</h2>
+<pre><code>Alpha / Beta Definition
+├─ Alpha = 系统打通，机器可控
+│  ├─ 不是自动驾驶阶段
+│  ├─ 目标：基础软硬件链路可运行
+│  ├─ 目标：可联调
+│  └─ 目标：可安全控制
+│
+└─ Beta = 固定场地内基础任务闭环，机器能干活
+   ├─ 不是完全无人值守阶段
+   ├─ 目标：固定场地
+   ├─ 目标：固定路线或半固定路线
+   ├─ 目标：可重复执行
+   ├─ 目标：可演示
+   └─ 目标：可交接</code></pre>
+<p>---</p>
+<h2>3A. Alpha / Beta 阶段能力描述（非技术版）</h2>
+<p>本章节用于说明 Alpha 与 Beta 阶段完成后的实际能力状态。</p>
+<p>如与正式技术验收标准存在差异，以技术验收标准为准。</p>
+<h3>3A.1 Alpha 阶段能力描述：机器能被安全控制</h3>
+<p>Alpha 阶段的核心能力是：</p>
+<pre><code>Alpha Core Capability
+├─ 上电 / 启动 / 可调试
+├─ 工控机 + 底盘控制器 + 传感器 + 通信链路协同
+├─ 上位机或遥控器控制
+│  ├─ 前进
+│  ├─ 后退
+│  ├─ 转向
+│  └─ 停车
+├─ 基础状态反馈
+│  ├─ 底盘状态
+│  ├─ 传感器数据
+│  ├─ 定位数据
+│  ├─ 通信状态
+│  └─ 故障状态
+├─ 安全逻辑
+│  ├─ 急停
+│  ├─ 人工接管
+│  └─ 基础安全停车
+├─ 异常优先进入安全状态
+├─ 基础日志
+└─ 代码 / 配置 / 接口 / 部署方式可交付、可接管</code></pre>
+<p>Alpha 阶段不代表：</p>
+<pre><code>Alpha Exclusions
+├─ 不代表自主除雪
+├─ 不代表自动规划路线
+├─ 不代表无人值守运行
+├─ 不代表完整避障能力
+├─ 不代表产品销售状态
+└─ 不代表最终安全认证或法规认证完成</code></pre>
+<p>通俗判断标准：人可以安全地控制 SnowBot，机器能跑、能停、能反馈、能接管、能记录问题。</p>
+<h3>3A.2 Beta 阶段能力描述：机器能按人定义的路线完成基础任务</h3>
+<p>Beta 阶段的核心能力是：</p>
+<pre><code>Beta Core Capability
+├─ 固定场地路线定义
+│  ├─ 录制路线
+│  └─ 定义任务边界
+├─ 路线管理
+│  ├─ 保存
+│  ├─ 加载
+│  └─ 重复执行
+├─ 位置与状态判断
+│  ├─ 定位
+│  ├─ 里程计
+│  └─ 传感器数据
+├─ 低速路径跟踪
+├─ 基础障碍检测
+│  └─ 优先安全停车
+├─ 可选绕障
+│  ├─ 必须在安全边界内
+│  └─ 必须能回归原路线
+├─ 异常降级 / 停车
+│  ├─ 定位不可靠
+│  ├─ 传感器异常
+│  ├─ 通信异常
+│  └─ 底盘异常
+├─ 人工随时接管
+├─ 日志 / 测试记录 / 问题记录可复盘
+└─ 可用于工程演示 / 内部测试 / 客户初步交流 / 融资展示</code></pre>
+<p>Beta 阶段不代表：</p>
+<pre><code>Beta Exclusions
+├─ 不代表任意场地自主运行
+├─ 不代表无人值守商业运营
+├─ 不代表自动理解复杂环境
+├─ 不代表全区域覆盖路径规划
+├─ 不代表自动回充或自动返航
+├─ 不代表无人工监督处理所有异常
+├─ 不代表量产交付或客户正式运营状态
+└─ 不代表最终安全认证或法规认证完成</code></pre>
+<p>通俗判断标准：人定义路线，机器人能按路线自动跑一遍，遇到不确定情况能停下来，问题可被记录和复盘，ARCBOS 可接手继续开发。</p>
+<h3>3A.3 Alpha 与 Beta 的通俗区别</h3>
+<pre><code>Alpha：人控制机器，证明机器可控（能安全跑起来）。
+Beta ：人定义任务，机器执行任务，证明任务可闭环（能按路线完成基础任务）。</code></pre>
+<h3>3A.4 阶段能力边界声明</h3>
+<p>Alpha / Beta 阶段均属于工程样机阶段，不属于最终商业化产品阶段。</p>
+<p>本阶段成果用途与边界：</p>
+<pre><code>Allowed Use
+├─ 工程验证
+├─ 技术演示
+├─ 内部测试
+├─ 供应商协同
+├─ 客户初步交流
+├─ 融资展示
+└─ 后续 Gamma / Delta 阶段开发基础
+
+Not Allowed Interpretation
+├─ 完整无人值守产品
+├─ 可直接商业销售产品
+├─ 已通过安全认证产品
+├─ 已通过法规认证产品
+├─ 可替代人工现场监管的系统
+└─ 乙方承担整机最终工程责任或最终合规责任</code></pre>
+<p>---</p>
+<h2>4. 总体最小闭环</h2>
+<p>SnowBot Alpha/Beta 导航系统的最小闭环为：</p>
+<pre><code>传感器输入
+→ 定位与位姿解析
+→ 路线录制 / 路线存储 / 路线回放
+→ 行为决策
+→ 速度规划
+→ 横向控制 / 纵向控制
+→ 底盘 CAN 控制
+→ 障碍检测 / 安全停车
+→ 日志记录 / 数据复盘</code></pre>
+<h2>4A. 系统架构树</h2>
+<pre><code>SnowBot Alpha/Beta Navigation &amp; Autonomy Stack
+├─ Operator / Human Control
+│  ├─ 遥控器 / 手柄
+│  ├─ 人工接管
+│  ├─ 急停触发
+│  └─ 调试操作
+│
+├─ IPC / Onboard Computer
+│  ├─ Ubuntu / Linux
+│  ├─ ROS2 Runtime
+│  ├─ 启动脚本
+│  ├─ 参数配置
+│  └─ 日志记录
+│
+├─ Sensor Input Layer
+│  ├─ RTK-GPS
+│  ├─ IMU
+│  ├─ Odometry
+│  └─ Lidar
+│
+├─ Localization Layer
+│  ├─ 位姿解析
+│  ├─ RTK / IMU / Odometry 融合或组合定位
+│  ├─ 固定场地局部坐标系
+│  └─ 定位健康状态判断
+│
+├─ Route Layer
+│  ├─ 路线录制
+│  ├─ 路线存储
+│  ├─ 路线加载
+│  ├─ 路线回放
+│  └─ 路线基础显示
+│
+├─ Perception &amp; Safety Layer
+│  ├─ 地面分割
+│  ├─ 局部环境地图
+│  ├─ 前向安全区
+│  ├─ 基础障碍检测
+│  └─ 障碍触发安全停车
+│
+├─ Decision &amp; Task Layer
+│  ├─ 行为决策
+│  ├─ 任务状态机
+│  ├─ 启动 / 暂停 / 恢复 / 停止
+│  ├─ 降级逻辑
+│  └─ 异常处理
+│
+├─ Planning &amp; Control Layer
+│  ├─ 速度规划
+│  ├─ 横向控制
+│  ├─ 纵向控制
+│  ├─ 路径偏差处理
+│  └─ 停车控制
+│
+├─ Embedded Interface Layer
+│  ├─ CAN 指令
+│  ├─ 底盘状态反馈
+│  ├─ 遥控器接管状态
+│  ├─ 急停状态
+│  └─ 作业机构状态接口
+│
+├─ Embedded / MCU Layer
+│  ├─ 电机执行
+│  ├─ 底层安全保护
+│  ├─ BMS / 电源接口
+│  ├─ IO 采集
+│  └─ 故障码上报
+│
+└─ Hardware Layer
+   ├─ 底盘 / 履带 / 驱动
+   ├─ 除雪作业机构
+   ├─ 电池 / BMS
+   ├─ 传感器安装结构
+   └─ 急停 / 安全回路</code></pre>
+<h2>4B. 接口矩阵</h2>
+<table>
+<tr><th>模块</th><th>输入</th><th>输出</th><th>Owner</th><th>备注</th></tr>
+<tr><td>Sensor Input Layer</td><td>RTK / IMU / Odometry / Lidar 原始数据</td><td>标准化传感器数据</td><td>Navigation Vendor</td><td>传感器硬件由 ARCBOS 提供或双方确认</td></tr>
+<tr><td>Localization Layer</td><td>标准化传感器数据</td><td>Pose / Heading / Localization Health</td><td>Navigation Vendor</td><td>不要求无 GPS 兜底定位</td></tr>
+<tr><td>Route Layer</td><td>人工录制路线 / 位姿数据</td><td>路线文件 / 回放目标点</td><td>Navigation Vendor</td><td>路线文件格式必须交付</td></tr>
+<tr><td>Perception Layer</td><td>Lidar / 局部环境数据</td><td>障碍物 / 安全区状态</td><td>Navigation Vendor</td><td>以基础障碍检测为主</td></tr>
+<tr><td>Decision Layer</td><td>Pose / Route / Obstacle / Health</td><td>行为状态 / 停车 / 降级决策</td><td>Navigation Vendor</td><td>不确定时停车</td></tr>
+<tr><td>Control Layer</td><td>路径目标 / 行为状态</td><td>速度 / 转向 / 停车指令</td><td>Navigation Vendor</td><td>输出给 Embedded / MCU</td></tr>
+<tr><td>Embedded Interface</td><td>控制指令 / 安全指令</td><td>CAN 报文 / 状态反馈</td><td>Navigation + Embedded</td><td>协议需双方冻结</td></tr>
+<tr><td>Embedded / MCU</td><td>CAN 指令 / IO / BMS / 安全输入</td><td>电机执行 / 故障码 / 底盘反馈</td><td>Embedded Vendor</td><td>以嵌入式主需求为准</td></tr>
+<tr><td>Work Unit Interface</td><td>作业启停指令 / 状态读取</td><td>除雪机构状态</td><td>Embedded Vendor</td><td>导航仅定义上位机接口</td></tr>
+<tr><td>GitHub Delivery</td><td>源码 / 配置 / 文档 / 测试数据</td><td>可接管工程资产</td><td>Vendor</td><td>未进 GitHub 不视为正式交付</td></tr>
+</table>
+<h2>4C. 状态机</h2>
+<pre><code>SnowBot Alpha/Beta Task State Machine
+├─ OFF
+│  └─ 未上电 / 系统关闭
+│
+├─ BOOTING
+│  └─ 工控机、ROS2、传感器、通信链路启动中
+│
+├─ STANDBY
+│  └─ 系统启动完成，等待人工操作或任务指令
+│
+├─ MANUAL
+│  ├─ 遥控器 / 手柄控制
+│  ├─ 人工前进 / 后退 / 转向 / 停车
+│  └─ 优先级高于自动控制
+│
+├─ AUTO_READY
+│  ├─ 路线已加载
+│  ├─ 定位状态可用
+│  ├─ 传感器状态可用
+│  └─ 等待任务启动
+│
+├─ ROUTE_RECORD
+│  ├─ 人工录制路线
+│  ├─ 保存位置 / 航向 / 时间戳 / 速度等信息
+│  └─ 生成路线文件
+│
+├─ AUTO_RUNNING
+│  ├─ 路线回放
+│  ├─ 路径跟踪
+│  ├─ 障碍检测
+│  └─ 安全监控
+│
+├─ PAUSED
+│  ├─ 任务暂停
+│  ├─ 保持当前任务上下文
+│  └─ 允许恢复或停止
+│
+├─ OBSTACLE_STOP
+│  ├─ 障碍物进入安全区
+│  ├─ 优先停车
+│  └─ 等待人工处理或安全恢复
+│
+├─ DEGRADED
+│  ├─ 定位 / 传感器 / 通信状态不可靠
+│  ├─ 降速或停车
+│  └─ 等待人工确认
+│
+├─ FAULT
+│  ├─ 系统故障
+│  ├─ 停车
+│  └─ 需要排查或复位
+│
+├─ ESTOP
+│  ├─ 急停触发
+│  ├─ 所有自动控制失效
+│  └─ 不允许自动恢复
+│
+└─ COMPLETE
+   ├─ 路线任务完成
+   ├─ 输出日志
+   └─ 等待下一任务</code></pre>
+<h2>4D. 测试场景矩阵</h2>
+<table>
+<tr><th>测试场景</th><th>所属阶段</th><th>期望结果</th><th>验收依据</th></tr>
+<tr><td>工控机启动</td><td>Alpha</td><td>系统可启动，节点可运行</td><td>启动记录 / 截图 / 日志</td></tr>
+<tr><td>CAN 通信</td><td>Alpha</td><td>可收发底盘报文</td><td>CAN 测试记录</td></tr>
+<tr><td>上位机控制底盘</td><td>Alpha</td><td>可发送速度 / 转向 / 停车指令</td><td>真机或台架测试</td></tr>
+<tr><td>遥控器接管</td><td>Alpha</td><td>自动控制释放，人工优先</td><td>接管测试记录</td></tr>
+<tr><td>急停触发</td><td>Alpha / Beta</td><td>所有自动控制失效</td><td>急停测试记录</td></tr>
+<tr><td>RTK 数据接入</td><td>Alpha</td><td>可输出位置、航向、定位状态</td><td>数据样例</td></tr>
+<tr><td>Lidar 数据接入</td><td>Alpha</td><td>可输出点云或障碍数据</td><td>数据样例</td></tr>
+<tr><td>路线录制</td><td>Beta</td><td>可录制真实路线</td><td>路线文件</td></tr>
+<tr><td>路线回放</td><td>Beta</td><td>可按路线低速自动行驶</td><td>现场测试记录</td></tr>
+<tr><td>路径跟踪</td><td>Beta</td><td>固定路线可重复执行</td><td>测试报告</td></tr>
+<tr><td>障碍物进入前方</td><td>Beta</td><td>优先安全停车</td><td>视频 / 日志 / 测试报告</td></tr>
+<tr><td>RTK 异常</td><td>Beta</td><td>降级或停车</td><td>异常测试记录</td></tr>
+<tr><td>Lidar 丢失</td><td>Beta</td><td>停车或进入安全状态</td><td>异常测试记录</td></tr>
+<tr><td>CAN 超时</td><td>Beta</td><td>停车或进入安全状态</td><td>异常测试记录</td></tr>
+<tr><td>上位机节点异常</td><td>Beta</td><td>停车或进入安全状态</td><td>异常测试记录</td></tr>
+<tr><td>任务完成</td><td>Beta</td><td>输出日志，可复盘</td><td>日志 / 测试报告</td></tr>
+<tr><td>急停响应时延</td><td>Alpha / Beta</td><td>从急停/停车触发到车轮停止的端到端时延在阈值内（见 11A）</td><td>延时测量记录</td></tr>
+<tr><td>手动↔自动切换</td><td>Beta</td><td>切换必经 STANDBY/STOP，不得从 AUTO 直接交给运动中的手动指令，反之亦然</td><td>切换测试记录</td></tr>
+<tr><td>雪天 / 降水工况</td><td>Beta</td><td>落雪与雪面下仍可运行或安全停车；报告误停率</td><td>雪天/降水条件测试报告</td></tr>
+<tr><td>CAN 看门狗（IPC 断链）</td><td>Alpha / Beta</td><td>现场拔除 IPC 链路，MCU 在超时内自主停车</td><td>看门狗测试记录</td></tr>
+</table>
+<h2>4E. 责任矩阵</h2>
+<table>
+<tr><th>项目</th><th>ARCBOS</th><th>Navigation Vendor</th><th>Embedded Vendor</th><th>备注</th></tr>
+<tr><td>产品阶段定义</td><td>Responsible</td><td>Consulted</td><td>Consulted</td><td>以本文件为准</td></tr>
+<tr><td>导航软件开发</td><td>Informed</td><td>Responsible</td><td>Consulted</td><td>Alpha/Beta 范围</td></tr>
+<tr><td>ROS2 / IPC 环境</td><td>Accountable</td><td>Responsible</td><td>Consulted</td><td>工控机硬件由 ARCBOS 确认</td></tr>
+<tr><td>RTK / IMU / Lidar 接入</td><td>Accountable</td><td>Responsible</td><td>Consulted</td><td>硬件型号需冻结</td></tr>
+<tr><td>底盘 CAN 协议</td><td>Accountable</td><td>Consulted</td><td>Responsible</td><td>协议需双方冻结</td></tr>
+<tr><td>底盘执行控制</td><td>Informed</td><td>Consulted</td><td>Responsible</td><td>以嵌入式需求为准</td></tr>
+<tr><td>BMS / 电源接口</td><td>Informed</td><td>Consulted</td><td>Responsible</td><td>不属于导航主合同</td></tr>
+<tr><td>除雪机构底层控制</td><td>Informed</td><td>Consulted</td><td>Responsible</td><td>另行 SOW 或嵌入式范围</td></tr>
+<tr><td>机械结构 / 安装接口</td><td>Responsible</td><td>Consulted</td><td>Consulted</td><td>机械文档或机械 SOW 优先</td></tr>
+<tr><td>安全策略定义</td><td>Accountable</td><td>Responsible</td><td>Responsible</td><td>物理安全不由导航方独立承担</td></tr>
+<tr><td>GitHub 交付</td><td>Accountable</td><td>Responsible</td><td>Responsible</td><td>未提交不视为交付</td></tr>
+<tr><td>现场测试条件</td><td>Responsible</td><td>Consulted</td><td>Consulted</td><td>场地、车辆、供电等需 ARCBOS 协调</td></tr>
+<tr><td>最终验收</td><td>Accountable</td><td>Responsible</td><td>Responsible</td><td>ARCBOS 最终确认</td></tr>
+</table>
+<h2>4F. 扩展性架构原则 / Extension Architecture Principles</h2>
+<p>本阶段不开发 Gamma / Delta / Fleet。但 Alpha/Beta 的软件结构必须预留以下四条“扩展缝”，使后续阶段为叠加而非重写。预留扩展缝不增加当前阶段开发范围，仅要求当前接口与模块边界按可扩展方式定义。</p>
+<pre><code>Extension Seams (零额外范围，服务于后续阶段)
+├─ 定位输出为抽象 Pose 源，而非绑死 RTK
+│   └─ Delta 可在同一接口背后增加 LiDAR / 视觉里程计兑底
+├─ 路线为带版本号的数据契约，而非临时文件
+│   └─ Gamma 覆盖规划输出相同路线 Schema
+├─ 决策/任务为状态机，置于单一仲裁器之后
+│   └─ Fleet 只需增加远程指令源，其余不变
+└─ 每个节点以统一信息体上报 health + heartbeat
+    └─ 无人值守仅为“谁响应 health 总线”的扩展</code></pre>
+<h3>4F.1 安全仲裁器 / Safety Arbiter</h3>
+<p>第 8 节定义了 6 级安全优先级，但必须由单一组件强制执行。</p>
+<pre><code>Safety Arbiter
+├─ 为最终 motion-enable 信号的唯一发布者
+├─ 汇聚所有停车 / 接管 / 降级来源并按优先级仒裁
+├─ 发布 /snowbot/safety/arbitration
+├─ 不允许任何其他节点绕过仲裁器直接使能运动
+└─ 为 M1 交付物（架构与接口冻结）</code></pre>
+<p>不存在单一仲裁器时，安全优先级会被分散到多个节点与多个供应方隐式实现，这是无人值守阶段事故的主要根源。</p>
+<p>---</p>
+<h2>5. Alpha 阶段需求</h2>
+<h3>5.1 Alpha 阶段目标</h3>
+<pre><code>机器能用，系统打通，样机可控</code></pre>
+<h3>5.2 Alpha 阶段结构化需求表</h3>
+<table>
+<tr><th>模块</th><th>必须交付能力</th><th>验收标准</th><th>主要交付物</th><th>备注</th></tr>
+<tr><td>工控机 / IPC 环境</td><td>工控机环境搭建；Ubuntu 22.04 或双方确认的 Linux 环境部署</td><td>系统可在目标工控机上稳定启动</td><td>环境配置、部署说明、启动脚本</td><td>具体 OS 版本可由双方确认</td></tr>
+<tr><td>ROS2 / 软件框架</td><td>ROS2 或等效机器人软件框架部署</td><td>ROS2 节点或等效软件模块可正常运行</td><td>ROS2 package、配置文件、启动脚本</td><td>不接受只交 demo</td></tr>
+<tr><td>CAN 通信</td><td>CAN 总线调试工具部署；底盘控制接口接入</td><td>CAN 工具可稳定收发底盘报文</td><td>CAN 配置、测试记录、接口说明</td><td>为后续底盘控制闭环基础</td></tr>
+<tr><td>底盘上位机控制</td><td>底盘与上位机控制接口打通</td><td>上位机可向底盘发送速度 / 转向 / 停车指令</td><td>控制节点、接口文档、测试脚本</td><td>只要求基础控制，不要求路径跟踪</td></tr>
+<tr><td>底盘反馈</td><td>底盘反馈接口打通</td><td>底盘可反馈速度、状态、故障或基础运行信息</td><td>状态反馈接口、日志样例</td><td>反馈字段需可复盘</td></tr>
+<tr><td>遥控器 / 手动链路</td><td>底盘与遥控器控制接口打通</td><td>遥控器可接管底盘控制</td><td>手动控制说明、测试记录</td><td>人工接管优先级高于自动控制</td></tr>
+<tr><td>模式切换</td><td>手动 / 自动模式切换</td><td>手动 / 自动模式切换逻辑明确</td><td>状态机说明、接口说明</td><td>自动模式仅为后续 Beta 预留</td></tr>
+<tr><td>RTK-GPS</td><td>RTK-GPS 数据接入</td><td>RTK-GPS 可输出位置、航向、定位状态</td><td>驱动配置、数据样例、状态说明</td><td>需区分 Fix / Float / Invalid 等状态</td></tr>
+<tr><td>IMU</td><td>IMU 数据接入</td><td>IMU 可输出姿态、角速度或加速度数据</td><td>驱动配置、数据样例</td><td>与后续定位融合相关</td></tr>
+<tr><td>Odometry</td><td>里程计 / odometry 数据接入</td><td>odometry 可输出里程计数据</td><td>话题/接口说明、数据样例</td><td>可来自底盘或编码器反馈</td></tr>
+<tr><td>Lidar</td><td>激光雷达数据接入</td><td>lidar 可输出点云或障碍距离数据</td><td>驱动配置、数据样例</td><td>Alpha 只要求接入，不要求完整避障</td></tr>
+<tr><td>坐标系</td><td>基础坐标系 / TF 关系定义</td><td>主要传感器与底盘坐标关系清晰</td><td>TF 说明、坐标系文档</td><td>为 Beta 定位与路线回放打基础</td></tr>
+<tr><td>急停与安全</td><td>急停软件联动；基础安全停车链路</td><td>急停优先级高于自动控制；软件停车指令可触发底盘安全停车</td><td>安全逻辑说明、测试记录</td><td>不替代硬件急停责任</td></tr>
+<tr><td>日志</td><td>基础日志系统</td><td>可记录基础运行和异常信息</td><td>日志格式说明、日志样例</td><td>用于故障复盘</td></tr>
+<tr><td>交付与接管</td><td>基础部署说明；代码与配置交付</td><td>所有源码、配置、脚本、文档进入 ARCBOS GitHub 仓库</td><td>源码、配置、脚本、README、部署说明</td><td>未进 GitHub 不视为正式交付</td></tr>
+</table>
+<h3>5.3 Alpha 阶段排除项</h3>
+<table>
+<tr><th>排除项</th><th>是否属于 Alpha</th><th>处理方式</th></tr>
+<tr><td>路线自动执行</td><td>否</td><td>后续 Beta</td></tr>
+<tr><td>路径跟踪</td><td>否</td><td>后续 Beta</td></tr>
+<tr><td>局部避障</td><td>否</td><td>后续 Beta 可做基础版本</td></tr>
+<tr><td>全局路径规划</td><td>否</td><td>后续 Gamma 或更后阶段</td></tr>
+<tr><td>SLAM 建图</td><td>否</td><td>当前不纳入</td></tr>
+<tr><td>自动回桩</td><td>否</td><td>后续阶段</td></tr>
+<tr><td>自动除雪任务闭环</td><td>否</td><td>后续 Beta</td></tr>
+<tr><td>无人值守</td><td>否</td><td>后续 Delta 或更后阶段</td></tr>
+</table>
+<p>---</p>
+<h2>6. Beta 阶段需求</h2>
+<h3>6.1 Beta 阶段目标</h3>
+<pre><code>机器能干活，固定场地内完成基础任务闭环</code></pre>
+<h3>6.2 Beta 阶段结构化需求表</h3>
+<table>
+<tr><th>模块</th><th>必须交付能力</th><th>验收标准</th><th>主要交付物</th><th>备注</th></tr>
+<tr><td>定位系统</td><td>RTK-GPS / IMU / odometry 融合定位或组合定位；平台位姿解析</td><td>机器人可根据定位、里程计和传感器数据判断自身位置和运行状态</td><td>定位节点、配置文件、数据样例、状态说明</td><td>不要求无 GPS 兜底定位</td></tr>
+<tr><td>局部坐标系</td><td>固定场地局部坐标系建立</td><td>固定场地内位置表达一致、可复盘</td><td>坐标系说明、标定说明</td><td>用于路线录制与回放</td></tr>
+<tr><td>路线录制</td><td>路线采集 / 录制</td><td>可录制一条真实场地路线</td><td>路线录制工具、路线文件样例</td><td>路线应包含必要状态信息</td></tr>
+<tr><td>路线管理</td><td>路线存储、加载、删除或选择</td><td>可保存、加载、删除或选择路线</td><td>路线管理工具、文件格式说明</td><td>不要求产品级完整 HMI</td></tr>
+<tr><td>路线回放</td><td>路线回放</td><td>机器人可按录制路线低速自动回放</td><td>回放节点、测试记录</td><td>应支持固定路线重复执行</td></tr>
+<tr><td>路线显示</td><td>路线界面显示或基础可视化</td><td>路线和状态可被工程人员查看</td><td>基础可视化工具或界面说明</td><td>可为工程调试级，不要求产品级 UI</td></tr>
+<tr><td>感知预处理</td><td>地面分割、局部环境地图构建</td><td>可形成基础局部环境表达</td><td>感知节点、数据样例、测试记录</td><td>不要求复杂语义识别</td></tr>
+<tr><td>障碍检测</td><td>基础障碍物检测、前向安全区逻辑</td><td>机器人可识别前方基础障碍物</td><td>障碍检测逻辑、测试记录</td><td>以安全停车优先</td></tr>
+<tr><td>行为决策</td><td>行为决策、基础障碍安全停车；局部避障为可选增强能力策略</td><td>遇到障碍物时，优先安全停车</td><td>决策逻辑说明、状态机说明</td><td>如实现绕障，必须可回归路线</td></tr>
+<tr><td>速度规划</td><td>速度规划</td><td>低速运行平稳，速度约束明确</td><td>速度规划模块、参数说明</td><td>速度策略应服务安全与稳定</td></tr>
+<tr><td>横向控制</td><td>横向控制、路径偏差处理</td><td>机器人可在固定路线内完成路径跟踪</td><td>控制模块、测试记录</td><td>具体误差指标可在测试方案中细化</td></tr>
+<tr><td>纵向控制</td><td>纵向控制、停车控制</td><td>启动、减速、停车动作可控</td><td>控制模块、测试记录</td><td>必须支持安全停车</td></tr>
+<tr><td>任务状态机</td><td>任务状态机；启动 / 暂停 / 恢复 / 停止任务</td><td>任务状态清晰，可人工监督和接管</td><td>状态机说明、接口说明</td><td>必须覆盖异常和降级状态</td></tr>
+<tr><td>异常处理</td><td>定位异常、lidar 异常、CAN 通信异常、上位机异常处理</td><td>RTK / lidar / CAN / 上位机异常时系统必须降级或停车</td><td>异常处理说明、测试记录</td><td>不确定时停车</td></tr>
+<tr><td>人工接管</td><td>遥控器接管、急停联动</td><td>遥控器接管时自动控制释放；急停触发时自动控制失效</td><td>测试记录、安全逻辑说明</td><td>人工优先级高于自动控制</td></tr>
+<tr><td>日志与复盘</td><td>运行日志记录</td><td>运行日志可导出，测试报告可复盘</td><td>日志文件、日志格式说明、测试报告</td><td>用于问题追踪和交接</td></tr>
+<tr><td>系统测试</td><td>控制系统、感知系统、决策规划系统、全系统联合测试</td><td>完成端到端任务闭环测试</td><td>测试脚本、测试数据、测试报告</td><td>必须真机或目标平台验证</td></tr>
+<tr><td>GitHub 交付</td><td>源码、配置、脚本、测试数据、文档提交</td><td>源码、配置、脚本、测试数据、文档全部提交 GitHub</td><td>GitHub commit、README、交接记录</td><td>未进 GitHub 不视为正式交付</td></tr>
+</table>
+<h3>6.3 Beta 阶段排除项</h3>
+<table>
+<tr><th>排除项</th><th>是否属于 Beta</th><th>处理方式</th></tr>
+<tr><td>完整 SLAM 建图</td><td>否</td><td>当前不纳入</td></tr>
+<tr><td>复杂动态避障</td><td>否</td><td>后续 Gamma / Delta</td></tr>
+<tr><td>区域覆盖路径规划</td><td>否</td><td>后续 Gamma</td></tr>
+<tr><td>自动回充</td><td>否</td><td>后续阶段</td></tr>
+<tr><td>自动对桩</td><td>否</td><td>后续阶段</td></tr>
+<tr><td>低电量自动返航</td><td>否</td><td>后续阶段</td></tr>
+<tr><td>故障自动返航</td><td>否</td><td>后续阶段</td></tr>
+<tr><td>云端任务调度</td><td>否</td><td>后续 Service / Fleet</td></tr>
+<tr><td>多机协同</td><td>否</td><td>后续 Fleet</td></tr>
+<tr><td>无人值守</td><td>否</td><td>后续 Delta</td></tr>
+<tr><td>产品级完整 HMI</td><td>否</td><td>后续产品化阶段</td></tr>
+</table>
+<p>---</p>
+<h2>7. 除雪机构控制边界</h2>
+<p>当前导航系统应预留除雪机构控制接口，但不默认承担除雪机构电机驱动硬件的完整开发责任。</p>
+<table>
+<tr><th>类别</th><th>当前导航外包方可负责</th><th>不纳入当前导航主合同</th></tr>
+<tr><td>上位机接口</td><td>上位机作业控制接口</td><td>除雪电机驱动板硬件设计</td></tr>
+<tr><td>通信定义</td><td>CAN 指令定义建议</td><td>功率电路设计</td></tr>
+<tr><td>人工操作</td><td>遥控器作业指令解析</td><td>PCB 设计</td></tr>
+<tr><td>状态接入</td><td>除雪机构启停状态接入</td><td>高电流电机保护设计</td></tr>
+<tr><td>状态显示</td><td>除雪机构状态显示</td><td>除雪机构最终安全认证</td></tr>
+<tr><td>底层连接</td><td>与底层控制板通信接口</td><td>作业机构机械安全责任</td></tr>
+<tr><td>工程责任</td><td>仅负责导航/上位机侧接口需求</td><td>整机最终工程责任</td></tr>
+</table>
+<p>除非另行签署专项 SOW，否则“不纳入当前导航主合同”的事项不得被外包方默认计入报价、开发范围、付款节点或验收义务。</p>
+<p>---</p>
+<h2>8. 安全优先级</h2>
+<p>系统安全优先级必须明确。</p>
+<table>
+<tr><th>优先级</th><th>安全/控制来源</th><th>原则</th></tr>
+<tr><td>1</td><td>物理急停</td><td>最高优先级，任何自动控制不得覆盖</td></tr>
+<tr><td>2</td><td>遥控器接管 / 人工停车</td><td>人工接管优先于自动控制</td></tr>
+<tr><td>3</td><td>底盘底层保护</td><td>底层硬件保护可拒绝危险指令</td></tr>
+<tr><td>4</td><td>软件安全停车</td><td>上位机可触发安全停车或降级</td></tr>
+<tr><td>5</td><td>自动驾驶控制</td><td>只在安全条件满足时执行</td></tr>
+<tr><td>6</td><td>任务执行策略</td><td>不得高于任何安全逻辑</td></tr>
+</table>
+<p>任何情况下，自动驾驶控制不得高于急停、遥控器接管和底盘底层保护。</p>
+<p>---</p>
+<h2>9. 异常处理要求</h2>
+<p>系统必须覆盖以下异常，并对每类异常定义检测条件、处理动作、是否停车、是否允许恢复、是否记录日志、是否需要人工确认。</p>
+<table>
+<tr><th>异常类别</th><th>异常项</th><th>默认处理原则</th><th>是否需记录日志</th></tr>
+<tr><td>定位异常</td><td>RTK-GPS 无效</td><td>降级或停车</td><td>是</td></tr>
+<tr><td>定位异常</td><td>RTK-GPS 从 Fix 降为 Float</td><td>降级、限速或停车</td><td>是</td></tr>
+<tr><td>定位异常</td><td>RTK-GPS 数据超时</td><td>停车或进入安全状态</td><td>是</td></tr>
+<tr><td>姿态/里程异常</td><td>IMU 数据异常</td><td>降级或停车</td><td>是</td></tr>
+<tr><td>姿态/里程异常</td><td>odometry 数据异常</td><td>降级或停车</td><td>是</td></tr>
+<tr><td>感知异常</td><td>lidar 数据丢失</td><td>停车或进入安全状态</td><td>是</td></tr>
+<tr><td>感知异常</td><td>lidar 数据超时</td><td>停车或进入安全状态</td><td>是</td></tr>
+<tr><td>通信异常</td><td>CAN 通信超时</td><td>停车或进入安全状态</td><td>是</td></tr>
+<tr><td>底盘异常</td><td>底盘故障反馈</td><td>停车或等待人工处理</td><td>是</td></tr>
+<tr><td>上位机异常</td><td>上位机节点异常</td><td>停车或进入安全状态</td><td>是</td></tr>
+<tr><td>任务异常</td><td>路线文件加载失败</td><td>禁止启动任务</td><td>是</td></tr>
+<tr><td>控制异常</td><td>控制输出异常</td><td>停车或进入安全状态</td><td>是</td></tr>
+<tr><td>障碍异常</td><td>障碍物进入安全区</td><td>优先安全停车</td><td>是</td></tr>
+<tr><td>人工介入</td><td>人工接管</td><td>自动控制释放</td><td>是</td></tr>
+<tr><td>急停</td><td>急停触发</td><td>所有自动控制失效，进入急停状态</td><td>是</td></tr>
+</table>
+<p>异常处理总原则：</p>
+<pre><code>不确定时停车。
+通信丢失时停车。
+人工接管时自动控制释放。
+急停触发后不得自动恢复运行。</code></pre>
+<p>---</p>
+<h2>9A. Topic / CAN / Interface Naming Convention</h2>
+<pre><code>Naming Principles
+├─ 英文命名
+├─ 小写 + 下划线
+├─ 模块名前缀清晰
+├─ 不使用中文路径 / 中文变量 / 中文注释
+├─ 不写死个人路径 / 账号 / token
+└─ 版本、接口、参数需可追踪</code></pre>
+<h3>9A.1 ROS2 Topic 建议命名</h3>
+<pre><code>ROS2 Topics
+├─ /snowbot/system/state
+├─ /snowbot/system/heartbeat
+├─ /snowbot/safety/estop
+├─ /snowbot/safety/manual_takeover
+├─ /snowbot/localization/pose
+├─ /snowbot/localization/health
+├─ /snowbot/rtk/fix
+├─ /snowbot/imu/data
+├─ /snowbot/odom
+├─ /snowbot/lidar/points
+├─ /snowbot/route/record
+├─ /snowbot/route/replay
+├─ /snowbot/route/status
+├─ /snowbot/control/cmd_vel
+├─ /snowbot/control/stop
+├─ /snowbot/control/status
+├─ /snowbot/obstacle/status
+├─ /snowbot/fault/code
+└─ /snowbot/log/event</code></pre>
+<h3>9A.2 CAN / Embedded Interface 建议命名</h3>
+<pre><code>CAN / Embedded Interface
+├─ HEARTBEAT
+├─ MODE_CMD
+├─ MOTION_CMD
+├─ STOP_CMD
+├─ ESTOP_STATUS
+├─ MANUAL_TAKEOVER_STATUS
+├─ CHASSIS_FEEDBACK
+├─ MOTOR_FEEDBACK
+├─ BATTERY_STATUS
+├─ BMS_ALARM
+├─ WORK_UNIT_CMD
+├─ WORK_UNIT_STATUS
+├─ FAULT_CODE
+└─ SYSTEM_STATE</code></pre>
+<h3>9A.3 文件与接口命名规则</h3>
+<pre><code>File / Interface Naming
+├─ route_file_format.md
+├─ can_protocol.md
+├─ ros2_topics.md
+├─ system_state_machine.md
+├─ safety_logic.md
+├─ fault_code_table.md
+├─ deployment_guide.md
+├─ test_report_alpha.md
+├─ test_report_beta.md
+└─ known_issues.md</code></pre>
+<h2>9E. 接口数据契约 / Interface Data Contracts</h2>
+<p>9A 仅定义 topic / CAN 名称。本节定义其载荷与语义。所有契约（ROS2 .msg、CAN DBC、route schema、health schema、fault_code_table）必须在 M1 冻结，并存放于 <code>contracts/</code> 顶层目录，作为 snowbot-autonomy 与 snowbot-embedded 双方共同引用的唯一真源。名称无 Schema 不视为接口冻结。</p>
+<h3>9E.1 定位健康 / Localization Health</h3>
+<p>所有“定位异常 → 降级或停车”判定必须基于以下可量化字段，而非主观判断。</p>
+<pre><code>/snowbot/localization/health
+├─ fix_type        : NONE | SINGLE | FLOAT | FIX
+├─ horizontal_std_m: float   (路线模式下 &gt; 阈值即停车，阈值见 11A)
+├─ age_s           : float   (数据时延，超阈值停车)
+├─ heading_std_deg : float
+└─ status          : OK | DEGRADED | INVALID   (计算值，非原始值)</code></pre>
+<h3>9E.2 路线文件 Schema / Route File Schema</h3>
+<p>路线文件必须带版本号，并定义安全走廊宽度，使“绕障必须在安全边界内并能回归路线”可被验收。Gamma 覆盖规划须输出相同 Schema。</p>
+<pre><code>route_file v1 (versioned)
+├─ schema_version
+├─ frame_id            (固定场地局部坐标系)
+├─ recorded_at, site_id
+└─ waypoints[]
+   ├─ x, y, heading
+   ├─ target_speed
+   ├─ corridor_half_width   ← 定义“安全边界”
+   └─ segment_flags         (如 work_unit_on / off)</code></pre>
+<h3>9E.3 CAN 报文语义 / CAN Message Semantics</h3>
+<p>9A.2 每条 CAN 报文必须定义：ID、周期、字节布局、单位、有效范围、超时行为。</p>
+<pre><code>CAN Contract (每条报文必须包含)
+├─ CAN ID
+├─ cycle_time_ms
+├─ byte_layout / signals
+├─ unit + valid_range
+└─ timeout_behavior</code></pre>
+<p>关键安全要求 —— 指令心跳 / 看门狗：</p>
+<pre><code>├─ MCU 若在 N ms 内未收到 MOTION_CMD，底盘必须自主安全停车
+├─ 该 fail-safe 必须实现在 MCU 侧，而非仅在 IPC 侧
+├─ 即 IPC 崩溃 / 断链时，机器仍必须停止
+└─ 具体实现以嵌入式主需求文档为准，本文件交叉引用并要求双方冻结</code></pre>
+<h2>9F. 时间同步与坐标系 / Time Sync &amp; Coordinate Frames</h2>
+<pre><code>Time Synchronization
+├─ RTK / IMU / odom / lidar 融合要求统一时钟
+├─ 采用 PTP 或 chrony；如有硬件 PPS 优先使用
+├─ 每个传感器须声明时间戳来源
+└─ 时钟不同步会静默污染位姿融合，必须在 M1 明确
+
+Coordinate Frames
+├─ 采用 REP-103 / REP-105 约定 (ENU; map → odom → base_link)
+├─ 主要传感器与底盘 TF 关系须文档化
+└─ 避免每个供应商各自的坐标系约定</code></pre>
+<h2>9B. GitHub Repository Structure</h2>
+<pre><code>ARCBOS SnowBot Software Repositories
+├─ snowbot-autonomy
+│  └─ 导航 / 自主系统 / IPC / ROS2 / 路线 / 安全 / 任务管理
+│
+└─ snowbot-embedded
+   └─ MCU / 电机控制 / Power-BMS / IO-Safety / 通信 / 固件</code></pre>
+<h3>9B.1 snowbot-autonomy</h3>
+<pre><code>snowbot-autonomy
+├─ .github/workflows
+├─ 00_admin
+├─ 01_system_bringup
+├─ 02_sensor_adapter
+├─ 03_chassis_interface
+├─ 04_localization
+├─ 05_route_manager
+├─ 06_controller_beta
+├─ 07_safety_monitor
+├─ 08_task_manager
+├─ 09_debug_tools
+├─ 10_tests
+├─ docs
+├─ exports
+├─ release
+├─ tools
+├─ README.md
+└─ README_AUTOMATION.md</code></pre>
+<h3>9B.2 snowbot-embedded</h3>
+<pre><code>snowbot-embedded
+├─ .github
+├─ 00_admin
+├─ 01_system
+├─ 02_mcu
+├─ 03_motor-control
+├─ 04_power-bms
+├─ 05_sensors
+├─ 06_io-safety
+├─ 07_comm
+├─ 08_firmware
+├─ 09_test
+├─ docs
+├─ exports
+├─ release
+├─ tools
+└─ README.md</code></pre>
+<p>说明：</p>
+<pre><code>Repository Alignment
+├─ 本文件以当前 GitHub 实际仓库结构为准
+├─ main = 受控主分支 / 基线分支
+├─ autonomy-work = 导航外包 / 工程师工作分支
+├─ embedded-work = 嵌入式外包 / 工程师工作分支
+├─ snowbot-autonomy 替代原建议名 snowbot-navigation
+├─ snowbot-embedded 作为嵌入式 / MCU / 执行层主仓库
+├─ 文档、测试、release、exports、tools 两个仓库均保留
+└─ 临时文件不得作为长期正式交付结构保留</code></pre>
+<h3>9B.5 contracts/ 与 CI 强制校验</h3>
+<pre><code>contracts/ (顶层目录，双仓共同引用)
+├─ ros2_msgs/        (.msg 定义)
+├─ can.dbc           (CAN 报文定义)
+├─ route_file_format (路线 Schema)
+├─ health_schema
+└─ fault_code_table
+
+CI Gate (.github/workflows，PR 必须通过)
+├─ 检出非 ASCII 字符（源码 / 注释 / 路径）即失败
+├─ 检出写死的 token / IP / 个人路径即失败
+├─ 检出被禁镜像源（如任何中国镜像）即失败
+└─ 以机器强制英文唯一与无密钥规则，不依赖人工 review</code></pre>
+<h3>9B.3 Branch Structure</h3>
+<pre><code>Branch Structure
+├─ snowbot-autonomy
+│  ├─ main
+│  │  └─ ARCBOS 受控主分支 / 阶段基线 / release 来源
+│  └─ autonomy-work
+│     └─ 导航外包方与工程师日常开发分支
+│
+└─ snowbot-embedded
+   ├─ main
+   │  └─ ARCBOS 受控主分支 / 阶段基线 / release 来源
+   └─ embedded-work
+      └─ 嵌入式外包方与工程师日常开发分支</code></pre>
+<h3>9B.4 Branch Rules</h3>
+<pre><code>Branch Rules
+├─ main
+│  ├─ 不直接作为外包方日常开发分支
+│  ├─ 不允许未经 review 直接推送
+│  ├─ 仅接收经 PR / review / acceptance 的内容
+│  ├─ 用于阶段冻结、验收、release
+│  └─ 对应 ALPHA_FREEZE / BETA_FREEZE / ACCEPTED_BASELINE
+│
+├─ autonomy-work
+│  ├─ 导航外包方工作分支
+│  ├─ 用于日常开发、提交、测试、问题修复
+│  ├─ 合并 main 前必须通过 PR
+│  └─ 不直接作为正式验收基线
+│
+└─ embedded-work
+   ├─ 嵌入式外包方工作分支
+   ├─ 用于日常开发、提交、测试、问题修复
+   ├─ 合并 main 前必须通过 PR
+   └─ 不直接作为正式验收基线</code></pre>
+<p>正式交付原则：</p>
+<pre><code>GitHub Repository
+├─ 未提交，不视为交付
+├─ 无 README，不视为可接管
+├─ 无部署说明，不视为可复现
+├─ 无测试记录，不视为可验收
+└─ 无接口文档，不视为可联调</code></pre>
+<h2>9C. Version Freeze Rules</h2>
+<pre><code>Version Lifecycle
+├─ DEV
+│  └─ 日常开发版本，不作为验收依据
+│
+├─ ALPHA_RC
+│  └─ Alpha 候选验收版本
+│
+├─ ALPHA_FREEZE
+│  └─ Alpha 系统打通冻结版本
+│
+├─ BETA_RC
+│  └─ Beta 候选验收版本
+│
+├─ BETA_FREEZE
+│  └─ Beta 固定路线任务闭环冻结版本
+│
+└─ ACCEPTED_BASELINE
+   └─ ARCBOS 确认后的阶段验收基线</code></pre>
+<p>冻结要求：</p>
+<pre><code>Freeze Package
+├─ 源码 commit hash
+├─ release tag
+├─ 配置文件版本
+├─ 部署说明
+├─ 接口文档
+├─ 测试报告
+├─ 已知问题清单
+└─ ARCBOS 验收记录</code></pre>
+<p>禁止使用：</p>
+<pre><code>禁止命名
+├─ final
+├─ latest
+├─ new
+├─ test
+├─ 最终版
+├─ 最新版
+└─ 改改改</code></pre>
+<h2>9D. Development Workflow</h2>
+<pre><code>Development Workflow
+├─ Task / Issue
+│  └─ 每项开发必须对应任务或问题编号
+│
+├─ Branch
+│  └─ 按功能或修复创建分支
+│
+├─ Commit
+│  └─ 小步提交，说明清晰
+│
+├─ Pull Request
+│  └─ 合并前说明改动、影响范围、测试结果
+│
+├─ Review
+│  └─ ARCBOS 或指定技术负责人审查
+│
+├─ Merge
+│  └─ 通过后合并至指定主分支
+│
+├─ Release Candidate
+│  └─ 形成 Alpha_RC 或 Beta_RC
+│
+├─ Test
+│  └─ 按测试矩阵执行
+│
+├─ Freeze
+│  └─ 形成 ALPHA_FREEZE 或 BETA_FREEZE
+│
+└─ Acceptance
+   └─ ARCBOS 确认后进入 ACCEPTED_BASELINE</code></pre>
+<p>最低提交要求：</p>
+<pre><code>每周正式提交
+├─ 源码 / 配置 / 文档至少一类有效更新
+├─ commit message 清楚说明变更
+├─ 不接受长期本地开发后一次性打包提交
+└─ 不接受口头进度代替 GitHub 提交</code></pre>
+<p>---</p>
+<h2>10. GitHub 与代码交付要求</h2>
+<p>所有正式交付必须进入 ARCBOS 指定 GitHub 仓库。</p>
+<pre><code>未进入 GitHub 的内容，不视为正式交付。</code></pre>
+<h3>10.1 必须交付清单</h3>
+<table>
+<tr><th>类别</th><th>必须交付内容</th></tr>
+<tr><td>源码</td><td>完整源码、ROS2 package 或等效模块</td></tr>
+<tr><td>配置</td><td>配置文件、参数文件、传感器配置文档</td></tr>
+<tr><td>启动部署</td><td>启动脚本、部署说明、运行验证脚本</td></tr>
+<tr><td>接口文档</td><td>接口文档、CAN 协议文档、路线文件格式说明、日志格式说明</td></tr>
+<tr><td>测试材料</td><td>测试脚本、测试数据、测试报告</td></tr>
+<tr><td>管理材料</td><td>已知问题清单、外部依赖清单、README、交接记录</td></tr>
+</table>
+<h3>10.2 禁止交付方式</h3>
+<table>
+<tr><th>禁止项</th><th>原因</th></tr>
+<tr><td>只交二进制</td><td>ARCBOS 无法接管和二次开发</td></tr>
+<tr><td>只交 demo</td><td>不构成正式工程交付</td></tr>
+<tr><td>只交视频</td><td>不可复现、不可验收</td></tr>
+<tr><td>使用个人仓库作为主交付</td><td>不受 ARCBOS 控制</td></tr>
+<tr><td>隐藏核心逻辑</td><td>构成技术锁定风险</td></tr>
+<tr><td>写死个人路径、账号、token、服务器地址</td><td>构成部署与安全风险</td></tr>
+<tr><td>未经 ARCBOS 确认引入外部 SDK / API / 云服务</td><td>构成依赖、合规和商业化风险</td></tr>
+</table>
+<h3>10.3 安全、许可与数据归属</h3>
+<table>
+<tr><th>类别</th><th>要求</th><th>阶段</th></tr>
+<tr><td>网络安全</td><td>明确 IPC 访问控制；release 签名；禁用默认凭据</td><td>Beta 起</td></tr>
+<tr><td>许可审计</td><td>提交 SBOM / 依赖许可清单，避免 GPL 等阻碍未来商业化</td><td>M5</td></tr>
+<tr><td>数据归属</td><td>所有测试数据 / rosbag / 日志为 ARCBOS 资产，存于仓内</td><td>全程</td></tr>
+<tr><td>降级默认值</td><td>“降级或停车”二选一时，默认取停车（面向无人值守终态）</td><td>全程</td></tr>
+</table>
+<p>---</p>
+<h2>11. 里程碑</h2>
+<table>
+<tr><th>里程碑</th><th>阶段</th><th>交付内容</th><th>验收重点</th></tr>
+<tr><td>M1：架构与接口冻结</td><td>Alpha 前置</td><td>软件架构图、模块边界说明、ROS2 topic / service / action 设计、CAN 接口清单、传感器接口清单、坐标系定义、状态机定义、安全策略定义、外部依赖清单</td><td>接口清晰；范围冻结；不越阶段；安全优先级明确</td></tr>
+<tr><td>M2：Alpha 系统打通</td><td>Alpha</td><td>工控机环境、ROS2 环境、CAN 通信、底盘上位机控制、遥控器接管、RTK-GPS 接入、IMU 接入、odometry 接入、lidar 接入、急停 / 停车链路、基础日志</td><td>系统能启动；传感器有数据；底盘能控制；遥控器能接管；急停能生效</td></tr>
+<tr><td>M3：Beta 路线与路径跟踪</td><td>Beta</td><td>Teach &amp; Repeat：路线录制、路线保存、路线加载、路线回放、平台位姿解析、速度规划、横向控制、纵向控制、路径偏差处理</td><td>固定路线可重复执行；低速路径跟踪可演示；路线数据可复盘</td></tr>
+<tr><td>M4：Beta 障碍检测与安全停车</td><td>Beta</td><td>地面分割、局部环境地图、基础障碍检测、前向安全区、行为决策、基础障碍安全停车；局部避障为可选增强能力、定位异常停车、传感器异常停车、CAN 异常停车、自动 / 手动切换安全逻辑</td><td>不撞；不越界；不确定时停车；人工可随时接管</td></tr>
+<tr><td>M5：整机联合测试与Release Package</td><td>Beta 结束</td><td>端到端任务闭环、标准演示路线、控制系统测试报告、感知系统测试报告、决策规划测试报告、全系统联合测试报告、源码、配置、文档、部署说明、交接记录、已知问题清单</td><td>可运行；可重复；可演示；可复现；可交接</td></tr>
+</table>
+<h3>11.1 里程碑退出门 / Milestone Exit Gates</h3>
+<table>
+<tr><th>里程碑</th><th>补充退出门（在第 11 节基础上）</th></tr>
+<tr><td>M1 Freeze</td><td>contracts/ 发布：ROS2 .msg、CAN DBC、route schema、fault_code_table、health schema；量化验收附录（11A）；已命名 Safety Arbiter（4F.1）</td></tr>
+<tr><td>M2 Alpha</td><td>增：测量端到端延时（急停→车轮停止）；现场拔除 IPC 链路验证 CAN 看门狗</td></tr>
+<tr><td>M3 Beta 路线</td><td>增：演示路线 3 次重复，横向误差记录并在 11A 阈值内</td></tr>
+<tr><td>M4 Beta 安全</td><td>增：测量障碍停车响应时间；FIX→FLOAT 注入测试；雪天条件测试</td></tr>
+<tr><td>M5 Final</td><td>增：SBOM/许可清单；配置参数冻结文件；main 上非 ASCII/密钥 CI 扫描通过</td></tr>
+</table>
+<h2>11A. 量化验收指标附录 / Numeric Acceptance Annex</h2>
+<p>以下指标为验收基线默认值，双方可在 M1 测试方案中按场地与机型细化，但不得留为主观判断。“低速”“路径跟踪”“降级或停车”必须在此可量化、可测量。</p>
+<table>
+<tr><th>指标</th><th>默认基线值（可在 M1 细化）</th><th>说明</th></tr>
+<tr><td>Beta 最大运行速度</td><td>≤ 0.8 m/s</td><td>低速固定路线安全优先</td></tr>
+<tr><td>横向（cross-track）误差</td><td>≤ 0.25 m</td><td>固定路线跟踪，3 次重复均达标</td></tr>
+<tr><td>障碍停车响应时间</td><td>需实测并记录（从检测到减速指令）</td><td>阈值以 M1 测试方案冻结为准</td></tr>
+<tr><td>急停端到端延时</td><td>需实测并记录（触发→车轮停止）</td><td>含 IPC 与 MCU 两侧路径</td></tr>
+<tr><td>定位水平 std 停车阈值</td><td>FIX 模式下 horizontal_std_m &gt; 0.10 即停车</td><td>对应 9E.1</td></tr>
+<tr><td>定位数据时延阈值</td><td>age_s &gt; 0.3 即停车</td><td>对应 9E.1</td></tr>
+<tr><td>运行包络</td><td>需记录：坡度、雪深、温度（≤ -20°C 电池/传感器行为）、GNSS 多径</td><td>至少逐次测试记录，作为后续包络基线</td></tr>
+</table>
+<p>---</p>
+<h2>12. 结算原则</h2>
+<p>付款应绑定里程碑，不建议一次性大额预付。</p>
+<table>
+<tr><th>付款前置条件</th><th>要求</th></tr>
+<tr><td>源码</td><td>源码进入 GitHub</td></tr>
+<tr><td>文档</td><td>文档进入 GitHub</td></tr>
+<tr><td>测试</td><td>测试记录提交</td></tr>
+<tr><td>演示</td><td>对应里程碑演示通过</td></tr>
+<tr><td>问题清单</td><td>问题清单明确，并按双方确认方式关闭或遗留</td></tr>
+<tr><td>验收</td><td>ARCBOS 验收确认</td></tr>
+</table>
+<p>尾款应绑定 M5 最终交接。</p>
+<p>---</p>
+<h2>13. 最终原则</h2>
+<pre><code>当前只做 Alpha补齐 + Beta闭环
+外包方计划中的合理工程内容可以吸收
+但不能扩大阶段边界
+不能把 Gamma / Delta / Fleet / Service 混入当前合同
+不能把除雪机构功率硬件责任混入导航主合同
+不能接受黑盒交付
+不能接受未进 GitHub 的交付
+接口必须在 M1 以数据契约冻结，名称无 Schema 不视为冻结
+验收必须可量化，不接受无指标的“低速 / 跟踪 / 降级”
+安全优先级必须由单一 Safety Arbiter 强制执行
+不得使用任何中国镜像 / 字体 / 库 / API / 云服务，代码与注释仅限英文</code></pre><div class="footer">ARCBOS · SnowBot Program · Confidential</div></article></main></body></html>
