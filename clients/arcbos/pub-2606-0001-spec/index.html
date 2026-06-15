@@ -1,0 +1,1161 @@
+<!doctype html>
+<html lang="zh">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ARCBOS-SPEC-2606-0001 · SnowBot 电池+BMS+充电系统技术规格书 v4.2</title>
+<link rel="canonical" href="https://ref.arcbos.com/clients/arcbos/pub-2606-0001-spec/">
+<meta name="description" content="SnowBot 电池包、BMS、充电系统完整工程规格。包含容量迭代推导、48V LFP选型论证、尾部Pogo触点充电架构、充电互锁矩阵C1–C10、滑入式快拆电池设计、压铸线槽方案及供应商一票否决条件。ARCBOS-SPEC-2606-0001 v4.2">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ARCBOS Documents">
+<meta property="og:title" content="ARCBOS-SPEC-2606-0001 · SnowBot 电池+BMS+充电系统技术规格书 v4.2">
+<meta property="og:description" content="SnowBot 电池包、BMS、充电系统完整工程规格。容量迭代推导、48V LFP选型、尾部Pogo触点充电、充电互锁矩阵C1–C10、滑入式快拆电池。">
+<meta property="og:url" content="https://ref.arcbos.com/clients/arcbos/pub-2606-0001-spec/">
+<meta property="og:image" content="https://ref.arcbos.com/assets/share/arcbos-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ARCBOS-SPEC-2606-0001 · SnowBot 电池+BMS+充电系统技术规格书 v4.2">
+<meta name="twitter:image" content="https://ref.arcbos.com/assets/share/arcbos-default.png">
+
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+SC:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── ARCBOS VI tokens ─────────────────────────── */
+:root {
+  --ab-black:   #0D0F11;
+  --ab-amber:   #FFB400;
+  --ab-ice:     #5B7A8C;
+  --ab-bg:      #F8F9FA;
+  --ab-border:  #E2E5E8;
+  --ab-muted:   #6B7280;
+  --ab-danger:  #C0392B;
+  --ab-ok:      #27AE60;
+  --ab-warn:    #E67E22;
+  --ab-info:    #2980B9;
+}
+
+/* ── Page shell ────────────────────────────────── */
+body { background: #fff; }
+main { max-width: 1080px; margin: 40px auto; padding: 0 24px; }
+
+/* ── Doc header ────────────────────────────────── */
+.doc-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  border-bottom: 2px solid var(--ab-black);
+  padding-bottom: 18px;
+  margin-bottom: 28px;
+}
+.doc-header-left h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--ab-black);
+  margin: 0 0 6px;
+  letter-spacing: -.3px;
+}
+.doc-meta { font-size: 12px; color: var(--ab-muted); font-family: ui-monospace,monospace; line-height: 1.8; }
+.doc-meta strong { color: var(--ab-black); }
+.doc-badge {
+  display: inline-block;
+  background: var(--ab-amber);
+  color: var(--ab-black);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: .5px;
+  margin-left: 8px;
+}
+.doc-logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ab-black);
+  letter-spacing: -1px;
+  flex-shrink: 0;
+  align-self: center;
+}
+.doc-logo span { color: var(--ab-amber); }
+
+/* ── Section headers ───────────────────────────── */
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ab-black);
+  margin: 36px 0 14px;
+  padding-left: 12px;
+  border-left: 4px solid var(--ab-amber);
+}
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ab-black);
+  margin: 24px 0 10px;
+}
+h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ab-ice);
+  margin: 18px 0 8px;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+/* ── Table ─────────────────────────────────────── */
+.tw { overflow-x: auto; margin: 12px 0 20px; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th { background: var(--ab-black); color: #fff; padding: 8px 12px; text-align: left; font-weight: 600; white-space: nowrap; }
+td { padding: 8px 12px; border-bottom: 1px solid var(--ab-border); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: var(--ab-bg); }
+td.mono { font-family: ui-monospace,monospace; font-size: 12.5px; }
+td.ok { color: var(--ab-ok); font-weight: 600; }
+td.warn { color: var(--ab-warn); font-weight: 600; }
+td.bad { color: var(--ab-danger); font-weight: 600; }
+td.adopt { color: var(--ab-ok); }
+td.num { text-align: right; font-family: ui-monospace,monospace; }
+td strong { color: var(--ab-black); }
+.table-caption { font-size: 12px; color: var(--ab-muted); margin-top: -14px; margin-bottom: 20px; }
+
+/* ── Callout ───────────────────────────────────── */
+.callout {
+  display: flex; gap: 12px; align-items: flex-start;
+  border-radius: 8px; padding: 12px 16px; margin: 16px 0;
+}
+.callout .ico { font-size: 18px; flex-shrink: 0; padding-top: 1px; }
+.callout .body { font-size: 14px; line-height: 1.65; }
+.callout .body strong { display: block; margin-bottom: 4px; }
+.callout.danger { background: #FDF0EF; border: 1px solid #F5C6C3; }
+.callout.warn   { background: #FEF9EC; border: 1px solid #F9E4A5; }
+.callout.ok     { background: #EDF7F1; border: 1px solid #A8DFB8; }
+.callout.info   { background: #EBF5FB; border: 1px solid #A8CCDF; }
+
+/* ── SVG diagrams ──────────────────────────────── */
+.diagram-wrap {
+  background: var(--ab-bg);
+  border: 1px solid var(--ab-border);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+.diagram-wrap svg { display: block; max-width: 100%; height: auto; }
+.diagram-cap { font-size: 12px; color: var(--ab-muted); text-align: center; margin-top: 10px; }
+
+/* ── Spec grid (2-col) ─────────────────────────── */
+.spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
+@media (max-width: 700px) { .spec-grid { grid-template-columns: 1fr; } }
+.spec-card {
+  background: var(--ab-bg);
+  border: 1px solid var(--ab-border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.spec-card h4 { margin-top: 0; }
+.spec-card .kv { display: flex; justify-content: space-between; gap: 8px;
+  font-size: 13px; padding: 5px 0; border-bottom: 1px solid var(--ab-border); }
+.spec-card .kv:last-child { border-bottom: none; }
+.spec-card .kv .k { color: var(--ab-muted); }
+.spec-card .kv .v { font-weight: 600; color: var(--ab-black); text-align: right; }
+
+/* ── Interlock matrix ──────────────────────────── */
+.interlock-grid {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; margin: 16px 0;
+}
+@media (max-width: 700px) { .interlock-grid { grid-template-columns: 1fr; } }
+.ic-card {
+  display: flex; align-items: flex-start; gap: 10px;
+  background: #fff; border: 1px solid var(--ab-border); border-radius: 6px; padding: 10px 12px;
+}
+.ic-num {
+  background: var(--ab-black); color: #fff;
+  font-size: 12px; font-weight: 700; font-family: ui-monospace,monospace;
+  border-radius: 4px; padding: 2px 7px; flex-shrink: 0; margin-top: 1px;
+}
+.ic-num.hw { background: var(--ab-danger); }
+.ic-num.sw { background: var(--ab-ice); }
+.ic-num.st { background: var(--ab-warn); }
+.ic-body .title { font-size: 13px; font-weight: 600; color: var(--ab-black); }
+.ic-body .sub { font-size: 11.5px; color: var(--ab-muted); margin-top: 2px; }
+
+/* ── Power flow diagram ─────────────────────────── */
+.flow-box {
+  background: var(--ab-bg);
+  border: 1px solid var(--ab-border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  font-family: ui-monospace,monospace;
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--ab-black);
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* ── Fault code table ───────────────────────────── */
+.badge-l1 { background: #EEF2FF; color: #3730A3; border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 700; }
+.badge-l2 { background: #FEF3C7; color: #92400E; border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 700; }
+.badge-l3 { background: #FEE2E2; color: #991B1B; border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 700; }
+.badge-l4 { background: #111827; color: #fff; border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 700; }
+
+/* ── Tracker ────────────────────────────────────── */
+.tracker-done { color: var(--ab-ok); font-weight: 600; }
+.tracker-wip  { color: var(--ab-warn); font-weight: 600; }
+.tracker-pend { color: var(--ab-danger); font-weight: 600; }
+.tracker-wait { color: var(--ab-muted); }
+
+/* ── Version history ────────────────────────────── */
+.vlog { display: flex; gap: 0; flex-direction: column; margin: 8px 0; }
+.vlog-row { display: flex; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--ab-border); font-size: 13px; }
+.vlog-row:last-child { border-bottom: none; }
+.vlog-ver { font-family: ui-monospace,monospace; font-weight: 700; color: var(--ab-black); min-width: 44px; }
+.vlog-date { color: var(--ab-muted); min-width: 90px; }
+.vlog-desc { color: #374151; flex: 1; }
+
+/* ── Footer ─────────────────────────────────────── */
+footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ab-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ab-muted);
+}
+.footer-logo { font-weight: 700; color: var(--ab-black); letter-spacing: -.5px; }
+.footer-logo span { color: var(--ab-amber); }
+
+/* ── Utility ─────────────────────────────────────── */
+hr { border: none; border-top: 1px solid var(--ab-border); margin: 32px 0; }
+p { font-size: 14px; line-height: 1.75; color: #374151; margin: 10px 0; }
+code { font-family: ui-monospace,monospace; font-size: 12.5px; background: #F1F3F5; padding: 1px 5px; border-radius: 3px; }
+ul { padding-left: 20px; } li { font-size: 14px; line-height: 1.7; margin: 4px 0; }
+.check { color: var(--ab-ok); } .cross { color: var(--ab-danger); } .delta { color: var(--ab-warn); }
+</style>
+
+<body>
+<main>
+
+<!-- ═══════════════════════════════ HEADER ══════════════════════════════════ -->
+<div class="doc-header">
+  <div class="doc-header-left">
+    <h1>SnowBot 电池包 · BMS · 充电系统技术规格书
+      <span class="doc-badge">v4.2</span>
+    </h1>
+    <div class="doc-meta">
+      <strong>文件编号</strong> ARCBOS-SPEC-2606-0001 &nbsp;·&nbsp;
+      <strong>日期</strong> 2026-06-15 &nbsp;·&nbsp;
+      <strong>状态</strong> Draft — 架构基线<br>
+      <strong>适用阶段</strong> SnowBot Alpha + v1.0 产品化 &nbsp;·&nbsp;
+      <strong>读者</strong> 电气 / 结构 / 供应商工程师<br>
+      可指导：结构预留 · BMS需求沟通 · 供应商初筛 &nbsp;|&nbsp; 不替代：电气详图 · 线束BOM
+    </div>
+  </div>
+  <div class="doc-logo">ARC<span>B</span>OS</div>
+</div>
+
+<!-- ═══════════════════════════════ TOC ═════════════════════════════════════ -->
+<nav style="background:var(--ab-bg);border:1px solid var(--ab-border);border-radius:8px;padding:14px 18px;margin-bottom:28px;font-size:13px;">
+  <strong style="display:block;margin-bottom:8px;color:var(--ab-black);">目录</strong>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;">
+    <a href="#s0">0. 架构决策树</a><a href="#s1">1. 设计参数总表</a>
+    <a href="#s2">2. 整机重量参数化</a><a href="#s3">3. 功率与容量推导</a>
+    <a href="#s4">4. 电芯选型</a><a href="#s5">5. 电池包与电池仓</a>
+    <a href="#s6">6. 充电系统</a><a href="#s7">7. 整机电气架构</a>
+    <a href="#s8">8. BMS规格</a><a href="#s9">9. 热管理</a>
+    <a href="#s10">10. 安全合规</a><a href="#s11">11. 供应商要求</a>
+    <a href="#sA">附录A: 故障码</a><a href="#sB">附录B: 结构约束</a>
+    <a href="#sC">附录C: 工程追踪</a><a href="#sV">变更记录</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ §0 ══════════════════════════════════════ -->
+<h2 id="s0">0. 系统架构决策树</h2>
+
+<h3>0.1 充电方式——第一性原理否决地面方案</h3>
+
+<div class="callout danger">
+  <div class="ico">⚠️</div>
+  <div class="body">
+    <strong>环境否决逻辑（不可绕过）</strong>
+    除雪作业地面 = 积雪 + NaCl导电盐水 + 薄冰 + 砂砾。地面安装任何充电接口 = 短路 + 电化学腐蚀 + 冻融卡死。<br>
+    <strong>结论：充电接口必须尾部安装，离地 ≥ 300mm。</strong>
+  </div>
+</div>
+
+<div class="tw">
+<table>
+  <tr><th>方案</th><th>功率</th><th>效率</th><th>充满产品化</th><th>对位容差</th><th>结论</th></tr>
+  <tr><td>地面无线</td><td class="mono">1 kW</td><td>87%</td><td class="mono">~31 h</td><td>±30 mm</td><td class="bad">✗ 否决（地面积水/腐蚀/冻融）</td></tr>
+  <tr><td>尾部无线</td><td class="mono">1 kW</td><td>87%</td><td class="mono">~31 h</td><td>±30 mm</td><td class="warn">△ 仅补电（可选）</td></tr>
+  <tr><td><strong>尾部触点 Pogo Pin</strong></td><td class="mono"><strong>7.2 kW</strong></td><td><strong>&gt;99%</strong></td><td class="mono"><strong>~4 h</strong></td><td><strong>±5 mm*</strong></td><td class="ok"><strong>✓ 采用</strong></td></tr>
+</table>
+</div>
+<p class="table-caption">* 机械导向槽（V型尼龙）将导航 ±50mm 收敛至 ±5mm，Pogo 弹片弹性兜底</p>
+
+<h3>0.2 供电电压决策</h3>
+
+<div class="tw">
+<table>
+  <tr><th>输入回路</th><th>NEC连续负载（80%）</th><th>AC连续输入</th><th>DC实际输出</th><th>充满产品化</th><th>结论</th></tr>
+  <tr><td>120V / 20A</td><td>16A</td><td>~1.92 kW</td><td>~1.5–1.7 kW</td><td class="mono">~17 h</td><td class="bad">✗ 仅维护/测试/应急</td></tr>
+  <tr><td>120V / 30A</td><td>24A</td><td>~2.88 kW</td><td>~2.5–2.8 kW</td><td class="mono">~10 h</td><td class="bad">✗ 北美此规格插座极罕见</td></tr>
+  <tr><td>240V / 30A</td><td>24A</td><td>~5.76 kW</td><td>~5.8–6.5 kW</td><td class="mono">~4.5 h</td><td class="warn">△ 降额可接受（凌晨02→06:30）</td></tr>
+  <tr><td><strong>240V / 40A</strong></td><td><strong>32A</strong></td><td><strong>~7.68 kW</strong></td><td><strong>~7.2 kW</strong></td><td class="mono"><strong>~4.0 h</strong></td><td class="ok"><strong>✓✓ 主配置</strong></td></tr>
+</table>
+</div>
+
+<div class="callout info">
+  <div class="ico">📌</div>
+  <div class="body"><strong>120V 是物理约束，不是选择题。</strong>产品化夜间快充必须 240V。注意：所有功率值均需扣除充电器效率（≥93%），AC输入功率 ≠ DC输出功率。</div>
+</div>
+
+<h3>0.3 充电电流统一——所有器件按 200A 设计</h3>
+
+<div class="tw">
+<table>
+  <tr><th>电池电压状态</th><th>电压</th><th>7.2kW对应直流电流</th><th>设计基准</th></tr>
+  <tr><td>满充附近</td><td class="mono">54.75 V</td><td class="mono">131 A</td><td rowspan="3" style="vertical-align:middle;text-align:center;font-size:22px;font-weight:700;color:#C0392B;">200A</td></tr>
+  <tr><td>标称</td><td class="mono">48.0 V</td><td class="mono">150 A</td></tr>
+  <tr><td><strong>低压截止（最大）</strong></td><td class="mono"><strong>37.5 V</strong></td><td class="mono"><strong>192 A</strong></td></tr>
+</table>
+</div>
+
+<div class="callout danger">
+  <div class="ico">🔴</div>
+  <div class="body"><strong>75A 是放电侧持续工况电流，严禁用于充电支路设计。</strong><br>
+  涉及充电主回路的所有器件均按 <strong>200A 连续</strong> 校核：Pogo Pin / 线束截面 / 主接触器 / 熔断器 / 铜排 / BMS充电通道。</div>
+</div>
+
+<h3>0.4 触点充电安全互锁矩阵（C1–C10）</h3>
+<p>主接触器闭合前，以下 10 项条件必须<strong>全部</strong>满足。</p>
+
+<div class="interlock-grid">
+  <div class="ic-card"><div class="ic-num hw">C1</div><div class="ic-body"><div class="title">防护盖打开成功</div><div class="sub">微动开关 · 硬件级</div></div></div>
+  <div class="ic-card"><div class="ic-num hw">C2</div><div class="ic-body"><div class="title">机械对位成功（卡扣锁定）</div><div class="sub">微动开关 · 硬件级</div></div></div>
+  <div class="ic-card"><div class="ic-num hw">C3</div><div class="ic-body"><div class="title">低压辅助触点接通</div><div class="sub">低压握手信号 · 硬件级</div></div></div>
+  <div class="ic-card"><div class="ic-num hw">C4</div><div class="ic-body"><div class="title">正负极极性确认</div><div class="sub">极性检测电路 · 硬件级</div></div></div>
+  <div class="ic-card"><div class="ic-num hw">C5</div><div class="ic-body"><div class="title">绝缘检测通过（&gt;100kΩ）</div><div class="sub">IMD模块 · 硬件级</div></div></div>
+  <div class="ic-card"><div class="ic-num sw">C6</div><div class="ic-body"><div class="title">电芯温度 ≥ 5°C</div><div class="sub">BMS L3 · 软硬结合</div></div></div>
+  <div class="ic-card"><div class="ic-num sw">C7</div><div class="ic-body"><div class="title">BMS 允许充电（CHARGE_ENABLE）</div><div class="sub">BMS L4 CAN · 软硬结合</div></div></div>
+  <div class="ic-card"><div class="ic-num sw">C8</div><div class="ic-body"><div class="title">接触电阻正常（&lt;5mΩ）</div><div class="sub">低压测量 · 软硬结合</div></div></div>
+  <div class="ic-card"><div class="ic-num st">C9</div><div class="ic-body"><div class="title">充电站输出为 0V（预充前）</div><div class="sub">充电站控制逻辑</div></div></div>
+  <div class="ic-card"><div class="ic-num st">C10</div><div class="ic-body"><div class="title">预充完成（dV/dt 正常）</div><div class="sub">软启动回路 · 充电站侧</div></div></div>
+</div>
+<p style="font-size:13px;color:var(--ab-muted);">
+  <span style="background:#C0392B;color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;">HW</span> C1–C5：硬件互锁，固件崩溃仍有效 &nbsp;
+  <span style="background:#5B7A8C;color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;">SW</span> C6–C8：软硬结合 &nbsp;
+  <span style="background:#E67E22;color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;">ST</span> C9–C10：充电站逻辑 &nbsp;|&nbsp;
+  <strong>离开条件</strong>：充电站输出降至 0V → 确认无电弧 → 机器人前进
+</p>
+
+<h3>0.5 电池位置与配重</h3>
+<div class="tw">
+<table>
+  <tr><th>项目</th><th>设计值</th><th>说明</th></tr>
+  <tr><td>电池仓位置</td><td>底盘纵向中心</td><td>162kg居中，整机重心最低，不随充电方式改变</td></tr>
+  <tr><td>充电线束路径</td><td>~500mm</td><td>电池仓→压铸线槽→尾部接口，走骨架集成线槽</td></tr>
+  <tr><td>尾部接口重量</td><td>3–5 kg</td><td>重心偏移 &lt;10mm，无需额外配重块</td></tr>
+  <tr><td>前后轴荷目标</td><td>45:55</td><td>前轻后重（绞龙+抛雪在前），结构CAD验证</td></tr>
+</table>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ §1 ══════════════════════════════════════ -->
+<h2 id="s1">1. 设计参数总表</h2>
+
+<div class="tw">
+<table>
+  <tr><th>参数</th><th>Alpha 样机</th><th>产品化 v1.0</th></tr>
+  <tr><td>电芯体系</td><td colspan="2" style="text-align:center;">LFP 280Ah（EVE LF280K 或同等级）</td></tr>
+  <tr><td>串并联配置</td><td>1P15S（15只）</td><td>2P15S（30只）</td></tr>
+  <tr><td>系统电压</td><td colspan="2" style="text-align:center;">48V（标称48.0V / 满充54.75V / 截止37.5V）</td></tr>
+  <tr><td>标称能量</td><td class="num">13.44 kWh</td><td class="num">26.88 kWh</td></tr>
+  <tr><td>-20°C 实际可用</td><td class="num">6.1 kWh</td><td class="num">12.2 kWh</td></tr>
+  <tr><td>计算续航（全新，-20°C）</td><td class="num">1.74 h</td><td class="num">3.4 h</td></tr>
+  <tr><td>最差续航（老化+极端低温）</td><td class="num">~0.8 h</td><td class="num">~1.9 h</td></tr>
+  <tr><td>电池重量</td><td class="num">81 kg</td><td class="num">162 kg</td></tr>
+  <tr><td>充电电流基准</td><td colspan="2" style="text-align:center;"><strong>200A 连续</strong>（全链路器件均按此设计）</td></tr>
+  <tr><td>DC充电功率</td><td colspan="2" style="text-align:center;">7.2 kW（充电站输出目标）</td></tr>
+  <tr><td>净充电功率（扣维温330W）</td><td colspan="2" style="text-align:center;">6,798 W</td></tr>
+  <tr><td>充满时间（主配置240V/40A）</td><td class="num">≈2.0 h</td><td class="num">≈4.0 h</td></tr>
+  <tr><td>AC输入（产品化）</td><td colspan="2" style="text-align:center;">240V / 40A 专用回路（NEC 210.20，32A连续）</td></tr>
+  <tr><td>辅助无线补电（可选，v1.0暂缓）</td><td colspan="2" style="text-align:center;">1kW / 单次290Wh（20min补电）</td></tr>
+  <tr><td>整机重量 M（不含电池）</td><td colspan="2" style="text-align:center;">170–250 kg（参数化，见§2）</td></tr>
+  <tr><td>整机总重包络（含电池）</td><td class="num">251–331 kg</td><td class="num">362–412 kg</td></tr>
+</table>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ §2 ══════════════════════════════════════ -->
+<h2 id="s2">2. 整机重量参数化</h2>
+
+<div class="spec-grid">
+  <div>
+    <h4>钢制固定件（不可替换）</h4>
+    <div class="tw">
+    <table>
+      <tr><th>部件</th><th>重量</th></tr>
+      <tr><td>传动轴+万向节</td><td class="num">8–12 kg</td></tr>
+      <tr><td>驱动轮轮芯</td><td class="num">12–18 kg</td></tr>
+      <tr><td>履带板</td><td class="num">15–20 kg</td></tr>
+      <tr><td>绞龙螺旋体</td><td class="num">10–14 kg</td></tr>
+      <tr><td>紧固件+轴承</td><td class="num">8–12 kg</td></tr>
+      <tr><td>电机×4 + 减速机×2</td><td class="num">34–50 kg</td></tr>
+      <tr><td><strong>小计</strong></td><td class="num"><strong>87–126 kg</strong></td></tr>
+    </table>
+    </div>
+  </div>
+  <div>
+    <h4>M 敏感度分析</h4>
+    <p style="font-size:13px;">M（不含电池整机重量）跨度 80kg，电池容量仅差 1.1 kWh——电池规格可先于结构重量最终确认独立锁定。</p>
+    <div class="tw">
+    <table>
+      <tr><th>M</th><th>整机总重</th><th>持续功率</th><th>所需容量</th></tr>
+      <tr><td>170 kg</td><td>307 kg</td><td>3,479 W</td><td>21.4 kWh</td></tr>
+      <tr><td>200 kg</td><td>337 kg</td><td>3,535 W</td><td>21.9 kWh</td></tr>
+      <tr><td>250 kg</td><td>390 kg</td><td>3,648 W</td><td>22.5 kWh</td></tr>
+      <tr><td><strong>变化量</strong></td><td>+83 kg</td><td>+169 W</td><td class="ok"><strong>+1.1 kWh</strong></td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ §3 ══════════════════════════════════════ -->
+<h2 id="s3">3. 功率与容量推导</h2>
+
+<h3>3.1 持续功率分解（M=250 保守值）</h3>
+
+<div class="tw">
+<table>
+  <tr><th>模块</th><th>持续功率</th><th>峰值功率</th><th>说明</th></tr>
+  <tr><td>驱动</td><td class="num">798 W</td><td class="num">1,800 W</td><td>坡度+转向+履带修正</td></tr>
+  <tr><td>绞龙</td><td class="num">1,500 W</td><td class="num">3,500 W</td><td>切雪+螺旋输送</td></tr>
+  <tr><td>抛雪</td><td class="num">900 W</td><td class="num">1,500 W</td><td>高速叶轮</td></tr>
+  <tr><td>升降调角</td><td class="num">100 W</td><td class="num">300 W</td><td>间歇</td></tr>
+  <tr><td>电子载荷</td><td class="num">100 W</td><td class="num">130 W</td><td>IPC+雷达+RTK+通信</td></tr>
+  <tr><td>维温加热</td><td class="num">250 W</td><td class="num">1,000 W</td><td>冷启动峰值不计入续航容量</td></tr>
+  <tr><td><strong>持续合计</strong></td><td class="num"><strong>3,650 W</strong></td><td>—</td><td></td></tr>
+  <tr><td><strong>峰值合计</strong></td><td>—</td><td class="num"><strong>~8,200 W</strong></td><td>绞龙冲击+爬坡+冷启动，持续 &lt;10s</td></tr>
+</table>
+</div>
+
+<h3>3.2 容量迭代收敛（M=200，T=2.5h，-20°C）</h3>
+
+<div class="tw">
+<table>
+  <tr><th>轮次</th><th>假设 m_bat</th><th>整机总重</th><th>P_drive</th><th>P_total</th><th>需求容量</th><th>推出 m_bat</th><th>结果</th></tr>
+  <tr><td>R1</td><td>90 kg</td><td>290 kg</td><td>590 W</td><td>3,440 W</td><td>22,835 Wh</td><td>143 kg</td><td class="bad">✗</td></tr>
+  <tr><td>R2</td><td>143 kg</td><td>343 kg</td><td>700 W</td><td>3,550 W</td><td>23,566 Wh</td><td>147 kg</td><td class="bad">✗</td></tr>
+  <tr><td><strong>R3</strong></td><td>147 kg</td><td>347 kg</td><td>710 W</td><td>3,560 W</td><td>23,632 Wh</td><td>148 kg</td><td class="ok"><strong>✓ 收敛</strong></td></tr>
+</table>
+</div>
+
+<div class="callout ok">
+  <div class="ico">✅</div>
+  <div class="body">
+    2P15S 提供 <strong>26.88 kWh</strong> &gt; 所需 23.6 kWh，余量 3.3 kWh 覆盖老化/极端工况<br>
+    最差续航验证：3.4h × SOH85% × -30°C保持率 × 80%SOC出发 ≈ <strong>1.9h</strong> → 覆盖 S2 主力场景（中型停车场 1,000m²）✓
+  </div>
+</div>
+
+<h3>3.3 服务场景与续航目标</h3>
+
+<div class="tw">
+<table>
+  <tr><th>场景</th><th>目标区域</th><th>所需时间 T</th><th>典型客户</th><th>v1.0 状态</th></tr>
+  <tr><td>S1</td><td>步道 ≤500 m²</td><td>≥0.5 h</td><td>写字楼/医院入口</td><td class="ok">✓</td></tr>
+  <tr><td><strong>S2</strong></td><td><strong>中型 1,000–2,000 m²</strong></td><td><strong>≥2.5 h</strong></td><td><strong>社区商场/连锁超市</strong></td><td class="ok"><strong>✓ 主力市场</strong></td></tr>
+  <tr><td>S3</td><td>大型 3,000–5,000 m²</td><td>≥4 h</td><td>购物中心</td><td class="warn">多机/补电</td></tr>
+  <tr><td>S4</td><td>暴雪连续作业</td><td>≥6 h</td><td>大型园区</td><td class="warn">多机协同</td></tr>
+</table>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ §4 ══════════════════════════════════════ -->
+<h2 id="s4">4. 电芯选型</h2>
+
+<div class="tw">
+<table>
+  <tr><th>指标</th><th>LFP</th><th>NMC 811</th><th>决策方向</th></tr>
+  <tr><td>能量密度</td><td>160 Wh/kg</td><td>250 Wh/kg</td><td>NMC优</td></tr>
+  <tr><td>-20°C 容量保持率</td><td>65%</td><td>72%</td><td>差距较小</td></tr>
+  <tr><td><strong>热失控风险</strong></td><td class="ok"><strong>极低</strong></td><td class="warn">中等</td><td class="ok"><strong>LFP 决定性优势</strong></td></tr>
+  <tr><td>循环寿命</td><td>≥3,000次（≈8年）</td><td>1,500次（≈4年）</td><td class="ok">LFP优</td></tr>
+  <tr><td>成本</td><td>基准</td><td>+30%</td><td class="ok">LFP优</td></tr>
+  <tr><td>北美认证路径</td><td>UL 2580 清晰</td><td>较复杂</td><td class="ok">LFP优</td></tr>
+</table>
+</div>
+
+<div class="callout info">
+  <div class="ico">📋</div>
+  <div class="body"><strong>v1.0：LFP。v1.5 评估 NMC</strong>（前提：热防护方案成熟 + 整机重量进入客户强需求区 + UL2580 NMC认证完成）</div>
+</div>
+
+<h3>选定电芯规格</h3>
+<div class="tw">
+<table>
+  <tr><th>参数</th><th>规格</th></tr>
+  <tr><td>推荐型号</td><td>EVE LF280K / CATL同等级 / 瑞浦兰钧同等级</td></tr>
+  <tr><td>标称容量 / 电压</td><td>280 Ah @ 3.2V</td></tr>
+  <tr><td>满充 / 截止电压</td><td>3.65V / 2.5V</td></tr>
+  <tr><td>内阻（25°C）</td><td>≤ 0.20 mΩ</td></tr>
+  <tr><td>-20°C 容量保持</td><td>≥ 65%（0.2C放电，<strong>供应商须提供 -30/-20/-10/0/25°C 实测曲线</strong>）</td></tr>
+  <tr><td>循环寿命</td><td>≥ 3,000次（80% DOD，25°C，保持率≥80%）</td></tr>
+  <tr><td>认证要求</td><td>UN 38.3（进口必须）+ IEC 62619 或 UL 2580</td></tr>
+</table>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ §5 ══════════════════════════════════════ -->
+<h2 id="s5">5. 电池包与电池仓设计</h2>
+
+<h3>5.1 滑入式快拆电池系统</h3>
+
+<div class="callout ok">
+  <div class="ico">🎯</div>
+  <div class="body"><strong>设计原则：</strong>-30°C 戴厚手套可完成，无工具，无接线操作，无裸露带电接头。</div>
+</div>
+
+<!-- Slide-in diagram -->
+<div class="diagram-wrap">
+<svg viewBox="0 0 780 220" xmlns="http://www.w3.org/2000/svg" font-family="ui-monospace,monospace" font-size="12">
+  <!-- Battery casing -->
+  <rect x="20" y="60" width="220" height="100" rx="6" fill="#F8F9FA" stroke="#0D0F11" stroke-width="2"/>
+  <text x="130" y="105" text-anchor="middle" font-size="13" font-weight="600" fill="#0D0F11">电池包</text>
+  <text x="130" y="122" text-anchor="middle" font-size="11" fill="#6B7280">Alpha: 600×350×200mm / 81kg</text>
+  <text x="130" y="137" text-anchor="middle" font-size="11" fill="#6B7280">产品化: 600×350×380mm / 162kg</text>
+  <!-- Clasp left -->
+  <rect x="10" y="95" width="14" height="28" rx="3" fill="#FFB400"/>
+  <text x="17" y="114" text-anchor="middle" font-size="10" fill="#0D0F11">卡</text>
+  <!-- Clasp right -->
+  <rect x="226" y="95" width="14" height="28" rx="3" fill="#FFB400"/>
+  <text x="233" y="114" text-anchor="middle" font-size="10" fill="#0D0F11">扣</text>
+  <!-- Connector zones on right face -->
+  <rect x="238" y="68" width="12" height="22" rx="2" fill="#27AE60"/>
+  <text x="244" y="82" text-anchor="middle" font-size="9" fill="#fff">Z1</text>
+  <rect x="238" y="96" width="12" height="16" rx="2" fill="#5B7A8C"/>
+  <text x="244" y="107" text-anchor="middle" font-size="9" fill="#fff">Z2</text>
+  <rect x="238" y="118" width="12" height="24" rx="2" fill="#C0392B"/>
+  <text x="244" y="133" text-anchor="middle" font-size="9" fill="#fff">Z3</text>
+
+  <!-- Arrow -->
+  <line x1="270" y1="110" x2="330" y2="110" stroke="#FFB400" stroke-width="3" marker-end="url(#arr)"/>
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#FFB400"/>
+    </marker>
+  </defs>
+  <text x="300" y="100" text-anchor="middle" font-size="11" fill="#6B7280">滑入方向</text>
+
+  <!-- Battery compartment -->
+  <rect x="340" y="40" width="240" height="140" rx="6" fill="#fff" stroke="#0D0F11" stroke-width="2"/>
+  <text x="460" y="65" text-anchor="middle" font-size="13" font-weight="600" fill="#0D0F11">电池仓（底盘集成）</text>
+  <!-- Rails -->
+  <rect x="348" y="72" width="224" height="6" rx="2" fill="#5B7A8C"/>
+  <rect x="348" y="142" width="224" height="6" rx="2" fill="#5B7A8C"/>
+  <text x="460" y="88" text-anchor="middle" font-size="11" fill="#6B7280">阳极氧化铝导轨</text>
+  <!-- Limit switch -->
+  <rect x="540" y="60" width="30" height="30" rx="4" fill="#FFB400" opacity="0.8"/>
+  <text x="555" y="79" text-anchor="middle" font-size="10" fill="#0D0F11">微动</text>
+  <text x="555" y="90" text-anchor="middle" font-size="10" fill="#0D0F11">开关</text>
+  <!-- Female connector zones -->
+  <rect x="350" y="70" width="12" height="22" rx="2" fill="#27AE60" opacity="0.6"/>
+  <rect x="350" y="98" width="12" height="16" rx="2" fill="#5B7A8C" opacity="0.6"/>
+  <rect x="350" y="120" width="12" height="24" rx="2" fill="#C0392B" opacity="0.6"/>
+  <!-- Entry horn -->
+  <polygon points="340,40 330,30 330,180 340,170" fill="#E2E5E8" stroke="#6B7280" stroke-width="1"/>
+  <text x="320" y="115" text-anchor="middle" font-size="11" fill="#6B7280" transform="rotate(-90,320,115)">导向喇叭口</text>
+
+  <!-- Zone legend -->
+  <rect x="620" y="50" width="12" height="12" fill="#27AE60"/><text x="638" y="61" font-size="11" fill="#374151">Zone 1: GND+低压（先接）</text>
+  <rect x="620" y="72" width="12" height="12" fill="#5B7A8C"/><text x="638" y="83" font-size="11" fill="#374151">Zone 2: CAN/热管理</text>
+  <rect x="620" y="94" width="12" height="12" fill="#C0392B"/><text x="638" y="105" font-size="11" fill="#374151">Zone 3: 48V HV（后接）</text>
+  <text x="620" y="130" font-size="11" fill="#6B7280">断开时：Z3先断，Z1最后断</text>
+  <text x="620" y="148" font-size="11" fill="#6B7280">Z1未通 → Z3物理屏蔽块阻断</text>
+
+  <!-- Operation text -->
+  <text x="20" y="185" font-size="12" fill="#374151">取出：按卡扣 → 抽出（~5s）</text>
+  <text x="20" y="200" font-size="12" fill="#374151">插入：沿轨推入 → 听到"卡哒" → 松手（~5s）</text>
+</svg>
+<div class="diagram-cap">图1 — 滑入式快拆电池系统结构示意（含金手指三区分区防电弧设计）</div>
+</div>
+
+<div class="tw">
+<table>
+  <tr><th>部件</th><th>规格</th></tr>
+  <tr><td>导轨材质</td><td>硬质阳极氧化铝，抗腐蚀，低温不变形</td></tr>
+  <tr><td>滑入方向</td><td>水平侧向（从机器人侧面），末端限位块</td></tr>
+  <tr><td>滑动间隙</td><td>0.3–0.5 mm（低温收缩余量），导向角 ≥5°</td></tr>
+  <tr><td>卡扣</td><td>左右对称弹簧卡扣，硬质尼龙（-40°C韧性），锁定力 ≥50N</td></tr>
+  <tr><td>对位确认</td><td>卡扣触发导轨末端微动开关 → BMS 硬件信号（对应互锁 C2）</td></tr>
+</table>
+</div>
+
+<h4>分区式高电流盲插连接器（防电弧分区设计）</h4>
+<div class="callout warn">
+  <div class="ico">⚠️</div>
+  <div class="body"><strong>术语说明：</strong>此处为工业级高电流盲插连接器，额定须覆盖 200A 充电及放电工况。<strong>非</strong> PCB 边缘金手指。选型时须向供应商明确说明，避免提供错误产品类型。</div>
+</div>
+
+<div class="tw">
+<table>
+  <tr><th>Zone</th><th>接触顺序</th><th>信号内容</th><th>安全逻辑</th></tr>
+  <tr><td><strong>Zone 1</strong></td><td class="ok"><strong>最先接触</strong></td><td>保护地 GND + 低压辅助信号（12V/CAN）</td><td>未接通 → Zone 3 物理屏蔽块阻断，无法接触</td></tr>
+  <tr><td>Zone 2</td><td>中段</td><td>BMS CAN H/L + 热管理控制线</td><td>—</td></tr>
+  <tr><td><strong>Zone 3</strong></td><td class="bad"><strong>最后接触</strong></td><td>48V HV+（主动力正极）/ HV-（负极）</td><td>Zone 1通 → 握手 → BMS确认 → 允许闭合</td></tr>
+</table>
+</div>
+<p style="font-size:13px;color:var(--ab-muted);">断开顺序：Zone 3（HV）先断，Zone 1（GND）最后断。Zone 3 弹片缓接触（速度受控）+ 预充回路软启动，防打火。接触电阻 &gt;5mΩ → BMS 上报 0x11，L2降额。</p>
+
+<h3>5.2 电池包外形</h3>
+<div class="tw">
+<table>
+  <tr><th>参数</th><th>Alpha（1P15S）</th><th>产品化（2P15S）</th></tr>
+  <tr><td>外形尺寸</td><td>600×350×200 mm</td><td>600×350×380 mm</td></tr>
+  <tr><td>重量</td><td>81 kg</td><td>162 kg</td></tr>
+  <tr><td>把手</td><td colspan="2">两侧可折叠提手，≥100N拉力</td></tr>
+  <tr><td>外壳 / 防护</td><td colspan="2">冷轧钢板+防腐喷塑，IP65</td></tr>
+  <tr><td>排气</td><td colspan="2">侧面散热缝+单向排气阀（防倒灌）</td></tr>
+  <tr><td>铭牌</td><td colspan="2">电压/容量/序列号/危险标识（SAE J1673）</td></tr>
+</table>
+</div>
+
+<h3>5.3 电池仓结构</h3>
+<div class="tw">
+<table>
+  <tr><th>项目</th><th>规格</th></tr>
+  <tr><td>位置</td><td>底盘纵向中心，离地净高 ≥100mm</td></tr>
+  <tr><td>承重</td><td>按 162kg 设计，Alpha 向下兼容</td></tr>
+  <tr><td>导轨</td><td>仓内两侧阳极氧化铝硬轨，末端缓冲块+微动开关，入口导向喇叭口（±5mm）</td></tr>
+  <tr><td>仓门密封</td><td>EPDM密封条（-40°C弹性，<strong>禁</strong>普通硅胶/PVC）</td></tr>
+  <tr><td>保温</td><td>气凝胶毡，λ≤0.018 W/(m·K)，≥20mm（四周+顶部）</td></tr>
+  <tr><td>热隔离垫</td><td>仓底与底盘骨架之间，PA-GF（防骨架成为散热路径）</td></tr>
+  <tr><td>排气通道</td><td>仓体后部，单向防倒灌阀，不朝传感器/人员</td></tr>
+  <tr><td>防撞</td><td>四周 ≥3mm 铝合金，45°侧倒不漏液</td></tr>
+  <tr><td>Service Disconnect</td><td>仓侧外部可操作，NFPA 70E</td></tr>
+  <tr><td>保温验证目标</td><td>-20°C 静置 8h 后电芯 ≥-10°C（初始 25°C）</td></tr>
+</table>
+</div>
+
+<h3>5.4 压铸件集成线槽</h3>
+<div class="callout info">
+  <div class="ico">📐</div>
+  <div class="body">所有主线束走压铸骨架内预制线槽，<strong>禁止独立敷设线缆</strong>。彻底解决振动磨损、低温变硬、走线凌乱三个问题。</div>
+</div>
+
+<div class="tw">
+<table>
+  <tr><th>线槽类型</th><th>截面</th><th>间距要求</th><th>用途</th></tr>
+  <tr><td>主动力槽</td><td>≥35×20 mm</td><td>—</td><td>48V充放电，容纳双根 25mm² 铜线</td></tr>
+  <tr><td>信号槽</td><td>≥20×10 mm</td><td>距动力槽 ≥30mm</td><td>CAN/传感器，防干扰</td></tr>
+  <tr><td>加热控制槽</td><td>≥20×10 mm</td><td>—</td><td>PTC控制线</td></tr>
+</table>
+</div>
+<p style="font-size:13px;color:var(--ab-muted);">槽体：压铸铝，内衬尼龙绝缘套（耐-40°C）。线缆固定：每100mm一个卡扣。弯折：R≥10×线径。穿壁密封：低温等级密封接头/EPDM密封圈/低温PUR灌封胶（<strong>禁</strong>室温型硅脂/PVC）。端子：Deutsch DT或同等级。</p>
+<p style="font-size:13px;"><strong>动力线束：</strong>电池仓→压铸线槽→尾部触点，约500mm。导体初始规格 ≥25mm²，<strong>必须按 200A 连续温升测试确认</strong>（端子温升≤30K，外皮≤额定值）；不满足则升至35mm²或双线并联。</p>
+
+<h3>5.5 连接器演进路线</h3>
+<div class="tw">
+<table>
+  <tr><th>接口</th><th>Alpha（临时，实验室）</th><th>Beta / v1.0（产品化，户外）</th></tr>
+  <tr><td>动力主路</td><td>XT90-S / Anderson（限流）</td><td class="ok">Anderson SB175/SB320 或同等级工业连接器</td></tr>
+  <tr><td>CAN通信</td><td>XH2.54</td><td class="ok">M12 A型 / Deutsch DT（IP67，防振）</td></tr>
+  <tr><td>充电接口</td><td>测试台临时Pogo</td><td class="ok">工业Pogo Pin（NaCl≥500h盐雾认证）</td></tr>
+  <tr><td>低压辅助</td><td>JST</td><td class="ok">Amphenol / TE防水系列</td></tr>
+</table>
+</div>
+<div class="callout danger">
+  <div class="ico">🚫</div>
+  <div class="body">XT90 / XH2.54 <strong>严禁</strong>用于产品化户外机器人。Alpha 实验室环境限用。</div>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ §6 ══════════════════════════════════════ -->
+<h2 id="s6">6. 充电系统规格</h2>
+
+<h3>6.1 主充电：尾部 Pogo Pin 触点</h3>
+
+<!-- Charging diagram -->
+<div class="diagram-wrap">
+<svg viewBox="0 0 780 280" xmlns="http://www.w3.org/2000/svg" font-family="Inter,Noto Sans SC,sans-serif" font-size="12">
+  <!-- Power inlet -->
+  <rect x="20" y="30" width="120" height="50" rx="6" fill="#0D0F11"/>
+  <text x="80" y="52" text-anchor="middle" font-size="12" fill="#FFB400" font-weight="700">240V AC</text>
+  <text x="80" y="68" text-anchor="middle" font-size="11" fill="#fff">40A / 32A连续</text>
+  <!-- Off-board charger -->
+  <rect x="20" y="110" width="120" height="60" rx="6" fill="#1a1a2e" stroke="#FFB400" stroke-width="2"/>
+  <text x="80" y="136" text-anchor="middle" font-size="12" fill="#FFB400" font-weight="700">Off-board</text>
+  <text x="80" y="152" text-anchor="middle" font-size="12" fill="#FFB400" font-weight="700">Charger</text>
+  <text x="80" y="165" text-anchor="middle" font-size="11" fill="#aaa">7.2kW DC</text>
+  <!-- Arrow down -->
+  <line x1="80" y1="80" x2="80" y2="110" stroke="#FFB400" stroke-width="2" marker-end="url(#arry)"/>
+  <defs>
+    <marker id="arry" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#FFB400"/>
+    </marker>
+    <marker id="arrr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#5B7A8C"/>
+    </marker>
+  </defs>
+  <!-- Pogo connection arrow -->
+  <line x1="140" y1="140" x2="220" y2="140" stroke="#FFB400" stroke-width="3" stroke-dasharray="6,3" marker-end="url(#arry)"/>
+  <text x="180" y="130" text-anchor="middle" font-size="11" fill="#FFB400">Pogo触点</text>
+  <text x="180" y="158" text-anchor="middle" font-size="10" fill="#6B7280">≥200A · &gt;99%效率</text>
+  <!-- Battery pack -->
+  <rect x="220" y="60" width="160" height="160" rx="8" fill="#F8F9FA" stroke="#0D0F11" stroke-width="2"/>
+  <text x="300" y="95" text-anchor="middle" font-size="13" font-weight="700" fill="#0D0F11">48V 电池包</text>
+  <rect x="238" y="105" width="124" height="22" rx="3" fill="#E2E5E8"/>
+  <text x="300" y="120" text-anchor="middle" font-size="11" fill="#374151">主熔断器 250A</text>
+  <rect x="238" y="133" width="124" height="22" rx="3" fill="#E2E5E8"/>
+  <text x="300" y="148" text-anchor="middle" font-size="11" fill="#374151">IMD 绝缘监测</text>
+  <rect x="238" y="161" width="124" height="22" rx="3" fill="#E2E5E8"/>
+  <text x="300" y="176" text-anchor="middle" font-size="11" fill="#374151">主接触器 +/− ≥200A</text>
+  <!-- DC Bus arrow -->
+  <line x1="380" y1="140" x2="450" y2="140" stroke="#5B7A8C" stroke-width="3" marker-end="url(#arrr)"/>
+  <text x="415" y="130" text-anchor="middle" font-size="11" fill="#5B7A8C">48V 主母线</text>
+  <!-- Loads -->
+  <rect x="450" y="30" width="100" height="36" rx="5" fill="#5B7A8C"/>
+  <text x="500" y="53" text-anchor="middle" font-size="11" fill="#fff">驱动 ×2</text>
+  <rect x="450" y="75" width="100" height="36" rx="5" fill="#5B7A8C"/>
+  <text x="500" y="98" text-anchor="middle" font-size="11" fill="#fff">绞龙 + 抛雪</text>
+  <rect x="450" y="120" width="100" height="36" rx="5" fill="#5B7A8C"/>
+  <text x="500" y="143" text-anchor="middle" font-size="11" fill="#fff">PTC 1,000W</text>
+  <rect x="450" y="165" width="100" height="36" rx="5" fill="#374151"/>
+  <text x="500" y="188" text-anchor="middle" font-size="11" fill="#FFB400">DC-DC 24V/12V</text>
+  <!-- Connect bus to loads -->
+  <line x1="450" y1="48" x2="440" y2="48" stroke="#5B7A8C" stroke-width="1.5"/>
+  <line x1="450" y1="93" x2="440" y2="93" stroke="#5B7A8C" stroke-width="1.5"/>
+  <line x1="450" y1="138" x2="440" y2="138" stroke="#5B7A8C" stroke-width="1.5"/>
+  <line x1="450" y1="183" x2="440" y2="183" stroke="#5B7A8C" stroke-width="1.5"/>
+  <line x1="440" y1="48" x2="440" y2="183" stroke="#5B7A8C" stroke-width="1.5"/>
+  <!-- Low voltage loads -->
+  <rect x="570" y="165" width="90" height="36" rx="5" fill="#E2E5E8"/>
+  <text x="615" y="188" text-anchor="middle" font-size="11" fill="#374151">IPC/RTK/LiDAR</text>
+  <line x1="550" y1="183" x2="570" y2="183" stroke="#374151" stroke-width="1.5" marker-end="url(#arrr)"/>
+  <!-- E-stop -->
+  <rect x="570" y="60" width="90" height="36" rx="5" fill="#C0392B"/>
+  <text x="615" y="83" text-anchor="middle" font-size="11" fill="#fff">E-stop 急停</text>
+  <text x="615" y="95" text-anchor="middle" font-size="10" fill="#fcc">（全链路覆盖）</text>
+  <!-- Guide -->
+  <rect x="680" y="110" width="90" height="50" rx="5" fill="#FEF9EC" stroke="#F9E4A5" stroke-width="1.5"/>
+  <text x="725" y="132" text-anchor="middle" font-size="11" fill="#92400E">V型导向槽</text>
+  <text x="725" y="148" text-anchor="middle" font-size="10" fill="#92400E">±50mm→±5mm</text>
+</svg>
+<div class="diagram-cap">图2 — 整机电气架构 Block Diagram（充电路径 + 主直流母线）</div>
+</div>
+
+<h4>Pogo触点规格</h4>
+<div class="tw">
+<table>
+  <tr><th>参数</th><th>规格</th></tr>
+  <tr><td>类型</td><td>工业弹簧探针（Pogo Pin），金（Au）镀层</td></tr>
+  <tr><td>针数 / 单针额定</td><td>≥4针（2P+2N）/ 单针 ≥100A</td></tr>
+  <tr><td><strong>总额定电流</strong></td><td><strong>≥200A 连续</strong>（覆盖 7.2kW@37.5–54.75V 全范围）</td></tr>
+  <tr><td>接触电阻</td><td>&lt;1 mΩ/针（75A持续发热 ~5.6W，可接受）</td></tr>
+  <tr><td>盐雾测试</td><td>NaCl ≥500 h（供应商须提供报告）</td></tr>
+  <tr><td>对接寿命</td><td>≥10,000次（≈27年@每日1次）</td></tr>
+  <tr><td>工作温度</td><td>-40°C ~ +85°C</td></tr>
+</table>
+</div>
+
+<h4>充电站规格</h4>
+<div class="tw">
+<table>
+  <tr><th>参数</th><th>主配置（240V/40A）</th><th>降额配置（240V/30A）</th></tr>
+  <tr><td>AC输入</td><td>240V / 40A，32A连续（NEC 80%）<br>AC连续输入 ~7.68 kW</td><td>240V / 30A，24A连续<br>AC连续输入 ~5.76 kW</td></tr>
+  <tr><td>DC输出目标</td><td>~7.2 kW（效率≥93%）</td><td>~5.8–6.5 kW</td></tr>
+  <tr><td>充满时间（产品化）</td><td>≈4.0 h</td><td>≈4.5 h</td></tr>
+  <tr><td>安装高度</td><td colspan="2">离地 300–500mm（远离地面积水/冰层）</td></tr>
+  <tr><td>导向槽</td><td colspan="2">V型硬质尼龙，±50mm → ±5mm</td></tr>
+  <tr><td>防护</td><td colspan="2">IP65（站体），触点仓盖 IP67</td></tr>
+</table>
+</div>
+
+<h4>主回路器件（全部按 200A 设计）</h4>
+<div class="tw">
+<table>
+  <tr><th>器件</th><th>规格</th><th>参考型号</th></tr>
+  <tr><td>主正/负接触器</td><td>≥200A 连续</td><td>Gigavac GX14 / Tyco EV200</td></tr>
+  <tr><td>充电支路接触器</td><td>≥200A</td><td>同上</td></tr>
+  <tr><td>预充电阻</td><td>限流至~5A，dV/dt监测</td><td>—</td></tr>
+  <tr><td>主熔断器</td><td>250A，高速，Class J</td><td>—</td></tr>
+  <tr><td>充电支路熔断器</td><td>250A，独立</td><td>—</td></tr>
+  <tr><td><strong>Service Disconnect</strong></td><td>额定值 ≥ 所在回路最大连续电流<br>主动力/充电路径：按 ≥200A 校核<br>仓侧外部可操作，NFPA 70E</td><td>—</td></tr>
+  <tr><td>IMD 绝缘监测</td><td>&lt;100kΩ告警 / &lt;50kΩ停机</td><td>—</td></tr>
+</table>
+</div>
+
+<h3>6.2 辅助补电：尾部无线（可选，v1.0暂缓）</h3>
+<div class="tw">
+<table>
+  <tr><th>参数</th><th>规格</th></tr>
+  <tr><td>定位</td><td>机会补电，<strong>不承担深充职能</strong></td></tr>
+  <tr><td>参考方案</td><td>WiBotic TR-1000 + OC-1000 或同等国产方案</td></tr>
+  <tr><td>功率 / 效率</td><td>1 kW / ~87%</td></tr>
+  <tr><td>对位容差</td><td>平面 ±30mm / 垂直 ≤80mm</td></tr>
+  <tr><td>频率</td><td>6.78MHz（FOD安全，金属异物温升≤30°C）</td></tr>
+  <tr><td>单次补电（20min）</td><td>≈290 Wh（延长续航约5min）</td></tr>
+  <tr><td>结构预留</td><td>200×200mm，厚度≤30mm，周围50mm内禁金属，HDPE/ABS/PA托架</td></tr>
+  <tr><td>纳入时机</td><td>S3大型停车场成为规模客户后评估</td></tr>
+</table>
+</div>
+
+<h3>6.3 充电控制逻辑</h3>
+<div class="tw">
+<table>
+  <tr><th>条件 / 状态</th><th>动作</th></tr>
+  <tr><td>电芯 &lt;5°C</td><td>禁充 + 触发PTC预热（<strong>硬件级，非软件</strong>）</td></tr>
+  <tr><td>电芯 5–15°C</td><td>充电功率限50%（触点约3.6kW）</td></tr>
+  <tr><td>电芯 ≥15°C</td><td>全功率充电</td></tr>
+  <tr><td>SOC &gt;30%（作业中）</td><td>完成区块 → 可选补电 → 继续作业</td></tr>
+  <tr><td>SOC ≤30%（作业中）</td><td>立即返回 → 触点快充至80%（≈1.5h）→ 继续</td></tr>
+  <tr><td>凌晨02:00–06:00</td><td>触点快充至100%（凌晨充电窗口）</td></tr>
+  <tr><td>触点+无线同时激活</td><td class="bad">故障码 0x13 → L3 停车（双路互锁）</td></tr>
+</table>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ §7 ══════════════════════════════════════ -->
+<h2 id="s7">7. 整机电气架构</h2>
+<div class="flow-box">
+[240V AC 40A 专用回路]
+        │
+        ▼
+[Off-board Charger 7.2kW]
+        │  ≤200A DC
+        ▼
+[尾部 Pogo Pin 触点接口]
+        │
+        ▼
+┌──────────────────────────────────────────────┐
+│              48V 主电池包                      │
+│  [主熔断器 250A] [IMD绝缘监测]                 │
+│  [Service Disconnect ≥200A] [预充回路]         │
+│  [主接触器 +/−  额定≥200A]                    │
+└──────────────────────┬───────────────────────┘
+                       │ 48V 主直流母线
+          ┌────────┬───┴───┬────────┬──────────┐
+       [左驱动] [右驱动] [绞龙驱] [抛雪驱] [PTC加热 1kW]
+                       │
+               [DC-DC 48V→24V/12V]
+          ┌────────┬───┴───┬────────┬──────────┐
+        [IPC]   [RTK]  [LiDAR] [Camera]  [4G/5G]
+                       │
+             [E-stop 急停回路（独立，全链路覆盖）]
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ §8 ══════════════════════════════════════ -->
+<h2 id="s8">8. BMS 规格</h2>
+
+<!-- BMS tree diagram -->
+<div class="diagram-wrap">
+<svg viewBox="0 0 780 360" xmlns="http://www.w3.org/2000/svg" font-family="Inter,Noto Sans SC,sans-serif" font-size="12">
+  <!-- Root -->
+  <rect x="330" y="10" width="120" height="36" rx="6" fill="#0D0F11"/>
+  <text x="390" y="33" text-anchor="middle" font-size="14" font-weight="700" fill="#FFB400">BMS</text>
+  <!-- Branch lines -->
+  <line x1="390" y1="46" x2="390" y2="70" stroke="#0D0F11" stroke-width="2"/>
+  <line x1="100" y1="70" x2="680" y2="70" stroke="#0D0F11" stroke-width="2"/>
+  <line x1="100" y1="70" x2="100" y2="90" stroke="#C0392B" stroke-width="2"/>
+  <line x1="285" y1="70" x2="285" y2="90" stroke="#5B7A8C" stroke-width="2"/>
+  <line x1="490" y1="70" x2="490" y2="90" stroke="#27AE60" stroke-width="2"/>
+  <line x1="680" y1="70" x2="680" y2="90" stroke="#E67E22" stroke-width="2"/>
+  <!-- L1 -->
+  <rect x="20" y="90" width="160" height="30" rx="5" fill="#C0392B"/>
+  <text x="100" y="110" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">L1 硬件保护</text>
+  <text x="100" y="138" text-anchor="middle" font-size="11" fill="#374151">过充 &gt;3.70V → 切断充电</text>
+  <text x="100" y="154" text-anchor="middle" font-size="11" fill="#374151">过放 &lt;2.40V → 切断放电</text>
+  <text x="100" y="170" text-anchor="middle" font-size="11" fill="#374151">过流 &gt;200A持续 / 250A峰值</text>
+  <text x="100" y="186" text-anchor="middle" font-size="11" fill="#374151">短路 &lt;500μs 响应</text>
+  <text x="100" y="202" text-anchor="middle" font-size="11" fill="#374151">过温放电 &gt;60°C降额</text>
+  <text x="100" y="218" text-anchor="middle" font-size="11" fill="#374151">过温充电 &gt;45°C停止</text>
+  <text x="100" y="234" text-anchor="middle" font-size="11" fill="#C0392B" font-weight="600">低温禁充 &lt;5°C【硬件级】</text>
+  <rect x="20" y="120" width="160" height="120" rx="4" fill="none" stroke="#C0392B" stroke-width="1" stroke-dasharray="4,2"/>
+  <!-- L2 -->
+  <rect x="205" y="90" width="160" height="30" rx="5" fill="#5B7A8C"/>
+  <text x="285" y="110" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">L2 状态估算</text>
+  <text x="285" y="138" text-anchor="middle" font-size="11" fill="#374151">SOC: EKF 算法</text>
+  <text x="285" y="154" text-anchor="middle" font-size="11" fill="#374151">±3% (25°C) / ±5% (-20°C)</text>
+  <text x="285" y="170" text-anchor="middle" font-size="11" fill="#374151">-30~+45°C LUT (步长≤5°C)</text>
+  <text x="285" y="186" text-anchor="middle" font-size="11" fill="#374151">SOH: 容量衰减跟踪 ±5%</text>
+  <text x="285" y="202" text-anchor="middle" font-size="11" fill="#374151">SOP: 实时最大功率 ≥10Hz</text>
+  <text x="285" y="218" text-anchor="middle" font-size="11" fill="#5B7A8C" font-weight="600">上位机必须基于SOP调度</text>
+  <rect x="205" y="120" width="160" height="104" rx="4" fill="none" stroke="#5B7A8C" stroke-width="1" stroke-dasharray="4,2"/>
+  <!-- L3 -->
+  <rect x="410" y="90" width="160" height="30" rx="5" fill="#27AE60"/>
+  <text x="490" y="110" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">L3 热管理协调</text>
+  <text x="490" y="138" text-anchor="middle" font-size="11" fill="#374151">触发加热: 电芯&lt;5°C+SOC&gt;20%</text>
+  <text x="490" y="154" text-anchor="middle" font-size="11" fill="#374151">停止加热: 所有电芯≥15°C</text>
+  <text x="490" y="170" text-anchor="middle" font-size="11" fill="#374151">维温: 10–35°C / ≤300W</text>
+  <text x="490" y="186" text-anchor="middle" font-size="11" fill="#374151">温差限制: ≤8°C</text>
+  <text x="490" y="202" text-anchor="middle" font-size="11" fill="#374151">NTC传感器: 每5只1个</text>
+  <text x="490" y="218" text-anchor="middle" font-size="11" fill="#27AE60" font-weight="600">充电前: C1–C10全满足</text>
+  <rect x="410" y="120" width="160" height="104" rx="4" fill="none" stroke="#27AE60" stroke-width="1" stroke-dasharray="4,2"/>
+  <!-- L4 -->
+  <rect x="595" y="90" width="170" height="30" rx="5" fill="#E67E22"/>
+  <text x="680" y="110" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">L4 通信</text>
+  <text x="680" y="138" text-anchor="middle" font-size="11" fill="#374151">CAN 2.0B 250/500kbps</text>
+  <text x="680" y="154" text-anchor="middle" font-size="11" fill="#374151">ID由ARCBOS统一分配</text>
+  <text x="680" y="170" text-anchor="middle" font-size="11" fill="#374151">上报≥1Hz: SOC/SOH/SOP/</text>
+  <text x="680" y="184" text-anchor="middle" font-size="11" fill="#374151">FAULT/HEAT/CHARGE_SOURCE</text>
+  <text x="680" y="200" text-anchor="middle" font-size="11" fill="#374151">INTERLOCK_STATUS (C1–C10)</text>
+  <text x="680" y="216" text-anchor="middle" font-size="11" fill="#374151">&gt;2s→限功50% / &gt;5s→停车</text>
+  <rect x="595" y="120" width="170" height="102" rx="4" fill="none" stroke="#E67E22" stroke-width="1" stroke-dasharray="4,2"/>
+  <!-- Hardware spec bottom -->
+  <rect x="20" y="260" width="740" height="36" rx="6" fill="#F8F9FA" stroke="#E2E5E8" stroke-width="1"/>
+  <text x="390" y="284" text-anchor="middle" font-size="12" fill="#374151">硬件：-40°C~+85°C · IP65 · 绝缘&gt;100MΩ@500VDC · 被动均衡≥50mA(Alpha) / 主动均衡≥500mA(产品化)</text>
+</svg>
+<div class="diagram-cap">图3 — BMS 四级功能架构树（L1–L4）</div>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ §9 ══════════════════════════════════════ -->
+<h2 id="s9">9. 热管理</h2>
+
+<div class="spec-grid">
+  <div>
+    <h4>保温规格</h4>
+    <div class="tw">
+    <table>
+      <tr><th>项目</th><th>规格</th></tr>
+      <tr><td>保温材料</td><td>气凝胶毡，λ≤0.018 W/(m·K)，≥20mm</td></tr>
+      <tr><td>仓门密封</td><td>EPDM密封条（-40°C弹性，禁硅胶/PVC）</td></tr>
+      <tr><td>热隔离垫</td><td>仓底与底盘骨架之间，PA-GF</td></tr>
+      <tr><td>验证目标</td><td>-20°C静置8h后电芯≥-10°C（初始25°C）</td></tr>
+    </table>
+    </div>
+  </div>
+  <div>
+    <h4>PTC加热规格</h4>
+    <div class="tw">
+    <table>
+      <tr><th>参数</th><th>规格</th></tr>
+      <tr><td>冷启动功率</td><td>1,000W，分布式贴附电芯侧面</td></tr>
+      <tr><td>供电回路</td><td>独立，独立熔断器，不经主接触器</td></tr>
+      <tr><td>预热目标</td><td>-20°C → 0°C ≤ 20分钟</td></tr>
+      <tr><td>过温保护</td><td>表面 &gt;80°C 自动断电</td></tr>
+    </table>
+    </div>
+  </div>
+</div>
+
+<h3>热验证计划（Alpha阶段必须完成）</h3>
+<div class="tw">
+<table>
+  <tr><th>编号</th><th>测试项</th><th>条件</th><th>通过标准</th></tr>
+  <tr><td>T1</td><td>静置保温</td><td>-20°C冷箱，静置8h</td><td>电芯 ≥ -10°C</td></tr>
+  <tr><td>T2</td><td>极端静置</td><td>-30°C冷箱，静置8h</td><td>电芯 ≥ -15°C</td></tr>
+  <tr><td>T3</td><td>PTC预热速度</td><td>从-20°C启动PTC</td><td>≤20min 到 0°C</td></tr>
+  <tr><td>T4</td><td>充电时温差</td><td>充电全程监测</td><td>最大温差 ≤ 8°C</td></tr>
+  <tr><td>T5</td><td>维温能耗</td><td>连续待机8h</td><td>记录能耗，&lt;2kWh</td></tr>
+</table>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ §10 ═════════════════════════════════════ -->
+<h2 id="s10">10. 安全合规</h2>
+
+<div class="tw">
+<table>
+  <tr><th>系统</th><th>目标标准</th><th>适用边界</th></tr>
+  <tr><td>电池包</td><td>UL 2580 / UL 1973 / IEC 62619</td><td>主认证</td></tr>
+  <tr><td>进口电芯</td><td><strong>UN 38.3</strong></td><td><strong>必须，无例外</strong></td></tr>
+  <tr><td>BMS</td><td>UL 991</td><td>基础</td></tr>
+  <tr><td>BMS功能安全</td><td>ISO 13849 / IEC 62061</td><td>评估适用性</td></tr>
+  <tr><td>充电站</td><td>UL 2202 / UL 2231 / UL 2594 / UL 508A</td><td>视最终架构确认</td></tr>
+  <tr><td>整机</td><td>—</td><td>下阶段单独建立安全合规矩阵</td></tr>
+</table>
+</div>
+
+<div class="spec-grid">
+  <div>
+    <h4>热失控防护</h4>
+    <ul>
+      <li>电芯间：云母板 ≥1mm</li>
+      <li>模组间：陶瓷纤维板</li>
+      <li>排气通道：后/底部，防倒灌阀，不朝传感器/人员</li>
+      <li>45°侧倒不漏液，防撞 ≥3mm 铝合金</li>
+    </ul>
+  </div>
+  <div>
+    <h4>触点与维修安全</h4>
+    <ul>
+      <li>充电站输出降至0V → 确认无电弧 → 机器人前进</li>
+      <li>充电站侧250A熔断器 + BMS L1过流 双重覆盖</li>
+      <li>触点盖开合失败 → 故障码 0x14 → L2降额</li>
+      <li>高压标识：SAE J1673</li>
+    </ul>
+  </div>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ §11 ═════════════════════════════════════ -->
+<h2 id="s11">11. 供应商要求</h2>
+
+<h3>一票否决矩阵</h3>
+<div class="tw">
+<table>
+  <tr><th>供应商类别</th><th>否决项</th></tr>
+  <tr><td rowspan="3"><strong>电芯</strong></td><td class="bad">✗ 无 -20°C 容量实测曲线（文字描述不算）</td></tr>
+  <tr><td class="bad">✗ 无 UN 38.3 报告</td></tr>
+  <tr><td class="bad">✗ 无循环寿命报告（≥3,000次）</td></tr>
+  <tr><td rowspan="3"><strong>BMS</strong></td><td class="bad">✗ 无独立硬件保护电路（L1必须硬件级）</td></tr>
+  <tr><td class="bad">✗ 拒绝开放 CAN 2.0B 协议文档</td></tr>
+  <tr><td class="bad">✗ 低温禁充为纯软件实现</td></tr>
+  <tr><td rowspan="3"><strong>触点充电系统</strong></td><td class="bad">✗ 无 200A 连续温升测试报告</td></tr>
+  <tr><td class="bad">✗ 无 -30°C 低温对接可靠性报告</td></tr>
+  <tr><td class="bad">✗ 无 NaCl 盐雾测试报告（≥500h）</td></tr>
+  <tr><td><strong>无线补电（选配）</strong></td><td class="bad">✗ 无FOD功能 / 无-20°C验证 / 无UAVCAN文档</td></tr>
+</table>
+</div>
+
+<h3>Alpha 采购目标</h3>
+<div class="tw">
+<table>
+  <tr><th>采购项</th><th>规格</th><th>交期</th><th>预算参考</th></tr>
+  <tr><td>电池包</td><td>1P15S裸包×1套（EVE LF280K×15只 + BMS）</td><td>≤8周</td><td>¥25,000–40,000</td></tr>
+  <tr><td>触点充电站</td><td>7.2kW系统×1套（充电站+机载Pogo+V槽导向）</td><td>—</td><td>评估国产方案</td></tr>
+  <tr><td>无线补电</td><td>暂不采购，预留结构空间</td><td>—</td><td>—</td></tr>
+</table>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ 附录A ════════════════════════════════════ -->
+<h2 id="sA">附录A：BMS 故障码</h2>
+<p style="font-size:13px;color:var(--ab-muted);margin-bottom:8px;">L1 告警（不限运行）· L2 降额（限功50%）· L3 停车（需复位）· L4 锁定（需维修）</p>
+
+<div class="tw">
+<table>
+  <tr><th>码</th><th>描述</th><th>级别</th></tr>
+  <tr><td class="mono">0x01</td><td>单体过压</td><td><span class="badge-l3">L3</span></td></tr>
+  <tr><td class="mono">0x02</td><td>单体欠压</td><td><span class="badge-l3">L3</span></td></tr>
+  <tr><td class="mono">0x03</td><td>充电过流</td><td><span class="badge-l3">L3</span></td></tr>
+  <tr><td class="mono">0x04</td><td>放电过流</td><td><span class="badge-l3">L3</span></td></tr>
+  <tr><td class="mono">0x05</td><td>短路</td><td><span class="badge-l4">L4</span></td></tr>
+  <tr><td class="mono">0x06</td><td>电芯过温—充电</td><td><span class="badge-l3">L3</span></td></tr>
+  <tr><td class="mono">0x07</td><td>电芯过温—放电</td><td><span class="badge-l2">L2</span></td></tr>
+  <tr><td class="mono">0x08</td><td>电芯超高温</td><td><span class="badge-l4">L4</span></td></tr>
+  <tr><td class="mono">0x09</td><td>低温禁充（正常保护）</td><td><span class="badge-l1">L1</span></td></tr>
+  <tr><td class="mono">0x0A</td><td>BMS 通信超时</td><td><span class="badge-l2">L2</span></td></tr>
+  <tr><td class="mono">0x0B</td><td>温度传感器断路</td><td><span class="badge-l2">L2</span></td></tr>
+  <tr><td class="mono">0x0C</td><td>绝缘低—告警</td><td><span class="badge-l1">L1</span></td></tr>
+  <tr><td class="mono">0x0D</td><td>绝缘低—停机</td><td><span class="badge-l3">L3</span></td></tr>
+  <tr><td class="mono">0x0E</td><td>SOC 不可信</td><td><span class="badge-l2">L2</span></td></tr>
+  <tr><td class="mono">0x0F</td><td>均衡异常</td><td><span class="badge-l1">L1</span></td></tr>
+  <tr><td class="mono">0x10</td><td>维修断开（主动触发）</td><td><span class="badge-l4">L4</span></td></tr>
+  <tr><td class="mono">0x11</td><td>对位/握手超时</td><td><span class="badge-l2">L2</span></td></tr>
+  <tr><td class="mono">0x12</td><td>接触电阻异常</td><td><span class="badge-l2">L2</span></td></tr>
+  <tr><td class="mono">0x13</td><td>双路充电互锁触发</td><td><span class="badge-l3">L3</span></td></tr>
+  <tr><td class="mono">0x14</td><td>触点盖开合故障</td><td><span class="badge-l2">L2</span></td></tr>
+  <tr><td class="mono">0x15</td><td>预充超时</td><td><span class="badge-l3">L3</span></td></tr>
+  <tr><td class="mono">0x16</td><td>无线 FOD 触发（选配）</td><td><span class="badge-l2">L2</span></td></tr>
+  <tr><td class="mono">0x17</td><td>互锁矩阵 C1–C10 未全部满足</td><td><span class="badge-l3">L3</span></td></tr>
+</table>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ 附录B ════════════════════════════════════ -->
+<h2 id="sB">附录B：结构工程师设计约束单</h2>
+<p style="font-size:13px;color:var(--ab-muted);">致陈超 · v4.2 · 2026-06-15 · 以下约束由电气系统规格推导得出，可立即使用，无需等待充电接口最终型号。</p>
+
+<div class="tw">
+<table>
+  <tr><th>项目</th><th>Alpha</th><th>产品化</th></tr>
+  <tr><td>电池仓尺寸</td><td>600×350×200mm</td><td>600×350×380mm</td></tr>
+  <tr><td>电池仓承重</td><td colspan="2">按 162kg 设计（Alpha向下兼容）</td></tr>
+  <tr><td>安装位置</td><td colspan="2">底盘纵向中心，离地净高≥100mm</td></tr>
+  <tr><td>重心目标</td><td colspan="2">整机重心离地≤350mm，前后轴荷45:55</td></tr>
+  <tr><td>滑入导轨</td><td colspan="2">仓内两侧阳极氧化铝硬轨，末端限位缓冲+微动开关，入口导向喇叭口（±5mm）</td></tr>
+  <tr><td>电气接口</td><td colspan="2">分区高电流盲插连接器（Zone 1先接/后断，Zone 3后接/先断）</td></tr>
+  <tr><td>卡扣</td><td colspan="2">左右对称弹簧卡扣，尼龙，锁定力≥50N，触发微动开关</td></tr>
+  <tr><td>主动力槽</td><td colspan="2">≥35×20mm，走双根25mm²铜线，骨架内预制</td></tr>
+  <tr><td>信号槽</td><td colspan="2">≥20×10mm，与动力槽间距≥30mm</td></tr>
+  <tr><td>线束路径</td><td colspan="2">电池仓→底盘骨架→尾部接口，约500mm，弯折R≥10×线径</td></tr>
+  <tr><td>尾部触点安装区</td><td colspan="2">150×150mm，深度≤80mm，离地300–500mm，防护盖常闭电动（-30°C可靠）</td></tr>
+  <tr><td>无线线圈预留</td><td colspan="2">200×200mm，厚度≤30mm，周围50mm内禁金属，HDPE/ABS/PA托架</td></tr>
+  <tr><td>整机总重包络</td><td>251–331 kg</td><td>362–412 kg（稳定性按412kg校核，地面压强按362kg）</td></tr>
+</table>
+</div>
+
+<h3>可立即推进（无需等待）</h3>
+<ul>
+  <li>✅ 底盘框架压铸件（含线槽截面预制）</li>
+  <li>✅ 电池仓承重结构 + 导轨安装（162kg）</li>
+  <li>✅ 电池仓滑入口导向喇叭口设计</li>
+  <li>✅ A3 前接口结构（与充电无关）</li>
+  <li>✅ 尾部150×150mm触点安装区布局</li>
+  <li>✅ 线束走线槽（动力/信号分离，尺寸已定）</li>
+</ul>
+
+<hr>
+
+<!-- ═══════════════════════════════ 附录C ════════════════════════════════════ -->
+<h2 id="sC">附录C：工程闭环追踪矩阵</h2>
+<div class="tw">
+<table>
+  <tr><th>参数项</th><th>Status</th><th>Risk</th><th>Owner</th><th>Next Action</th></tr>
+  <tr><td>7.2kW充电电流统一（200A）</td><td class="tracker-done">✅ Revised v4.1</td><td>High</td><td>Andy</td><td>按200A重算全链路器件</td></tr>
+  <tr><td>240V/40A主配置</td><td class="tracker-done">✅ Revised v4.1</td><td>High</td><td>Andy</td><td>确认客户场地电气条件</td></tr>
+  <tr><td>Pogo Pin 200A温升校核</td><td class="tracker-wip">🔄 Needs Test</td><td>High</td><td>Supplier</td><td>Alpha阶段实测</td></tr>
+  <tr><td>线束25→35mm²升级判断</td><td class="tracker-wip">🔄 Needs Test</td><td>High</td><td>ARCBOS</td><td>Alpha温升测试确认</td></tr>
+  <tr><td>触点互锁矩阵C1–C10</td><td class="tracker-done">✅ Revised v4.1</td><td>High</td><td>BMS供应商</td><td>写入BMS需求书</td></tr>
+  <tr><td>分区高电流盲插连接器选型</td><td class="tracker-wip">🔄 In Progress</td><td>High</td><td>ARCBOS</td><td>确认分区规格，明确非PCB金手指</td></tr>
+  <tr><td>XT90→工业连接器</td><td class="tracker-wait">⏸ Alpha临时</td><td>Medium</td><td>ARCBOS</td><td>Beta阶段切换</td></tr>
+  <tr><td>XH2.54→M12/Deutsch</td><td class="tracker-wait">⏸ Alpha临时</td><td>Medium</td><td>ARCBOS</td><td>Beta阶段切换</td></tr>
+  <tr><td>预充回路/接触器选型</td><td class="tracker-pend">❌ Needs Spec</td><td>High</td><td>ARCBOS</td><td>补充电气详图</td></tr>
+  <tr><td>热验证计划T1–T5</td><td class="tracker-pend">❌ Needs Test</td><td>High</td><td>ARCBOS</td><td>Alpha阶段执行</td></tr>
+  <tr><td>低温禁充硬件级证明</td><td class="tracker-wait">⏳ Supplier TBD</td><td>High</td><td>BMS供应商</td><td>写入采购条件</td></tr>
+  <tr><td>NaCl盐雾测试（触点）</td><td class="tracker-wait">⏳ Supplier TBD</td><td>High</td><td>Pogo供应商</td><td>写入采购条件</td></tr>
+  <tr><td>整机电气原理图</td><td class="tracker-pend">❌ Not Started</td><td>High</td><td>ARCBOS</td><td>下一阶段交付物</td></tr>
+  <tr><td>线束BOM</td><td class="tracker-pend">❌ Not Started</td><td>Medium</td><td>ARCBOS</td><td>Beta阶段</td></tr>
+  <tr><td>认证矩阵细化</td><td class="tracker-wip">🔄 In Progress</td><td>Medium</td><td>ARCBOS</td><td>下阶段细化</td></tr>
+</table>
+</div>
+
+<hr>
+
+<!-- ═══════════════════════════════ 变更记录 ════════════════════════════════ -->
+<h2 id="sV">变更记录</h2>
+<div class="vlog">
+  <div class="vlog-row"><div class="vlog-ver">v1.0</div><div class="vlog-date">2026-06-15</div><div class="vlog-desc">初始版本，迭代计算基本规格</div></div>
+  <div class="vlog-row"><div class="vlog-ver">v1.1</div><div class="vlog-date">2026-06-15</div><div class="vlog-desc">M参数化，容量概念澄清</div></div>
+  <div class="vlog-row"><div class="vlog-ver">v2.0</div><div class="vlog-date">2026-06-15</div><div class="vlog-desc">第一性原理重构，T参数化，文档压缩60%</div></div>
+  <div class="vlog-row"><div class="vlog-ver">v3.0</div><div class="vlog-date">2026-06-15</div><div class="vlog-desc">无线充电刚性化，双模架构（被v4.0取代）</div></div>
+  <div class="vlog-row"><div class="vlog-ver">v4.0</div><div class="vlog-date">2026-06-15</div><div class="vlog-desc">充电方案重构：尾部触点主充电，无线可选。否决所有地面方案。</div></div>
+  <div class="vlog-row"><div class="vlog-ver">v4.1</div><div class="vlog-date">2026-06-15</div><div class="vlog-desc">工程闭环补强：充电电流统一200A，三档输入定义，互锁矩阵C1–C10，滑入式快拆电池，压铸线槽，整机电气Block Diagram，热验证计划，追踪矩阵15项</div></div>
+  <div class="vlog-row"><div class="vlog-ver">v4.2</div><div class="vlog-date">2026-06-15</div><div class="vlog-desc">六项硬伤修订：①120V按NEC 80%降额重写 ②统一240V/30A为降额配置（DC5.8–6.5kW） ③240V/40A明确AC连续32A→DC目标7.2kW ④Service Disconnect改为"≥所在回路最大连续电流"校核 ⑤"金手指"改为"分区高电流盲插连接器" ⑥穿壁密封改为低温等级材料（禁室温硅脂）。发布HTML版本至 ref.arcbos.com。</div></div>
+</div>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">ARC<span>B</span>OS</div>
+  <div>ARCBOS-SPEC-2606-0001 · v4.2 · Internal · Do Not Distribute</div>
+  <div>© 2026 ARCBOS · ENGINEERED FOR EXTREME CONDITIONS</div>
+</footer>
+
+</main>
+</body>
+</html>
