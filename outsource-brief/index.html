@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0D0F11">
+<title>SnowBot Alpha/Beta 外包需求总览 — ARCBOS</title>
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="SnowBot Alpha/Beta 外包需求总览 — ARCBOS">
+<meta property="og:description" content="SnowBot Alpha/Beta 阶段导航、嵌入式、里程碑与交付要求总览。合同附件集成快读版，帮助供应商快速掌握开发边界与验收基线。">
+<meta property="og:url" content="https://ref.arcbos.com/outsource-brief/">
+<meta property="og:image" content="https://ref.arcbos.com/outsource-brief/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="ARCBOS">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SnowBot Alpha/Beta 外包需求总览 — ARCBOS">
+<meta name="twitter:description" content="导航 · 嵌入式 · 里程碑 · 交付要求。4 份合同附件整合快读版。">
+<meta name="twitter:image" content="https://ref.arcbos.com/outsource-brief/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Oswald:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="../assets/favicon.ico">
+
+<style>
+/* =====================================================
+   ARCBOS VI — outsource-brief
+   Tokens: ref.arcbos.com/vi/
+   ===================================================== */
+:root {
+  --bg:     #0D0F11;
+  --bg2:    #15181B;
+  --bg3:    #23282D;
+  --border: #4A525A;
+  --muted:  #6A717B;
+  --body:   #C7CED4;
+  --head:   #F4F6F7;
+  --amber:  #FFB400;
+  --ice:    #5B7A8C;
+  --ok:     #3EA87B;
+  --err:    #E05252;
+  --gutter: 24px;
+  --max:    1100px;
+  --f-d:    'Archivo', system-ui, sans-serif;
+  --f-s:    'Oswald', system-ui, sans-serif;
+  --f-m:    'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { overflow-x: hidden; scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--body);
+  font-family: var(--f-d);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: var(--amber); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Mobile landscape lock */
+#rl-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--head);
+  font-family: var(--f-s);
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+#rl-overlay .rl-icon { font-size: 36px; }
+@media screen and (orientation: landscape) and (max-width: 812px) {
+  #rl-overlay { display: flex; }
+}
+
+/* ── Layout ── */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+section { padding: 72px 0; border-bottom: 1px solid rgba(74,82,90,0.5); }
+section:last-of-type { border-bottom: none; }
+.divider { height: 1px; background: var(--border); opacity: 0.35; margin: 36px 0; }
+
+/* ── Labels ── */
+.eyebrow {
+  font-family: var(--f-m);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 14px;
+  display: block;
+}
+.sec-h {
+  font-family: var(--f-d);
+  font-weight: 900;
+  font-size: clamp(26px, 4.5vw, 40px);
+  color: var(--head);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1.0;
+  margin-bottom: 12px;
+}
+.sec-p {
+  color: var(--body);
+  font-size: 15px;
+  max-width: 680px;
+  margin-bottom: 44px;
+  line-height: 1.7;
+}
+
+/* ── NAV ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter);
+  background: rgba(13,15,17,0.93);
+  backdrop-filter: blur(12px) saturate(1.2);
+  border-bottom: 1px solid var(--border);
+}
+.nav-brand {
+  font-family: var(--f-d);
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--head);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-brand-dot { color: var(--amber); }
+.nav-sub {
+  font-family: var(--f-m);
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.nav-links {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+.nav-links a {
+  display: block;
+  padding: 0 14px;
+  font-family: var(--f-s);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--body);
+  text-decoration: none;
+  line-height: 52px;
+  border-left: 1px solid rgba(74,82,90,0.3);
+  transition: color .15s, background .15s;
+}
+.nav-links a:last-child { border-right: 1px solid rgba(74,82,90,0.3); }
+.nav-links a:hover { color: var(--amber); background: rgba(255,180,0,0.05); }
+@media (max-width: 640px) { .nav-links { display: none; } }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  padding: 80px 0 70px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      -12deg,
+      transparent, transparent 38px,
+      rgba(74,82,90,0.1) 38px,
+      rgba(74,82,90,0.1) 39px
+    );
+  pointer-events: none;
+}
+.hero-amber-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--amber);
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--f-m);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  border: 1px solid rgba(255,180,0,0.45);
+  border-radius: 2px;
+  padding: 5px 14px;
+  margin-bottom: 28px;
+}
+.hero-tag-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--amber);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.7)} }
+
+.hero-h {
+  font-family: var(--f-d);
+  font-weight: 900;
+  font-size: clamp(38px, 7vw, 72px);
+  color: var(--head);
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  margin-bottom: 8px;
+}
+.hero-h .accent { color: var(--amber); }
+.hero-p {
+  font-size: 16px;
+  color: var(--body);
+  max-width: 600px;
+  margin: 20px 0 36px;
+  line-height: 1.7;
+}
+.badge-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 56px; }
+.badge {
+  font-family: var(--f-m);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 2px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--body);
+}
+.badge.amber { background: rgba(255,180,0,0.12); border-color: rgba(255,180,0,0.5); color: var(--amber); }
+.badge.ice   { background: rgba(91,122,140,0.12); border-color: rgba(91,122,140,0.5); color: var(--ice); }
+
+/* ── DOC CARDS ── */
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+.doc-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .2s, transform .2s;
+}
+.doc-card:hover { border-color: var(--amber); transform: translateY(-2px); }
+.doc-card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 28px 28px 0;
+  border-color: transparent rgba(255,180,0,0.18) transparent transparent;
+}
+.dc-no {
+  font-family: var(--f-m);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.dc-title {
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--head);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.dc-spec {
+  font-family: var(--f-m);
+  font-size: 10px;
+  color: var(--ice);
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.dc-scope {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.dc-link {
+  font-family: var(--f-s);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap .15s;
+}
+.dc-link:hover { gap: 10px; text-decoration: none; }
+.dc-link::after { content: '→'; }
+
+/* ── SCOPE MATRIX ── */
+.scope-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 768px) { .scope-grid { grid-template-columns: 1fr; } }
+.scope-col {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.scope-head {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.scope-head-text .scope-name {
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.scope-head-text .scope-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.scope-col.must  .scope-head { background: rgba(62,168,123,0.07); }
+.scope-col.opt   .scope-head { background: rgba(255,180,0,0.07); }
+.scope-col.excl  .scope-head { background: rgba(224,82,82,0.07); }
+.scope-col.must  .scope-name { color: var(--ok); }
+.scope-col.opt   .scope-name { color: var(--amber); }
+.scope-col.excl  .scope-name { color: var(--err); }
+.scope-ico { font-size: 20px; flex-shrink: 0; }
+.scope-items {
+  list-style: none;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.scope-items li {
+  font-size: 12.5px;
+  color: var(--body);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  line-height: 1.45;
+}
+.scope-col.must  .scope-items li::before { content: '✓'; color: var(--ok);    flex-shrink:0; font-weight:700; font-size:11px; margin-top:2px; }
+.scope-col.opt   .scope-items li::before { content: '◆'; color: var(--amber); flex-shrink:0; font-size:9px; margin-top:4px; }
+.scope-col.excl  .scope-items li::before { content: '✕'; color: var(--err);   flex-shrink:0; font-weight:700; font-size:11px; margin-top:2px; }
+
+/* ── PHASE CARDS ── */
+.phase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 640px) { .phase-grid { grid-template-columns: 1fr; } }
+.phase-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.phase-card-head {
+  padding: 22px 24px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.phase-card.alpha .phase-card-head { border-bottom-color: rgba(255,180,0,0.3); }
+.phase-card.beta  .phase-card-head { border-bottom-color: rgba(91,122,140,0.3); }
+.phase-lbl {
+  font-family: var(--f-m);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.phase-card.alpha .phase-lbl { color: var(--amber); }
+.phase-card.beta  .phase-lbl { color: var(--ice); }
+.phase-big {
+  font-family: var(--f-d);
+  font-weight: 900;
+  font-size: 26px;
+  color: var(--head);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.phase-plain { font-size: 13px; color: var(--muted); }
+.phase-body { padding: 20px 24px; }
+.cap-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.cap-list li {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--body);
+  align-items: flex-start;
+  line-height: 1.45;
+}
+.phase-card.alpha .cap-list li::before { content: '✓'; color: var(--amber); flex-shrink:0; font-weight:700; font-size:12px; margin-top:2px; }
+.phase-card.beta  .cap-list li::before { content: '✓'; color: var(--ice);   flex-shrink:0; font-weight:700; font-size:12px; margin-top:2px; }
+.not-block { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border); }
+.not-lbl {
+  font-family: var(--f-m);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--err);
+  margin-bottom: 8px;
+}
+.not-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.not-list li {
+  display: flex;
+  gap: 9px;
+  font-size: 12px;
+  color: var(--muted);
+  align-items: flex-start;
+}
+.not-list li::before { content: '✕'; color: var(--err); flex-shrink:0; font-size:11px; margin-top:1px; }
+
+/* ── MILESTONE TIMELINE ── */
+.ms-phase { margin-bottom: 44px; }
+.ms-phase-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.ms-phase-lbl {
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 6px 16px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.ms-phase.alpha .ms-phase-lbl { background: rgba(255,180,0,0.12); color: var(--amber); border: 1px solid rgba(255,180,0,0.4); }
+.ms-phase.beta  .ms-phase-lbl { background: rgba(91,122,140,0.12); color: var(--ice);   border: 1px solid rgba(91,122,140,0.4); }
+.ms-phase-desc { font-size: 13px; color: var(--muted); }
+.ms-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.ms-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.ms-card.alpha { border-top: 3px solid rgba(255,180,0,0.6); }
+.ms-card.beta  { border-top: 3px solid rgba(91,122,140,0.6); }
+.ms-gate {
+  font-family: var(--f-m);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.ms-card.alpha .ms-gate { color: var(--amber); }
+.ms-card.beta  .ms-gate { color: var(--ice); }
+.ms-name {
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--head);
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+.ms-gatecon {
+  font-size: 12px;
+  color: var(--body);
+  padding: 8px 10px;
+  background: var(--bg3);
+  border-left: 3px solid;
+  border-radius: 1px;
+  margin-bottom: 12px;
+  line-height: 1.45;
+  font-family: var(--f-s);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.ms-card.alpha .ms-gatecon { border-left-color: var(--amber); }
+.ms-card.beta  .ms-gatecon { border-left-color: var(--ice); }
+.ms-dl {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: auto;
+}
+.ms-dl li {
+  font-size: 11.5px;
+  color: var(--muted);
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+.ms-dl li::before { content: '→'; color: var(--border); flex-shrink:0; }
+
+/* ── QUANTITATIVE TABLE ── */
+.q-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  overflow-x: auto;
+}
+.q-table thead tr { background: var(--bg3); }
+.q-table th {
+  padding: 11px 16px;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+  font-family: var(--f-s);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.q-table th:nth-child(1) { color: var(--head); }
+.q-table th:nth-child(2) { color: var(--amber); }
+.q-table th:nth-child(3) { color: var(--body); }
+.q-table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid rgba(74,82,90,0.3);
+  vertical-align: top;
+  line-height: 1.45;
+}
+.q-table td:first-child { color: var(--head); font-weight: 600; }
+.q-table td:nth-child(2) { font-family: var(--f-m); font-size: 12px; color: var(--amber); white-space: nowrap; }
+.q-table td:last-child { color: var(--muted); font-size: 12px; }
+.q-table tr:last-child td { border-bottom: none; }
+.q-table-wrap { overflow-x: auto; background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; }
+
+/* ── DELIVERY ── */
+.del-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+@media (max-width: 600px) { .del-grid { grid-template-columns: 1fr; } }
+.del-col { background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; }
+.del-head {
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.del-col.ok   .del-head { color: var(--ok);  background: rgba(62,168,123,0.07); }
+.del-col.bad  .del-head { color: var(--err); background: rgba(224,82,82,0.07); }
+.del-list { list-style: none; padding: 14px 20px; display: flex; flex-direction: column; gap: 8px; }
+.del-list li {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--body);
+  align-items: flex-start;
+  line-height: 1.45;
+}
+.del-col.ok  .del-list li::before { content: '✓'; color: var(--ok);  flex-shrink:0; font-weight:700; margin-top:2px; }
+.del-col.bad .del-list li::before { content: '✕'; color: var(--err); flex-shrink:0; font-weight:700; margin-top:2px; }
+
+/* ── SAFETY STACK ── */
+.safety { display: flex; flex-direction: column; gap: 8px; max-width: 700px; }
+.sf-row {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 14px 18px;
+}
+.sf-no {
+  font-family: var(--f-m);
+  font-weight: 700;
+  font-size: 20px;
+  width: 30px;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 2px;
+}
+.sf-row:nth-child(1) { border-left: 4px solid #E05252; }
+.sf-row:nth-child(1) .sf-no { color: #E05252; }
+.sf-row:nth-child(2) { border-left: 4px solid #E07A3A; }
+.sf-row:nth-child(2) .sf-no { color: #E07A3A; }
+.sf-row:nth-child(3) { border-left: 4px solid var(--amber); }
+.sf-row:nth-child(3) .sf-no { color: var(--amber); }
+.sf-row:nth-child(4) { border-left: 4px solid #A89000; }
+.sf-row:nth-child(4) .sf-no { color: #A89000; }
+.sf-row:nth-child(5) { border-left: 4px solid var(--ice); }
+.sf-row:nth-child(5) .sf-no { color: var(--ice); }
+.sf-row:nth-child(6) { border-left: 4px solid var(--border); }
+.sf-row:nth-child(6) .sf-no { color: var(--muted); }
+.sf-name {
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--head);
+  margin-bottom: 3px;
+}
+.sf-rule { font-size: 12.5px; color: var(--body); line-height: 1.5; }
+
+/* ── RULES GRID ── */
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 14px;
+}
+.rule-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 20px;
+  display: flex;
+  gap: 14px;
+  transition: border-color .2s;
+}
+.rule-card:hover { border-color: rgba(255,180,0,0.4); }
+.rule-ico { font-size: 24px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+.rule-title {
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--head);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 7px;
+}
+.rule-text { font-size: 12.5px; color: var(--body); line-height: 1.6; }
+
+/* ── CI GATES ── */
+.ci-list { list-style: none; display: flex; flex-direction: column; gap: 8px; max-width: 800px; }
+.ci-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--err);
+  border-radius: 2px;
+  padding: 11px 16px;
+  font-size: 13px;
+  color: var(--body);
+  line-height: 1.5;
+}
+.ci-list li::before {
+  content: 'CI';
+  font-family: var(--f-m);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--err);
+  flex-shrink: 0;
+  margin-top: 2px;
+  letter-spacing: 0.1em;
+}
+
+/* ── PAYMENT TABLE ── */
+.pay-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.pay-table th {
+  padding: 10px 14px;
+  text-align: left;
+  background: var(--bg3);
+  border-bottom: 2px solid var(--border);
+  font-family: var(--f-s);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.pay-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(74,82,90,0.3);
+  color: var(--body);
+  vertical-align: top;
+  line-height: 1.45;
+}
+.pay-table td:first-child { color: var(--head); font-family: var(--f-m); font-size: 12px; white-space: nowrap; }
+.pay-table tr:last-child td { border-bottom: none; }
+.pay-table-wrap { background: var(--bg2); border: 1px solid var(--border); border-radius: 3px; overflow: hidden; overflow-x: auto; }
+
+/* ── FOOTER ── */
+.footer {
+  padding: 52px 0;
+  border-top: 1px solid var(--border);
+}
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.footer-brand {
+  font-family: var(--f-d);
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--body);
+}
+.footer-brand .acc { color: var(--amber); }
+.footer-meta {
+  font-family: var(--f-m);
+  font-size: 10px;
+  color: var(--border);
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+}
+.footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 20px; }
+.footer-links a {
+  font-family: var(--f-m);
+  font-size: 10px;
+  color: var(--ice);
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: color .15s;
+}
+.footer-links a:hover { color: var(--amber); }
+</style>
+</head>
+<body>
+
+<!-- Mobile rotation overlay -->
+<div id="rl-overlay">
+  <div class="rl-icon">📱</div>
+  <div>请旋转至竖屏查看</div>
+</div>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <a class="nav-brand" href="#top">
+    <span>ARC<span class="nav-brand-dot">B</span>OS</span>
+    <span class="nav-sub">SnowBot Alpha/Beta</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#overview">项目定位</a></li>
+    <li><a href="#phases">阶段定义</a></li>
+    <li><a href="#milestones">里程碑</a></li>
+    <li><a href="#delivery">交付规则</a></li>
+    <li><a href="#rules">铁律</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="top">
+  <div class="hero-amber-bar"></div>
+  <div class="wrap">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      外包需求总览 · PUB-2605-0039-AGR
+    </div>
+    <h1 class="hero-h">外包需求<br><span class="accent">快读版</span></h1>
+    <p class="hero-p">本页整合 4 份合同附件核心内容，帮助供应商在 10 分钟内掌握开发边界、阶段目标、里程碑 Gate 与交付要求。<strong style="color:var(--head)">原始文件依然是唯一法律基准</strong>——本页帮你先读懂，再去细看。</p>
+    <div class="badge-row">
+      <span class="badge amber">Alpha 阶段</span>
+      <span class="badge ice">Beta 阶段</span>
+      <span class="badge">合肥中科智驰科技</span>
+      <span class="badge">¥250,000 全包</span>
+      <span class="badge">上海 · 场地约定</span>
+    </div>
+
+    <!-- 4 doc cards in hero -->
+    <div class="doc-grid">
+      <div class="doc-card">
+        <div class="dc-no">附件一-A</div>
+        <div class="dc-title">导航与自主系统技术基线</div>
+        <div class="dc-spec">ARCBOS-SPEC-2605-0010 · v2.1</div>
+        <div class="dc-scope">ROS2 · RTK-GPS · 路线录制/回放 · 感知 · 决策 · 上位机控制</div>
+        <a class="dc-link" href="https://docs.arcbos.com/clients/46184b58bbb9ce56/" target="_blank">查阅原文</a>
+      </div>
+      <div class="doc-card">
+        <div class="dc-no">附件一-B</div>
+        <div class="dc-title">嵌入式与电控系统技术基线</div>
+        <div class="dc-spec">ARCBOS-SPEC-2605-0009 · v2.1</div>
+        <div class="dc-scope">MCU · CAN · IO 安全 · 急停接管 · 除雪机构控制 · 故障码</div>
+        <a class="dc-link" href="https://docs.arcbos.com/clients/aeb4f97b40f6163c/" target="_blank">查阅原文</a>
+      </div>
+      <div class="doc-card">
+        <div class="dc-no">附件二</div>
+        <div class="dc-title">整机系统里程碑纲领</div>
+        <div class="dc-spec">ARCBOS-SPEC-2605-0008 · v1.0</div>
+        <div class="dc-scope">A1→A4 / B1→B5 整机 Gate · 多供应商协同节奏基线</div>
+        <a class="dc-link" href="https://docs.arcbos.com/clients/f2069a3bf85dd210/" target="_blank">查阅原文</a>
+      </div>
+      <div class="doc-card">
+        <div class="dc-no">附件三</div>
+        <div class="dc-title">交付物与披露清单</div>
+        <div class="dc-spec">ARCBOS-SPEC-2605-0007 · v1.1</div>
+        <div class="dc-scope">Release Package · 背景技术披露 · 第三方组件披露</div>
+        <a class="dc-link" href="https://docs.arcbos.com/clients/08d5067044f177da/" target="_blank">查阅原文</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 1: PROJECT OVERVIEW ── -->
+<section id="overview">
+  <div class="wrap">
+    <span class="eyebrow">01 · 项目定位</span>
+    <h2 class="sec-h">范围边界<br>一张表说清楚</h2>
+    <p class="sec-p">合同范围三层分级：Level 1 必须包含，Level 2 明确后才算，Level 3 一律不在当前合同内。供应商不得将自身计划内容默认纳入报价或验收。</p>
+
+    <div class="scope-grid">
+      <div class="scope-col must">
+        <div class="scope-head">
+          <span class="scope-ico">✅</span>
+          <div class="scope-head-text">
+            <div class="scope-name">Level 1 · 必须包含</div>
+            <div class="scope-sub">纳入当前合同，不可省略</div>
+          </div>
+        </div>
+        <ul class="scope-items">
+          <li>底盘 CAN 指令执行与状态反馈</li>
+          <li>上位机运动控制接口（速度 / 转向 / 停车）</li>
+          <li>遥控器接管状态读取与反馈</li>
+          <li>急停 / 软件停车链路</li>
+          <li>基础 IO 状态采集</li>
+          <li>心跳与通信超时检测</li>
+          <li>故障码上报</li>
+          <li>ROS2 导航栈（定位 / 路线 / 感知 / 决策）</li>
+          <li>Teach &amp; Repeat 路线录制与回放</li>
+          <li>基础障碍安全停车</li>
+          <li>与导航/嵌入式系统状态机联调</li>
+        </ul>
+      </div>
+      <div class="scope-col opt">
+        <div class="scope-head">
+          <span class="scope-ico">🔶</span>
+          <div class="scope-head-text">
+            <div class="scope-name">Level 2 · 可纳入合同</div>
+            <div class="scope-sub">明确后生效，不默认包含</div>
+          </div>
+        </div>
+        <ul class="scope-items">
+          <li>成品 CAN 电机控制器选型与型号冻结</li>
+          <li>除雪电机遥控 / 上位机启停控制</li>
+          <li>除雪机构方向 / 速度 / 状态读取（视控制器能力）</li>
+          <li>过流 / 过温 / 堵转故障状态读取</li>
+          <li>除雪与底盘运动安全互锁</li>
+          <li>局部避障增强能力（须另行约定）</li>
+          <li>超过最低障碍停车的 Beta 增强能力</li>
+        </ul>
+      </div>
+      <div class="scope-col excl">
+        <div class="scope-head">
+          <span class="scope-ico">🚫</span>
+          <div class="scope-head-text">
+            <div class="scope-name">Level 3 · 默认不含</div>
+            <div class="scope-sub">须专项 SOW，不得混入</div>
+          </div>
+        </div>
+        <ul class="scope-items">
+          <li>自研底盘控制器 / 电机驱动板硬件</li>
+          <li>功率电路设计 / PCB 设计</li>
+          <li>BMS 硬件开发</li>
+          <li>整机功能安全认证 / 法规认证</li>
+          <li>量产级 EMC / 雪地可靠性认证</li>
+          <li>Gamma / Delta / Fleet / Service 能力</li>
+          <li>无人值守商业运营责任</li>
+          <li>整机 Engineer of Record 责任</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 2: PHASE DEFINITIONS ── -->
+<section id="phases">
+  <div class="wrap">
+    <span class="eyebrow">02 · 阶段定义</span>
+    <h2 class="sec-h">Alpha 与 Beta<br>的本质区别</h2>
+    <p class="sec-p">两个阶段是递进关系，不是并行。Alpha 证明机器能被安全控制，Beta 证明机器能按人定义的任务干活。</p>
+
+    <div class="phase-grid">
+      <div class="phase-card alpha">
+        <div class="phase-card-head">
+          <div class="phase-lbl">Alpha 阶段 · Prototype / Assist</div>
+          <div class="phase-big">人控制机器</div>
+          <div class="phase-plain">证明机器可控 · 能安全跑起来</div>
+        </div>
+        <div class="phase-body">
+          <ul class="cap-list">
+            <li>上电 / 启动 / 可调试</li>
+            <li>工控机 + 底盘控制器 + 传感器 + 通信链路协同</li>
+            <li>上位机或遥控器控制前进 / 后退 / 转向 / 停车</li>
+            <li>基础状态反馈（底盘 / 传感器 / 定位 / 故障）</li>
+            <li>急停、人工接管、基础安全停车</li>
+            <li>异常优先进入安全状态</li>
+            <li>基础日志记录可复盘</li>
+            <li>代码 / 配置 / 接口 / 部署方式可交付可接管</li>
+          </ul>
+          <div class="not-block">
+            <div class="not-lbl">Alpha 不代表</div>
+            <ul class="not-list">
+              <li>自主除雪或自动规划路线</li>
+              <li>无人值守运行</li>
+              <li>完整避障能力</li>
+              <li>最终安全认证或法规认证</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase-card beta">
+        <div class="phase-card-head">
+          <div class="phase-lbl">Beta 阶段 · Task / Product Demo</div>
+          <div class="phase-big">人定义任务</div>
+          <div class="phase-plain">机器执行任务 · 基础任务可闭环</div>
+        </div>
+        <div class="phase-body">
+          <ul class="cap-list">
+            <li>固定场地路线录制 / 保存 / 加载 / 重复执行</li>
+            <li>RTK / IMU / Odometry 位置与姿态解析</li>
+            <li>低速路径跟踪（≤ 0.8 m/s，横向误差 ≤ 0.25m）</li>
+            <li>基础障碍检测 → 优先安全停车</li>
+            <li>异常降级（定位 / 传感器 / CAN / 上位机异常停车）</li>
+            <li>人工随时接管优先</li>
+            <li>日志 / 测试记录 / 问题记录可复盘</li>
+            <li>可用于工程演示 / 融资展示</li>
+          </ul>
+          <div class="not-block">
+            <div class="not-lbl">Beta 不代表</div>
+            <ul class="not-list">
+              <li>任意场地自主运行</li>
+              <li>无人值守商业运营</li>
+              <li>全区域覆盖路径规划</li>
+              <li>量产交付或客户正式运营</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 3: MILESTONES ── -->
+<section id="milestones">
+  <div class="wrap">
+    <span class="eyebrow">03 · 里程碑路线图</span>
+    <h2 class="sec-h">A1 → A4 → B1 → B5</h2>
+    <p class="sec-p">每个 Gate 对应一个可验收状态。不得用口头进度替代 GitHub 提交，不得用演示视频替代测试报告。</p>
+
+    <!-- Alpha -->
+    <div class="ms-phase alpha">
+      <div class="ms-phase-bar">
+        <span class="ms-phase-lbl">Alpha · Prototype / Assist</span>
+        <span class="ms-phase-desc">工程样机可安全运行，基础作业可人工控制</span>
+      </div>
+      <div class="ms-grid">
+        <div class="ms-card alpha">
+          <div class="ms-gate">A1 · 系统架构冻结</div>
+          <div class="ms-name">架构与接口冻结</div>
+          <div class="ms-gatecon">Gate：可进入采购、加工、装配</div>
+          <ul class="ms-dl">
+            <li>总体布局 / 底盘方案 / 除雪接口冻结</li>
+            <li>ROS2 topics / CAN 协议草案 / IO 点表</li>
+            <li>状态机定义 / 安全策略定义</li>
+            <li>contracts/ 目录发布（双仓共同引用）</li>
+            <li>量化验收指标（11A 附录）冻结</li>
+          </ul>
+        </div>
+        <div class="ms-card alpha">
+          <div class="ms-gate">A2 · 底盘系统打通</div>
+          <div class="ms-name">底盘驱动可运行</div>
+          <div class="ms-gatecon">Gate：可前进、后退、转向、停车</div>
+          <ul class="ms-dl">
+            <li>底盘机械安装完成</li>
+            <li>上位机 CAN 控制底盘 + 编码器反馈</li>
+            <li>遥控器基础控制</li>
+            <li>急停 / 停车链路有效</li>
+            <li>CAN 日志 + 基础运行测试记录</li>
+          </ul>
+        </div>
+        <div class="ms-card alpha">
+          <div class="ms-gate">A3 · 除雪模块完成</div>
+          <div class="ms-name">除雪机构可联调</div>
+          <div class="ms-gatecon">Gate：可完成基础推雪/除雪动作</div>
+          <ul class="ms-dl">
+            <li>除雪机构安装完成</li>
+            <li>成品 CAN 控制器接入</li>
+            <li>遥控 / 上位机启停</li>
+            <li>作业状态可读取（或说明不支持项）</li>
+            <li>除雪机构联调测试报告</li>
+          </ul>
+        </div>
+        <div class="ms-card alpha">
+          <div class="ms-gate">A4 · Alpha 原型机完成</div>
+          <div class="ms-name">整机联合运行</div>
+          <div class="ms-gatecon">Gate：人可以安全控制机器完成基础作业</div>
+          <ul class="ms-dl">
+            <li>底盘 + 电气 + 嵌入式 + 上位机联调</li>
+            <li>急停 / 遥控 / 软件停车有效</li>
+            <li>基础日志可复盘</li>
+            <li>Alpha 已知问题清单</li>
+            <li>工程演示视频</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Beta -->
+    <div class="ms-phase beta">
+      <div class="ms-phase-bar">
+        <span class="ms-phase-lbl">Beta · Task / Product Demo</span>
+        <span class="ms-phase-desc">固定场地任务闭环，具备向投资人/客户演示能力</span>
+      </div>
+      <div class="ms-grid">
+        <div class="ms-card beta">
+          <div class="ms-gate">B1 · 产品化结构重构</div>
+          <div class="ms-name">整机产品感提升</div>
+          <div class="ms-gatecon">Gate：整机具备产品感，非拼装原型状态</div>
+          <ul class="ms-dl">
+            <li>模块化结构方案</li>
+            <li>传感器 / 控制器安装优化建议</li>
+            <li>线束维护路径建议</li>
+            <li>注：此 Gate 为整机协同，非单一供应商独立责任</li>
+          </ul>
+        </div>
+        <div class="ms-card beta">
+          <div class="ms-gate">B2 · 定位与路线完成</div>
+          <div class="ms-name">Teach &amp; Repeat 基础能力</div>
+          <div class="ms-gatecon">Gate：可录制、保存、回放路线</div>
+          <ul class="ms-dl">
+            <li>RTK / IMU / Odometry 数据可用</li>
+            <li>固定场地路线录制 / 保存 / 回放</li>
+            <li>嵌入式稳定执行回放控制指令</li>
+            <li>B2 测试报告</li>
+          </ul>
+        </div>
+        <div class="ms-card beta">
+          <div class="ms-gate">B3 · 任务执行闭环</div>
+          <div class="ms-name">路径跟踪任务可闭环</div>
+          <div class="ms-gatecon">Gate：固定场地内按路线完成基础作业</div>
+          <ul class="ms-dl">
+            <li>固定路线低速路径跟踪</li>
+            <li>基础障碍检测 → 安全停车</li>
+            <li>异常降级 / 停车逻辑</li>
+            <li>人工接管优先 · 急停最高优先级</li>
+            <li>B3 联合测试报告</li>
+          </ul>
+        </div>
+        <div class="ms-card beta">
+          <div class="ms-gate">B4 · Beta 展示状态完成</div>
+          <div class="ms-name">系统演示就绪</div>
+          <div class="ms-gatecon">Gate：整机达到系统演示状态</div>
+          <ul class="ms-dl">
+            <li>外观与产品感达到展示要求</li>
+            <li>夜间 / 低温 / 雪地测试记录</li>
+            <li>展示流程稳定，视频素材就绪</li>
+            <li>演示风险清单</li>
+          </ul>
+        </div>
+        <div class="ms-card beta">
+          <div class="ms-gate">B5 · 系统演示与工程交付</div>
+          <div class="ms-name">完整交付可接管</div>
+          <div class="ms-gatecon">Gate：可向投资人/客户演示，工程可接管继续开发</div>
+          <ul class="ms-dl">
+            <li>固定路线 + Teach &amp; Repeat 演示</li>
+            <li>基础障碍停车 / 人工接管演示</li>
+            <li>导航 + 嵌入式完整 Release Package</li>
+            <li>SBOM / 许可清单（B5 要求）</li>
+            <li>最终 Known Issues + 交接记录</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Quantitative Table -->
+    <span class="eyebrow" style="margin-bottom:16px;display:block;">量化验收指标（11A 附录）—— M1 冻结，不可主观判断</span>
+    <div class="q-table-wrap">
+      <table class="q-table">
+        <thead>
+          <tr>
+            <th>指标</th>
+            <th>基线值</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Beta 最大运行速度</td>
+            <td>≤ 0.8 m/s</td>
+            <td>低速固定路线，安全优先</td>
+          </tr>
+          <tr>
+            <td>横向（cross-track）误差</td>
+            <td>≤ 0.25 m</td>
+            <td>固定路线，3 次重复均达标</td>
+          </tr>
+          <tr>
+            <td>定位水平 std 停车阈值</td>
+            <td>horizontal_std_m &gt; 0.10</td>
+            <td>FIX 模式下超阈即停车（对应 9E.1）</td>
+          </tr>
+          <tr>
+            <td>定位数据时延阈值</td>
+            <td>age_s &gt; 0.3s</td>
+            <td>超阈即停车（对应 9E.1）</td>
+          </tr>
+          <tr>
+            <td>急停端到端延时</td>
+            <td>M1 测试方案冻结</td>
+            <td>需实测记录（触发 → 车轮停止），含 IPC 与 MCU 两侧</td>
+          </tr>
+          <tr>
+            <td>障碍停车响应时间</td>
+            <td>M1 测试方案冻结</td>
+            <td>从检测到减速指令，阈值在 M1 冻结</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 4: DELIVERY RULES ── -->
+<section id="delivery">
+  <div class="wrap">
+    <span class="eyebrow">04 · 交付规则</span>
+    <h2 class="sec-h">什么算交付<br>什么不算</h2>
+    <p class="sec-p">每阶段正式交付必须形成可追踪、可复现、可接管的 Release Package，进入 ARCBOS 指定 GitHub 仓库。未进入 GitHub 的任何内容，不视为正式交付。</p>
+
+    <div class="del-grid">
+      <div class="del-col ok">
+        <div class="del-head">
+          <span>✅</span> 有效交付清单
+        </div>
+        <ul class="del-list">
+          <li>完整源码（进入 GitHub，可追踪 commit）</li>
+          <li>配置文件 / 参数文件 / 传感器配置</li>
+          <li>启动脚本 / 部署说明 / 运行验证脚本</li>
+          <li>接口文档 / CAN 协议 / 路线文件格式 / 日志格式</li>
+          <li>测试脚本 + 测试数据 + 测试报告</li>
+          <li>故障码表 + 安全逻辑说明</li>
+          <li>接线图 / IO 点表 / 控制器型号 + BOM</li>
+          <li>已知问题清单（每次 Release 必附）</li>
+          <li>README + 交接记录</li>
+          <li>SBOM / 依赖许可清单（B5 / M5）</li>
+        </ul>
+      </div>
+      <div class="del-col bad">
+        <div class="del-head">
+          <span>🚫</span> 无效交付（单独使用）
+        </div>
+        <ul class="del-list">
+          <li>只交视频演示，无源码无测试报告</li>
+          <li>只交二进制固件，无源码</li>
+          <li>只交口头说明，无文档</li>
+          <li>只交截图 / 照片</li>
+          <li>只在乙方电脑 / 账号 / 远程环境可运行</li>
+          <li>成品控制器但不交参数 / 接线 / 协议</li>
+          <li>演示结果但无测试报告和问题清单</li>
+          <li>未进入 GitHub 的任何内容</li>
+          <li>命名含 final / latest / 最终版 / 改改改</li>
+          <li>使用个人仓库作为主交付</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Safety Priority -->
+    <span class="eyebrow" style="display:block;margin-bottom:16px;">安全优先级 · 不可逆转的 6 级层级</span>
+    <div class="safety">
+      <div class="sf-row">
+        <div class="sf-no">1</div>
+        <div>
+          <div class="sf-name">物理急停</div>
+          <div class="sf-rule">最高优先级，任何自动控制不得覆盖 · 急停触发：立即禁止自动运动与除雪输出 · 安全状态恢复必须人工确认，不得自动恢复</div>
+        </div>
+      </div>
+      <div class="sf-row">
+        <div class="sf-no">2</div>
+        <div>
+          <div class="sf-name">遥控器 / 人工接管</div>
+          <div class="sf-rule">人工控制优先于自动控制 · 接管时自动控制立即释放 · 通信恢复后不得自动切回自动模式</div>
+        </div>
+      </div>
+      <div class="sf-row">
+        <div class="sf-no">3</div>
+        <div>
+          <div class="sf-name">嵌入式底层保护</div>
+          <div class="sf-rule">可拒绝危险指令 · IPC 崩溃或断链时 MCU 看门狗必须自主安全停车（fail-safe 实现在 MCU 侧）</div>
+        </div>
+      </div>
+      <div class="sf-row">
+        <div class="sf-no">4</div>
+        <div>
+          <div class="sf-name">软件安全停车</div>
+          <div class="sf-rule">上位机 / 导航系统可请求停车 · 安全状态恢复须经人工确认</div>
+        </div>
+      </div>
+      <div class="sf-row">
+        <div class="sf-no">5</div>
+        <div>
+          <div class="sf-name">自动导航控制</div>
+          <div class="sf-rule">只在安全条件满足时执行 · 不确定时默认停车（不选"降级运行"）</div>
+        </div>
+      </div>
+      <div class="sf-row">
+        <div class="sf-no">6</div>
+        <div>
+          <div class="sf-name">除雪作业控制</div>
+          <div class="sf-rule">不得高于运动安全和急停 · 除雪故障须停止作业，必要时停止底盘</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Payment Table -->
+    <span class="eyebrow" style="display:block;margin-bottom:16px;">付款节点绑定条件</span>
+    <div class="pay-table-wrap">
+      <table class="pay-table">
+        <thead>
+          <tr>
+            <th>付款前置条件</th>
+            <th>要求</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>源码</td><td>源码进入 ARCBOS 指定 GitHub 仓库</td></tr>
+          <tr><td>文档</td><td>接口文档 / 部署说明 / README 进入 GitHub</td></tr>
+          <tr><td>测试记录</td><td>对应里程碑测试报告提交</td></tr>
+          <tr><td>演示</td><td>对应里程碑演示通过</td></tr>
+          <tr><td>问题清单</td><td>已知问题清单明确，按约定关闭或遗留</td></tr>
+          <tr><td>验收确认</td><td>ARCBOS 书面验收确认</td></tr>
+          <tr><td>尾款（P7 · 20%）</td><td>系统稳定运行期满 + 最终交接完成</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ── SECTION 5: GOLDEN RULES ── -->
+<section id="rules">
+  <div class="wrap">
+    <span class="eyebrow">05 · 铁律</span>
+    <h2 class="sec-h">不可触碰的<br>底线原则</h2>
+    <p class="sec-p">来自 4 份文件的最终原则，违反任一条将影响里程碑验收和付款节点。</p>
+
+    <div class="rules-grid">
+      <div class="rule-card">
+        <div class="rule-ico">🔀</div>
+        <div>
+          <div class="rule-title">阶段边界不可突破</div>
+          <div class="rule-text">当前只做 Alpha 补齐 + Beta 闭环。不能将 Gamma / Delta / Fleet / Service 混入合同。供应商计划中的合理内容可吸收，但不能扩大阶段边界或默认纳入报价。</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-ico">📦</div>
+        <div>
+          <div class="rule-title">不进 GitHub 不算交付</div>
+          <div class="rule-text">未提交 → 不视为交付。无 README → 不视为可接管。无部署说明 → 不视为可复现。无测试记录 → 不视为可验收。无接口文档 → 不视为可联调。</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-ico">⚡</div>
+        <div>
+          <div class="rule-title">接口必须以数据契约冻结</div>
+          <div class="rule-text">M1 必须冻结：ROS2 .msg、CAN DBC、route schema、fault_code_table、health schema，存于 contracts/ 顶层目录。名称无 Schema 不视为接口冻结。</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-ico">📏</div>
+        <div>
+          <div class="rule-title">验收必须可量化</div>
+          <div class="rule-text">不接受无指标的"低速 / 跟踪 / 降级"。所有验收阈值在 M1 测试方案中冻结。"降级或停车"二选一时，默认取停车（面向无人值守终态）。</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-ico">🔒</div>
+        <div>
+          <div class="rule-title">知识产权必须披露</div>
+          <div class="rule-text">背景技术在附件三填写披露表。第三方组件须披露许可证与商业化影响。未披露的背景技术和限制，不得作为限制甲方使用、修改、商业化的理由。</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-ico">🌐</div>
+        <div>
+          <div class="rule-title">禁用中国镜像与服务</div>
+          <div class="rule-text">不得使用任何中国镜像 / 字体 / 库 / API / 云服务。代码与注释仅限英文。CI Gate 机器强制扫描，不依赖人工 review，违者 PR 即失败。</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-ico">📅</div>
+        <div>
+          <div class="rule-title">每周必须正式提交</div>
+          <div class="rule-text">源码 / 配置 / 文档至少一类有效更新，commit message 说明变更。不接受长期本地开发后一次性打包提交，不接受口头进度代替 GitHub 提交。</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-ico">🛡️</div>
+        <div>
+          <div class="rule-title">单一 Safety Arbiter</div>
+          <div class="rule-text">安全优先级必须由单一 Safety Arbiter 模块强制执行，不得分散在多个模块各自判断。M1 必须命名 Safety Arbiter 并定义其执行机制。</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <span class="eyebrow" style="display:block;margin-bottom:16px;">CI 强制校验 Gate</span>
+    <ul class="ci-list">
+      <li>检出非 ASCII 字符（源码 / 注释 / 路径）→ PR 即失败</li>
+      <li>检出写死的 token / IP / 个人路径 → PR 即失败</li>
+      <li>检出被禁镜像源（含任何中国 pip/npm/apt 镜像）→ PR 即失败</li>
+      <li>B5 Final：main 分支 CI 扫描通过（非 ASCII + 密钥）→ 方可进入 ACCEPTED_BASELINE</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">ARC<span class="acc">B</span>OS · SnowBot Alpha/Beta</div>
+      <div class="footer-meta">
+        本页为合同附件集成快读版 · 原始文件为唯一法律基准<br>
+        PUB-2605-0039-AGR · ARCBOS-SPEC-2605-0007/0008/0009/0010 · v2.1
+      </div>
+      <div class="footer-links">
+        <a href="https://docs.arcbos.com/clients/46184b58bbb9ce56/" target="_blank">附件一-A 导航基线 →</a>
+        <a href="https://docs.arcbos.com/clients/aeb4f97b40f6163c/" target="_blank">附件一-B 嵌入式基线 →</a>
+        <a href="https://docs.arcbos.com/clients/f2069a3bf85dd210/" target="_blank">附件二 里程碑纲领 →</a>
+        <a href="https://docs.arcbos.com/clients/08d5067044f177da/" target="_blank">附件三 交付物清单 →</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
