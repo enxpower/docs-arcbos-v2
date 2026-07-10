@@ -291,6 +291,202 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
   .footer{flex-direction:column;align-items:flex-start}
   .footer-conf{text-align:left}
 }
+
+/* ════════════════════════════════════════════════
+   RESPONSIVE OVERHAUL — bp/index.html
+   Phone-first: tables → cards, padding, font sizes
+   ════════════════════════════════════════════════ */
+
+/* LANG TOGGLE */
+@media(max-width:768px){
+  .lang-toggle{top:10px;right:10px}
+  .lang-btn{font-size:10.5px;padding:7px 12px;min-height:40px}
+}
+
+/* BACK BAR */
+@media(max-width:640px){
+  .back-bar{padding:8px 16px;flex-direction:column;gap:6px}
+  .back-link{font-size:10.5px}
+  .conf-txt{font-size:8.5px;letter-spacing:.05em}
+}
+
+/* BP HERO */
+@media(max-width:900px){
+  .bp-hero{padding:56px 20px 36px}
+  .bp-hero-inner{grid-template-columns:1fr;gap:24px}
+  .bp-badge{font-size:9.5px;letter-spacing:.16em;padding:5px 11px;margin-bottom:18px}
+  .bp-title{font-size:clamp(24px,7vw,40px)}
+  .bp-title.zh{font-size:clamp(20px,6vw,34px)}
+  .bp-sub{font-size:14px;margin-bottom:20px}
+  .toc{padding:16px}
+}
+@media(max-width:640px){
+  .bp-hero{padding:48px 16px 28px}
+  .bp-title{font-size:clamp(22px,8vw,36px)}
+  .tags{gap:6px}
+  .badge{font-size:9px;padding:3px 8px}
+  .toc-list li a{font-size:12px;padding:5px 0}
+  .toc-no{font-size:9.5px;min-width:22px}
+}
+
+/* SECTIONS */
+@media(max-width:768px){
+  .section,.section.dark{padding:36px 16px}
+  .sec-sub{display:none}
+  .sec-title{font-size:clamp(15px,4.5vw,20px)}
+  .sec-title.zh{font-size:clamp(14px,4.2vw,19px)}
+  .sec-label{margin-bottom:20px;padding-bottom:11px}
+}
+@media(max-width:480px){
+  .section,.section.dark{padding:28px 14px}
+}
+
+/* EXEC SUMMARY */
+@media(max-width:640px){
+  .nums-strip.four{grid-template-columns:1fr 1fr}
+  .nums-strip.three{grid-template-columns:1fr 1fr}
+  .num-value{font-size:20px}
+  .num-note{font-size:11.5px}
+  .hl-row{padding:14px 16px}
+  .hl-body{font-size:13.5px}
+  .hl-body.zh{font-family:var(--f-zh)}
+}
+@media(max-width:400px){
+  .nums-strip.four,.nums-strip.three{grid-template-columns:1fr}
+}
+
+/* TWO-COL → ONE-COL on mobile */
+@media(max-width:768px){
+  .two-col{grid-template-columns:1fr}
+  .three-col{grid-template-columns:1fr}
+  .safety-grid{grid-template-columns:1fr}
+  .ue-grid{grid-template-columns:1fr}
+}
+
+/* CARDS */
+@media(max-width:640px){
+  .card{padding:16px}
+  .card-title{font-size:14px}
+  .card-body{font-size:13px}
+  .info-box{padding:14px 16px}
+  .info-box p{font-size:13px}
+}
+
+/* DATA TABLES → STACK on phone */
+@media(max-width:640px){
+  .data-table{font-size:12.5px}
+  .data-table th{font-size:8.5px;padding:7px 10px;letter-spacing:.1em}
+  .data-table td{padding:9px 10px}
+  /* Allow horizontal scroll on complex tables */
+  .data-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+
+/* MARKET TABLE */
+@media(max-width:640px){
+  .data-table td.label{font-size:12px}
+  .data-table td.val{font-size:13px}
+  .data-table td.note{font-size:11.5px}
+}
+
+/* VALIDATION TABLE */
+@media(max-width:640px){
+  .validation-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+
+/* MILESTONE BLOCKS */
+@media(max-width:640px){
+  .ms-block{padding:16px;margin-bottom:8px}
+  .ms-phase-header{font-size:9px;letter-spacing:.13em;margin-bottom:12px}
+  .ms-row{grid-template-columns:40px 1fr}
+  .ms-month{display:none}
+  .ms-title{font-size:13.5px}
+  .ms-criterion{font-size:10.5px}
+}
+
+/* RISK TABLE → CARDS on phone */
+@media(max-width:640px){
+  .risk-table-wrap{display:none}
+  .risk-cards{display:flex!important;flex-direction:column;gap:9px}
+  .risk-card{background:var(--black);border:1px solid var(--steel);padding:14px 15px}
+  .risk-card-hd{display:flex;align-items:flex-start;justify-content:space-between;
+    margin-bottom:8px;gap:8px}
+  .risk-card-no{font-family:var(--f-mono);font-weight:800;font-size:14px;
+    color:var(--amber);flex-shrink:0}
+  .risk-card-name{font-weight:700;font-size:14px;color:var(--arctic-white);line-height:1.3}
+  .risk-card-name.zh{font-family:var(--f-zh-serif)}
+  .risk-card-body{font-size:12.5px;color:var(--arctic-steel);line-height:1.65;margin-bottom:8px}
+  .risk-card-body.zh{font-family:var(--f-zh);font-size:12px}
+  .risk-card-mit-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.1em;
+    color:var(--ice);margin-bottom:4px}
+  .risk-card-mit{font-size:12px;color:var(--arctic-steel);line-height:1.6}
+  .risk-card-mit.zh{font-family:var(--f-zh);font-size:11.5px}
+}
+@media(min-width:641px){
+  .risk-cards{display:none}
+  .risk-table-wrap{display:block}
+}
+
+/* CAP TABLE */
+@media(max-width:640px){
+  .cap-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .cap-table{font-size:12px}
+  .cap-table th{font-size:8.5px;padding:7px 10px}
+  .cap-table td{padding:9px 10px}
+}
+
+/* TEAM TABLE */
+@media(max-width:640px){
+  .team-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .data-table td:not(:first-child){text-align:left}
+}
+
+/* COMP TABLE in BP */
+@media(max-width:640px){
+  .comp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+
+/* FINANCIAL MODEL TABLE */
+@media(max-width:640px){
+  .financial-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+
+/* PIPELINE TABLE in BP */
+@media(max-width:640px){
+  .pipeline-table-bp-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+
+/* DEAL TERMS INSIDE CARD */
+@media(max-width:640px){
+  .deal-terms-table{font-size:12px}
+  .deal-terms-table td{padding:6px 0;font-size:12px}
+}
+
+/* INFO BOXES */
+@media(max-width:640px){
+  .info-box{padding:13px 14px;margin:12px 0}
+  .info-box p{font-size:12.5px}
+  .info-box-label{font-size:9px;letter-spacing:.12em}
+}
+
+/* SAFETY ITEMS */
+@media(max-width:640px){
+  .safety-item{padding:14px 15px}
+  .safety-item-title{font-size:13.5px}
+  .safety-item-body{font-size:12.5px}
+}
+
+/* FOOTER */
+@media(max-width:640px){
+  .footer{flex-direction:column;align-items:flex-start;padding:16px;gap:9px}
+  .footer-conf{text-align:left;font-size:9.5px}
+}
+
+/* CTA SECTION */
+@media(max-width:640px){
+  #sec-exec ~ section,
+  section[aria-labelledby]{padding:28px 16px}
+}
+
 </style>
 </head>
 <body>
@@ -1346,7 +1542,7 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
       <span class="sec-sub">6 RISK CATEGORIES · TRANSPARENT DISCLOSURE</span>
     </div>
 
-    <table class="risk-table" aria-label="Risk register">
+    <div class="risk-table-wrap"><table class="risk-table" aria-label="Risk register">
       <thead>
         <tr>
           <th>#</th>
@@ -1417,8 +1613,70 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
           <td class="risk-mit zh" lang="zh">（1）天使轮资金按计划可覆盖完整6–8个月Beta；（2）B5完成后具备核心Pre-A资产（测试视频+演示样机+LOI）；（3）Beta阶段同步启动Pre-A接触；（4）创始人可提供有限过桥支持</td>
           <td class="risk-mit en" lang="en">(1) Angel round capital covers full 6–8 month Beta as planned; (2) B5 completion provides core Pre-A assets (test video + demo robot + LOI); (3) Pre-A outreach begins during Beta; (4) founders can provide limited bridge support</td>
         </tr>
-      </tbody>
-    </table>
+      </table></div>
+    <!-- MOBILE RISK CARDS -->
+    <div class="risk-cards">
+      <div class="risk-card">
+        <div class="risk-card-hd"><span class="risk-card-no">R1</span><span class="risk-level high">HIGH</span></div>
+        <div class="risk-card-name zh" lang="zh">极寒技术验证失败</div>
+        <div class="risk-card-name en" lang="en">Extreme-cold validation failure</div>
+        <p class="risk-card-body zh" lang="zh">−30°C设计目标在真实测试中无法达成；电池性能衰减超预期；机构在低温下出现可靠性问题</p>
+        <p class="risk-card-body en" lang="en">−30°C design target fails in real test; battery performance degrades beyond prediction; mechanisms fail at low temperature</p>
+        <div class="risk-card-mit-label">MITIGATION</div>
+        <p class="risk-card-mit zh" lang="zh">分阶段验证（B4先验证−20°C，再推进−30°C）；与加热模块供应商预研主动热管理；选用已有低温应用案例的电池供应商；电池性能是最高优先级早期测试项</p>
+        <p class="risk-card-mit en" lang="en">Phased validation (B4 validates −20°C first, then −30°C); pre-study active thermal management with heater module suppliers; select battery suppliers with documented cold-weather deployments; battery performance is earliest priority test item</p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-card-hd"><span class="risk-card-no">R2</span><span class="risk-level high">HIGH</span></div>
+        <div class="risk-card-name zh" lang="zh">CTO/技术负责人缺失</div>
+        <div class="risk-card-name en" lang="en">No full-time CTO</div>
+        <p class="risk-card-body zh" lang="zh">自主导航、嵌入式控制、功能安全三个方向目前无专职全职负责人，依赖外部顾问，存在知识流失和进度依赖风险</p>
+        <p class="risk-card-body en" lang="en">No dedicated full-time lead for autonomous navigation, embedded control, or functional safety. Dependency on external advisors creates knowledge loss and schedule dependency risk.</p>
+        <div class="risk-card-mit-label">MITIGATION</div>
+        <p class="risk-card-mit zh" lang="zh">每个顾问有专属交付里程碑；代码归公司所有，全程版本控制；Pre-A融资计划正式预留CTO招募薪酬；探索核心算法顾问以期权形式绑定</p>
+        <p class="risk-card-mit en" lang="en">Each advisor has exclusive milestone deliverables; all code company-owned under version control; Pre-A plan formally includes CTO recruitment budget; explore option-based binding for core algorithm advisor</p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-card-hd"><span class="risk-card-no">R3</span><span class="risk-level med">MED</span></div>
+        <div class="risk-card-name zh" lang="zh">供应链交期延误</div>
+        <div class="risk-card-name en" lang="en">Supply chain lead time delay</div>
+        <p class="risk-card-body zh" lang="zh">关键零件供应商出现产能或物流问题，导致A2–A4阶段延期</p>
+        <p class="risk-card-body en" lang="en">Key component suppliers face capacity or logistics issues, delaying A2–A4</p>
+        <div class="risk-card-mit-label">MITIGATION</div>
+        <p class="risk-card-mit zh" lang="zh">每个关键模块至少2家备用供应商；关键零件预下单提前备货；联合创始人龚继锋专职供应链；¥65万风险储备覆盖紧急替换采购</p>
+        <p class="risk-card-mit en" lang="en">At least 2 backup suppliers per key module; critical parts pre-ordered; Gong Jifeng dedicated to supply chain management; ¥650K risk reserve covers emergency replacement procurement</p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-card-hd"><span class="risk-card-no">R4</span><span class="risk-level med">MED</span></div>
+        <div class="risk-card-name zh" lang="zh">竞争对手加速</div>
+        <div class="risk-card-name en" lang="en">Competitor acceleration</div>
+        <p class="risk-card-body zh" lang="zh">Snowbotix或其他竞争对手在天使轮期间完成更多验证或融资，抢先签约目标客户</p>
+        <p class="risk-card-body en" lang="en">Snowbotix or other competitors complete more validation or fundraising during angel period, signing target customers first</p>
+        <div class="risk-card-mit-label">MITIGATION</div>
+        <p class="risk-card-mit zh" lang="zh">加快时间线，6个月完成Beta B4；优先签约创始人直接关系网络内站点；中国供应链成本优势保持价格竞争力</p>
+        <p class="risk-card-mit en" lang="en">Accelerate timeline: B4 complete in 6 months; prioritize signing sites within founder's direct network; Chinese supply chain cost advantage maintains price competitiveness</p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-card-hd"><span class="risk-card-no">R5</span><span class="risk-level med">MED</span></div>
+        <div class="risk-card-name zh" lang="zh">安全事故与责任风险</div>
+        <div class="risk-card-name en" lang="en">Safety incident &amp; liability</div>
+        <p class="risk-card-body zh" lang="zh">试点期间机器人与人员或财产发生碰撞，造成人身伤害或财产损失</p>
+        <p class="risk-card-body en" lang="en">Robot-person or robot-property collision during pilot, causing injury or property damage</p>
+        <div class="risk-card-mit-label">MITIGATION</div>
+        <p class="risk-card-mit zh" lang="zh">所有Beta测试现场配置安全官；双通道急停和人员检测验证（B3）后才进行公开演示；试点合同明确责任边界；商业责任险覆盖</p>
+        <p class="risk-card-mit en" lang="en">Safety officer on-site for all Beta tests; dual-channel e-stop and personnel detection validated (B3) before any public demo; pilot contracts explicitly define liability; commercial liability insurance coverage</p>
+      </div>
+      <div class="risk-card">
+        <div class="risk-card-hd"><span class="risk-card-no">R6</span><span class="risk-level low">LOW</span></div>
+        <div class="risk-card-name zh" lang="zh">融资衔接风险</div>
+        <div class="risk-card-name en" lang="en">Funding bridge risk</div>
+        <p class="risk-card-body zh" lang="zh">天使轮完成后Pre-A融资未能按预期推进，导致Beta完成后资金断裂</p>
+        <p class="risk-card-body en" lang="en">After angel close, Pre-A fundraising does not proceed as expected, creating a funding gap after Beta completion</p>
+        <div class="risk-card-mit-label">MITIGATION</div>
+        <p class="risk-card-mit zh" lang="zh">天使轮资金覆盖完整6–8个月Beta；B5完成后具备核心Pre-A资产；Beta阶段同步启动Pre-A接触；创始人可提供有限过桥支持</p>
+        <p class="risk-card-mit en" lang="en">Angel round capital covers full 6–8 month Beta; B5 completion provides core Pre-A assets; Pre-A outreach begins during Beta; founders can provide limited bridge support</p>
+      </div>
+    </div>
   </div>
 </section>
 
