@@ -292,6 +292,149 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
   .footer-conf{text-align:left}
 }
 
+
+/* ══════════════════════════════════════════════════════
+   BP MOBILE FIX v2 — True card layouts, no table scroll
+   Target: ≤640px phone screens
+   Problem tables: budget(5col), team(5col), validation(4col), comp(8col)
+   ══════════════════════════════════════════════════════ */
+
+/* ── BUDGET TABLE → CARD ROWS ── */
+@media(max-width:640px){
+  /* Section 11 budget table */
+  table[aria-label="Detailed budget"] { display: none !important; }
+  .budget-mobile-cards { display: flex !important; }
+}
+.budget-mobile-cards {
+  display: none;
+  flex-direction: column;
+  gap: 9px;
+}
+.bmc { background:var(--black);border:1px solid var(--steel);border-left:3px solid var(--amber);padding:13px 15px }
+.bmc-h { display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;gap:8px }
+.bmc-cat { font-weight:700;font-size:14px;color:var(--arctic-white) }
+.bmc-cat.zh { font-family:var(--f-zh-serif) }
+.bmc-nums { display:flex;align-items:baseline;gap:7px }
+.bmc-amt { font-family:var(--f-mono);font-weight:800;font-size:15px;color:var(--amber) }
+.bmc-pct { font-family:var(--f-mono);font-size:11px;color:var(--gunmetal) }
+.bmc-det { font-size:12px;color:var(--arctic-steel);line-height:1.6 }
+.bmc-det.zh { font-family:var(--f-zh) }
+.bmc-total { background:var(--amber-lt);border:1px solid var(--amber-dim);padding:13px 15px;display:flex;justify-content:space-between;align-items:center }
+.bmc-tlbl { font-size:14px;font-weight:700;color:var(--arctic-white) }
+.bmc-tlbl.zh { font-family:var(--f-zh-serif) }
+.bmc-tamt { font-family:var(--f-mono);font-size:20px;font-weight:900;color:var(--amber) }
+
+/* ── TEAM TABLE → CARD ROWS ── */
+@media(max-width:640px){
+  table[aria-label="Core team"] { display: none !important; }
+  .team-mobile-cards { display: flex !important; }
+}
+.team-mobile-cards {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--steel);
+}
+.tmc2 { padding:16px;border-bottom:1px solid var(--steel) }
+.tmc2:last-child { border-bottom:none }
+.tmc2-name { font-weight:800;font-size:15px;color:var(--amber);margin-bottom:2px }
+.tmc2-role { font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;color:var(--ice);margin-bottom:8px }
+.tmc2-bg { font-size:13px;color:var(--arctic-steel);line-height:1.65;margin-bottom:7px }
+.tmc2-bg.zh { font-family:var(--f-zh);font-size:12.5px }
+.tmc2-deliver { font-family:var(--f-mono);font-size:10px;letter-spacing:.07em;color:var(--gunmetal) }
+
+/* ── HIRING TABLE → nicer on mobile ── */
+@media(max-width:640px){
+  table[aria-label="Hiring plan"] thead { display:none }
+  table[aria-label="Hiring plan"] tbody tr { display:block;padding:12px 0;border-bottom:1px solid var(--steel) }
+  table[aria-label="Hiring plan"] tbody tr:last-child { border-bottom:none }
+  table[aria-label="Hiring plan"] td { display:block;padding:2px 0;font-size:13px }
+  table[aria-label="Hiring plan"] td:nth-child(1){ font-weight:700;color:var(--arctic-white);margin-bottom:3px }
+  table[aria-label="Hiring plan"] td:nth-child(1).zh { font-family:var(--f-zh-serif) }
+  table[aria-label="Hiring plan"] td:nth-child(3){ color:var(--amber);font-family:var(--f-mono);font-size:12.5px;font-weight:700 }
+  table[aria-label="Hiring plan"] td:nth-child(5){ color:var(--arctic-steel);font-size:12px }
+  table[aria-label="Hiring plan"] td:nth-child(5).zh { font-family:var(--f-zh) }
+  table[aria-label="Hiring plan"] td.zh:nth-child(2),
+  table[aria-label="Hiring plan"] td.en:nth-child(2),
+  table[aria-label="Hiring plan"] td:nth-child(4) { color:var(--gunmetal);font-size:11px }
+}
+
+/* ── VALIDATION TABLE → CARD ROWS ── */
+@media(max-width:640px){
+  table[aria-label="Validation acceptance criteria"] { display: none !important; }
+  .valid-mobile-cards { display: flex !important; }
+}
+.valid-mobile-cards {
+  display: none;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--steel);
+  margin-bottom: 16px;
+}
+.vmc { padding:13px 15px;border-bottom:1px solid var(--steel) }
+.vmc:last-child { border-bottom:none }
+.vmc-h { display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px;gap:8px }
+.vmc-item { font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--ice) }
+.vmc-gate { font-family:var(--f-mono);font-size:11px;font-weight:700;color:var(--amber);flex-shrink:0 }
+.vmc-target { font-size:13px;color:var(--amber);font-weight:600;margin-bottom:5px;line-height:1.5 }
+.vmc-method { font-size:12px;color:var(--arctic-steel);line-height:1.5 }
+.vmc-method.zh { font-family:var(--f-zh);font-size:11.5px }
+
+/* ── COMP TABLE (BP) → CARD ROWS ── */
+@media(max-width:640px){
+  table[aria-label="Competitive comparison matrix"] { display: none !important; }
+  .comp-mobile-cards-bp { display: flex !important; }
+}
+.comp-mobile-cards-bp {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+}
+.cmcb { background:var(--black);border:1px solid var(--steel);padding:14px 15px }
+.cmcb.ours { background:var(--amber-lt);border-color:var(--amber-dim) }
+.cmcb-h { display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px;gap:8px }
+.cmcb-name { font-weight:800;font-size:14.5px;color:var(--arctic-white);line-height:1.2 }
+.cmcb-name.ours { color:var(--amber) }
+.cmcb-seg { font-family:var(--f-mono);font-size:9px;letter-spacing:.08em;color:var(--gunmetal);margin-top:2px }
+.cmcb-price { font-family:var(--f-mono);font-weight:700;font-size:12.5px;color:var(--amber);flex-shrink:0;text-align:right }
+.cmcb-dots { display:flex;flex-wrap:wrap;gap:7px;margin-bottom:7px }
+.cmcb-di { display:flex;align-items:center;gap:3px;font-family:var(--f-mono);font-size:9.5px;color:var(--gunmetal) }
+.cmcb-note { font-size:12.5px;color:var(--arctic-steel);line-height:1.6 }
+.cmcb-note.zh { font-family:var(--f-zh);font-size:12px }
+
+/* ── MARKET TABLE → OK on mobile (2 cols) ── */
+@media(max-width:640px){
+  table[aria-label="Market size breakdown"] thead { display:none }
+  table[aria-label="Market size breakdown"] tbody tr { display:block;padding:12px 0;border-bottom:1px solid var(--steel) }
+  table[aria-label="Market size breakdown"] td.val { display:inline;font-size:16px;margin-right:8px }
+  table[aria-label="Market size breakdown"] td.label { display:block;font-size:12.5px;color:var(--arctic-steel) }
+  table[aria-label="Market size breakdown"] td.label.zh { font-family:var(--f-zh) }
+  table[aria-label="Market size breakdown"] td.note { display:block;font-size:12px;color:var(--arctic-steel);line-height:1.55 }
+  table[aria-label="Market size breakdown"] td.note.zh { font-family:var(--f-zh) }
+}
+
+/* ── 5-YEAR FINANCIAL MODEL TABLE — horizontal scroll OK ── */
+@media(max-width:640px){
+  .financial-model-scroll { overflow-x:auto;-webkit-overflow-scrolling:touch }
+  table[aria-label="5-year financial model"] { min-width:520px;font-size:12px }
+  table[aria-label="5-year financial model"] th { font-size:8px;padding:7px 8px }
+  table[aria-label="5-year financial model"] td { padding:8px 8px;font-size:12px }
+}
+
+/* ── CAP TABLE — block stacking on mobile ── */
+@media(max-width:640px){
+  table[aria-label="Cap table"] thead { display:none }
+  table[aria-label="Cap table"] tbody tr { display:block;padding:13px 15px;border-bottom:1px solid var(--steel);background:var(--black) }
+  table[aria-label="Cap table"] tbody tr.highlight { background:var(--amber-lt);border-bottom-color:var(--amber-dim) }
+  table[aria-label="Cap table"] tbody tr.total { background:var(--carbon) }
+  table[aria-label="Cap table"] td { display:block;padding:2px 0;text-align:left!important }
+  table[aria-label="Cap table"] td.name { font-size:14px;font-weight:700;color:var(--arctic-white);margin-bottom:4px }
+  table[aria-label="Cap table"] td.name.zh { font-family:var(--f-zh-serif) }
+  table[aria-label="Cap table"] td.pct { display:inline;font-size:15px;font-weight:800;color:var(--amber);margin-right:10px }
+  table[aria-label="Cap table"] td.notes { font-size:12px;color:var(--arctic-steel);line-height:1.5;margin-top:4px }
+  table[aria-label="Cap table"] td.notes.zh { font-family:var(--f-zh) }
+}
+
 /* ════════════════════════════════════════════════
    RESPONSIVE OVERHAUL — bp/index.html
    Phone-first: tables → cards, padding, font sizes
@@ -788,6 +931,18 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
         <tr><td class="label zh" lang="zh">IP防护初步验证</td><td class="label en" lang="en">IP protection initial check</td><td class="val" style="font-size:12px">Internal IP65 equivalent test (pre-certification)</td><td class="note zh" lang="zh">内部等效测试，非正式认证</td><td class="note en" lang="en">Internal equivalent test, not formal cert</td><td class="val" style="font-size:11px">B1</td></tr>
       </tbody>
     </table>
+    <!-- MOBILE VALIDATION CARDS -->
+    <div class="valid-mobile-cards">
+      <div class="vmc"><div class="vmc-h"><span class="vmc-item"><span class="zh">低温冷浸启动</span><span class="en">Cold soak start</span></span><span class="vmc-gate">B4</span></div><p class="vmc-target">−20°C cold soak 4hr → normal start <span style="font-size:10px;color:var(--amber)">(target −30°C by B5)</span></p><p class="vmc-method zh" lang="zh">冷库测试 / 户外过夜</p><p class="vmc-method en" lang="en">Cold room / overnight outdoor</p></div>
+      <div class="vmc"><div class="vmc-h"><span class="vmc-item"><span class="zh">作业效率</span><span class="en">Clearing throughput</span></span><span class="vmc-gate">B4</span></div><p class="vmc-target">≥ 400 m²/hr at 10cm snow depth (target)</p><p class="vmc-method zh" lang="zh">实测 + GPS轨迹</p><p class="vmc-method en" lang="en">Field measured + GPS track</p></div>
+      <div class="vmc"><div class="vmc-h"><span class="vmc-item"><span class="zh">路线重复精度</span><span class="en">Route repeat accuracy</span></span><span class="vmc-gate">B2</span></div><p class="vmc-target">95th percentile lateral error ≤ 50cm</p><p class="vmc-method zh" lang="zh">10次重复测量取95百分位</p><p class="vmc-method en" lang="en">10-run sample, 95th percentile</p></div>
+      <div class="vmc"><div class="vmc-h"><span class="vmc-item"><span class="zh">障碍物停止</span><span class="en">Obstacle stop</span></span><span class="vmc-gate">B3</span></div><p class="vmc-target">Detect &amp; stop within 2m at max operating speed</p><p class="vmc-method zh" lang="zh">已知障碍物场景测试</p><p class="vmc-method en" lang="en">Known obstacle scenario test</p></div>
+      <div class="vmc"><div class="vmc-h"><span class="vmc-item"><span class="zh">急停制动距离</span><span class="en">E-stop brake distance</span></span><span class="vmc-gate">B3</span></div><p class="vmc-target">≤ 1.5m at max speed on snow surface</p><p class="vmc-method zh" lang="zh">标准负载 · 平坦雪面</p><p class="vmc-method en" lang="en">Full load · flat snow</p></div>
+      <div class="vmc"><div class="vmc-h"><span class="vmc-item"><span class="zh">通信中断响应</span><span class="en">Comms loss response</span></span><span class="vmc-gate">B3</span></div><p class="vmc-target">Auto stop within 3s of signal loss</p><p class="vmc-method zh" lang="zh">人为断开信号</p><p class="vmc-method en" lang="en">Manual signal disconnect</p></div>
+      <div class="vmc"><div class="vmc-h"><span class="vmc-item"><span class="zh">持续作业时间</span><span class="en">Continuous runtime</span></span><span class="vmc-gate">B4</span></div><p class="vmc-target">≥ 4hr continuous operation at −15°C (target)</p><p class="vmc-method zh" lang="zh">模拟夜间连续作业</p><p class="vmc-method en" lang="en">Simulated overnight operation</p></div>
+      <div class="vmc"><div class="vmc-h"><span class="vmc-item"><span class="zh">远程干预频率</span><span class="en">Remote intervention rate</span></span><span class="vmc-gate">B5</span></div><p class="vmc-target">≤ 3 interventions/hr in familiar route</p><p class="vmc-method zh" lang="zh">演示条件下标准路线</p><p class="vmc-method en" lang="en">Standard route demo conditions</p></div>
+      <div class="vmc"><div class="vmc-h"><span class="vmc-item"><span class="zh">IP防护初步验证</span><span class="en">IP protection initial check</span></span><span class="vmc-gate">B1</span></div><p class="vmc-target">Internal IP65 equivalent test (pre-certification)</p><p class="vmc-method zh" lang="zh">内部等效测试，非正式认证</p><p class="vmc-method en" lang="en">Internal equivalent test, not formal cert</p></div>
+    </div>
 
     <p style="font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--gunmetal);padding:10px 14px;background:var(--steel)">
       <span class="zh">以上目标值基于同类工业移动机器人参考数据和工程判断设定，属于设计目标。实际测试可能调整验收标准。B4阶段产出的真实测试数据将提供给Pre-A投资人。</span>
@@ -950,6 +1105,15 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
         </tr>
       </tbody>
     </table>
+    <!-- MOBILE COMP CARDS FOR BP -->
+    <div class="comp-mobile-cards-bp">
+      <div class="cmcb"><div class="cmcb-h"><div><div class="cmcb-name">Otto / Yeti</div><div class="cmcb-seg"><span class="zh">机场跑道级</span><span class="en">Airport runway</span></div></div><span class="cmcb-price">&gt;$2M/台</span></div><div class="cmcb-dots"><span class="cmcb-di">−30°C <span style="color:var(--green);font-weight:700">✓</span></span><span class="cmcb-di">Scale <span style="color:var(--danger);font-weight:700">✗</span></span><span class="cmcb-di">RaaS <span style="color:var(--danger);font-weight:700">✗</span></span></div><p class="cmcb-note zh" lang="zh">造价是商业地产承受上限的100×，非可行竞争者</p><p class="cmcb-note en" lang="en">Unit cost 100× commercial real estate ceiling — not a viable competitor in target segment</p></div>
+      <div class="cmcb"><div class="cmcb-h"><div><div class="cmcb-name">Snowbotix</div><div class="cmcb-seg"><span class="zh">商业设施·RaaS</span><span class="en">Commercial RaaS</span></div></div><span class="cmcb-price"><span class="zh">未公开</span><span class="en">Undisclosed</span></span></div><div class="cmcb-dots"><span class="cmcb-di">−30°C <span style="color:var(--amber);font-weight:700">△*</span></span><span class="cmcb-di">Scale <span style="color:var(--amber);font-weight:700">△</span></span><span class="cmcb-di">RaaS <span style="color:var(--green);font-weight:700">✓</span></span></div><p class="cmcb-note zh" lang="zh"><strong style="color:var(--arctic-white)">最直接竞争者</strong>：定位高度重叠。极寒可靠性公开数据不足；北美渗透有限；无中国供应链成本优势</p><p class="cmcb-note en" lang="en"><strong style="color:var(--arctic-white)">Closest competitor</strong>: high positioning overlap. Limited extreme-cold public data; limited NA penetration; no Chinese supply chain cost advantage</p></div>
+      <div class="cmcb"><div class="cmcb-h"><div><div class="cmcb-name">Swap Robotics</div><div class="cmcb-seg"><span class="zh">模块化·人行道</span><span class="en">Modular · sidewalk</span></div></div><span class="cmcb-price">$50–90K</span></div><div class="cmcb-dots"><span class="cmcb-di">−30°C <span style="color:var(--amber);font-weight:700">△</span></span><span class="cmcb-di">Scale <span style="color:var(--amber);font-weight:700">△</span></span><span class="cmcb-di">RaaS <span style="color:var(--amber);font-weight:700">△</span></span></div><p class="cmcb-note zh" lang="zh">Transport Canada试验·主要覆盖人行道，不覆盖大型商业园区中型作业</p><p class="cmcb-note en" lang="en">Transport Canada trial · sidewalk-focused; not designed for large commercial campus operations</p></div>
+      <div class="cmcb"><div class="cmcb-h"><div><div class="cmcb-name">Left Hand / Toro</div><div class="cmcb-seg"><span class="zh">割草改型</span><span class="en">Lawn→snow adapt</span></div></div><span class="cmcb-price">$80–120K</span></div><div class="cmcb-dots"><span class="cmcb-di">−30°C <span style="color:var(--danger);font-weight:700">✗</span></span><span class="cmcb-di">Scale <span style="color:var(--amber);font-weight:700">△</span></span><span class="cmcb-di">RaaS <span style="color:var(--danger);font-weight:700">✗</span></span></div><p class="cmcb-note zh" lang="zh">极寒可靠性存疑·设备销售非RaaS·Toro并购Left Hand Robotics证明行业战略并购先例</p><p class="cmcb-note en" lang="en">Cold reliability unproven · capex model · Toro/Left Hand acquisition validates strategic M&amp;A precedent</p></div>
+      <div class="cmcb"><div class="cmcb-h"><div><div class="cmcb-name">Yarbo</div><div class="cmcb-seg"><span class="zh">消费级住宅</span><span class="en">Consumer residential</span></div></div><span class="cmcb-price">~$5K</span></div><div class="cmcb-dots"><span class="cmcb-di">−30°C <span style="color:var(--danger);font-weight:700">✗</span></span><span class="cmcb-di">Scale <span style="color:var(--danger);font-weight:700">✗</span></span><span class="cmcb-di">RaaS <span style="color:var(--danger);font-weight:700">✗</span></span></div><p class="cmcb-note zh" lang="zh">官方额定−25°C（非−30°C）·住宅吞吐量不足·安全认证级别不满足商业设施要求</p><p class="cmcb-note en" lang="en">Rated −25°C, not −30°C · residential throughput · safety certification level below commercial requirements</p></div>
+      <div class="cmcb ours"><div class="cmcb-h"><div><div class="cmcb-name ours">ARCBOS SnowBot</div><div class="cmcb-seg"><span class="zh">商业/工业园区</span><span class="en">Commercial/Industrial</span></div></div><span class="cmcb-price">$16–28K/yr</span></div><div class="cmcb-dots"><span class="cmcb-di">−30°C <span style="color:var(--green);font-weight:700">✓*</span></span><span class="cmcb-di">Scale <span style="color:var(--green);font-weight:700">✓</span></span><span class="cmcb-di">RaaS <span style="color:var(--green);font-weight:700">✓</span></span></div><p class="cmcb-note zh" lang="zh">天使轮样机验证中·10年北美渠道就绪·RaaS订阅模式·中国供应链成本优势</p><p class="cmcb-note en" lang="en">Angel-stage prototype in validation · 10yr NA channel ready · RaaS model · Chinese supply chain cost advantage</p></div>
+    </div>
     </div>
 
     <p style="font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;color:var(--gunmetal);padding:10px 14px;background:var(--steel)">
@@ -1292,6 +1456,14 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
         </tr>
       </tbody>
     </table>
+    <!-- MOBILE TEAM CARDS -->
+    <div class="team-mobile-cards">
+      <div class="tmc2"><div class="tmc2-name">龚铁靖 / Gong Tiejing</div><div class="tmc2-role">FOUNDER · CEO · PM</div><p class="tmc2-bg zh" lang="zh">北美C&amp;I能源10年+，电气工程师，PepsiCo·Shell·B&amp;V项目交付，CBRE/Colliers客户网络</p><p class="tmc2-bg en" lang="en">10yr+ NA C&amp;I energy, electrical engineer, PepsiCo · Shell · B&amp;V project delivery, CBRE/Colliers client network</p><span class="tmc2-deliver"><span class="zh">战略方向·融资·客户渠道·整体PM</span><span class="en">Strategy · fundraising · channel · overall PM</span></span></div>
+      <div class="tmc2"><div class="tmc2-name">龚继锋 / Gong Jifeng</div><div class="tmc2-role">CO-FOUNDER · SUPPLY CHAIN</div><p class="tmc2-bg zh" lang="zh">机械制造与供应链管理背景，联合出资¥100万，直连中国工业供应链。详细履历尽调提供。</p><p class="tmc2-bg en" lang="en">Mechanical manufacturing and supply chain background, co-invested ¥1M, direct Chinese industrial supply chain access. Detailed CV at due diligence.</p><span class="tmc2-deliver"><span class="zh">采购·供应商管理·BOM成本</span><span class="en">Procurement · vendor mgmt · BOM cost</span></span></div>
+      <div class="tmc2"><div class="tmc2-name">陈超 / Chen Chao</div><div class="tmc2-role">CHIEF STRUCTURAL &amp; INTEGRATION ENGINEER</div><p class="tmc2-bg zh" lang="zh">前飞利浦医疗机器人，机械结构与系统集成，主导整机从设计图到实物的转化</p><p class="tmc2-bg en" lang="en">Former Philips Medical Robotics, mechanical structure and system integration, leads prototype-to-physical conversion</p><span class="tmc2-deliver"><span class="zh">底盘·机构设计·样机组装</span><span class="en">Chassis · mechanism design · prototype assembly</span></span></div>
+      <div class="tmc2"><div class="tmc2-name">杨光华 / Yang Guanghua</div><div class="tmc2-role">INDUSTRY ADVISOR · SUPPLY CHAIN</div><p class="tmc2-bg zh" lang="zh">清华具身智能产业协会副会长，机器人产业链核心供应商资源</p><p class="tmc2-bg en" lang="en">VP, Tsinghua Embodied AI Industry Association; core robotics supply chain relationships</p><span class="tmc2-deliver"><span class="zh">供应链资源·量产路径加速</span><span class="en">Supply chain resources · production path acceleration</span></span></div>
+      <div class="tmc2"><div class="tmc2-name">甄文胜 / Zhen Wensheng</div><div class="tmc2-role">PARTNER · MARKET &amp; COMMERCIALIZATION</div><p class="tmc2-bg zh" lang="zh">前机器人行业头部企业市场负责人（具体公司及任职期间尽调提供），丰富B2B大客户交付经验</p><p class="tmc2-bg en" lang="en">Former market lead at leading robotics company (specific company and tenure at due diligence), extensive B2B enterprise delivery experience</p><span class="tmc2-deliver"><span class="zh">客户验证·试点推进·商业合同</span><span class="en">Customer validation · pilot advancement · commercial contracts</span></span></div>
+    </div>
 
     <div class="info-box danger">
       <span class="info-box-label">⚠ KEY TEAM GAP — ACTIVELY ADDRESSED</span>
@@ -1376,6 +1548,16 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
       </tr>
     </tbody>
   </table>
+  <!-- MOBILE BUDGET CARDS -->
+  <div class="budget-mobile-cards">
+    <div class="bmc"><div class="bmc-h"><span class="bmc-cat zh" lang="zh">底盘与机械</span><span class="bmc-cat en" lang="en">Chassis &amp; Mechanical</span><div class="bmc-nums"><span class="bmc-amt">¥120万</span><span class="bmc-pct">20%</span></div></div><p class="bmc-det zh" lang="zh">底盘主结构·电机减速机·电池BMS·推雪/吹雪机构·CNC钣金·备件缓冲</p><p class="bmc-det en" lang="en">Chassis structure · motors/reducers · battery/BMS · snow mechanism · CNC/sheet metal · spares</p></div>
+    <div class="bmc"><div class="bmc-h"><span class="bmc-cat zh" lang="zh">导航与控制</span><span class="bmc-cat en" lang="en">Nav &amp; Control</span><div class="bmc-nums"><span class="bmc-amt">¥55万</span><span class="bmc-pct">9%</span></div></div><p class="bmc-det zh" lang="zh">工控机·MCU双控板·IMU·GNSS·双目摄像头·超声波阵列·4G/LTE·遥控手持端</p><p class="bmc-det en" lang="en">Industrial PC · dual MCU boards · IMU · GNSS · stereo cameras · ultrasonic · 4G/LTE · remote controller</p></div>
+    <div class="bmc"><div class="bmc-h"><span class="bmc-cat zh" lang="zh">软件与算法</span><span class="bmc-cat en" lang="en">Software &amp; Algorithms</span><div class="bmc-nums"><span class="bmc-amt">¥35万</span><span class="bmc-pct">6%</span></div></div><p class="bmc-det zh" lang="zh">ROS2集成·Teach&amp;Repeat·OTA·远程接管·避障·监控面板·算法顾问费；开源框架，无授权费</p><p class="bmc-det en" lang="en">ROS2 integration · Teach&amp;Repeat · OTA · teleoperation · obstacle avoidance · monitoring · advisor fees; open-source stack</p></div>
+    <div class="bmc"><div class="bmc-h"><span class="bmc-cat zh" lang="zh">测试与运营</span><span class="bmc-cat en" lang="en">Testing &amp; Ops</span><div class="bmc-nums"><span class="bmc-amt">¥85万</span><span class="bmc-pct">14%</span></div></div><p class="bmc-det zh" lang="zh">苏州组装测试场地·极寒/雪地/夜间测试场租·设备运输·返修材料·备件·安全官·记录设备</p><p class="bmc-det en" lang="en">Suzhou assembly &amp; test · cold/snow/night test site rental · transport · rework materials · spares · safety officer</p></div>
+    <div class="bmc"><div class="bmc-h"><span class="bmc-cat zh" lang="zh">工程人员</span><span class="bmc-cat en" lang="en">Engineering Team</span><div class="bmc-nums"><span class="bmc-amt">¥165万</span><span class="bmc-pct">28%</span></div></div><p class="bmc-det zh" lang="zh">机械工程师×1–2·嵌入式·软件/ROS2·测试工程师·算法顾问（外部）·创始人PM；6–8个月工资</p><p class="bmc-det en" lang="en">Mech engineer ×1–2 · embedded · SW/ROS2 · test engineer · external advisors · founder PM; 6–8 months salary</p></div>
+    <div class="bmc"><div class="bmc-h"><span class="bmc-cat zh" lang="zh">场地·合规·风险储备</span><span class="bmc-cat en" lang="en">Office·Compliance·Reserve</span><div class="bmc-nums"><span class="bmc-amt">¥130万</span><span class="bmc-pct">22%</span></div></div><p class="bmc-det zh" lang="zh">上海办公·苏州研发装配·工商法务·安全合规文件·<strong style="color:var(--arctic-white)">风险储备¥65万（11%）</strong></p><p class="bmc-det en" lang="en">Shanghai office · Suzhou R&D/assembly · legal · safety compliance · <strong style="color:var(--arctic-white)">risk reserve ¥650K (11%)</strong></p></div>
+    <div class="bmc-total"><span class="bmc-tlbl zh" lang="zh">合计 / 基准预算</span><span class="bmc-tlbl en" lang="en">Total / Baseline Budget</span><span class="bmc-tamt">¥590万</span></div>
+  </div>
 
   <div class="info-box success">
     <span class="info-box-label">FUNDING MATH — VERIFIED SELF-CONSISTENT</span>
