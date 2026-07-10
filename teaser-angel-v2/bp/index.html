@@ -630,6 +630,75 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
   section[aria-labelledby]{padding:28px 16px}
 }
 
+
+/* ── BP PIPELINE FUNNEL → MOBILE CARDS ── */
+@media(max-width:640px){
+  table[aria-label="Customer pipeline funnel"] { display:none !important; }
+  .bp-pipeline-cards { display:flex !important; }
+}
+.bp-pipeline-cards {
+  display:none;flex-direction:column;gap:0;
+  border:1px solid var(--steel);margin-bottom:14px;
+}
+.bpc { padding:13px 15px;border-bottom:1px solid var(--steel);
+  background:var(--black) }
+.bpc:last-child { border-bottom:none }
+.bpc-h { display:flex;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:6px }
+.bpc-stage { font-family:var(--f-mono);font-size:10px;letter-spacing:.1em;
+  color:var(--amber);flex-shrink:0 }
+.bpc-count { font-family:var(--f-en);font-weight:900;font-size:18px;
+  color:var(--amber);flex-shrink:0 }
+.bpc-time { font-family:var(--f-mono);font-size:9.5px;color:var(--ice);
+  letter-spacing:.06em;margin-left:auto }
+.bpc-def { font-size:12.5px;color:var(--arctic-steel);line-height:1.6 }
+.bpc-def.zh { font-family:var(--f-zh);font-size:12px }
+
+/* ── 5-YEAR GROWTH TABLE → MOBILE TIMELINE CARDS ── */
+@media(max-width:640px){
+  table[aria-label="5-year site growth model"] { display:none !important; }
+  .bp-growth-cards { display:flex !important; }
+}
+.bp-growth-cards {
+  display:none;flex-direction:column;gap:1px;
+  background:var(--steel);border:1px solid var(--steel);
+}
+.bgc { background:var(--black);padding:12px 15px;
+  display:grid;grid-template-columns:36px 1fr 1fr;
+  gap:4px 12px;align-items:center }
+.bgc-y5 { background:var(--amber-lt) }
+.bgc-yr { font-family:var(--f-mono);font-weight:700;font-size:12px;
+  color:var(--amber);letter-spacing:.08em;grid-row:1/3;
+  align-self:center }
+.bgc-sites { font-family:var(--f-en);font-weight:900;font-size:18px;
+  color:var(--arctic-white) }
+.bgc-y5 .bgc-sites { color:var(--amber);font-size:20px }
+.bgc-acv { font-family:var(--f-mono);font-weight:700;font-size:12.5px;
+  color:var(--amber) }
+.bgc-note { font-size:11.5px;color:var(--arctic-steel);
+  grid-column:2/4;line-height:1.5 }
+.bgc-note.zh { font-family:var(--f-zh);font-size:11px }
+
+/* ── 5-YEAR FINANCIAL MODEL → MOBILE YEAR CARDS ── */
+@media(max-width:640px){
+  table[aria-label="5-year financial model"] { display:none !important; }
+  .bp-financial-cards { display:flex !important; }
+}
+.bp-financial-cards {
+  display:none;flex-direction:column;gap:1px;
+  background:var(--steel);border:1px solid var(--steel);
+}
+.bfc { background:var(--black);padding:13px 15px }
+.bfc-yr { font-family:var(--f-mono);font-weight:800;font-size:16px;
+  color:var(--amber);margin-bottom:9px;letter-spacing:.08em }
+.bfc-row { display:flex;justify-content:space-between;align-items:flex-start;
+  gap:10px;padding:5px 0;border-bottom:1px solid rgba(35,40,45,.8) }
+.bfc-row:last-child { border-bottom:none }
+.bfc-label { font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;
+  color:var(--gunmetal);flex-shrink:0 }
+.bfc-label.zh { font-family:var(--f-zh);font-size:11px;letter-spacing:.02em }
+.bfc-val { font-size:12.5px;font-weight:600;color:var(--amber);
+  text-align:right;font-family:var(--f-mono) }
+
 </style>
 </head>
 <body>
@@ -681,7 +750,19 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
 
     <!-- TOC -->
     <nav class="toc" aria-label="Table of contents">
-      <div class="toc-title">CONTENTS · 目录</div>
+      <div style="background:rgba(255,180,0,.07);border:1px solid var(--amber-dim);padding:14px 16px;margin-bottom:14px">
+  <p style="font-family:var(--f-mono);font-size:9.5px;letter-spacing:.14em;color:var(--amber);margin-bottom:8px">INVESTOR FAST-TRACK · 投资人快速通道</p>
+  <div style="display:flex;flex-wrap:wrap;gap:7px">
+    <a href="#sec-cap" style="font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;background:var(--steel);color:var(--arctic-steel);padding:5px 10px;text-decoration:none;border:1px solid var(--gunmetal)"><span class="zh">→ 股权结构</span><span class="en">→ Cap Table</span></a>
+    <a href="#sec-risk" style="font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;background:var(--steel);color:var(--arctic-steel);padding:5px 10px;text-decoration:none;border:1px solid var(--gunmetal)"><span class="zh">→ 风险登记</span><span class="en">→ Risks</span></a>
+    <a href="#sec-safety" style="font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;background:var(--steel);color:var(--arctic-steel);padding:5px 10px;text-decoration:none;border:1px solid var(--gunmetal)"><span class="zh">→ 安全合规</span><span class="en">→ Safety</span></a>
+    <a href="#sec-model" style="font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;background:var(--steel);color:var(--arctic-steel);padding:5px 10px;text-decoration:none;border:1px solid var(--gunmetal)"><span class="zh">→ 单位经济</span><span class="en">→ Unit Econ</span></a>
+    <a href="#sec-validation" style="font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;background:var(--steel);color:var(--arctic-steel);padding:5px 10px;text-decoration:none;border:1px solid var(--gunmetal)"><span class="zh">→ 验收标准</span><span class="en">→ Validation</span></a>
+    <a href="#sec-budget" style="font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;background:var(--steel);color:var(--arctic-steel);padding:5px 10px;text-decoration:none;border:1px solid var(--gunmetal)"><span class="zh">→ 预算融资</span><span class="en">→ Budget</span></a>
+  </div>
+  <p style="font-size:11.5px;color:var(--gunmetal);margin-top:8px;font-family:var(--f-mono);letter-spacing:.06em"><span class="zh">已读过Teaser？直接跳至以上章节。完整目录见下。</span><span class="en">Already read the Teaser? Jump directly to sections above. Full contents below.</span></p>
+</div>
+<div class="toc-title">CONTENTS · 目录</div>
       <ol class="toc-list">
         <li><a href="#sec-exec"><span class="toc-no">01</span><span class="zh">执行摘要</span><span class="en">Executive Summary</span></a></li>
         <li><a href="#sec-problem"><span class="toc-no">02</span><span class="zh">问题与市场</span><span class="en">Problem & Market</span></a></li>
@@ -1212,6 +1293,14 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
           </tr>
         </tbody>
       </table>
+        <!-- MOBILE 5-YEAR GROWTH CARDS -->
+        <div class="bp-growth-cards">
+          <div class="bgc bgc-y1"><div class="bgc-yr">Y1</div><div class="bgc-sites">5–10</div><div class="bgc-acv">$80–280K</div><p class="bgc-note zh" lang="zh">Beta B5完成 · 首批LOI转签</p><p class="bgc-note en" lang="en">Beta B5 done · first LOI-to-contract</p></div>
+          <div class="bgc bgc-y2"><div class="bgc-yr">Y2</div><div class="bgc-sites">25–40</div><div class="bgc-acv">$400K–1.1M</div><p class="bgc-note zh" lang="zh">小批量产 · 渠道复制 · 第一个冬季运行数据</p><p class="bgc-note en" lang="en">Small-batch production · channel scaling · first winter ops data</p></div>
+          <div class="bgc bgc-y3"><div class="bgc-yr">Y3</div><div class="bgc-sites">80–120</div><div class="bgc-acv">$1.3–3.4M</div><p class="bgc-note zh" lang="zh">Pre-A资金投入 · 稳定迭代 · 产品认证启动</p><p class="bgc-note en" lang="en">Pre-A capital deployed · stable iteration · product cert started</p></div>
+          <div class="bgc bgc-y4"><div class="bgc-yr">Y4</div><div class="bgc-sites">180–260</div><div class="bgc-acv">$2.9–7.3M</div><p class="bgc-note zh" lang="zh">规模化部署 · 运营体系成熟 · 欧洲预研</p><p class="bgc-note en" lang="en">Scale deployment · ops system mature · Europe prep</p></div>
+          <div class="bgc bgc-y5"><div class="bgc-yr">Y5</div><div class="bgc-sites">300–500</div><div class="bgc-acv">$4.8–14M</div><p class="bgc-note zh" lang="zh">受交付产能约束 · 北美 + 欧洲双市场</p><p class="bgc-note en" lang="en">Delivery-capacity constrained · NA + Europe dual market</p></div>
+        </div>
 
       <div style="margin-top:16px;background:var(--steel);padding:16px">
         <p style="font-family:var(--f-mono);font-size:9.5px;letter-spacing:.1em;color:var(--gunmetal);margin-bottom:10px">RAAS CONTRACT STRUCTURE</p>
@@ -1266,6 +1355,14 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
         <tr class="highlight"><td class="val">05 · SIGNED</td><td class="note zh" lang="zh">正式服务合同（首批付费或半付费）；第一个运营冬季</td><td class="note en" lang="en">Signed service contract (first paid or semi-paid); first operational winter</td><td class="val" style="color:var(--green)">Year 1 Target</td><td class="note zh" lang="zh">首个冬季（Pre-A前后）</td><td class="note en" lang="en">First winter (around Pre-A)</td></tr>
       </tbody>
     </table>
+    <!-- MOBILE PIPELINE CARDS -->
+    <div class="bp-pipeline-cards">
+      <div class="bpc"><div class="bpc-h"><span class="bpc-stage">01 · REACH</span><span class="bpc-count">50+</span><span class="bpc-time"><span class="zh">现在</span><span class="en">Now</span></span></div><p class="bpc-def zh" lang="zh">创始人可直接触达的大型商业设施决策人（人脉关系，有会议机会）</p><p class="bpc-def en" lang="en">Facility decision-makers directly reachable by founder (relationship contact, meeting opportunity)</p></div>
+      <div class="bpc"><div class="bpc-h"><span class="bpc-stage">02 · DISCOVERY</span><span class="bpc-count" style="color:var(--arctic-steel);font-size:14px"><span class="zh">进行中</span><span class="en">Ongoing</span></span><span class="bpc-time"><span class="zh">Alpha A4前</span><span class="en">Before Alpha A4</span></span></div><p class="bpc-def zh" lang="zh">完成需求访谈（雪务预算规模、场地类型、痛点），有会议记录</p><p class="bpc-def en" lang="en">Needs interview completed (snow budget, site type, pain points), meeting notes available</p></div>
+      <div class="bpc"><div class="bpc-h"><span class="bpc-stage">03 · QUALIFIED</span><span class="bpc-count" style="color:var(--arctic-steel);font-size:14px">TBD</span><span class="bpc-time"><span class="zh">Beta B4前</span><span class="en">Before Beta B4</span></span></div><p class="bpc-def zh" lang="zh">书面/邮件确认有实质试点兴趣，有场地且符合SnowBot适用条件</p><p class="bpc-def en" lang="en">Written/email confirmed substantive pilot interest; has suitable site for SnowBot</p></div>
+      <div class="bpc"><div class="bpc-h"><span class="bpc-stage">04 · LOI</span><span class="bpc-count" style="color:var(--arctic-steel);font-size:14px">TBD</span><span class="bpc-time"><span class="zh">B5天使轮前</span><span class="en">B5 ~ angel close</span></span></div><p class="bpc-def zh" lang="zh">正式意向书：含具体站点、测试时间窗口、验收条件、费用承担方案</p><p class="bpc-def en" lang="en">Formal LOI: specific site, test window, acceptance criteria, cost arrangement</p></div>
+      <div class="bpc" style="background:var(--amber-lt);border-color:var(--amber-dim)"><div class="bpc-h"><span class="bpc-stage" style="color:var(--amber)">05 · SIGNED</span><span class="bpc-count" style="color:var(--green);font-size:13px">Year 1 Target</span><span class="bpc-time"><span class="zh">首个冬季</span><span class="en">First winter</span></span></div><p class="bpc-def zh" lang="zh">正式服务合同（首批付费或半付费）；第一个运营冬季</p><p class="bpc-def en" lang="en">Signed service contract (first paid or semi-paid); first operational winter</p></div>
+    </div>
 
     <div class="three-col">
       <div class="card amber-top">
@@ -1626,6 +1723,14 @@ body{background:var(--black);color:var(--arctic-steel);font-family:var(--f-en);
           <td class="note zh" lang="zh">交付产能约束</td><td class="note en" lang="en">Delivery capacity limit</td></tr>
       </tbody>
     </table>
+      <!-- MOBILE 5-YEAR FINANCIAL CARDS -->
+      <div class="bp-financial-cards">
+        <div class="bfc"><div class="bfc-yr">Y1</div><div class="bfc-row"><span class="bfc-label zh" lang="zh">付费站点</span><span class="bfc-label en" lang="en">Paid sites</span><span class="bfc-val" style="color:var(--arctic-white)">5–10</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">年度ACV</span><span class="bfc-label en" lang="en">Annual ACV</span><span class="bfc-val">$80–280K</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">毛利率</span><span class="bfc-label en" lang="en">Gross margin</span><span class="bfc-val">~0–10%</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">融资</span><span class="bfc-label en" lang="en">Funding</span><span class="bfc-val"><span class="zh">天使轮¥500万</span><span class="en">Angel ¥5M</span></span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">关键前提</span><span class="bfc-label en" lang="en">Prereq</span><span class="bfc-val"><span class="zh">B5完成·首批LOI</span><span class="en">B5 done · first LOI</span></span></div></div>
+        <div class="bfc"><div class="bfc-yr">Y2</div><div class="bfc-row"><span class="bfc-label zh" lang="zh">付费站点</span><span class="bfc-label en" lang="en">Paid sites</span><span class="bfc-val" style="color:var(--arctic-white)">25–40</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">年度ACV</span><span class="bfc-label en" lang="en">Annual ACV</span><span class="bfc-val">$400K–1.1M</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">毛利率</span><span class="bfc-label en" lang="en">Gross margin</span><span class="bfc-val">~15–25%</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">融资</span><span class="bfc-label en" lang="en">Funding</span><span class="bfc-val"><span class="zh">Pre-A ¥1,500–3,000万</span><span class="en">Pre-A CNY 15–30M</span></span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">关键前提</span><span class="bfc-label en" lang="en">Prereq</span><span class="bfc-val"><span class="zh">小批量产·渠道</span><span class="en">Small-batch · channel</span></span></div></div>
+        <div class="bfc"><div class="bfc-yr">Y3</div><div class="bfc-row"><span class="bfc-label zh" lang="zh">付费站点</span><span class="bfc-label en" lang="en">Paid sites</span><span class="bfc-val" style="color:var(--arctic-white)">80–120</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">年度ACV</span><span class="bfc-label en" lang="en">Annual ACV</span><span class="bfc-val">$1.3–3.4M</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">毛利率</span><span class="bfc-label en" lang="en">Gross margin</span><span class="bfc-val">~25–35%</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">融资</span><span class="bfc-label en" lang="en">Funding</span><span class="bfc-val"><span class="zh">A轮（待定）</span><span class="en">Round A (TBD)</span></span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">关键前提</span><span class="bfc-label en" lang="en">Prereq</span><span class="bfc-val"><span class="zh">Pre-A资金·认证</span><span class="en">Pre-A capital · cert</span></span></div></div>
+        <div class="bfc"><div class="bfc-yr">Y4</div><div class="bfc-row"><span class="bfc-label zh" lang="zh">付费站点</span><span class="bfc-label en" lang="en">Paid sites</span><span class="bfc-val" style="color:var(--arctic-white)">180–260</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">年度ACV</span><span class="bfc-label en" lang="en">Annual ACV</span><span class="bfc-val">$2.9–7.3M</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">毛利率</span><span class="bfc-label en" lang="en">Gross margin</span><span class="bfc-val">~30–40%</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">融资</span><span class="bfc-label en" lang="en">Funding</span><span class="bfc-val"><span class="zh">A轮/规模化</span><span class="en">A / scale</span></span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">关键前提</span><span class="bfc-label en" lang="en">Prereq</span><span class="bfc-val"><span class="zh">规模化·欧洲</span><span class="en">Scale · Europe</span></span></div></div>
+        <div class="bfc" style="background:var(--amber-lt);border-color:var(--amber-dim)"><div class="bfc-yr" style="color:var(--amber)">Y5</div><div class="bfc-row"><span class="bfc-label zh" lang="zh">付费站点</span><span class="bfc-label en" lang="en">Paid sites</span><span class="bfc-val" style="color:var(--amber);font-weight:900;font-size:16px">300–500</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">年度ACV</span><span class="bfc-label en" lang="en">Annual ACV</span><span class="bfc-val" style="color:var(--amber)">$4.8–14M</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">毛利率</span><span class="bfc-label en" lang="en">Gross margin</span><span class="bfc-val">~35–45%</span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">融资</span><span class="bfc-label en" lang="en">Funding</span><span class="bfc-val"><span class="zh">盈亏平衡目标</span><span class="en">Break-even target</span></span></div><div class="bfc-row"><span class="bfc-label zh" lang="zh">关键前提</span><span class="bfc-label en" lang="en">Prereq</span><span class="bfc-val"><span class="zh">交付产能约束</span><span class="en">Delivery capacity limit</span></span></div></div>
+      </div>
     </div>
   </div>
 </section>
