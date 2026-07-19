@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>附件一｜SnowBot Alpha/Beta 导航与VCU控制技术基线包 v1.6 — ARCBOS-SPEC-2607-0003</title>
+    <link rel="icon" href="../../assets/favicon.ico">
+    <meta name="description" content="适用项目：SnowBot Alpha补齐 + Beta闭环">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="附件一｜SnowBot Alpha/Beta 导航与VCU控制技术基线包 v1.6">
+    <meta property="og:description" content="适用项目：SnowBot Alpha补齐 + Beta闭环">
+    <meta property="og:image" content="https://ref.arcbos.com/assets/arcbos-share-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="附件一｜SnowBot Alpha/Beta 导航与VCU控制技术基线包 v1.6">
+    <meta name="twitter:description" content="适用项目：SnowBot Alpha补齐 + Beta闭环">
+    <meta name="twitter:image" content="https://ref.arcbos.com/assets/arcbos-share-preview.png">
+    <link rel="stylesheet" href="../../assets/css/screen.css">
+    <link rel="stylesheet" href="../../assets/css/print.css" media="print">
+  </head>
+  <body>
+    <header class="site-topbar no-print"><span class="topbar-brand">ARCBOS</span></header>
+    <main class="document">
+      <header class="document-masthead">
+        <div class="masthead-row">
+          <div class="masthead-brand">ARCBOS</div>
+          <p class="masthead-slogan">ENGINEERED FOR EXTREME CONDITIONS</p>
+        </div>
+      </header>
+      <section class="document-title-block">
+        <p class="document-kicker">Specification</p>
+        <h1>附件一｜SnowBot Alpha/Beta 导航与VCU控制技术基线包 v1.6</h1>
+      </section>
+      <div class="document-meta-grid" aria-label="Document metadata"><div class="meta-item"><span class="meta-label">Document ID</span><span class="meta-value meta-value--id">ARCBOS-SPEC-2607-0003</span></div><div class="meta-item"><span class="meta-label">Type</span><span class="meta-value">Specification</span></div><div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">v1.6</span></div><div class="meta-item"><span class="meta-label">Status</span><span class="tag status-final">Final</span></div><div class="meta-item"><span class="meta-label">Client</span><span class="meta-value">苏州亿达特精工科技有限公司</span></div><div class="meta-item"><span class="meta-label">Project</span><span class="meta-value">SnowBot Alpha &amp; Beta</span></div><div class="meta-item"><span class="meta-label">Updated</span><span class="meta-value">2026-07-19</span></div><div class="meta-item"><span class="meta-label">Access</span><span class="tag is-client-link">Client Link</span></div></div>
+      <div class="document-actions no-print">
+        <button type="button" class="action-btn" onclick="window.print()" title="Print this document using your browser" aria-label="Print this document">Print</button><a href="../../pdf/ARCBOS-SPEC-2607-0003.pdf" class="action-btn action-btn--download-pdf" title="Download pre-generated PDF" aria-label="Download PDF" download>Download PDF</a>
+      </div>
+      <nav class="document-toc no-print" aria-label="Contents">
+        <details class="toc-details" open>
+          <summary class="toc-title">Contents<span class="toc-count">11 sections</span></summary>
+          <ol class="toc-list"><li class="toc-d0"><a href="#sec-1-snowbot-alpha-beta-vcu-v1-6">SnowBot Alpha/Beta 导航与VCU控制技术基线包 v1.6</a></li><li class="toc-d0"><a href="#sec-2-1">1. 项目目标与阶段边界</a></li><li class="toc-d0"><a href="#sec-3-2">2. 工作范围</a></li><li class="toc-d0"><a href="#sec-4-3">3. 不包含范围</a></li><li class="toc-d0"><a href="#sec-5-4-vcu">4. VCU控制技术要求</a></li><li class="toc-d0"><a href="#sec-9-5">5. 导航与障碍处理技术要求</a></li><li class="toc-d0"><a href="#sec-14-6-github">6. 接口、代码与GitHub交付要求</a></li><li class="toc-d0"><a href="#sec-20-7">7. 技术节点与验收矩阵</a></li><li class="toc-d0"><a href="#sec-21-8-release-package">8. 测试、验收与Release Package</a></li><li class="toc-d0"><a href="#sec-22-9">9. 第三方组件与披露要求</a></li><li class="toc-d0"><a href="#sec-23-10">10. 扩展与变更管理</a></li></ol>
+        </details>
+      </nav>
+      <section class="document-content">
+        <h3 id="sec-1-snowbot-alpha-beta-vcu-v1-6">SnowBot Alpha/Beta 导航与VCU控制技术基线包 v1.6</h3>
+<p>适用项目：SnowBot Alpha补齐 + Beta闭环  </p>
+<p>文件性质：合同附件 / 技术范围 / 验收基线 / 工程交付基线  </p>
+<hr>
+<h3 id="sec-2-1">1. 项目目标与阶段边界</h3>
+<p>本项目目标为完成 SnowBot Alpha补齐 + Beta闭环。乙方应完成导航、自主系统、VCU控制开发、电控联调、底盘执行接口、IO安全链路、CAN通信、故障码、除雪机构控制、测试与工程交付。</p>
+<p>Alpha 阶段目标：机器可由人工安全控制，具备前进、后退、转向、停车、急停、人工接管、状态反馈和基础日志能力。</p>
+<p>Beta 阶段目标：机器可在固定测试场地、低速、安全条件下，完成 A点至B点基础导航演示，具备障碍物检测、停车、有限绕行或安全停车能力。</p>
+<p>本项目成果应达到：源码、配置、接口、协议、接线、参数、测试数据、测试报告和工程文档可交付、可部署、可复现、可接管、可继续开发。</p>
+<p>本文件不单独定义付款比例。付款节点、付款金额、付款条件以主合同及附件二为准。</p>
+<hr>
+<h3 id="sec-3-2">2. 工作范围</h3>
+<p>本项目工作范围包括以下四类：</p>
+<pre><code>工作范围
+├─ 导航与自主系统
+│  ├─ 传感器接入
+│  ├─ 定位与位姿处理
+│  ├─ A点/B点或路线目标配置
+│  ├─ 固定场地低速路径跟踪
+│  ├─ 障碍物检测、停车、有限绕行或安全停车
+│  └─ 日志与复盘数据
+├─ VCU控制系统
+│  ├─ 左/右履带电机控制
+│  ├─ 除雪、抬升、旋转、俯仰电机控制
+│  ├─ 遥控控制接口
+│  ├─ 上位机控制接口
+│  ├─ CAN通信、状态反馈、故障反馈
+│  └─ 急停、软件停车、人工接管、安全停车联动
+├─ 硬件适配建议
+│  ├─ VCU规格型号、接口和接入建议
+│  ├─ 激光雷达、超声波、RTK/GPS、IMU等导航/感知硬件规格建议
+│  └─ 安装位置、供电、通信、标定和联调要求
+└─ 工程交付
+   ├─ GitHub交付
+   ├─ 源码、配置、协议、接口、参数、接线图
+   ├─ 测试脚本、测试数据、测试报告
+   └─ 问题清单、版本说明、交接说明</code></pre>
+<p>乙方对硬件的责任限于规格型号建议、接口要求、安装建议、软件接入和联调支持。硬件取得、供应链、费用、质保、机械安装、电气供电和线束实施不属于乙方在本合同项下的交付责任，除非双方另有书面约定。</p>
+<hr>
+<h3 id="sec-4-3">3. 不包含范围</h3>
+<p>除非双方另行签署书面补充协议或专项 SOW，本阶段不包含以下内容：</p>
+<ol><li>产品化与商业运营能力：包括无人值守、多机协同、云平台运营、自动回充、量产可靠性验证、商业运营条件下的最终整机验证。</li><li>复杂自主导航能力：包括复杂全区域路径规划、任意环境自主避障、动态障碍物处理、公共道路运行、雪地/低温/夜间最终验证。</li><li>整机硬件与认证责任：包括整机结构设计、工业设计、自研VCU硬件、功率电路、PCB、BMS硬件、EMC/EMI、功能安全认证和法规认证。</li></ol>
+<p>乙方不承担上述范围的最终责任，但不得以此免除其在本合同范围内对导航、VCU控制、接口联调、安全停车、人工接管、源码/配置交付、测试报告和缺陷整改的责任。</p>
+<hr>
+<h3 id="sec-5-4-vcu">4. VCU控制技术要求</h3>
+<h4 id="sec-6-4-1-vcu">4.1 VCU硬件边界</h4>
+<p>本项目所称 VCU，是指用于底盘及作业电机控制的车辆控制单元。VCU硬件为第三方通用控制器硬件，不属于乙方从零自研硬件。</p>
+<p>乙方应提供VCU规格型号、接口要求、通信能力、控制能力、配置方式和接入建议，并确保其推荐方案能够满足 Alpha/Beta 阶段履带电机、除雪电机、抬升电机、旋转电机、俯仰电机的控制、通信、状态反馈、故障反馈和联调测试需要。</p>
+<p>VCU通用控制器可能自带两个履带电机的差速控制代码。该部分属于VCU通用控制器随附能力或内置功能，不属于乙方为本项目从零开发的定制成果。如该代码可随VCU交付，乙方应配合提交给甲方；如受第三方授权、工具链、源码可见性或控制器厂商限制，乙方应提前披露限制条件。</p>
+<h4 id="sec-7-4-2-vcu">4.2 VCU开发范围</h4>
+<p>乙方负责基于本项目采用的通用VCU，为本项目完成项目定制VCU控制开发、配置、联调、测试和交付。</p>
+<p>乙方VCU开发范围包括：</p>
+<pre><code>VCU开发范围
+├─ 履带电机控制
+│  ├─ 左履带电机
+│  └─ 右履带电机
+├─ 作业电机控制
+│  ├─ 除雪电机
+│  ├─ 抬升电机
+│  ├─ 旋转电机
+│  └─ 俯仰电机
+├─ 控制接口
+│  ├─ 遥控控制接口
+│  ├─ 上位机控制接口
+│  └─ CAN通信接口
+├─ 状态与故障
+│  ├─ 运行状态反馈
+│  ├─ 故障反馈
+│  └─ 运行日志
+└─ 安全联动
+   ├─ 急停接口
+   ├─ 软件停车
+   ├─ 人工接管
+   └─ 安全停车联动</code></pre>
+<p>乙方为本项目新增开发、配置、调试和形成的VCU控制代码、参数、配置、接口文件、协议文件、测试脚本、测试数据、联调报告和技术文档，均属于本项目定制开发成果，应按合同要求完整交付。</p>
+<h4 id="sec-8-4-3-vcu">4.3 VCU接口与交付文件</h4>
+<p>VCU与电控系统应形成 CAN / IO / 故障码接口文件。最低要求包括：CAN ID、报文方向、byte order、signal 名称、bit 起始位和长度、scaling、offset、unit、min/max、enum、timeout、heartbeat周期、默认安全状态、指令优先级、急停状态、人工接管状态、软件停车状态、故障码编号、含义、等级、触发条件和恢复条件。</p>
+<p>如使用 DBC 文件，应同时提交可读说明文件。DBC、协议表、代码、配置、测试日志之间应保持一致。</p>
+<p>VCU与电控系统应至少交付：项目定制VCU源码、VCU配置文件、VCU参数备份、可随VCU交付的内置履带差速代码、CAN协议或CAN ID表、IO表、接线图、VCU型号/BOM、底盘控制接口、作业电机控制接口、人工接管接口、急停/软件停车接口、故障码表、安全逻辑说明、CAN日志、运行日志、Alpha测试报告、Beta测试报告、系统联调测试报告和问题清单。</p>
+<hr>
+<h3 id="sec-9-5">5. 导航与障碍处理技术要求</h3>
+<h4 id="sec-10-5-1">5.1 导航基础能力</h4>
+<p>导航与自主系统应至少包含以下能力：Ubuntu / Linux / ROS2 运行环境搭建，工控机软件部署，RTK/GPS、IMU、Odometry、Lidar、超声波或约定传感器数据接入，坐标系与 TF 定义，定位与位姿解析，路线或目标点配置，固定场地低速路径跟踪，GPS/RTK A点至B点基础导航演示，任务启动、暂停、停止、完成状态管理，基础障碍检测，障碍物触发停车、有限绕行或安全停车，异常降级或停车，人工接管接口，急停/软件停车联动接口，运行日志、测试数据和问题复盘记录。</p>
+<h4 id="sec-11-5-2-a-b">5.2 A点至B点导航</h4>
+<p>乙方应在双方确认的固定测试场地、低速、安全条件下，实现从指定A点至指定B点的基础导航演示。</p>
+<p>A点和B点可采用GPS/RTK坐标或双方确认的等效目标点定义方式。乙方应说明目标点格式、坐标来源、坐标精度、有效条件和测试限制。</p>
+<p>障碍物处理要求如下：</p>
+<pre><code>A点至B点导航与障碍处理
+├─ 基础要求
+│  ├─ 可设置A点和B点
+│  ├─ 在约定测试条件下从A点自主行走至B点
+│  ├─ 在约定传感器条件下检测障碍物
+│  ├─ 检测到障碍物后停车
+│  ├─ 在静态障碍物、低速、风险可控条件下尝试有限绕行
+│  └─ 绕行条件满足时继续抵达B点
+└─ 安全规则
+   ├─ 障碍物无法可靠识别时，减速或停车
+   ├─ 绕行条件不明确时，安全停车
+   ├─ 定位不可靠时，降级或停车
+   ├─ 传感器/CAN/底盘异常时，降级或停车
+   └─ 人工接管优先</code></pre>
+<p>该能力为 Alpha/Beta 工程样机阶段的固定场地演示能力，不构成任意环境自主导航、动态避障、无人值守运行、公共道路运行、雪地/低温/夜间最终验证或商业运营能力承诺。</p>
+<h4 id="sec-12-5-3">5.3 导航/感知硬件适配边界</h4>
+<p>导航系统所需的激光雷达、超声波传感器、RTK/GPS模块、天线、IMU或其他导航/感知相关硬件，由乙方根据本项目导航算法、接口、安装位置、测试场景和联调需要提出规格型号、接口要求、安装建议和软件接入要求。</p>
+<p>乙方应保证其推荐的导航/感知硬件规格能够满足 Alpha/Beta 阶段的软件接入、数据采集、定位、障碍检测、A点到B点导航演示和联调测试需要，并提供相应的数据接口说明、供电要求、通信接口、安装位置建议、坐标系/标定要求和联调说明。</p>
+<p>硬件取得、供应链、费用、质保、机械安装、电气供电和线束实施不属于乙方在本合同项下的交付责任，除非双方另有书面约定。</p>
+<h4 id="sec-13-5-4">5.4 安全仲裁逻辑</h4>
+<p>导航系统应设置安全仲裁逻辑或等效安全决策模块，用于统一处理急停、人工接管、通信异常、定位异常、传感器异常、障碍检测、CAN异常和底盘异常。</p>
+<p>安全优先级如下：</p>
+<pre><code>安全优先级
+├─ 1. 急停
+├─ 2. 人工接管
+├─ 3. 软件停车 / 安全停车
+├─ 4. 通信、定位、传感器、CAN异常
+├─ 5. 障碍物检测
+├─ 6. 条件满足时的有限绕行
+└─ 7. 正常任务执行</code></pre>
+<p>有限绕行仅在测试条件满足且风险可控时执行。安全事件必须记录日志，便于复盘。</p>
+<hr>
+<h3 id="sec-14-6-github">6. 接口、代码与GitHub交付要求</h3>
+<h4 id="sec-15-6-1">6.1 接口数据契约</h4>
+<p>乙方应形成接口数据契约。接口数据契约至少应包含：接口名称、数据方向、数据类型或等效结构、字段名称、字段含义、单位、坐标系、取值范围、发布频率或触发条件、timestamp规则、数据有效性判断、异常值处理、丢包处理、超时处理、与VCU CAN控制字段的映射关系，以及与日志、测试数据、验收报告的对应关系。</p>
+<p>接口文档必须与实际代码、配置、日志和测试数据一致。仅提供概念性说明不视为完整接口交付。</p>
+<h4 id="sec-16-6-2-ros2">6.2 ROS2接口基线</h4>
+<p>以下为最低接口基线，最终名称、类型和字段以 A1 阶段冻结版本为准：</p>
+<div class="table-wrap"><table><tbody><tr><td>类别</td><td>建议接口</td><td>用途</td></tr><tr><td>定位位姿</td><td>/snowbot/localization/pose</td><td>定位与位姿输出</td></tr><tr><td>定位健康状态</td><td>/snowbot/localization/health</td><td>定位健康状态</td></tr><tr><td>RTK/GPS</td><td>/snowbot/rtk/fix</td><td>RTK/GPS定位输入</td></tr><tr><td>IMU</td><td>/snowbot/imu/data</td><td>姿态与惯性数据输入</td></tr><tr><td>Odometry</td><td>/snowbot/odom</td><td>里程计输入</td></tr><tr><td>Lidar</td><td>/snowbot/lidar/points</td><td>点云或障碍检测输入</td></tr><tr><td>路线/目标</td><td>/snowbot/route/target</td><td>路线或目标点配置</td></tr><tr><td>任务状态</td><td>/snowbot/task/state</td><td>任务状态反馈</td></tr><tr><td>安全停车</td><td>/snowbot/safety/stop</td><td>安全停车触发</td></tr><tr><td>VCU指令</td><td>/snowbot/vcu/cmd</td><td>VCU控制指令</td></tr><tr><td>VCU状态</td><td>/snowbot/vcu/status</td><td>VCU状态反馈</td></tr><tr><td>故障状态</td><td>/snowbot/fault/status</td><td>故障状态反馈</td></tr><tr><td>事件日志</td><td>/snowbot/event/log</td><td>事件与日志记录</td></tr></tbody></table></div>
+<p>乙方可根据实际架构调整接口名称，但不得降低接口可读性、可追踪性、可复现性和验收可用性。</p>
+<h4 id="sec-17-6-3">6.3 坐标系与时序</h4>
+<p>乙方应定义并交付坐标系、TF和时序规则。最低要求包括：定义 map、odom、base_link 及主要传感器 frame；定义 RTK/GPS 坐标与本地坐标之间的转换关系；定义 A点、B点、路线点或目标点的坐标格式；定义 IMU、Lidar、超声波等传感器与 base_link 的关系；定义 Odometry 与 VCU反馈之间的数据关系；说明 timestamp、传感器延迟、丢包、无效值、跳变值和超时处理方式。</p>
+<p>定位或传感器数据超过有效时间窗口时，应进入降级或安全停车逻辑。</p>
+<h4 id="sec-18-6-4">6.4 代码与工程规范</h4>
+<p>乙方提交的代码、脚本、配置文件、构建文件、测试代码和代码注释应使用 UTF-8 编码。</p>
+<p>代码、变量名、函数名、类名、接口名、文件名、commit message 和代码注释应使用英文。</p>
+<p>合同文件、验收报告、会议记录等管理性文件可使用中文；工程运行、部署、接口、日志、调试和二次开发材料应使用英文或中英文对照。</p>
+<h4 id="sec-19-6-5-github">6.5 GitHub交付</h4>
+<p>乙方正式工程交付应进入甲方指定 GitHub 仓库和交付分支：</p>
+<pre><code>仓库：https://github.com/arcbos/snowbot-control
+交付分支：control-work
+编码：UTF-8
+代码及注释：英文</code></pre>
+<p>最低要求：源码或配置必须提交至 control-work 分支；每两周至少提交一次有效工程进展；每个付款节点应对应明确 commit、tag、release note 或等效版本记录；协议、IO表、接线图、VCU配置、测试数据、测试报告、问题清单应与对应 commit 或 release 关联。</p>
+<p>未提交至指定仓库和指定分支的内容，不视为正式工程交付，除非甲方书面确认其他交付方式。乙方不得仅以乙方自有账号、乙方电脑、本地压缩包、远程演示环境或私有仓库作为正式交付依据。</p>
+<hr>
+<h3 id="sec-20-7">7. 技术节点与验收矩阵</h3>
+<p>本文件中的技术节点用于支持主合同付款节点和阶段验收。付款比例以主合同为准。</p>
+<div class="table-wrap"><table><tbody><tr><td>技术节点</td><td>对应目标</td><td>最低验收判断</td><td>主要交付物</td></tr><tr><td>T1 六电机桌面调通</td><td>六个电机可在桌面测试条件下控制</td><td>可转动、可停止，有基础状态反馈或测试记录</td><td>VCU配置、CAN协议、参数、测试记录</td></tr><tr><td>T2 装机运动控制</td><td>电机装机后可遥控或上位机控制</td><td>可前进、后退、转向、停车、急停、接管</td><td>接线图、运行日志、测试报告、问题清单</td></tr><tr><td>T3 预设路线或A/B点导航</td><td>固定场地低速行走</td><td>可配置目标点或路线并执行基础导航</td><td>目标点/路线文件、定位数据、运行日志</td></tr><tr><td>T4 障碍处理与任务闭环</td><td>障碍检测、停车、有限绕行或安全停车</td><td>可完成Beta演示闭环，异常时可降级或停车</td><td>测试报告、日志、问题清单、版本说明</td></tr><tr><td>T5 工程移交</td><td>完整Release Package</td><td>可部署、可复现、可接管、可继续开发</td><td>源码、配置、协议、接口、文档、报告</td></tr></tbody></table></div>
+<hr>
+<h3 id="sec-21-8-release-package">8. 测试、验收与Release Package</h3>
+<p>Alpha 阶段应满足：可通过上位机或遥控器完成前进、后退、转向、停车；可通过遥控器操作除雪电机、抬升电机、旋转电机、俯仰电机转动；急停触发后机器进入安全停车状态；人工接管触发后自动任务停止或让出控制权；通信、定位、传感器、CAN或底盘反馈异常时触发降级或安全停车；底盘状态、通信状态、故障状态有日志记录。</p>
+<p>Beta 阶段应满足：固定场地A点/B点或路线目标可配置；机器可在双方确认的低速安全条件下完成基础路径跟踪或A点至B点导航演示；任务状态至少包含未启动、运行中、暂停、停止、完成、故障或异常；基础障碍检测触发后最低动作应为停车，条件满足时尝试有限绕行，条件不满足时安全停车。</p>
+<p>每一付款节点对应的正式交付均应形成 Release Package。P4节点应提交完整 Release Package，至少包括源码、VCU源码/配置/参数备份、VCU内置履带差速代码（如可随VCU交付）、导航源码与配置、部署/构建/运行说明、接口文档、协议文档、IO表、接线图、传感器规格型号/接口/安装建议、测试数据、测试报告、运行日志、问题清单、版本说明、第三方组件披露清单和交接说明。</p>
+<hr>
+<h3 id="sec-22-9">9. 第三方组件与披露要求</h3>
+<p>乙方使用任何开源软件、第三方库、SDK、算法模型、工具链、控制器配置软件、云服务或外部 API，应事先披露并经甲方确认。</p>
+<p>软件第三方组件原则上应满足：开源或甲方书面确认可使用的免费组件；不得使用付费、订阅制、试用期到期收费、商业闭源授权组件，除非甲方事先书面同意；不得使用中国大陆厂商、中国大陆主体控制或主要由中国大陆主体维护的软件组件、SDK、云服务、闭源工具链或外部 API，除非甲方事先书面同意；不得限制甲方闭源商业化、复制、部署、修改、二次开发或委托第三方继续开发；不得导致甲方额外支付未披露授权费用；不得与主合同知识产权安排冲突。</p>
+<p>对于 Alpha/Beta 阶段实际采用的VCU、导航传感器、感知传感器或其随附工具链/代码，如确需使用中国大陆厂家产品或随附闭源工具链/代码，乙方应提前披露品牌、型号、产地、供应商、授权、费用、源码/配置交付边界、使用限制和后续替代方案，并经甲方书面确认后方可用于本项目。</p>
+<p>乙方应提交第三方组件和硬件随附能力清单。未披露、披露不完整或不符合本条要求的第三方组件，不得作为正式交付的一部分。</p>
+<hr>
+<h3 id="sec-23-10">10. 扩展与变更管理</h3>
+<p>乙方应在不扩大当前开发范围的前提下，保持基本模块化和接口可扩展性。模块命名、接口命名和数据结构应避免封死后续无人值守、多机协同或云平台扩展。当前阶段允许使用通用VCU完成 Alpha/Beta 开发；后续甲方可自行设计开发或替换VCU控制器。</p>
+<p>保留接口扩展位置不代表当前阶段新增功能范围。后续新增功能、算法、平台、硬件或认证要求，必须另行签署专项 SOW 或书面补充协议。</p>
+<p>任何报价单、邮件、微信、会议纪要或口头讨论，除非被双方书面确认为补充协议或专项 SOW，不得单独扩大本文件范围或改变验收标准。</p>
+      </section>
+      <footer class="document-footer">
+        <div class="footer-row">
+          <span class="footer-brand">ARCBOS</span>
+          <span class="footer-ref">ARCBOS-SPEC-2607-0003 · Version v1.6</span>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

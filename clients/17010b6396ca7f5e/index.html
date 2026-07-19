@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SnowBot 电气分包 C包 · 产品化电气工程包需求与交付说明 v1.0 — ARCBOS-SPEC-2606-0015</title>
+    <link rel="icon" href="../../assets/favicon.ico">
+    <meta name="description" content="文件编号：ARCBOS-SPEC-2606-0006-C">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="SnowBot 电气分包 C包 · 产品化电气工程包需求与交付说明 v1.0">
+    <meta property="og:description" content="文件编号：ARCBOS-SPEC-2606-0006-C">
+    <meta property="og:image" content="https://ref.arcbos.com/assets/arcbos-share-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SnowBot 电气分包 C包 · 产品化电气工程包需求与交付说明 v1.0">
+    <meta name="twitter:description" content="文件编号：ARCBOS-SPEC-2606-0006-C">
+    <meta name="twitter:image" content="https://ref.arcbos.com/assets/arcbos-share-preview.png">
+    <link rel="stylesheet" href="../../assets/css/screen.css">
+    <link rel="stylesheet" href="../../assets/css/print.css" media="print">
+  </head>
+  <body>
+    <header class="site-topbar no-print"><span class="topbar-brand">ARCBOS</span></header>
+    <main class="document">
+      <header class="document-masthead">
+        <div class="masthead-row">
+          <div class="masthead-brand">ARCBOS</div>
+          <p class="masthead-slogan">ENGINEERED FOR EXTREME CONDITIONS</p>
+        </div>
+      </header>
+      <section class="document-title-block">
+        <p class="document-kicker">Specification</p>
+        <h1>SnowBot 电气分包 C包 · 产品化电气工程包需求与交付说明 v1.0</h1>
+      </section>
+      <div class="document-meta-grid" aria-label="Document metadata"><div class="meta-item"><span class="meta-label">Document ID</span><span class="meta-value meta-value--id">ARCBOS-SPEC-2606-0015</span></div><div class="meta-item"><span class="meta-label">Type</span><span class="meta-value">Specification</span></div><div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">v1.0</span></div><div class="meta-item"><span class="meta-label">Status</span><span class="tag status-final">Final</span></div><div class="meta-item"><span class="meta-label">Client</span><span class="meta-value">SnowBot</span></div><div class="meta-item"><span class="meta-label">Project</span><span class="meta-value">SnowBot Alpha &amp; Beta</span></div><div class="meta-item"><span class="meta-label">Updated</span><span class="meta-value">2026-07-19</span></div><div class="meta-item"><span class="meta-label">Access</span><span class="tag is-client-link">Client Link</span></div></div>
+      <div class="document-actions no-print">
+        <button type="button" class="action-btn" onclick="window.print()" title="Print this document using your browser" aria-label="Print this document">Print</button><a href="../../pdf/ARCBOS-SPEC-2606-0015.pdf" class="action-btn action-btn--download-pdf" title="Download pre-generated PDF" aria-label="Download PDF" download>Download PDF</a>
+      </div>
+      <nav class="document-toc no-print" aria-label="Contents">
+        <details class="toc-details">
+          <summary class="toc-title">Contents<span class="toc-count">20 sections</span></summary>
+          <ol class="toc-list"><li class="toc-d0"><a href="#sec-1-1-c">1. 一页读懂C包</a></li><li class="toc-d0"><a href="#sec-2-2-snowbot">2. SnowBot整机全貌</a></li><li class="toc-d0"><a href="#sec-3-3-c">3. C包启动条件</a></li><li class="toc-d0"><a href="#sec-4-4-dock-dc">4. 充电Dock与尾部DC触点</a></li><li class="toc-d0"><a href="#sec-5-5">5. 充电互锁</a></li><li class="toc-d0"><a href="#sec-6-6">6. 正式线束工程</a></li><li class="toc-d0"><a href="#sec-7-7-dc-dc">7. 低压配电与DC-DC</a></li><li class="toc-d0"><a href="#sec-8-8-can">8. CAN线束与通信工程</a></li><li class="toc-d0"><a href="#sec-9-9-emc">9. EMC、接地与屏蔽</a></li><li class="toc-d0"><a href="#sec-10-10">10. 结构接口与装配工艺</a></li><li class="toc-d0"><a href="#sec-11-11">11. 环境可靠性工程化</a></li><li class="toc-d0"><a href="#sec-12-12-a-b-i">12. 与A/B/I包接口</a></li><li class="toc-d0"><a href="#sec-13-13-c">13. C包必须交付的设计文件</a></li><li class="toc-d0"><a href="#sec-14-14-c">14. C包必须交付的测试文件</a></li><li class="toc-d0"><a href="#sec-15-15">15. 供应商必须回答的问题</a></li><li class="toc-d0"><a href="#sec-16-16-c">16. C包验收标准</a></li><li class="toc-d0"><a href="#sec-17-17-c">17. C包一票否决项</a></li><li class="toc-d0"><a href="#sec-18-18-c">18. C包第一阶段工作顺序</a></li><li class="toc-d0"><a href="#sec-19-19-c">19. C包完整责任覆盖与技术要求</a></li><li class="toc-d0"><a href="#sec-27-20-dock">20. Dock机械接口与充电产品化强制要求</a></li></ol>
+        </details>
+      </nav>
+      <section class="document-content">
+        <aside class="callout"><strong>DOCUMENT GOVERNANCE — CURRENT ELECTRICAL AUTHORITY</strong></aside>
+<p><strong>文件编号</strong>：ARCBOS-SPEC-2606-0006-C</p>
+<p><strong>版本</strong>：v1.0</p>
+<p><strong>状态</strong>：Final</p>
+<p><strong>适用对象</strong>：产品化电气工程供应商、线束工程师、低压电源工程师、EMC工程师、充电Dock供应商、ARCBOS内部评审团队</p>
+<p><strong>关联总方案</strong>：SnowBot 整机电气系统总体方案 v1.0</p>
+<p><strong>整机范围说明</strong>：本包范围外的整机级技术背景、系统边界和最终冻结原则，以《SnowBot 整机电气系统总体方案 v1.0》（ARCBOS-SPEC-2606-0016）为准。</p>
+<p><strong>本文定位</strong>：本文是C包产品化电气工程包的需求与交付说明。C包原则上在Beta阶段启动，目标是把Alpha跑通的电气系统整理成可制造、可维护、可测试、可交付的产品化电气工程。</p>
+<h3 id="sec-1-1-c">1. 一页读懂C包</h3>
+<pre><code>C包：产品化电气工程包
+
+核心职责
+└─ 把Alpha跑通的电气系统，整理成可制造、可维护、可测试、可交付的产品化电气工程。
+
+负责范围
+├─ 充电Dock
+├─ 尾部DC触点
+├─ 离板充电器集成
+├─ 充电互锁
+├─ 充电退出无电弧
+├─ 正式线束图
+├─ 端子表
+├─ 接插件表
+├─ 低压配电优化
+├─ CAN线束优化
+├─ 接地/屏蔽
+├─ EMC预评估
+├─ 装配工艺
+└─ 产品化电气细节
+
+不负责范围
+├─ 电池包内部设计
+├─ BMS内部算法
+├─ 除雪总成控制策略
+├─ 履带控制策略
+├─ VCU状态机定义
+└─ 最终系统冻结权</code></pre>
+<p>C包不是来重新定义SnowBot电气架构的。C包是在A包和B包边界基本稳定后，把系统产品化、工程化、线束化、可制造化。</p>
+<h3 id="sec-2-2-snowbot">2. SnowBot整机全貌</h3>
+<pre><code>三包制分工
+
+A包：电池能源包
+└─ 负责安全、稳定、可诊断地输出48V主电源。
+
+B包：整车电控总包
+└─ 负责机器人安全地动起来、除起来、停下来、报故障。
+
+C包：产品化电气工程包
+└─ 负责Dock、正式线束、低压、EMC、装配工艺和产品化细节。
+
+I包：ARCBOS总架构包
+└─ 负责总体架构、接口控制、集成测试和最终冻结。</code></pre>
+<p>C包必须理解A包和B包的边界，不能擅自改动主回路能力、BMS策略、VCU状态机、除雪总成功率和履带功率边界。</p>
+<h3 id="sec-3-3-c">3. C包启动条件</h3>
+<p>C包建议在以下条件基本具备后启动：</p>
+<pre><code>C包启动前置条件
+
+A包基本稳定
+├─ 电池电压平台确定
+├─ BMS接口确定
+├─ 主回路边界确定
+└─ 充电允许/回生允许状态确定
+
+B包基本稳定
+├─ 除雪总成控制器接口确定
+├─ 履带控制器接口确定
+├─ VCU状态机初版确定
+├─ IO点表初版确定
+└─ 初版线束需求确定
+
+结构基本稳定
+├─ 电池仓位置确定
+├─ 控制器安装区确定
+├─ 尾部充电接口位置确定
+├─ 线束路径空间确定
+└─ Docking机械方向确定</code></pre>
+<p>若A包和B包边界尚未稳定，C包只能做预研，不能冻结正式线束和产品化Dock。</p>
+<h3 id="sec-4-4-dock-dc">4. 充电Dock与尾部DC触点</h3>
+<p>C包负责产品化充电系统集成。主方案为离板充电器 + 尾部离地DC触点。</p>
+<div class="table-wrap"><table><tbody><tr><td>项目</td><td>目标</td><td>说明</td></tr><tr><td>主充电</td><td>7.2kW</td><td>240VAC/40A输入</td></tr><tr><td>降额充电</td><td>5.8–6.5kW</td><td>240VAC/30A输入</td></tr><tr><td>维护慢充</td><td>1.2–1.6kW</td><td>120VAC/15–20A，仅维护、测试、应急</td></tr><tr><td>DC触点</td><td>200A连续</td><td>必须做温升验证</td></tr><tr><td>位置</td><td>尾部离地</td><td>不采用地面触点作为主方案</td></tr></tbody></table></div>
+<p>尾部触点要求：</p>
+<pre><code>尾部触点要求
+
+高电流能力
+├─ 200A连续能力
+├─ 低接触电阻
+└─ 正负极冗余触点或等效并联设计
+
+握手与检测
+├─ 独立低压辅助触点
+├─ 机械到位检测
+└─ 接触电阻异常时不得进入快充
+
+环境适应
+├─ 防雪
+├─ 防水
+├─ 防盐雾
+└─ 防冰加热
+
+安全退出
+├─ 高电流未允许时触点不带电
+└─ 退出前先降流到0，再断开接触器和触点</code></pre>
+<h3 id="sec-5-5">5. 充电互锁</h3>
+<p>C包必须实现或配合实现充电互锁。C包负责硬件接口、Dock侧逻辑、触点与检测；B包/VCU负责整机状态机；A包/BMS负责充电允许。</p>
+<pre><code>充电互锁 C1–C12
+
+C1 充电接口盖状态正常
+C2 机械对准到位
+C3 低压辅助触点建立
+C4 极性正确
+C5 绝缘状态正常
+C6 电芯温度允许充电
+C7 BMS允许充电
+C8 接触电阻正常
+C9 充电器输出初始安全
+C10 预充完成
+C11 车辆处于DOCKING或CHARGING允许状态
+C12 履带与除雪总成禁止动作</code></pre>
+<p>任何一个互锁条件不满足，不得输出高电流。</p>
+<h3 id="sec-6-6">6. 正式线束工程</h3>
+<p>C包负责正式线束图、端子表、接插件表、线径计算、压接规范、标签规范、线束路径图和装配检查表。</p>
+<p>线束必须分区：</p>
+<pre><code>线束分区
+
+高电流
+├─ 主放电高电流线束
+├─ 充电高电流线束
+└─ 电机支路线束
+
+低压与通信
+├─ 24V/12V低压电源线束
+├─ CAN通信线束
+└─ 传感器线束
+
+安全
+└─ 急停与安全线束</code></pre>
+<p>初步线径方向如下，最终必须通过温升测试、敷设方式、环境温度和连接器曲线确定。</p>
+<div class="table-wrap"><table><tbody><tr><td>路径</td><td>电流等级</td><td>初步方向</td></tr><tr><td>充电路径</td><td>200A连续</td><td>50mm²级或等效并联，待验证</td></tr><tr><td>主放电母线</td><td>250–300A连续</td><td>70mm²级或铜排，待验证</td></tr><tr><td>除雪总成支路</td><td>150–250A峰值，堵转更高</td><td>35–50mm²级，待验证</td></tr><tr><td>履带支路</td><td>50–100A峰值</td><td>10–25mm²级，待验证</td></tr><tr><td>DC-DC支路</td><td>20–40A</td><td>4–10mm²级，待验证</td></tr></tbody></table></div>
+<p>禁止使用模型级连接器、消费级端子和临时扎带式产品化布线。</p>
+<h3 id="sec-7-7-dc-dc">7. 低压配电与DC-DC</h3>
+<p>C包负责产品化低压配电优化。B包Alpha阶段可提供初版低压方案，C包Beta阶段需将其产品化。</p>
+<p>推荐低压系统：</p>
+<pre><code>48V主电池
+    ↓
+48V/24V DC-DC
+    ↓
+24V主控制母线
+    ↓
+24V/12V或24V/5V子电源</code></pre>
+<p>目标：</p>
+<div class="table-wrap"><table><tbody><tr><td>项目</td><td>目标</td></tr><tr><td>24V DC-DC连续功率</td><td>500–800W</td></tr><tr><td>峰值能力</td><td>1000W级评估</td></tr><tr><td>支路保护</td><td>IPC、VCU、BMS通信、LiDAR、RTK/IMU、Camera、4G/5G、继电器、制动器、安全输入独立保护</td></tr><tr><td>故障记录保持</td><td>主接触器断开后仍能保存关键日志</td></tr></tbody></table></div>
+<h3 id="sec-8-8-can">8. CAN线束与通信工程</h3>
+<p>C包负责CAN线束、连接器、屏蔽、接地和物理层工程。B包负责CAN协议和VCU逻辑。</p>
+<p>要求：</p>
+<ol><li>动力CAN和传感器CAN建议分段或经网关隔离。</li><li>CAN使用屏蔽双绞线。</li><li>屏蔽层接地策略必须统一。</li><li>电机相线远离传感器线。</li><li>所有关键通信接口必须进入端子表和线束图。</li><li>所有通信故障必须可被VCU记录。</li></ol>
+<h3 id="sec-9-9-emc">9. EMC、接地与屏蔽</h3>
+<p>C包必须进行EMC工程化设计和预评估，不得把EMC留到最后救火。</p>
+<pre><code>EMC重点
+
+高噪声源
+├─ 除雪总成控制器
+├─ 左右履带控制器
+├─ PTC
+├─ DC-DC
+└─ 充电器
+
+敏感设备
+├─ IPC
+├─ RTK/IMU
+├─ LiDAR
+├─ Camera
+├─ 4G/5G
+└─ CAN通信
+
+工程措施
+├─ 线束分区
+├─ 屏蔽双绞线
+├─ 统一接地策略
+├─ TVS/滤波/浪涌保护
+├─ 高电流回路面积控制
+└─ EMC预扫</code></pre>
+<p>必须验证：绞龙启动时RTK不掉线，履带原地转向时CAN不大量丢包，PTC启动时IPC不重启，充电开始时BMS和VCU通信稳定。</p>
+<h3 id="sec-10-10">10. 结构接口与装配工艺</h3>
+<p>C包必须把电气工程要求转化为结构接口和装配工艺。</p>
+<pre><code>结构图纸必须体现
+
+电池与充电
+├─ 电池仓
+├─ 电池抽拉路径
+├─ 盲插连接器安装面
+└─ 尾部充电接口
+
+线束与安装
+├─ 主线束线槽
+├─ 支路线束线槽
+├─ 控制器安装板
+├─ DC-DC位置
+└─ 低压控制盒
+
+保护器件
+├─ 主熔断器
+├─ Service Disconnect
+└─ 主接触器
+
+环境与安全
+├─ 排水通道
+├─ 防雪挡板
+├─ 防冰加热位置
+└─ 运动件禁布线区域</code></pre>
+<p>结构不给电气空间，电气可靠性一定失败。</p>
+<h3 id="sec-11-11">11. 环境可靠性工程化</h3>
+<p>C包需配合I包进行环境验证准备，并在设计上预留测试要求。</p>
+<p>重点要求：</p>
+<ol><li>-30°C浸泡48小时后的连接器、电池仓、充电接口、Service Disconnect操作。</li><li>外部连接器和履带附近连接器盐雾目标不低于500小时。</li><li>关键高电流触点和尾部充电接口建议评估1000小时盐雾。</li><li>-30°C到+10°C至少120次热循环。</li><li>盐雾、热循环后检查接触电阻、绝缘、插拔和锁止。</li></ol>
+<h3 id="sec-12-12-a-b-i">12. 与A/B/I包接口</h3>
+<div class="table-wrap"><table><tbody><tr><td>接口对象</td><td>C包接收</td><td>C包输出</td></tr><tr><td>A包电池能源</td><td>电池端子、BMS接口、充电允许、主回路边界</td><td>正式主线束、充电线束、连接器选型、Dock接口</td></tr><tr><td>B包整车电控</td><td>控制器端子定义、IO点表、CAN协议、初版低压与线束需求</td><td>正式线束、低压配电、CAN线束、EMC约束、装配工艺</td></tr><tr><td>I包ARCBOS总架构</td><td>系统边界、验收标准、一票否决项、冻结意见</td><td>图纸、端子表、BOM、测试报告、产品化风险清单</td></tr></tbody></table></div>
+<h3 id="sec-13-13-c">13. C包必须交付的设计文件</h3>
+<pre><code>C包设计交付物
+
+充电系统
+├─ 充电Dock电气图
+├─ 离板充电器集成图
+├─ 尾部DC触点规格
+├─ 低压握手接口定义
+├─ C1–C12互锁逻辑
+├─ 接触电阻检测方案
+├─ 充电退出时序
+└─ 防冰加热方案
+
+线束与连接器
+├─ 整机线束图
+├─ 线束BOM
+├─ 端子表
+├─ 接插件表
+├─ 线径计算
+├─ 压接规范
+├─ 标签规范
+├─ 线束路径图
+├─ 固定点图
+└─ 防水密封方案
+
+低压与EMC
+├─ 低压配电图
+├─ DC-DC选型报告
+├─ 低压负载表
+├─ 支路保护表
+├─ CAN线束图
+├─ 接地/屏蔽方案
+├─ EMC风险清单
+├─ TVS/滤波位置图
+└─ EMC预扫计划</code></pre>
+<h3 id="sec-14-14-c">14. C包必须交付的测试文件</h3>
+<pre><code>C包测试交付物
+
+充电测试
+├─ 7.2kW连续充电测试
+├─ 200A触点温升测试
+├─ 对准失败测试
+├─ 极性错误测试
+├─ 接触电阻异常测试
+├─ 低温充电禁止联动测试
+├─ 充电退出无电弧测试
+└─ 冰雪环境对接测试
+
+线束测试
+├─ 主放电线束温升
+├─ 充电线束温升
+├─ 除雪总成支路线束温升
+├─ 插拔寿命
+├─ 振动后接触电阻
+├─ 盐雾后接触电阻
+├─ -30°C弯折检查
+└─ 防水后绝缘检查
+
+低压与EMC测试
+├─ PTC启动时低压稳定测试
+├─ 绞龙启动时RTK不掉线测试
+├─ 原地转向时CAN错误帧测试
+├─ DC-DC欠压测试
+├─ 低温启动低压稳定测试
+└─ 充电开始通信稳定测试</code></pre>
+<h3 id="sec-15-15">15. 供应商必须回答的问题</h3>
+<ol><li>是否具备户外移动机器人或工程机械线束工程经验。</li><li>是否能做200A连续充电触点温升验证。</li><li>是否能设计尾部离地DC充电接口。</li><li>是否能提供完整端子表、接插件表和压接规范。</li><li>是否具备低压配电和CAN线束工程能力。</li><li>是否能进行EMC风险分析和预扫配合。</li><li>是否能支持-30°C、盐雾和热循环验证。</li><li>是否能交付源文件，而不是只交PDF。</li><li>是否接受ARCBOS掌握最终接口和冻结权。</li></ol>
+<h3 id="sec-16-16-c">16. C包验收标准</h3>
+<p>C包通过验收至少满足：</p>
+<ol><li>充电Dock、尾部触点和充电互锁方案完整。</li><li>正式线束图、端子表、接插件表完整。</li><li>低压配电和支路保护清楚。</li><li>CAN线束和屏蔽接地策略清楚。</li><li>高电流线束和充电触点有温升测试计划。</li><li>EMC风险清单和预扫计划完整。</li><li>电气安装、固定、标签、压接、密封有装配工艺。</li><li>与A包、B包、I包接口清楚。</li></ol>
+<h3 id="sec-17-17-c">17. C包一票否决项</h3>
+<pre><code>C包一票否决项
+
+1. 地面触点作为主充电方案
+2. 机器人尾部暴露AC
+3. 高电流触点未到位即可带电
+4. 充电退出时带载拉弧
+5. 无低压握手
+6. 无接触电阻检测
+7. 无低温禁充联动
+8. 使用模型级高电流连接器
+9. 使用消费级连接器进入产品化路径
+10. 无正式线束图
+11. 无端子表
+12. 无压接规范
+13. 高电流线束无温升测试
+14. 线束路径未进入结构图
+15. 无屏蔽接地策略
+16. PTC启动导致IPC重启
+17. 电机启动导致RTK掉线且无解决方案</code></pre>
+<h3 id="sec-18-18-c">18. C包第一阶段工作顺序</h3>
+<pre><code>C包第一阶段工作顺序
+
+1. 接收A包电池端子、BMS、主回路和充电边界
+2. 接收B包控制器端子、IO、CAN和初版线束需求
+3. 确认尾部Dock结构空间和机械导向方向
+4. 输出充电Dock与尾部DC触点初版方案
+5. 输出正式线束架构
+6. 输出低压配电架构
+7. 输出CAN线束和接地屏蔽方案
+8. 输出接插件与端子表初版
+9. 输出EMC风险清单
+10. 与I包完成产品化电气工程评审
+</code></pre>
+<h3 id="sec-19-19-c">19. C包完整责任覆盖与技术要求</h3>
+<p>本节明确C包必须承接的完整技术责任。C包不是普通线束包，也不是单纯充电器包，而是把Alpha跑通的电气系统产品化的工程包。</p>
+<h4 id="sec-20-19-1-c">19.1 C包必须承接的系统内容</h4>
+<div class="table-wrap"><table><tbody><tr><td>主方案主题</td><td>C包责任</td><td>要求</td></tr><tr><td>总体电气架构</td><td>接口承接</td><td>不得改变48V平台、主回路边界、状态机和安全边界</td></tr><tr><td>充电系统</td><td>主责</td><td>离板充电器、尾部离地DC触点、7.2kW、200A连续路径</td></tr><tr><td>充电座与Dock</td><td>主责</td><td>Dock电气、低压握手、机械对准接口、防冰、防雪、防盐雾</td></tr><tr><td>线束与连接器</td><td>主责</td><td>正式线束图、端子表、接插件表、压接规范、温升测试</td></tr><tr><td>低压电源系统</td><td>主责产品化</td><td>48V/24V DC-DC、24V主母线、12V/5V子电源、支路保护</td></tr><tr><td>EMC、接地与通信</td><td>主责工程化</td><td>CAN线束、屏蔽、接地、TVS、滤波、EMC预扫</td></tr><tr><td>结构接口要求</td><td>主责接口</td><td>线槽、控制器安装、DC-DC位置、充电接口、运动件禁布线区</td></tr><tr><td>低温材料、盐雾与热循环</td><td>主责产品化验证准备</td><td>连接器、触点、线束、密封件、卡扣、固定点必须进入验证</td></tr><tr><td>认证与合规预留</td><td>接口/资料主责</td><td>充电器、线束、连接器、无线模块、EMC、材料合规资料预留</td></tr><tr><td>Beta阶段要求</td><td>主责</td><td>Beta前冻结正式线束、Dock、低压、EMC预评估和装配工艺</td></tr></tbody></table></div>
+<h4 id="sec-21-19-2-c">19.2 C包系统边界约束</h4>
+<p>C包负责产品化工程设计，但必须遵守以下系统边界。</p>
+<pre><code>C包系统边界
+
+平台
+├─ 充电和线束设计必须基于48V平台
+├─ 必须遵守15S系统边界
+└─ 必须遵守主放电路径250–300A连续预留原则
+
+动力
+├─ 不得改变除雪总成功率边界
+├─ 不得改变履带功率边界
+└─ 不得改变VCU状态机逻辑
+
+安全
+├─ 不得取消低温禁充
+├─ 不得绕过C1–C12充电互锁
+├─ 不得让充电触点未到位带电
+├─ 不得让CHARGING状态允许履带或除雪动作
+└─ 不得把急停安全链路降级为软件逻辑</code></pre>
+<h4 id="sec-22-19-3">19.3 充电系统产品化补强</h4>
+<p>C包必须把主方案中的充电系统工程化到可制造状态。</p>
+<pre><code>充电系统产品化要求
+
+离板充电器
+├─ 240VAC/40A输入
+├─ 7.2kW DC输出目标
+├─ 降额支持240VAC/30A
+├─ 120VAC仅用于维护慢充
+└─ 与BMS/VCU握手
+
+尾部DC触点
+├─ 200A连续能力
+├─ 接触电阻检测
+├─ 防雪防水防盐雾
+├─ 防冰加热
+├─ 未允许不带电
+└─ 退出前降流到0
+
+Dock侧
+├─ 机械导向接口
+├─ 低压辅助触点
+├─ 本地断电
+├─ 状态指示
+├─ 故障记录
+└─ 安装容差说明</code></pre>
+<h4 id="sec-23-19-4">19.4 正式线束产品化补强</h4>
+<p>C包必须交付可制造线束，不得只交示意图。</p>
+<pre><code>正式线束产品化内容
+
+图纸
+├─ 整机线束图
+├─ 线束路径图
+├─ 固定点图
+├─ 端子表
+├─ 接插件表
+└─ 支路保护表
+
+工艺
+├─ 线径计算
+├─ 压接规范
+├─ 标签规范
+├─ 防水密封方案
+├─ 装配检查表
+└─ 维护拆装说明
+
+验证
+├─ 主放电线束温升
+├─ 充电线束温升
+├─ 电机支路线束温升
+├─ 振动后接触电阻
+├─ 盐雾后接触电阻
+├─ -30°C弯折检查
+└─ 防水后绝缘检查</code></pre>
+<h4 id="sec-24-19-5">19.5 低温材料与连接器补强</h4>
+<p>C包必须把主方案中的低温、盐雾、热循环要求落实到连接器、线束、触点和结构接口。</p>
+<pre><code>C包低温与环境要求
+
+低温
+├─ -30°C浸泡48小时后连接器可插拔
+├─ -30°C后线束外皮不裂
+├─ -30°C后卡扣和锁舌可操作
+└─ -30°C后充电接口可对接
+
+盐雾
+├─ 外部连接器不低于500小时方向
+├─ 关键高电流触点评估1000小时方向
+├─ 盐雾后接触电阻复测
+└─ 盐雾后绝缘复测
+
+热循环
+├─ -30°C到+10°C
+├─ 至少120次循环方向
+├─ 检查触点松动
+├─ 检查密封件开裂
+└─ 检查线束固定点</code></pre>
+<h4 id="sec-25-19-6">19.6 认证与合规资料补强</h4>
+<p>C包必须为产品化电气工程准备资料，不得等最后认证时补。</p>
+<pre><code>C包合规资料预留
+
+充电系统
+├─ 充电器安全认证资料
+├─ 输入侧保护资料
+├─ 输出侧DC参数资料
+└─ 充电接口温升资料
+
+EMC与无线
+├─ EMC预扫报告
+├─ 滤波/TVS/浪涌设计资料
+├─ 无线模块认证资料
+└─ CAN通信抗扰测试资料
+
+材料与连接器
+├─ 连接器规格书
+├─ 线缆材料资料
+├─ 防水等级资料
+├─ 盐雾资料
+├─ 低温材料资料
+└─ 阻燃/环保合规资料</code></pre>
+<h4 id="sec-26-19-7-c">19.7 C包完整交付核对清单</h4>
+<pre><code>C包不得遗漏
+
+1. 充电Dock电气图
+2. 离板充电器集成
+3. 尾部DC触点200A连续能力
+4. 低压握手
+5. C1–C12充电互锁
+6. 接触电阻检测
+7. 充电退出无电弧
+8. 防冰加热
+9. 正式线束图
+10. 端子表
+11. 接插件表
+12. 线径计算
+13. 压接规范
+14. 标签规范
+15. 低压配电图
+16. DC-DC选型
+17. 支路保护表
+18. CAN线束图
+19. 接地/屏蔽方案
+20. EMC风险清单与预扫计划
+21. 结构安装接口
+22. 低温、盐雾、热循环验证准备
+23. 产品化装配检查表
+24. 源文件和可编辑图纸交付</code></pre>
+<h3 id="sec-27-20-dock">20. Dock机械接口与充电产品化强制要求</h3>
+<p>本节定义C包必须满足的Dock机械接口、充电对接流程、A包接口对齐、防冰加热和新增否决要求。供应商必须按本节提交可制造、可安装、可测试、可验收的工程资料。</p>
+<h4 id="sec-28-20-1-dock">20.1 Dock机械接口规格表</h4>
+<p>C包必须把Dock机械接口量化。以下为Beta前工程目标初值，最终值由结构设计、B包Docking低速控制、C包触点方案和I包评审冻结。</p>
+<div class="table-wrap"><table><tbody><tr><td>项目</td><td>目标/初值</td><td>说明</td></tr><tr><td>对接方向</td><td>机器人尾部倒车或低速后退对接</td><td>最终由整机结构和B包Docking控制确认</td></tr><tr><td>粗对准横向容差</td><td>目标±50mm</td><td>机械导向应能将粗偏差收敛</td></tr><tr><td>触点级横向容差</td><td>目标±5mm</td><td>进入高电流触点接触前的最终对准目标</td></tr><tr><td>纵向压缩/接触行程</td><td>由触点供应商给出，C包必须定义</td><td>需保证稳定接触和弹性余量</td></tr><tr><td>触点离地高度</td><td>建议300–500mm范围内评估</td><td>不得采用地面触点作为主方案</td></tr><tr><td>安装水平度</td><td>Dock安装面建议≤1°初始目标</td><td>最终按机械导向能力确认</td></tr><tr><td>导向方式</td><td>推荐V型导槽、喇叭口导向或等效自收敛结构</td><td>高电流触点不得承担主要机械导向力</td></tr><tr><td>地面适应</td><td>需考虑积雪、薄冰、盐水、轻微不平</td><td>Dock不得因少量雪水导致无法对接</td></tr><tr><td>固定方式</td><td>地面/墙面/独立座固定方式必须明确</td><td>需要安装孔位图和维护空间图</td></tr><tr><td>维护空间</td><td>触点、低压辅助触点、防冰加热件可检修</td><td>不得封死关键触点</td></tr></tbody></table></div>
+<p>以上数值是工程初值，不是最终冻结值。C包供应商可以提出不同容差，但必须给出机械导向方案、触点规格和测试验证依据。</p>
+<h4 id="sec-29-20-2-dock">20.2 Dock对接流程量化要求</h4>
+<pre><code>Dock对接流程量化要求
+
+靠近阶段
+├─ B包控制机器人低速靠近
+├─ C包Dock提供可识别机械导向入口
+└─ 结构设计保证尾部接口不撞击高电流触点
+
+导向阶段
+├─ 机械导向先接触
+├─ 低压辅助触点先接通
+├─ 到位检测确认
+└─ 高电流触点仍不得带电
+
+握手阶段
+├─ C包输出机械到位状态
+├─ A包BMS输出ChargeAllowed
+├─ B包VCU确认CHARGING允许状态
+├─ C包检测接触电阻和极性
+└─ 全部条件满足后才允许高电流
+
+退出阶段
+├─ 先将充电电流降至0
+├─ 关闭充电器输出
+├─ 打开接触器或断开允许
+├─ 再释放机械对接
+└─ 不允许带载拉弧</code></pre>
+<h4 id="sec-30-20-3-a">20.3 充电接口物理边界与A包对齐</h4>
+<p>C包必须与A包对齐电池包充电入口和尾部Dock充电输出的物理接口。</p>
+<pre><code>A包与C包充电接口对齐项
+
+A包提供
+├─ 电池包充电入口端子定义
+├─ BMS ChargeAllowed信号
+├─ 低温禁充状态
+├─ 电池包盲插连接器边界
+└─ 200A连续充电能力资料
+
+C包提供
+├─ 尾部DC触点规格
+├─ 充电线束规格
+├─ 低压辅助触点定义
+├─ 接触电阻检测方案
+├─ 充电退出时序
+└─ Dock侧安装接口
+
+I包冻结
+└─ 电池包充电入口与Dock输出之间的接口控制文件ICD。</code></pre>
+<h4 id="sec-31-20-4">20.4 防冰加热初始要求</h4>
+<p>防冰加热不能只是概念，必须形成可测试接口。</p>
+<pre><code>Dock防冰加热初始要求
+
+触点区域
+├─ 建议触点区域加热功率≤50W作为初始评估目标
+├─ 控制目标为触点区高于0°C，优先目标≥5°C
+├─ 需具备温度传感或等效控制方式
+└─ 不得在未对接状态下造成裸露高温危险
+
+控制方式
+├─ 可采用温控、定时预热或VCU/Dock联动
+├─ 必须有过温保护
+├─ 必须有故障反馈
+└─ 必须进入C包测试报告</code></pre>
+<h4 id="sec-32-20-5-c">20.5 C包新增一票否决项</h4>
+<pre><code>C包新增一票否决项
+
+1. Dock机械接口无对接容差目标。
+2. 高电流触点承担主要机械导向力。
+3. Dock没有低压辅助触点先接通的设计。
+4. C包未与A包确认电池包充电入口物理接口。
+5. 防冰加热只有概念，无功率、控制和过温保护说明。
+6. 未经I包通知，在A/B接口未完成R2评审前进入正式线束冻结。</code></pre>
+      </section>
+      <footer class="document-footer">
+        <div class="footer-row">
+          <span class="footer-brand">ARCBOS</span>
+          <span class="footer-ref">ARCBOS-SPEC-2606-0015 · Version v1.0</span>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

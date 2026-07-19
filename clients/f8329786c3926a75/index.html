@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SnowBot 电气分包 I包 · ARCBOS总架构、系统集成与最终冻结说明 v1.0 — ARCBOS-SPEC-2606-0012</title>
+    <link rel="icon" href="../../assets/favicon.ico">
+    <meta name="description" content="文件编号：ARCBOS-SPEC-2606-0007-I">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="SnowBot 电气分包 I包 · ARCBOS总架构、系统集成与最终冻结说明 v1.0">
+    <meta property="og:description" content="文件编号：ARCBOS-SPEC-2606-0007-I">
+    <meta property="og:image" content="https://ref.arcbos.com/assets/arcbos-share-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SnowBot 电气分包 I包 · ARCBOS总架构、系统集成与最终冻结说明 v1.0">
+    <meta name="twitter:description" content="文件编号：ARCBOS-SPEC-2606-0007-I">
+    <meta name="twitter:image" content="https://ref.arcbos.com/assets/arcbos-share-preview.png">
+    <link rel="stylesheet" href="../../assets/css/screen.css">
+    <link rel="stylesheet" href="../../assets/css/print.css" media="print">
+  </head>
+  <body>
+    <header class="site-topbar no-print"><span class="topbar-brand">ARCBOS</span></header>
+    <main class="document">
+      <header class="document-masthead">
+        <div class="masthead-row">
+          <div class="masthead-brand">ARCBOS</div>
+          <p class="masthead-slogan">ENGINEERED FOR EXTREME CONDITIONS</p>
+        </div>
+      </header>
+      <section class="document-title-block">
+        <p class="document-kicker">Specification</p>
+        <h1>SnowBot 电气分包 I包 · ARCBOS总架构、系统集成与最终冻结说明 v1.0</h1>
+      </section>
+      <div class="document-meta-grid" aria-label="Document metadata"><div class="meta-item"><span class="meta-label">Document ID</span><span class="meta-value meta-value--id">ARCBOS-SPEC-2606-0012</span></div><div class="meta-item"><span class="meta-label">Type</span><span class="meta-value">Specification</span></div><div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">v1.0</span></div><div class="meta-item"><span class="meta-label">Status</span><span class="tag status-final">Final</span></div><div class="meta-item"><span class="meta-label">Client</span><span class="meta-value">SnowBot</span></div><div class="meta-item"><span class="meta-label">Project</span><span class="meta-value">SnowBot Alpha &amp; Beta</span></div><div class="meta-item"><span class="meta-label">Updated</span><span class="meta-value">2026-07-19</span></div><div class="meta-item"><span class="meta-label">Access</span><span class="tag is-client-link">Client Link</span></div></div>
+      <div class="document-actions no-print">
+        <button type="button" class="action-btn" onclick="window.print()" title="Print this document using your browser" aria-label="Print this document">Print</button><a href="../../pdf/ARCBOS-SPEC-2606-0012.pdf" class="action-btn action-btn--download-pdf" title="Download pre-generated PDF" aria-label="Download PDF" download>Download PDF</a>
+      </div>
+      <nav class="document-toc no-print" aria-label="Contents">
+        <details class="toc-details">
+          <summary class="toc-title">Contents<span class="toc-count">24 sections</span></summary>
+          <ol class="toc-list"><li class="toc-d0"><a href="#sec-1-1-i">1. 一页读懂I包</a></li><li class="toc-d0"><a href="#sec-2-2">2. 三包制总图</a></li><li class="toc-d0"><a href="#sec-3-3-arcbos">3. 第一性原理下的ARCBOS职责</a></li><li class="toc-d0"><a href="#sec-4-4-i">4. I包总控文件清单</a></li><li class="toc-d0"><a href="#sec-5-5-arcbos-a">5. ARCBOS对A包的控制点</a></li><li class="toc-d0"><a href="#sec-6-6-arcbos-b">6. ARCBOS对B包的控制点</a></li><li class="toc-d0"><a href="#sec-7-7-arcbos-c">7. ARCBOS对C包的控制点</a></li><li class="toc-d0"><a href="#sec-8-8">8. 接口控制原则</a></li><li class="toc-d0"><a href="#sec-9-9">9. 系统级安全边界</a></li><li class="toc-d0"><a href="#sec-10-10-alpha-arcbos">10. Alpha阶段ARCBOS工作</a></li><li class="toc-d0"><a href="#sec-11-11-beta-arcbos">11. Beta阶段ARCBOS工作</a></li><li class="toc-d0"><a href="#sec-12-12">12. 供应商评审规则</a></li><li class="toc-d0"><a href="#sec-13-13">13. 设计评审节奏</a></li><li class="toc-d0"><a href="#sec-14-14-fat">14. 系统FAT清单</a></li><li class="toc-d0"><a href="#sec-15-15">15. 总体验收标准</a></li><li class="toc-d0"><a href="#sec-16-16-i">16. I包一票否决项</a></li><li class="toc-d0"><a href="#sec-17-17-i">17. I包第一阶段工作顺序</a></li><li class="toc-d0"><a href="#sec-18-18-i">18. I包最终判断</a></li><li class="toc-d0"><a href="#sec-19-19">19. 主方案覆盖矩阵</a></li><li class="toc-d0"><a href="#sec-20-20">20. 四包自查结论</a></li><li class="toc-d0"><a href="#sec-21-21">21. 供应商交付执行规则</a></li><li class="toc-d0"><a href="#sec-22-22">22. 分包执行风险清单</a></li><li class="toc-d0"><a href="#sec-23-23">23. 四包执行判断</a></li><li class="toc-d0"><a href="#sec-24-24">24. 接口控制、版本管理与系统验收规则</a></li></ol>
+        </details>
+      </nav>
+      <section class="document-content">
+        <aside class="callout"><strong>DOCUMENT GOVERNANCE — CURRENT ELECTRICAL AUTHORITY</strong></aside>
+<p><strong>文件编号</strong>：ARCBOS-SPEC-2606-0007-I</p>
+<p><strong>版本</strong>：v1.0</p>
+<p><strong>状态</strong>：Final</p>
+<p><strong>适用对象</strong>：ARCBOS Founder/Owner、系统架构负责人、项目经理、电气负责人、结构负责人、供应商管理负责人、测试负责人</p>
+<p><strong>关联总方案</strong>：SnowBot 整机电气系统总体方案 v1.0</p>
+<p><strong>整机范围说明</strong>：本包内部执行依据以《SnowBot 整机电气系统总体方案 v1.0》（ARCBOS-SPEC-2606-0016）为准。主文档不由本文件替代。</p>
+<p><strong>本文定位</strong>：本文是I包ARCBOS总架构、系统集成与最终冻结说明。I包不外包。供应商可以设计子系统，但不能替ARCBOS定义SnowBot、冻结系统边界或决定最终验收。</p>
+<h3 id="sec-1-1-i">1. 一页读懂I包</h3>
+<pre><code>I包：ARCBOS总架构、系统集成与最终冻结包
+
+核心职责
+└─ 定义系统、控制接口、组织集成、执行验收、决定冻结。
+
+ARCBOS必须掌握
+├─ 总体架构
+├─ 48V平台边界
+├─ 安全边界
+├─ 接口控制
+├─ 一票否决项
+├─ 验收标准
+├─ 测试计划
+├─ 供应商评审
+├─ 系统集成测试
+└─ 最终冻结权
+
+不能外包的内容
+├─ 系统定义权
+├─ 安全边界定义权
+├─ 接口控制权
+├─ 故障处理原则
+├─ 一票否决权
+└─ 最终设计冻结权</code></pre>
+<p>I包的意义是防止供应商各做各的，最后整机跑不起来、无人负责。</p>
+<h3 id="sec-2-2">2. 三包制总图</h3>
+<p>SnowBot电气系统采用三包制外包 + ARCBOS总控。</p>
+<pre><code>SnowBot电气分包结构
+
+A包：电池能源包
+└─ 安全、稳定、可诊断地输出48V主电源。
+
+B包：整车电控总包
+└─ 让机器人安全地动起来、除起来、停下来、报故障。
+
+C包：产品化电气工程包
+└─ 把Alpha跑通的系统产品化，包含Dock、正式线束、低压、EMC。
+
+I包：ARCBOS总架构包
+└─ 定义系统、控制接口、组织集成、执行验收、决定冻结。</code></pre>
+<p>Alpha阶段启动A包和B包。Beta阶段在A包和B包边界稳定后启动C包。I包贯穿始终。</p>
+<h3 id="sec-3-3-arcbos">3. 第一性原理下的ARCBOS职责</h3>
+<p>SnowBot电气系统本质上只解决四件事：</p>
+<pre><code>SnowBot电气系统四件事
+
+储能与安全供电
+└─ A包主责，I包定义边界并验收。
+
+动力执行与运动控制
+└─ B包主责，I包定义状态机、安全边界和验收。
+
+补能与产品化电气工程
+└─ C包主责，I包定义互锁、接口和冻结标准。
+
+整机集成与验证
+└─ I包主责，不能外包。</code></pre>
+<p>外包越多，接口越多。ARCBOS现阶段的最佳实践不是细拆供应商，而是减少接口、明确责任、牢牢掌握架构和验收。</p>
+<h3 id="sec-4-4-i">4. I包总控文件清单</h3>
+<p>ARCBOS必须维护以下总控文件：</p>
+<pre><code>I包总控文件
+
+架构文件
+├─ SnowBot整机电气系统总体方案
+├─ 系统电气架构图
+├─ 主回路单线图
+└─ 分包边界说明
+
+接口文件
+├─ 接口控制文件 ICD
+├─ CAN总线矩阵
+├─ IO总表
+├─ 端子与连接器总接口表
+└─ 供应商接口变更记录
+
+安全文件
+├─ 安全状态机
+├─ 一票否决项总表
+├─ 满电下坡规则
+├─ NAV/COMMS降级规则
+├─ 充电互锁C1–C12
+└─ 故障码总表
+
+测试文件
+├─ Alpha测试计划
+├─ Beta冻结清单
+├─ 系统FAT清单
+├─ 故障注入测试计划
+├─ 低温/盐雾/热循环计划
+└─ 供应商整改闭环表</code></pre>
+<h3 id="sec-5-5-arcbos-a">5. ARCBOS对A包的控制点</h3>
+<pre><code>A包控制点
+
+平台边界
+├─ 48V LFP
+├─ 15S系统
+├─ Alpha 13.44kWh
+└─ Beta/v1.0 26.88kWh
+
+能力边界
+├─ 300A连续等级评估
+├─ 400–450A 10秒峰值
+├─ 500–600A 1秒峰值
+└─ 200A连续充电
+
+安全边界
+├─ 低温硬件禁充
+├─ 主接触器受控
+├─ 预充受控
+├─ 主熔断保护
+├─ 半插入检测
+└─ 带载拔出硬件阻止
+
+接口边界
+├─ BMS CAN
+├─ 充电允许
+├─ 放电允许
+├─ 回生允许
+└─ 故障码</code></pre>
+<p>ARCBOS不能让A包只交电池实物。A包必须交付设计资料、CAN协议、故障码、保护曲线和测试报告。</p>
+<h3 id="sec-6-6-arcbos-b">6. ARCBOS对B包的控制点</h3>
+<pre><code>B包控制点
+
+动力边界
+├─ 除雪总成2.5–3.5kW连续
+├─ 除雪总成5–6kW峰值
+├─ 不冻结5kW连续功率
+├─ 履带1.0–1.5kW/侧连续目标
+└─ 履带2.0–2.5kW/侧峰值目标
+
+控制边界
+├─ VCU状态机
+├─ 堵转检测
+├─ 反转清堵
+├─ 负载仲裁
+├─ 故障码
+└─ 日志
+
+安全边界
+├─ E_STOP最高优先级
+├─ CHARGING禁止履带和除雪动作
+├─ SERVICE禁止自动动作
+├─ 满电下坡硬规则
+└─ NAV/COMMS降级动作</code></pre>
+<p>B包不能把系统做成黑盒。ARCBOS必须拿到VCU状态机图、CAN协议、IO点表、故障码表、负载仲裁策略和测试数据。</p>
+<h3 id="sec-7-7-arcbos-c">7. ARCBOS对C包的控制点</h3>
+<pre><code>C包控制点
+
+充电边界
+├─ 7.2kW主充电
+├─ 200A连续触点
+├─ 尾部离地DC触点
+├─ 低压握手
+├─ 接触电阻检测
+└─ 充电退出无电弧
+
+线束边界
+├─ 主放电线束
+├─ 充电线束
+├─ 电机支路线束
+├─ 低压线束
+├─ CAN线束
+└─ 安全线束
+
+产品化边界
+├─ 正式线束图
+├─ 端子表
+├─ 接插件表
+├─ 压接规范
+├─ 装配工艺
+├─ 接地屏蔽
+└─ EMC预评估</code></pre>
+<p>C包不能改架构。C包的任务是把已验证的Alpha系统做成可制造、可维护、可测试的Beta产品化电气工程。</p>
+<h3 id="sec-8-8">8. 接口控制原则</h3>
+<p>接口是I包最重要的工作。</p>
+<pre><code>接口控制原则
+
+所有接口必须有文件
+├─ 电气接口
+├─ 通信接口
+├─ 控制接口
+├─ 机械安装接口
+├─ 维护接口
+└─ 测试接口
+
+接口变更必须记录
+├─ 谁提出
+├─ 为什么改
+├─ 影响哪些包
+├─ 是否影响安全
+├─ 是否影响线束
+├─ 是否影响测试
+└─ 谁批准
+
+供应商不得私下改接口
+└─ 任何影响A/B/C包边界的变更，必须经ARCBOS批准。</code></pre>
+<h3 id="sec-9-9">9. 系统级安全边界</h3>
+<p>以下边界由ARCBOS定义，不由供应商决定。</p>
+<pre><code>系统级安全边界
+
+电池安全
+├─ 低温硬件禁充
+├─ 过流保护
+├─ 接触器异常处理
+└─ 带载拔出阻止
+
+运动安全
+├─ E_STOP
+├─ SERVICE禁止自动动作
+├─ CHARGING禁止运动
+├─ 堵转两次失败进入FAULT_STOP
+└─ 通信丢失不得维持危险动作
+
+充电安全
+├─ C1–C12互锁
+├─ 未到位不带电
+├─ 接触电阻异常不快充
+└─ 退出前降流到0
+
+场景安全
+├─ 满电下坡硬规则
+├─ NAV_LOST停止新区域作业
+├─ COMMS_LOST不进入新区域
+└─ 3cm以上硬冰不承诺处理</code></pre>
+<h3 id="sec-10-10-alpha-arcbos">10. Alpha阶段ARCBOS工作</h3>
+<p>Alpha目标是让机器安全动起来、除起来、停下来、报故障，并采集真实负载谱。</p>
+<pre><code>Alpha阶段I包工作
+
+供应商管理
+├─ 启动A包
+├─ 启动B包
+├─ 暂不急于启动C包产品化冻结
+└─ 明确A/B包接口
+
+设计评审
+├─ A包电池/BMS/主回路评审
+├─ B包除雪总成/履带/VCU评审
+├─ 主回路电流边界评审
+├─ VCU状态机评审
+└─ 初版线束与低压评审
+
+测试组织
+├─ 除雪总成台架
+├─ 履带坡道与牵引
+├─ BMS保护
+├─ 状态机
+├─ 低温禁充
+├─ 堵转清堵
+└─ 故障日志</code></pre>
+<h3 id="sec-11-11-beta-arcbos">11. Beta阶段ARCBOS工作</h3>
+<p>Beta目标是把Alpha验证过的系统产品化。</p>
+<pre><code>Beta阶段I包工作
+
+供应商管理
+├─ A包深化为15S2P产品电池
+├─ B包冻结动力与VCU边界
+├─ 启动C包产品化电气工程
+└─ 管理A/B/C接口
+
+设计冻结
+├─ 电池接口冻结
+├─ 主回路保护冻结
+├─ 除雪总成传动和电机冻结
+├─ 履带功率冻结
+├─ VCU状态机冻结
+├─ 充电Dock冻结
+├─ 线束图冻结
+└─ 低压/EMC方案冻结
+
+验证组织
+├─ 系统FAT
+├─ 故障注入
+├─ 低温测试
+├─ 盐雾测试
+├─ 热循环测试
+├─ 振动测试
+└─ 客户试用前验收</code></pre>
+<h3 id="sec-12-12">12. 供应商评审规则</h3>
+<p>ARCBOS评审供应商时，不只看报价。</p>
+<pre><code>供应商评审维度
+
+能力
+├─ 是否做过类似系统
+├─ 是否理解低温户外工况
+├─ 是否能做测试
+└─ 是否能交源文件
+
+接口
+├─ 是否愿意开放CAN协议
+├─ 是否愿意交IO点表
+├─ 是否愿意配合其他包
+└─ 是否接受ARCBOS冻结权
+
+风险
+├─ 是否黑盒
+├─ 是否只卖器件
+├─ 是否拒绝测试
+├─ 是否只交PDF
+└─ 是否逃避系统问题</code></pre>
+<p>供应商如果不愿意交源文件、协议、故障码、测试报告，不适合SnowBot。</p>
+<h3 id="sec-13-13">13. 设计评审节奏</h3>
+<p>推荐节奏：</p>
+<pre><code>设计评审节奏
+
+R0：供应商能力筛选
+├─ 判断能不能做
+└─ 不进入细节采购
+
+R1：方案评审
+├─ A/B包给出初版方案
+├─ ARCBOS确认架构不跑偏
+└─ 明确接口和风险
+
+R2：详细设计评审
+├─ 原理图
+├─状态机
+├─接口文件
+├─测试计划
+└─关键器件选型
+
+R3：样机前评审
+├─ 是否可以采购
+├─ 是否可以装机
+└─ 是否满足一票否决项
+
+R4：Alpha测试评审
+├─ 负载谱
+├─保护动作
+├─故障码
+└─整改清单
+
+R5：Beta冻结评审
+└─ 决定是否进入产品化冻结</code></pre>
+<h3 id="sec-14-14-fat">14. 系统FAT清单</h3>
+<p>I包必须组织系统FAT，不由单一供应商自测代替。</p>
+<pre><code>系统FAT
+
+电池与主回路
+├─ 上电
+├─ 预充
+├─ 接触器动作
+├─ BMS通信
+├─ 低温禁充
+└─ 过流保护
+
+动力系统
+├─ 履带启动
+├─ 原地转向
+├─ 除雪总成启动
+├─ 堵转保护
+├─ 反转清堵
+└─ 热降额
+
+状态机
+├─ READY
+├─ DRIVE
+├─ SNOW_WORK
+├─ DERATE
+├─ DOCKING
+├─ CHARGING
+├─ FAULT_STOP
+├─ E_STOP
+└─ SERVICE
+
+充电
+├─ 对接
+├─ 低压握手
+├─ 充电允许
+├─ 200A路径温升
+└─ 退出无电弧
+
+异常
+├─ BMS通信丢失
+├─ 电机控制器掉线
+├─ NAV_LOST
+├─ COMMS_LOST
+├─ 满电下坡
+└─ 低压异常</code></pre>
+<h3 id="sec-15-15">15. 总体验收标准</h3>
+<p>SnowBot电气系统进入Beta冻结前，必须满足：</p>
+<ol><li>A/B/C包接口文件完整。</li><li>BMS CAN、VCU CAN、电机控制器CAN、充电接口清楚。</li><li>主回路保护协调有初步依据。</li><li>除雪总成堵转逻辑可测试。</li><li>履带坡道和原地转向测试完成。</li><li>满电下坡策略可执行。</li><li>NAV/COMMS降级动作可执行。</li><li>充电互锁C1–C12完整。</li><li>正式线束图和端子表完整。</li><li>一票否决项全部关闭或有明确整改计划。</li></ol>
+<h3 id="sec-16-16-i">16. I包一票否决项</h3>
+<pre><code>I包一票否决项
+
+1. ARCBOS没有总架构文件
+2. 没有接口控制文件ICD
+3. 供应商私自改变接口
+4. A/B/C包之间没有明确责任边界
+5. VCU状态机不清楚
+6. 故障码体系不清楚
+7. 低温禁充边界不清楚
+8. 满电下坡策略不清楚
+9. NAV/COMMS降级不清楚
+10. 充电互锁不清楚
+11. 主回路保护协调不清楚
+12. 线束图缺失
+13. 供应商只交PDF不交源文件
+14. 测试结果不能追溯
+15. 没有ARCBOS最终冻结权</code></pre>
+<h3 id="sec-17-17-i">17. I包第一阶段工作顺序</h3>
+<pre><code>I包第一阶段工作顺序
+
+1. 冻结三包制分包边界
+2. 启动A包供应商评估
+3. 启动B包供应商能力筛选
+4. 明确C包Beta阶段启动条件
+5. 输出接口控制文件ICD初版
+6. 输出CAN总线矩阵初版
+7. 输出VCU状态机验收清单
+8. 输出A/B包第一轮评审问题清单
+9. 组织A/B包方案评审
+10. 组织Alpha台架与样机测试计划</code></pre>
+<h3 id="sec-18-18-i">18. I包最终判断</h3>
+<pre><code>I包最终判断
+
+供应商可以做子系统。
+但系统定义权不能外包。
+安全边界不能外包。
+接口控制不能外包。
+最终冻结权不能外包。
+
+ARCBOS必须成为SnowBot电气系统的系统架构方，
+而不是被供应商牵着走的采购方。</code></pre>
+<h3 id="sec-19-19">19. 主方案覆盖矩阵</h3>
+<p>本节用于I包自查ABCI四份分包文档是否真实覆盖《SnowBot 整机电气系统总体方案 v1.0》。该矩阵是ARCBOS内部总控工具，也是防止供应商瞎子摸象的责任分配表。</p>
+<div class="table-wrap"><table><tbody><tr><td>主方案章节/主题</td><td>A包</td><td>B包</td><td>C包</td><td>I包</td></tr><tr><td>总体结论、设计目标、数据性质</td><td>理解并执行能源边界</td><td>理解并执行运动/控制边界</td><td>理解并执行产品化边界</td><td>主责维护</td></tr><tr><td>已锁定系统边界</td><td>48V LFP、15S、电池容量</td><td>履带、除雪、VCU状态</td><td>充电、线束、低压、EMC</td><td>主责冻结</td></tr><tr><td>电压平台选择</td><td>主责实现48V电池平台</td><td>按48V控制器和电机设计</td><td>按48V线束和充电路径设计</td><td>决定是否触发72V评估</td></tr><tr><td>总体电气架构</td><td>能源层</td><td>动力层、控制层</td><td>低压层、线束、充电工程化</td><td>主责维护架构</td></tr><tr><td>负载谱与功率等级</td><td>按叠加电流设计BMS和主回路</td><td>主责转化为控制策略</td><td>按电流等级设计线束和连接器</td><td>主责验证负载谱</td></tr><tr><td>电池系统方案</td><td>主责</td><td>读取BMS边界</td><td>承接电池接口和线束</td><td>评审冻结</td></tr><tr><td>BMS目标能力</td><td>主责</td><td>读取Charge/Discharge/Regen允许状态</td><td>承接BMS通信和充电联动接口</td><td>验收</td></tr><tr><td>主回路与保护协调</td><td>主责主熔断、接触器、预充、SD</td><td>控制器限流、VCU降额</td><td>线束、支路保护和端子工程化</td><td>主责保护顺序</td></tr><tr><td>除雪总成主电机与传动</td><td>供电与保护边界</td><td>主责</td><td>线束、连接器、安装工程化</td><td>冻结传动前置条件</td></tr><tr><td>堵转与恢复</td><td>BMS峰值能力和保护配合</td><td>主责</td><td>线束和支路保护配合</td><td>验收测试</td></tr><tr><td>履带驱动</td><td>供电与回生允许</td><td>主责</td><td>线束和连接器工程化</td><td>验收测试</td></tr><tr><td>除雪总成与履带功率耦合</td><td>按叠加电流设计</td><td>主责负载仲裁</td><td>按峰值电流工程化</td><td>主责评审</td></tr><tr><td>辅助执行器</td><td>供电边界</td><td>主责控制</td><td>线束与连接器</td><td>验收</td></tr><tr><td>充电系统与Dock</td><td>BMS充电允许、低温禁充</td><td>CHARGING状态互锁</td><td>主责</td><td>主责充电安全边界</td></tr><tr><td>低压电源系统</td><td>48V供电边界</td><td>Alpha初版</td><td>Beta产品化主责</td><td>验收</td></tr><tr><td>VCU、IPC与控制边界</td><td>BMS接口</td><td>主责</td><td>线束/低压/EMC配合</td><td>定义安全边界</td></tr><tr><td>GPS/通信降级</td><td>提供BMS状态</td><td>主责执行</td><td>通信物理层配合</td><td>定义规则并验收</td></tr><tr><td>急停、安全链路、制动回生</td><td>BMS断开和RegenAllowed</td><td>运动侧主责</td><td>安全线束与接口</td><td>主责系统级安全</td></tr><tr><td>热管理</td><td>电池热管理主责</td><td>控制器与负载仲裁配合</td><td>低压/线束/传感器工程化</td><td>验收</td></tr><tr><td>线束与连接器</td><td>电池盲插和电池端子</td><td>Alpha初版线束需求</td><td>主责正式线束</td><td>冻结接口</td></tr><tr><td>EMC、接地与通信</td><td>BMS抗扰与接口</td><td>控制器噪声源与通信</td><td>主责工程化</td><td>验收</td></tr><tr><td>结构接口</td><td>电池包结构和电池仓接口</td><td>控制器、执行器安装接口</td><td>线束/Dock/低压安装接口</td><td>跨包冻结</td></tr><tr><td>作业面积、路径长度与定位</td><td>低温可用能量输入</td><td>速度、功率、状态机执行</td><td>Dock和回充工程化</td><td>主责SLA与场地仿真</td></tr><tr><td>硬冰层服务边界</td><td>保护能力支持</td><td>主责执行保护/绕行</td><td>无直接主责</td><td>主责对外边界</td></tr><tr><td>低温、盐雾、热循环</td><td>电池包与连接器主责</td><td>电机/控制器/制动冷启动</td><td>线束/Dock/连接器主责</td><td>组织验证</td></tr><tr><td>故障诊断体系</td><td>BMS故障码</td><td>VCU/控制器故障码</td><td>充电/低压/线束故障信息</td><td>主责总故障码表</td></tr><tr><td>认证与合规预留</td><td>电池和BMS资料</td><td>控制器和软件资料</td><td>充电、线束、EMC资料</td><td>主责路线</td></tr><tr><td>Alpha/Beta/v1.0阶段要求</td><td>Alpha电池、Beta电池</td><td>Alpha控制闭环、Beta动力冻结</td><td>Beta产品化</td><td>阶段验收</td></tr><tr><td>一票否决项</td><td>A包相关项</td><td>B包相关项</td><td>C包相关项</td><td>主责总表</td></tr></tbody></table></div>
+<h3 id="sec-20-20">20. 四包自查结论</h3>
+<p>本轮核查后，ABCI四份文档必须满足以下判断。</p>
+<pre><code>四包自查结论
+
+A包
+├─ 不只是电芯/BMS
+├─ 必须覆盖电池结构、主回路、BMS、热管理、保护协调和认证资料
+└─ 对整机负责的是48V能源安全底座
+
+B包
+├─ 不只是电机/控制器
+├─ 必须覆盖除雪、履带、VCU、状态机、负载仲裁、硬冰边界、满电下坡和故障码
+└─ 对整机负责的是安全运动与安全除雪闭环
+
+C包
+├─ 不只是线束/Dock
+├─ 必须覆盖正式线束、低压配电、充电Dock、尾部触点、EMC、装配和产品化验证准备
+└─ 对整机负责的是产品化电气工程落地
+
+I包
+├─ 不做具体零件设计
+├─ 必须掌握系统定义、接口控制、安全边界、验收和冻结
+└─ 对整机负责的是防止供应商各自为政</code></pre>
+<h3 id="sec-21-21">21. 供应商交付执行规则</h3>
+<p>以下规则适用于A、B、C所有外包供应商。</p>
+<pre><code>供应商交付硬规则
+
+资料交付
+├─ 不接受只交PDF
+├─ 必须交可编辑源文件
+├─ 必须交图纸源文件
+├─ 必须交协议/DBC/寄存器表
+├─ 必须交测试原始数据
+└─ 必须交版本记录
+
+接口管理
+├─ 不得私自改接口
+├─ 不得绕过I包评审
+├─ 不得把系统安全逻辑做成黑盒
+└─ 不得以“内部算法”为由拒绝故障诊断接口
+
+测试管理
+├─ 所有关键参数必须可测试
+├─ 所有一票否决项必须关闭
+├─ 所有异常必须有故障码
+└─ 所有整改必须闭环</code></pre>
+<h3 id="sec-22-22">22. 分包执行风险清单</h3>
+<p>I包必须定期检查以下高风险丢项。</p>
+<pre><code>最容易丢的项目
+
+A包容易丢
+├─ 电池包结构
+├─ 低温禁充硬件级实现
+├─ RegenAllowed
+├─ I²t协调
+├─ 温升测试
+└─ 认证资料预留
+
+B包容易丢
+├─ 辅助执行器
+├─ 硬冰服务边界执行
+├─ 满电下坡硬规则
+├─ NAV/COMMS降级
+├─ 负载仲裁
+└─ 初版低压/线束与C包交接
+
+C包容易丢
+├─ 充电退出无电弧
+├─ 接触电阻检测
+├─ 接地/屏蔽策略
+├─ 高电流线束温升
+├─ 低温后插拔/弯折
+└─ EMC预扫
+
+I包容易丢
+├─ ICD接口控制文件
+├─ 总故障码表
+├─ 供应商接口变更记录
+├─ 系统FAT
+├─ 阶段冻结清单
+└─ 最终否决权</code></pre>
+<h3 id="sec-23-23">23. 四包执行判断</h3>
+<pre><code>执行判断
+
+四份分包文档现在不再是简单拆分版。
+它们已经按主方案进行了责任补强。
+
+A包负责能源安全底座。
+B包负责整车运动控制闭环。
+C包负责产品化电气工程落地。
+I包负责总架构、接口、验收和冻结。
+
+后续每次供应商评审，都应拿I包第19节覆盖矩阵对照检查。
+任何主方案内容找不到责任包，就必须立即补到对应包中。</code></pre>
+<h3 id="sec-24-24">24. 接口控制、版本管理与系统验收规则</h3>
+<p>本节定义ARCBOS内部必须执行的接口控制、CAN矩阵、变更审批、阶段交接、故障码编号、一票否决、系统FAT和版本控制规则。</p>
+<h4 id="sec-25-24-1-icd">24.1 ICD接口控制文件最小内容框架</h4>
+<p>I包必须维护ICD。ICD不是可选文件，也不是会议纪要。R1评审前必须有ICD v0.1，R2评审后关键接口变更必须进入审批。</p>
+<pre><code>ICD最小内容框架
+
+基础信息
+├─ ICD编号
+├─ 接口名称
+├─ 接口版本
+├─ 当前状态：Draft / Review / Frozen / Obsolete
+├─ 输出包
+├─ 输入包
+├─ 责任人
+└─ 最近修改日期
+
+接口类型
+├─ 电气功率接口
+├─ 低压电源接口
+├─ CAN通信接口
+├─ IO接口
+├─ 机械安装接口
+├─ 维护接口
+└─ 测试接口
+
+接口内容
+├─ 物理形式
+├─ 连接器/端子/安装面
+├─ 信号定义
+├─ 电压/电流/功率边界
+├─ 通信协议
+├─ 刷新周期
+├─ 超时处理
+├─ 故障处理
+└─ 验收方法
+
+变更记录
+├─ 变更编号
+├─ 变更原因
+├─ 影响包
+├─ 是否影响安全
+├─ 是否影响线束
+├─ 是否影响测试
+├─ 批准人
+└─ 批准日期</code></pre>
+<h4 id="sec-26-24-2-can-icd">24.2 CAN接口最低ICD字段</h4>
+<div class="table-wrap"><table><tbody><tr><td>字段</td><td>要求</td></tr><tr><td>CAN节点</td><td>BMS、VCU、除雪控制器、左履带控制器、右履带控制器、充电器等</td></tr><tr><td>总线归属</td><td>动力CAN、传感器CAN、充电CAN或网关后子网</td></tr><tr><td>波特率</td><td>250kbps、500kbps或供应商建议值，必须明确</td></tr><tr><td>报文ID</td><td>11位或29位必须明确</td></tr><tr><td>信号名称</td><td>必须与DBC一致</td></tr><tr><td>数据类型</td><td>bit、uint、int、float或等效定义</td></tr><tr><td>单位/比例/偏移</td><td>必须明确</td></tr><tr><td>刷新周期</td><td>周期报文必须定义周期</td></tr><tr><td>超时处理</td><td>VCU收到超时后如何动作必须明确</td></tr><tr><td>故障码映射</td><td>必须进入总故障码表</td></tr></tbody></table></div>
+<h4 id="sec-27-24-3-can">24.3 CAN节点矩阵初版</h4>
+<div class="table-wrap"><table><tbody><tr><td>节点</td><td>所属包</td><td>总线归属</td><td>主要输出</td><td>主要接收</td></tr><tr><td>BMS</td><td>A包</td><td>动力CAN/能源CAN</td><td>电压、电流、SOC、ChargeAllowed、DischargeAllowed、RegenAllowed、故障码</td><td>VCU状态、故障清除请求、充电状态</td></tr><tr><td>VCU</td><td>B包</td><td>动力CAN核心节点</td><td>状态机、使能、限流请求、故障状态</td><td>BMS、电机控制器、充电器、IPC、IO状态</td></tr><tr><td>除雪总成控制器</td><td>B包</td><td>动力CAN</td><td>电流、转速、温度、故障码、堵转状态</td><td>VCU使能、转速/扭矩/限流命令</td></tr><tr><td>左履带控制器</td><td>B包</td><td>动力CAN</td><td>电流、速度、温度、故障码、回生状态</td><td>VCU速度/扭矩/制动命令</td></tr><tr><td>右履带控制器</td><td>B包</td><td>动力CAN</td><td>电流、速度、温度、故障码、回生状态</td><td>VCU速度/扭矩/制动命令</td></tr><tr><td>充电器/Dock控制器</td><td>C包</td><td>充电CAN或低压握手接口</td><td>充电器状态、输出电压、电流、故障码、Dock到位</td><td>BMS/VCU充电允许、充电启动/停止命令</td></tr><tr><td>IPC</td><td>B包接口/I包定义</td><td>以太网、CAN或串口待冻结</td><td>任务、路径、NAV状态、COMMS状态</td><td>VCU状态、故障、允许动作边界</td></tr></tbody></table></div>
+<p>IPC与VCU的物理接口在Alpha阶段可暂定，但R2评审前必须冻结，不能长期悬空。</p>
+<h4 id="sec-28-24-4">24.4 接口变更审批流程</h4>
+<pre><code>接口变更审批流程
+
+R0-R1阶段
+├─ 供应商可提出变更建议
+├─ I包记录变更
+└─ 安全相关变更必须立即评审
+
+R2评审后
+├─ 任何接口变更必须提交接口变更申请
+├─ I包评估影响
+├─ 相关包确认影响
+├─ 安全相关变更必须Founder/总架构批准
+└─ 批准后更新ICD版本
+
+Beta冻结后
+├─ 原则上不允许接口变更
+├─ 必须变更时建立ECR/ECN记录
+└─ 重新执行受影响测试</code></pre>
+<p>接口变更申请最少包含：变更编号、提出方、变更描述、影响包、安全影响、线束影响、测试影响、批准人、批准日期、关闭证明。</p>
+<h4 id="sec-29-24-5-alpha-beta-c">24.5 Alpha到Beta交接与C包启动规则</h4>
+<pre><code>C包启动规则
+
+若A/B接口未完成R2评审
+└─ C包只能做预研，不能进入正式线束冻结和Dock冻结。
+
+C包正式启动条件
+├─ A包电池端子、BMS接口、充电允许状态已通过I包评审
+├─ B包IO点表、VCU状态机、控制器端子已通过I包评审
+├─ Alpha样机已完成基本上电和状态切换测试
+├─ I包签发C包启动通知
+└─ ICD v0.1已建立
+
+C包正式冻结条件
+├─ A/B/C接口均在ICD中冻结
+├─ 正式线束图通过评审
+├─ Dock机械接口通过评审
+├─ 低压配电通过评审
+├─ EMC预扫计划通过评审
+└─ 系统FAT项目已定义</code></pre>
+<h4 id="sec-30-24-6-vcu">24.6 VCU状态机版本管理规则</h4>
+<pre><code>VCU状态机版本管理
+
+R0-R1阶段
+├─ B包可快速迭代
+├─ 每次迭代必须保留版本记录
+└─ 关键安全状态不得删除
+
+R2评审后
+├─ 状态名称变更必须经I包批准
+├─ 状态跳转条件变更必须经I包批准
+├─ E_STOP / CHARGING / SERVICE / FAULT_STOP变更必须专项评审
+└─ 变更后重新执行相关FAT测试
+
+Beta冻结后
+└─ 状态机变更按工程变更流程处理。</code></pre>
+<h4 id="sec-31-24-7">24.7 故障码编号空间分配规则</h4>
+<p>为避免A/B/C包故障码冲突，I包建立故障码编号空间。</p>
+<div class="table-wrap"><table><tbody><tr><td>范围</td><td>所属</td><td>示例</td></tr><tr><td>0x0001–0x00FF</td><td>A包/BMS/电池/主回路</td><td>低温禁充、BMS过流、接触器异常</td></tr><tr><td>0x0100–0x01FF</td><td>B包/VCU状态机</td><td>状态机非法跳转、通信超时、E_STOP</td></tr><tr><td>0x0200–0x02FF</td><td>B包/除雪总成</td><td>堵转、过温、反转清堵失败</td></tr><tr><td>0x0300–0x03FF</td><td>B包/履带与制动</td><td>履带控制器掉线、制动未释放、回生异常</td></tr><tr><td>0x0400–0x04FF</td><td>C包/充电Dock</td><td>接触电阻高、对准失败、充电退出异常</td></tr><tr><td>0x0500–0x05FF</td><td>C包/低压、线束、EMC相关</td><td>DC-DC欠压、传感器电源异常、CAN错误帧过多</td></tr><tr><td>0x0600–0x06FF</td><td>导航/通信降级接口</td><td>NAV_LOST、COMMS_LOST、LOCAL_SAFE</td></tr></tbody></table></div>
+<p>最终编号可调整，但必须由I包统一分配，不允许供应商自由冲突编号。</p>
+<h4 id="sec-32-24-8">24.8 整机一票否决项总表</h4>
+<p>I包必须维护整机一票否决项总表。以下为初版总表，执行时需要增加“是否关闭”和“关闭证明”。</p>
+<div class="table-wrap"><table><tbody><tr><td>编号</td><td>条目</td><td>所属包</td><td>关闭证明</td></tr><tr><td>A-01</td><td>低温禁充只靠软件</td><td>A包</td><td>硬件保护说明与测试报告</td></tr><tr><td>A-02</td><td>BMS无CAN故障码或无DBC/可集成信号表</td><td>A包</td><td>DBC、信号表、故障码表</td></tr><tr><td>A-03</td><td>无法证明300A连续能力</td><td>A包</td><td>规格书与温升测试</td></tr><tr><td>A-04</td><td>无法证明400–600A峰值能力</td><td>A包</td><td>规格书与峰值测试</td></tr><tr><td>A-05</td><td>无法证明200A连续充电能力</td><td>A包</td><td>充电温升测试</td></tr><tr><td>A-06</td><td>电池半插入仍可能上电或带载拔出无硬件阻止</td><td>A包</td><td>互锁测试</td></tr><tr><td>B-01</td><td>没有传动方案就冻结除雪总成电机</td><td>B包</td><td>传动输入评审记录</td></tr><tr><td>B-02</td><td>把5kW直接定义为连续功率</td><td>B包</td><td>负载谱与电机选型报告</td></tr><tr><td>B-03</td><td>堵转只能靠熔断器处理</td><td>B包</td><td>堵转清堵测试</td></tr><tr><td>B-04</td><td>VCU无状态机图或关键状态不可测试</td><td>B包</td><td>状态机图与FAT记录</td></tr><tr><td>B-05</td><td>辅助执行器未进入VCU状态机且无测试记录</td><td>B包</td><td>辅助执行器测试报告</td></tr><tr><td>B-06</td><td>负载仲裁阈值未量化</td><td>B包</td><td>仲裁阈值表与测试记录</td></tr><tr><td>C-01</td><td>高电流触点未到位即可带电</td><td>C包</td><td>充电互锁测试</td></tr><tr><td>C-02</td><td>充电退出时带载拉弧</td><td>C包</td><td>无电弧退出测试</td></tr><tr><td>C-03</td><td>Dock机械接口无对接容差目标</td><td>C包</td><td>Dock机械接口规格表</td></tr><tr><td>C-04</td><td>无正式线束图、端子表或压接规范</td><td>C包</td><td>线束图、端子表、压接规范</td></tr><tr><td>C-05</td><td>无接地/屏蔽策略或无EMC预扫计划</td><td>C包</td><td>EMC风险清单和预扫计划</td></tr><tr><td>I-01</td><td>R1评审前没有ICD v0.1</td><td>I包</td><td>ICD文件</td></tr><tr><td>I-02</td><td>供应商私自改接口且无变更记录</td><td>I包</td><td>接口变更审批记录</td></tr><tr><td>I-03</td><td>四包一票否决项总表未建立</td><td>I包</td><td>总表与关闭状态</td></tr><tr><td>I-04</td><td>没有ARCBOS最终冻结权</td><td>I包</td><td>项目治理文件和评审记录</td></tr></tbody></table></div>
+<p>该表为初版管理表。执行时必须继续把A/B/C/I各包全部一票否决项逐条纳入，形成完整关闭清单。该表是I包统一管理供应商否决项关闭状态的主表。</p>
+<h4 id="sec-33-24-9-fat">24.9 系统FAT量化补充</h4>
+<pre><code>系统FAT新增量化项目
+
+A包相关
+├─ BMS心跳中断300ms/1s/3s分级响应测试
+├─ 200A充电路径温升测试
+├─ 250–300A主放电路径温升测试
+└─ 低温禁充实测
+
+B包相关
+├─ 主母线电流270A超过3秒DERATE测试
+├─ 主母线电流320A超过1秒FAULT_STOP测试
+├─ 辅助执行器断电自锁测试
+├─ 传动件-30°C冷启动测试
+└─ NAV_LOST / COMMS_LOST测试
+
+C包相关
+├─ Dock粗对准±50mm导向测试
+├─ 触点级对准±5mm接触测试
+├─ 充电退出无电弧测试
+├─ 触点-30°C对接可靠性测试
+└─ EMC预扫前置测试</code></pre>
+<h4 id="sec-34-24-10">24.10 文件版本控制规则</h4>
+<pre><code>版本控制规则
+
+发版
+├─ 所有对外文档必须有版本号
+├─ 每次发给供应商必须记录日期和版本
+└─ 旧版本失效必须明确通知
+
+修订
+├─ 技术参数变化必须记录原因
+├─ 接口变化必须更新ICD
+├─ 一票否决项变化必须更新总表
+└─ 测试标准变化必须通知所有受影响供应商
+
+冻结
+├─ Alpha冻结不等于Beta冻结
+├─ Beta冻结不等于量产冻结
+└─ 任何冻结必须有I包评审记录</code></pre>
+      </section>
+      <footer class="document-footer">
+        <div class="footer-row">
+          <span class="footer-brand">ARCBOS</span>
+          <span class="footer-ref">ARCBOS-SPEC-2606-0012 · Version v1.0</span>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

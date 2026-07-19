@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SnowBot 整机电气系统总体方案 v1.0 — ARCBOS-SPEC-2606-0016</title>
+    <link rel="icon" href="../../assets/favicon.ico">
+    <meta name="description" content="文件编号：ARCBOS-SPEC-2606-0016">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="SnowBot 整机电气系统总体方案 v1.0">
+    <meta property="og:description" content="文件编号：ARCBOS-SPEC-2606-0016">
+    <meta property="og:image" content="https://ref.arcbos.com/assets/arcbos-share-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SnowBot 整机电气系统总体方案 v1.0">
+    <meta name="twitter:description" content="文件编号：ARCBOS-SPEC-2606-0016">
+    <meta name="twitter:image" content="https://ref.arcbos.com/assets/arcbos-share-preview.png">
+    <link rel="stylesheet" href="../../assets/css/screen.css">
+    <link rel="stylesheet" href="../../assets/css/print.css" media="print">
+  </head>
+  <body>
+    <header class="site-topbar no-print"><span class="topbar-brand">ARCBOS</span></header>
+    <main class="document">
+      <header class="document-masthead">
+        <div class="masthead-row">
+          <div class="masthead-brand">ARCBOS</div>
+          <p class="masthead-slogan">ENGINEERED FOR EXTREME CONDITIONS</p>
+        </div>
+      </header>
+      <section class="document-title-block">
+        <p class="document-kicker">Specification</p>
+        <h1>SnowBot 整机电气系统总体方案 v1.0</h1>
+      </section>
+      <div class="document-meta-grid" aria-label="Document metadata"><div class="meta-item"><span class="meta-label">Document ID</span><span class="meta-value meta-value--id">ARCBOS-SPEC-2606-0016</span></div><div class="meta-item"><span class="meta-label">Type</span><span class="meta-value">Specification</span></div><div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">v1.0</span></div><div class="meta-item"><span class="meta-label">Status</span><span class="tag status-final">Final</span></div><div class="meta-item"><span class="meta-label">Client</span><span class="meta-value">SnowBot</span></div><div class="meta-item"><span class="meta-label">Project</span><span class="meta-value">SnowBot Alpha &amp; Beta</span></div><div class="meta-item"><span class="meta-label">Updated</span><span class="meta-value">2026-07-19</span></div><div class="meta-item"><span class="meta-label">Access</span><span class="tag is-client-link">Client Link</span></div></div>
+      <div class="document-actions no-print">
+        <button type="button" class="action-btn" onclick="window.print()" title="Print this document using your browser" aria-label="Print this document">Print</button><a href="../../pdf/ARCBOS-SPEC-2606-0016.pdf" class="action-btn action-btn--download-pdf" title="Download pre-generated PDF" aria-label="Download PDF" download>Download PDF</a>
+      </div>
+      <nav class="document-toc no-print" aria-label="Contents">
+        <details class="toc-details">
+          <summary class="toc-title">Contents<span class="toc-count">39 sections</span></summary>
+          <ol class="toc-list"><li class="toc-d0"><a href="#sec-1-1">1. 总体结论</a></li><li class="toc-d0"><a href="#sec-2-2">2. 设计目标</a></li><li class="toc-d0"><a href="#sec-3-3">3. 数据性质与使用规则</a></li><li class="toc-d0"><a href="#sec-4-4">4. 已锁定系统边界</a></li><li class="toc-d0"><a href="#sec-5-5">5. 电压平台选择</a></li><li class="toc-d0"><a href="#sec-6-6">6. 总体电气架构</a></li><li class="toc-d0"><a href="#sec-7-7">7. 负载谱与功率等级</a></li><li class="toc-d0"><a href="#sec-8-8">8. 电池系统方案</a></li><li class="toc-d0"><a href="#sec-9-9-bms">9. BMS目标能力</a></li><li class="toc-d0"><a href="#sec-10-10">10. 主回路与保护协调</a></li><li class="toc-d0"><a href="#sec-11-11-service-disconnect">11. 熔断器、接触器与Service Disconnect</a></li><li class="toc-d0"><a href="#sec-12-12">12. 除雪总成主电机与传动方案</a></li><li class="toc-d0"><a href="#sec-13-13">13. 除雪总成堵转与恢复策略</a></li><li class="toc-d0"><a href="#sec-14-14">14. 履带驱动系统</a></li><li class="toc-d0"><a href="#sec-15-15">15. 除雪总成与履带功率耦合</a></li><li class="toc-d0"><a href="#sec-16-16">16. 辅助执行器</a></li><li class="toc-d0"><a href="#sec-17-17">17. 充电系统</a></li><li class="toc-d0"><a href="#sec-18-18">18. 低压电源系统</a></li><li class="toc-d0"><a href="#sec-19-19-vcu-ipc">19. VCU、IPC与控制边界</a></li><li class="toc-d0"><a href="#sec-20-20-gps">20. GPS/通信降级状态机</a></li><li class="toc-d0"><a href="#sec-21-21">21. 急停、安全链路与制动回生</a></li><li class="toc-d0"><a href="#sec-22-22">22. 热管理</a></li><li class="toc-d0"><a href="#sec-23-23">23. 线束与连接器</a></li><li class="toc-d0"><a href="#sec-24-24-emc">24. EMC、接地与通信</a></li><li class="toc-d0"><a href="#sec-25-25">25. 结构接口要求</a></li><li class="toc-d0"><a href="#sec-26-26-dock">26. 充电座与Dock</a></li><li class="toc-d0"><a href="#sec-27-27">27. 作业面积、路径长度与产品定位</a></li><li class="toc-d0"><a href="#sec-28-28">28. 硬冰层服务边界</a></li><li class="toc-d0"><a href="#sec-29-29">29. 低温材料、盐雾与热循环</a></li><li class="toc-d0"><a href="#sec-30-30">30. 故障诊断体系</a></li><li class="toc-d0"><a href="#sec-31-31">31. 认证与合规预留</a></li><li class="toc-d0"><a href="#sec-32-32-alpha">32. Alpha阶段要求</a></li><li class="toc-d0"><a href="#sec-33-33-beta">33. Beta阶段要求</a></li><li class="toc-d0"><a href="#sec-34-34-v1-0">34. v1.0产品化要求</a></li><li class="toc-d0"><a href="#sec-35-35">35. 推荐方案参数表</a></li><li class="toc-d0"><a href="#sec-36-36">36. 一票否决项</a></li><li class="toc-d0"><a href="#sec-37-37">37. 下一步工程工作顺序</a></li><li class="toc-d0"><a href="#sec-38-38">38. 当前不建议的方向</a></li><li class="toc-d0"><a href="#sec-39-39">39. 最终工程判断</a></li></ol>
+        </details>
+      </nav>
+      <section class="document-content">
+        <aside class="callout"><strong>DOCUMENT GOVERNANCE — CURRENT ELECTRICAL AUTHORITY</strong></aside>
+<p><strong>文件编号</strong>：ARCBOS-SPEC-2606-0016</p>
+<p><strong>版本</strong>：v1.0</p>
+<p><strong>状态</strong>：Final · 全量总方案详细文档</p>
+<p><strong>适用对象</strong>：ARCBOS 内部工程团队、结构工程师、电气工程师、嵌入式/VCU工程师、BMS供应商、电机与控制器供应商、充电系统供应商</p>
+<p><strong>文档定位</strong>：本文是 SnowBot 整机电气系统总体方案。它由原内部技术推导版 v0.2 全量重构而成，删除讨论式、备忘录式和补丁式表述，保留全部关键结论、设计边界、参数取值、验证要求和一票否决项。</p>
+<p><strong>使用边界</strong>：本文可用于内部工程评审、供应商技术沟通、Alpha/Beta设计冻结准备。本文不是最终量产图纸，不替代电气原理图、线束图、BOM、测试报告和认证报告。</p>
+<h3 id="sec-1-1">1. 总体结论</h3>
+<p>SnowBot 不应被设计成“电池加几个电机”的设备。它应被设计成一台低温、户外、高电流、无人值守、可维护、可诊断的商业级移动机器人平台。</p>
+<p>SnowBot v1.0 电气系统推荐路线如下：</p>
+<pre><code>SnowBot v1.0 推荐路线
+
+电压平台
+├─ 48V LFP
+├─ 产品化目标：15S2P，约26.88kWh
+└─ Alpha验证：15S1P，约13.44kWh
+
+主回路
+├─ 主放电路径：250–300A连续能力预留
+├─ BMS：300A连续等级评估
+├─ BMS 10秒峰值：400–450A
+└─ BMS 1秒峰值：500–600A
+
+充电系统
+├─ 充电路径：200A连续能力
+├─ 主充电目标：7.2kW
+└─ 充电方式：离板充电器 + 尾部离地DC触点
+
+动力系统
+├─ 除雪总成主电机：2.5–3.5kW连续
+├─ 除雪总成重载功率：4–5kW
+├─ 除雪总成峰值功率：5–6kW
+├─ 不直接冻结5kW连续功率
+├─ 履带Alpha候选下限：750W/侧
+├─ 履带v1.0连续目标：1.0–1.5kW/侧
+└─ 履带v1.0峰值目标：2.0–2.5kW/侧
+
+安全边界
+├─ 低温充电必须硬件禁止
+├─ 任一电芯低于5°C不得充电
+├─ 不承诺处理3cm以上硬冰层
+└─ 大型停车场采用分区作业、中途回充或多机协同
+
+下一阶段重点
+├─ 传动方案草图
+├─ 台架负载谱
+├─ 路径仿真
+├─ 履带牵引测试
+└─ BMS与主回路保护协调</code></pre>
+<pre><code>最终判断
+
+48V平台可以继续推进。
+但必须按照工业级高电流系统设计。
+所有关键器件必须由真实负载谱、保护协调和低温验证反推。
+不能由供应商规格表直接决定。</code></pre>
+<h3 id="sec-2-2">2. 设计目标</h3>
+<p>SnowBot 的电气系统必须服务于真实商业客户，而不是服务于实验室样机。</p>
+<p>设计目标如下：</p>
+<pre><code>设计目标
+
+安全优先
+└─ 任何异常先进入安全状态，不硬顶、不赌软件、不让熔断器处理普通堵转。
+
+可靠优先
+└─ 低温、雪水、盐雾、泥沙、振动、结冰和无人值守必须进入初始设计条件。
+
+可维护优先
+└─ 电池包、熔断器、Service Disconnect、接触器、控制器、充电接口和线束接插件必须可维护。
+
+可诊断优先
+└─ BMS、电机控制器、VCU、充电系统和低压电源必须提供故障码、状态量和日志。
+
+负载谱优先
+└─ 先用真实负载谱反推电池、BMS、主回路、线束、控制器和热管理，不先拍定电机功率。
+
+商业场景优先
+└─ 必须把场地面积、有效清扫宽度、路径长度、作业时间、低温可用能量和中途回充纳入设计。
+
+平台化优先
+└─ SnowBot v1.0 的电气系统应为后续户外机器人平台复用预留接口和设计方法。</code></pre>
+<h3 id="sec-3-3">3. 数据性质与使用规则</h3>
+<p>本文中的数据分为四类，使用时不得混淆。</p>
+<div class="table-wrap"><table><tbody><tr><td>数据类型</td><td>含义</td><td>使用方式</td></tr><tr><td>已锁定工程事实</td><td>已作为当前方案基础的事实，如48V LFP、15S、尾部触点充电、低温禁充等</td><td>可作为当前工程输入</td></tr><tr><td>概率估算</td><td>基于工程经验、类比设备和电气推导得到的范围值</td><td>用于设计预留，不可作为实测数据对外承诺</td></tr><tr><td>设计取值</td><td>当前推荐用于采购调研、结构预留和系统设计的目标值</td><td>可指导方案设计，但需测试冻结</td></tr><tr><td>待验证项</td><td>必须通过台架、样机、低温、盐雾、振动或场地测试确认的项目</td><td>不得直接进入量产冻结</td></tr></tbody></table></div>
+<p>本文所有概率估算均不得包装成实测数据。所有设计取值在进入 Beta 冻结前必须通过测试或供应商正式资料确认。</p>
+<h3 id="sec-4-4">4. 已锁定系统边界</h3>
+<div class="table-wrap"><table><tbody><tr><td>项目</td><td>当前边界</td></tr><tr><td>产品定位</td><td>商业户外自主除雪机器人</td></tr><tr><td>目标阶段</td><td>Alpha、Beta、v1.0产品化前设计</td></tr><tr><td>电池平台</td><td>48V LFP，15S系统</td></tr><tr><td>Alpha电池</td><td>15S1P，约13.44kWh，用于工程验证</td></tr><tr><td>Beta/v1.0电池</td><td>15S2P，约26.88kWh，产品化目标</td></tr><tr><td>电压范围</td><td>满充54.75V，截止37.5V</td></tr><tr><td>主充电</td><td>240VAC/40A输入，离板充电器，7.2kW DC输出目标</td></tr><tr><td>降额充电</td><td>240VAC/30A输入，约5.8–6.5kW DC输出</td></tr><tr><td>维护慢充</td><td>120VAC/15–20A，仅维护、测试、应急慢充</td></tr><tr><td>主充电接口</td><td>尾部离地 DC 触点，不采用地面触点作为主方案</td></tr><tr><td>除雪总成</td><td>绞龙与抛雪叶轮共用一台主电机，但传动方式未冻结</td></tr><tr><td>行走系统</td><td>左右履带独立驱动，带制动能力</td></tr><tr><td>低温充电</td><td>任一电芯低于5°C时必须硬件禁止充电</td></tr><tr><td>控制系统</td><td>BMS、VCU、IPC、电机控制器、充电器、传感器通过CAN或网关联动</td></tr></tbody></table></div>
+<h3 id="sec-5-5">5. 电压平台选择</h3>
+<p>SnowBot v1.0 推荐继续采用 48V LFP 平台。理由不是 48V 电流小，而是第一代商业自主户外机器人更需要安全、可维护、供应链成熟和认证路径可控。</p>
+<div class="table-wrap"><table><tbody><tr><td>平台</td><td>优点</td><td>缺点</td><td>判断</td></tr><tr><td>48V LFP</td><td>安全边界清楚，维护友好，供应链成熟，适合Alpha/Beta快速验证</td><td>高功率下电流大，对线束、接触器、BMS和EMC要求高</td><td>v1.0推荐保留</td></tr><tr><td>72V平台</td><td>同功率电流下降约三分之一，重载更舒服</td><td>BMS、充电器、供应链、认证和维护复杂度上升</td><td>Heavy Duty版本备选</td></tr><tr><td>96V及以上</td><td>大功率能力更强</td><td>安全等级、绝缘、认证、维护和成本显著上升</td><td>v1.0不建议</td></tr></tbody></table></div>
+<p>48V平台的硬约束是电流。</p>
+<pre><code>P = U × I
+I = P / U</code></pre>
+<p>以 37.5V 低压端计算：</p>
+<div class="table-wrap"><table><tbody><tr><td>电池侧功率</td><td>低压端电流</td><td>设计含义</td></tr><tr><td>3kW</td><td>约80A</td><td>轻中载</td></tr><tr><td>5kW</td><td>约133A</td><td>主工作区上限</td></tr><tr><td>8kW</td><td>约213A</td><td>重载区</td></tr><tr><td>10kW</td><td>约267A</td><td>短时峰值区</td></tr><tr><td>12kW</td><td>约320A</td><td>保护边界区</td></tr></tbody></table></div>
+<p>启动72V平台评估的触发条件：</p>
+<ol><li>常规除雪平均功率长期大于6.5kW。</li><li>湿雪/厚雪平均功率大于8kW且持续超过20分钟。</li><li>除雪总成主电机必须采用5kW以上连续功率。</li><li>主母线需要长期超过250A。</li><li>线束、接触器、BMS、连接器和散热因48V大电流导致不可接受。</li><li>Heavy Duty版本需要更宽除雪头、更高速度或更远抛雪距离。</li></ol>
+<h3 id="sec-6-6">6. 总体电气架构</h3>
+<p>SnowBot 电气系统分为能量层、动力层、低压层、控制层和安全层。控制层不能替代安全层。</p>
+<pre><code>交流侧：
+240VAC / 40A
+    ↓
+离板充电器 7.2kW
+    ↓
+尾部离地 DC 触点充电接口
+    ↓
+电池包充电支路
+
+电池侧：
+48V LFP 电池包
+    ↓
+BMS + 主熔断器 + Service Disconnect
+    ↓
+预充回路
+    ↓
+主接触器
+    ↓
+48V 主直流母线
+    ↓
+支路保护
+    ↓
+左履带控制器 / 右履带控制器 / 除雪总成控制器 / 辅助执行器 / PTC / DC-DC
+
+低压侧：
+48V → 24V / 12V DC-DC
+    ↓
+VCU / IPC / RTK / IMU / LiDAR / Camera / 4G/5G / 继电器 / 传感器 / 安全回路
+
+安全侧：
+E-stop硬件链路
+    ↓
+驱动使能切断 / 除雪使能切断 / 充电使能切断 / 故障记录保持</code></pre>
+<p>分层职责：</p>
+<div class="table-wrap"><table><tbody><tr><td>层级</td><td>内容</td><td>设计重点</td></tr><tr><td>能量层</td><td>电池、BMS、主接触器、熔断器、充电器</td><td>高电流、安全、保护协调</td></tr><tr><td>动力层</td><td>履带、除雪总成、辅助执行器、电机控制器</td><td>扭矩、堵转、制动、热降额</td></tr><tr><td>低压层</td><td>DC-DC、24V/12V、继电器、传感器电源</td><td>稳定、抗干扰、掉电记录</td></tr><tr><td>控制层</td><td>VCU、IPC、CAN、状态机</td><td>动作仲裁、诊断、日志、降级</td></tr><tr><td>安全层</td><td>急停、硬件互锁、安全输入、使能切断</td><td>硬件优先、软件辅助</td></tr></tbody></table></div>
+<h3 id="sec-7-7">7. 负载谱与功率等级</h3>
+<p>SnowBot 设计必须从负载谱出发。以下为 v1.0 设计用概率负载谱，后续必须用台架和场地测试替换。</p>
+<div class="table-wrap"><table><tbody><tr><td>等级</td><td>工况</td><td>电池侧功率</td><td>37.5V电流</td><td>允许时间</td><td>用途</td></tr><tr><td>L0</td><td>待机</td><td>小于0.1kW</td><td>小于3A</td><td>长期</td><td>BMS、低功耗待机</td></tr><tr><td>L1</td><td>上电/自检</td><td>0.2–0.6kW</td><td>5–16A</td><td>分钟级</td><td>IPC、传感器、通信启动</td></tr><tr><td>L2</td><td>低温预热</td><td>1.0–1.5kW</td><td>27–40A</td><td>10–30分钟</td><td>电池预热</td></tr><tr><td>L3</td><td>空载行走</td><td>0.8–2.0kW</td><td>21–53A</td><td>长期</td><td>转场、回站</td></tr><tr><td>L4</td><td>正常除雪</td><td>3.0–5.5kW</td><td>80–147A</td><td>长期</td><td>主工作区</td></tr><tr><td>L5</td><td>重载除雪</td><td>5.5–8.5kW</td><td>147–227A</td><td>5–20分钟</td><td>湿雪、厚雪、压实雪</td></tr><tr><td>L6</td><td>短时峰值</td><td>8.5–12kW</td><td>227–320A</td><td>1–10秒</td><td>突然进雪、坡道、原地转向冲击</td></tr><tr><td>L7</td><td>保护区</td><td>大于12kW</td><td>大于320A</td><td>立即保护</td><td>堵转、异物、硬故障</td></tr></tbody></table></div>
+<p>设计原则：L4 是主工作区，L5 是重载降额区，L6 是短时峰值区，L7 不是工作区。</p>
+<h3 id="sec-8-8">8. 电池系统方案</h3>
+<p>电芯路线推荐继续采用 LFP。原因是热稳定性好、寿命长、商业客户更容易接受、48V大容量系统供应链成熟。</p>
+<div class="table-wrap"><table><tbody><tr><td>阶段</td><td>配置</td><td>容量</td><td>用途</td></tr><tr><td>Alpha</td><td>15S1P</td><td>约13.44kWh</td><td>工程验证、低速测试、台架联调</td></tr><tr><td>Beta/v1.0</td><td>15S2P</td><td>约26.88kWh</td><td>产品化目标配置</td></tr><tr><td>Heavy Duty备选</td><td>15S3P或72V平台</td><td>待定</td><td>长续航或重载版本</td></tr></tbody></table></div>
+<p>26.88kWh 的意义不是让机器长期满功率运行，而是让机器在低温容量折损后仍有商业可用续航。低温下可用能量应按保守值计算。</p>
+<div class="table-wrap"><table><tbody><tr><td>环境与使用假设</td><td>估算可用能量</td><td>说明</td></tr><tr><td>极寒保守</td><td>12–14kWh</td><td>低温容量保持、SOC窗口和系统效率均保守</td></tr><tr><td>中等低温</td><td>15–17kWh</td><td>较典型冬季作业估算</td></tr><tr><td>温和环境</td><td>18–21kWh</td><td>温度较高、容量折损较小</td></tr></tbody></table></div>
+<p>电池包必须作为工业模块设计：</p>
+<ol><li>滑入式快拆。</li><li>盲插高电流连接器。</li><li>低压信号同步连接。</li><li>左右机械锁止。</li><li>半插入检测。</li><li>未锁止不上电。</li><li>带载拔出硬件阻止。</li><li>Service Disconnect 可达。</li><li>电池仓排水、防雪、防盐雾。</li><li>电池包结构按 162kg 以上等级校核。</li></ol>
+<h3 id="sec-9-9-bms">9. BMS目标能力</h3>
+<p>BMS 的第一职责是保护电池，第二职责是保护整机，第三职责才是提供数据。</p>
+<div class="table-wrap"><table><tbody><tr><td>项目</td><td>推荐目标</td><td>说明</td></tr><tr><td>连续放电</td><td>250–300A，按300A级评估</td><td>覆盖除雪总成与履带叠加负载</td></tr><tr><td>10秒峰值放电</td><td>400–450A</td><td>覆盖突然进雪、坡道、原地转向和限流堵转</td></tr><tr><td>1秒峰值放电</td><td>500–600A</td><td>覆盖冲击峰值与半堵转瞬态</td></tr><tr><td>连续充电</td><td>200A</td><td>覆盖7.2kW充电低压端电流</td></tr><tr><td>低温禁充</td><td>任一电芯低于5°C禁止</td><td>必须硬件级实现</td></tr><tr><td>通信</td><td>CAN 2.0B，建议预留CAN FD</td><td>与VCU、充电器、日志系统联动</td></tr><tr><td>SOC精度</td><td>常温±3%，低温±5%</td><td>需供应商说明算法和校准方式</td></tr><tr><td>温度采样</td><td>产品化不少于6点，建议更多</td><td>覆盖冷点、热源和电池仓关键位置</td></tr><tr><td>故障码</td><td>必须完整提供</td><td>VCU、售后和日志系统必须可读取</td></tr></tbody></table></div>
+<p>BMS必须输出：</p>
+<pre><code>BMS输出项
+
+电池状态
+├─ 总压
+├─ 总流
+├─ SOC
+├─ SOH
+└─ SOP
+
+单体状态
+├─ 最高单体电压
+├─ 最低单体电压
+├─ 最高温度
+└─ 最低温度
+
+允许状态
+├─ 充电允许
+├─ 放电允许
+└─ 回生允许
+
+执行与安全状态
+├─ 接触器状态
+├─ 互锁状态
+├─ 故障码
+└─ 保护动作日志</code></pre>
+<h3 id="sec-10-10">10. 主回路与保护协调</h3>
+<p>主回路目标不是“能供电”，而是温升可控、保护可预测、故障可诊断、维护可断开。</p>
+<p>推荐主回路：</p>
+<pre><code>电池正极
+    ↓
+主熔断器
+    ↓
+Service Disconnect
+    ↓
+主接触器正极
+    ↓
+预充支路并联
+    ↓
+48V主母线正极
+    ↓
+支路保护
+    ↓
+各动力与低压支路
+
+电池负极
+    ↓
+电流传感器
+    ↓
+主接触器负极或负极汇流
+    ↓
+48V主母线负极</code></pre>
+<p>主回路电流等级：</p>
+<div class="table-wrap"><table><tbody><tr><td>等级</td><td>电流</td><td>时间</td><td>用途</td></tr><tr><td>连续</td><td>250–300A</td><td>长期</td><td>覆盖重载除雪和履带叠加工况</td></tr><tr><td>峰值1</td><td>400–450A</td><td>10秒</td><td>突然进雪、坡道、原地转向</td></tr><tr><td>峰值2</td><td>500–600A</td><td>1秒</td><td>冲击、半堵转</td></tr><tr><td>硬故障</td><td>大于600A</td><td>立即保护</td><td>短路、控制器失效、严重堵转</td></tr></tbody></table></div>
+<p>保护动作顺序：</p>
+<pre><code>控制器限流
+    ↓
+VCU降额或停机
+    ↓
+BMS限流或断开
+    ↓
+支路熔断器动作
+    ↓
+主熔断器动作</code></pre>
+<p>熔断器不用于处理普通堵转。堵转必须由电机控制器、VCU和BMS优先处理。支路熔断器和主熔断器用于硬件故障、线束短路、控制器失效和保护失效。</p>
+<h3 id="sec-11-11-service-disconnect">11. 熔断器、接触器与Service Disconnect</h3>
+<p>主熔断器用于保护电池包和主线束，不保护每一个支路。支路应分别设置保护。</p>
+<p>建议单独保护的支路：左履带控制器、右履带控制器、除雪总成控制器、PTC加热、DC-DC、充电支路、低压控制支路。</p>
+<p>选型要求：</p>
+<ol><li>所有熔断器必须明确 DC 额定电压和分断能力。</li><li>主熔断器必须覆盖电池包最大短路能力。</li><li>I²t 必须与线束热承受能力、控制器限流、堵转电流时序协调。</li><li>熔断器不能在正常堵转恢复、反转清堵和短时峰值中误动作。</li><li>主接触器必须支持主回路连续电流和峰值电流，且必须有状态反馈或焊死检测策略。</li><li>Service Disconnect 若位于主放电路径，必须按 250–300A连续等级评估；若只用于低功率维修隔离，必须在原理图中明确不承载主路径。</li><li>所有关键保护器件必须留有维护空间，不得埋入不可达位置。</li></ol>
+<p>除雪总成支路保护不直接冻结为某个型号或某个额定值。可以按 300–350A 级 DC 慢熔或等效保护方向调研，但最终必须由供应商曲线和 I²t 计算决定。</p>
+<h3 id="sec-12-12">12. 除雪总成主电机与传动方案</h3>
+<p>绞龙和叶轮共用同一台主电机。该电机不是单纯绞龙电机，而是除雪总成主电机，承担进雪、破雪、输送、加速雪流、抛雪、堵转恢复和急停能量处理。</p>
+<p>推荐功率边界：</p>
+<div class="table-wrap"><table><tbody><tr><td>工况</td><td>功率</td><td>时间</td><td>说明</td></tr><tr><td>连续</td><td>2.5–3.5kW</td><td>长期</td><td>主工作区，普通积雪和轻湿雪</td></tr><tr><td>重载</td><td>4–5kW</td><td>5–20分钟</td><td>湿雪、厚雪、压实雪</td></tr><tr><td>峰值</td><td>5–6kW</td><td>1–10秒</td><td>突然进雪、半堵转</td></tr><tr><td>堵转</td><td>不以功率定义</td><td>立即限流或停机</td><td>不允许持续硬顶</td></tr></tbody></table></div>
+<p>电机类型优先级：</p>
+<ol><li>有位置反馈的 BLDC / PMSM。</li><li>带霍尔或编码器的低温电机。</li><li>支持 CAN 控制的工业控制器。</li><li>无感 BLDC 只能作为低优先级候选，必须通过低速带载启动、湿雪、堵转、反转清堵和低温测试。</li></ol>
+<p>传动方案优先级：</p>
+<div class="table-wrap"><table><tbody><tr><td>方案</td><td>描述</td><td>判断</td></tr><tr><td>A</td><td>一台主电机，通过传动比分配到叶轮和绞龙</td><td>优先评估</td></tr><tr><td>B</td><td>一台主电机，叶轮直驱，绞龙通过链条、皮带或齿轮减速</td><td>可评估</td></tr><tr><td>C</td><td>一台主电机，绞龙和叶轮同轴同速刚性直连</td><td>不建议直接冻结</td></tr><tr><td>D</td><td>绞龙与叶轮分别使用独立电机</td><td>Heavy Duty或Beta备选</td></tr></tbody></table></div>
+<p>必须先冻结传动方案，再冻结电机功率。传动方案必须说明：</p>
+<pre><code>传动方案必须说明
+
+转速与传动
+├─ 叶轮目标转速
+├─ 绞龙目标转速
+├─ 传动比
+└─ 是否同轴
+
+清堵与保护
+├─ 是否允许反转
+├─ 是否有机械过载保护
+└─ 堵转时控制器 / BMS / 机械保护动作顺序
+
+安全停机
+└─ 急停后叶轮停止时间</code></pre>
+<h3 id="sec-13-13">13. 除雪总成堵转与恢复策略</h3>
+<p>以下数据为概率估算，用于设计预留，不作为实测数据。</p>
+<div class="table-wrap"><table><tbody><tr><td>堵转场景</td><td>预期母线电流</td><td>允许持续时间</td><td>动作策略</td></tr><tr><td>软堵转：湿雪压实</td><td>150–250A</td><td>0.5–3s</td><td>限流 + 反转清堵</td></tr><tr><td>半硬堵转：冰雪混合块</td><td>250–350A</td><td>0.1–0.5s</td><td>快速限流 + 停转判断</td></tr><tr><td>完全堵转：硬冰或异物</td><td>350–500A</td><td>小于0.1s后必须被限制</td><td>保护，不允许硬顶</td></tr><tr><td>控制器限流后堵转</td><td>200–280A</td><td>2–10s，取决于热容量</td><td>热降额或停机</td></tr></tbody></table></div>
+<p>堵转恢复流程：</p>
+<pre><code>检测电流上升和转速下降
+    ↓ 100–200ms
+控制器限流
+    ↓
+停止正转
+    ↓
+反转清堵300–500ms
+    ↓
+再次正转软启动
+    ↓
+若恢复，继续低速作业
+    ↓
+若再次堵转，最多再尝试1次
+    ↓
+两次失败后进入FAULT_STOP</code></pre>
+<p>绞龙侧输出端短时堵转扭矩目标为 100–180N·m，待验证。该扭矩是除雪总成输出端扭矩，不是电机轴扭矩。</p>
+<h3 id="sec-14-14">14. 履带驱动系统</h3>
+<p>履带驱动不只是让机器走。它决定坡道、原地转向、湿雪阻力、Docking低速微动和安全停车。</p>
+<p>统一目标如下：</p>
+<div class="table-wrap"><table><tbody><tr><td>项目</td><td>目标</td><td>说明</td></tr><tr><td>Alpha候选下限</td><td>750W/侧</td><td>仅用于早期验证，不得直接冻结为v1.0产品化规格</td></tr><tr><td>v1.0连续功率目标</td><td>1.0–1.5kW/侧</td><td>覆盖坡道、压实雪、原地转向、除雪反力</td></tr><tr><td>v1.0峰值功率目标</td><td>2.0–2.5kW/侧</td><td>用于坡道启动、一侧受阻、短时冲击</td></tr><tr><td>制动</td><td>必须有机械制动能力</td><td>驻车、失电保持和坡道安全</td></tr><tr><td>控制</td><td>CAN控制，提供电流、速度、温度、故障反馈</td><td>VCU必须能执行扭矩限制和降级策略</td></tr></tbody></table></div>
+<p>冻结前必须测试：</p>
+<pre><code>履带冻结前测试
+
+坡道能力
+├─ 5%坡道启动
+├─ 8%坡道启动
+└─ 10%坡道短时启动
+
+雪地运动
+├─ 压实雪原地转向
+├─ 湿雪中前进除雪
+├─ 一侧履带受阻
+└─ 一侧履带打滑
+
+低温与精密控制
+├─ 满载低温低SOC启动
+└─ Docking低速微动</code></pre>
+<h3 id="sec-15-15">15. 除雪总成与履带功率耦合</h3>
+<p>除雪总成和履带不是独立负载。厚雪和湿雪中，两者会同时升高。</p>
+<p>典型耦合逻辑：</p>
+<pre><code>机器进入厚雪或湿雪区域
+    ↓
+除雪总成负载上升
+    ↓
+进雪阻力增加，前进速度下降
+    ↓
+履带需要更大驱动力维持进雪速度
+    ↓
+履带电流与除雪总成电流同时升高
+    ↓
+主母线、BMS、接触器、线束同时承受叠加电流</code></pre>
+<p>叠加电流估算：</p>
+<div class="table-wrap"><table><tbody><tr><td>负载项</td><td>中等工况</td><td>重载工况</td><td>峰值工况</td></tr><tr><td>除雪总成</td><td>80–130A</td><td>130–180A</td><td>200–300A</td></tr><tr><td>左履带</td><td>20–40A</td><td>40–70A</td><td>80A以上</td></tr><tr><td>右履带</td><td>20–40A</td><td>40–70A</td><td>80A以上</td></tr><tr><td>低压与热管理</td><td>10–30A</td><td>20–40A</td><td>20–50A</td></tr><tr><td>合计</td><td>约130–240A</td><td>约230–360A</td><td>可能超过400A</td></tr></tbody></table></div>
+<p>VCU必须执行负载仲裁：除雪总成重载时降低履带速度；履带原地转向时禁止除雪总成满功率进雪；PTC不得与重载除雪同时满功率运行；主母线电流持续超过300A进入DERATE；峰值超过BMS允许值进入FAULT_STOP或受控停机。</p>
+<h3 id="sec-16-16">16. 辅助执行器</h3>
+<p>旋转、俯仰、抬升功率不大，但影响可靠性和安全。</p>
+<ol><li>旋转电机建议100–200W级，带减速、位置反馈、限位和堵转保护。</li><li>俯仰电机建议100–200W级，必须有自锁、抱持或制动能力，断电后不得自由下落。</li><li>抬升执行器可按电推杆方向评估，8000N、8mm/s、120mm行程可作为候选目标，但必须验证低温效率、自锁、过载保护、行程限位、冰雪卡滞和寿命循环。</li></ol>
+<p>所有辅助执行器必须进入VCU状态机，不能作为孤立小电机处理。</p>
+<h3 id="sec-17-17">17. 充电系统</h3>
+<p>主方案为离板充电器 + 尾部离地 DC 触点充电。</p>
+<div class="table-wrap"><table><tbody><tr><td>输入条件</td><td>DC输出目标</td><td>用途</td></tr><tr><td>240VAC / 40A</td><td>7.2kW</td><td>商业主充电</td></tr><tr><td>240VAC / 30A</td><td>5.8–6.5kW</td><td>降额主充电</td></tr><tr><td>120VAC / 15–20A</td><td>1.2–1.6kW</td><td>维护、测试、应急慢充</td></tr></tbody></table></div>
+<p>尾部触点要求：</p>
+<pre><code>尾部触点要求
+
+高电流能力
+├─ 200A连续能力
+├─ 低接触电阻
+└─ 正负极冗余触点或等效并联设计
+
+握手与检测
+├─ 独立低压辅助触点
+├─ 机械到位检测
+└─ 接触电阻异常时不得进入快充
+
+环境适应
+├─ 防雪
+├─ 防水
+├─ 防盐雾
+└─ 防冰加热
+
+安全退出
+├─ 高电流未允许时触点不带电
+└─ 退出前先降流到0，再断开接触器和触点</code></pre>
+<p>充电互锁条件：</p>
+<pre><code>C1 充电接口盖状态正常
+C2 机械对准到位
+C3 低压辅助触点建立
+C4 极性正确
+C5 绝缘状态正常
+C6 电芯温度允许充电
+C7 BMS允许充电
+C8 接触电阻正常
+C9 充电器输出初始安全
+C10 预充完成
+C11 车辆处于DOCKING或CHARGING允许状态
+C12 履带与除雪总成禁止动作</code></pre>
+<h3 id="sec-18-18">18. 低压电源系统</h3>
+<p>推荐低压系统为 48V主电池 → 24V主控制母线 → 12V/5V子电源。</p>
+<p>推荐 DC-DC：24V主输出 500–800W连续，峰值按1000W级评估，宽温工业级，具备输入欠压、输出短路、过流、过温和EMI滤波。</p>
+<p>低压支路必须独立保护：IPC、VCU、BMS通信、LiDAR、RTK/IMU、Camera、4G/5G、继电器、制动器、安全输入。</p>
+<p>建议增加故障记录保持电源或超级电容，使主接触器断开、急停或BMS保护后仍能保存日志、故障码和最后状态。</p>
+<h3 id="sec-19-19-vcu-ipc">19. VCU、IPC与控制边界</h3>
+<p>控制分工：</p>
+<div class="table-wrap"><table><tbody><tr><td>模块</td><td>职责</td></tr><tr><td>BMS</td><td>电池安全、接触器允许、充放电边界、故障码</td></tr><tr><td>VCU</td><td>整机状态机、电机使能、低层动作协调、安全降级、负载仲裁</td></tr><tr><td>IPC</td><td>导航、路径、任务、感知融合、高层决策</td></tr><tr><td>电机控制器</td><td>电流环、速度环、限流、热降额、堵转保护</td></tr><tr><td>安全回路</td><td>急停、硬件使能切断、关键互锁</td></tr></tbody></table></div>
+<p>IPC不能直接控制高风险动作。IPC给任务，VCU负责状态机和安全约束。</p>
+<p>推荐状态：</p>
+<pre><code>VCU状态
+
+OFF
+BOOT
+SELF_CHECK
+READY
+DRIVE
+SNOW_WORK
+DERATE
+DOCKING
+CHARGING
+FAULT_STOP
+E_STOP
+SERVICE</code></pre>
+<p>硬规则：</p>
+<pre><code>VCU硬规则
+
+CHARGING
+└─ 禁止履带和除雪总成动作。
+
+SERVICE
+└─ 禁止自动动作。
+
+E_STOP
+└─ 优先级最高。
+
+通信丢失
+└─ 不得维持危险动作。
+
+低压异常
+└─ 必须进入降级或停机。</code></pre>
+<h3 id="sec-20-20-gps">20. GPS/通信降级状态机</h3>
+<p>北美停车场中，GPS/RTK降级和4G/5G通信丢失不是边界情况，而是常见场景。该状态机必须进入VCU。</p>
+<div class="table-wrap"><table><tbody><tr><td>状态</td><td>定义</td><td>允许动作</td><td>禁止动作</td></tr><tr><td>NAV_OK</td><td>定位正常</td><td>正常作业</td><td>无</td></tr><tr><td>NAV_DEGRADED</td><td>定位精度下降</td><td>降速、保持安全距离、有限作业</td><td>靠近车辆、边缘、坡道高速动作</td></tr><tr><td>NAV_LOST</td><td>定位丢失</td><td>停止除雪总成，低速停车或回最后安全点</td><td>继续新区域作业</td></tr><tr><td>COMMS_LOST</td><td>远程通信丢失</td><td>本地定位正常时可完成当前安全段</td><td>进入新区域或高风险任务</td></tr><tr><td>LOCAL_SAFE</td><td>本地安全自治</td><td>安全停车、记录日志、等待恢复</td><td>高功率除雪、靠站高风险动作</td></tr></tbody></table></div>
+<p>多层停车场不得只依赖RTK，应预留视觉、LiDAR、里程计、IMU或场地标记辅助定位策略。</p>
+<h3 id="sec-21-21">21. 急停、安全链路与制动回生</h3>
+<p>急停必须是硬件链路，不是软件按钮。急停应至少切断左右履带驱动使能、除雪总成使能、充电器输出允许和高风险执行器动作允许。</p>
+<p>急停策略不一定立即断开主接触器。更好的流程是：</p>
+<pre><code>急停触发
+    ↓
+硬件切断驱动与除雪使能
+    ↓
+VCU记录状态
+    ↓
+电机控制器进入安全扭矩关闭或等效状态
+    ↓
+必要时BMS断开主接触器
+    ↓
+机械制动进入保持</code></pre>
+<p>满电下坡是硬规则，不是运营建议。</p>
+<div class="table-wrap"><table><tbody><tr><td>条件</td><td>VCU动作</td></tr><tr><td>SOC大于90%且BMS.ChargeAllowed为FALSE</td><td>禁止进入坡度大于5%且长度大于20m的下坡路段</td></tr><tr><td>SOC大于95%且BMS.RegenAllowed为FALSE</td><td>履带回生功率限制为不超过500W或供应商允许的更低值</td></tr><tr><td>已在坡道且母线电压接近过压阈值</td><td>进入DERATE，降低速度，机械制动主导</td></tr><tr><td>母线过压触发</td><td>受控停车，记录故障，禁止继续下坡</td></tr></tbody></table></div>
+<p>Heavy Duty版本或坡道场景频繁版本，应评估制动电阻或主动耗能模块。</p>
+<h3 id="sec-22-22">22. 热管理</h3>
+<p>电池热管理目标不是让电池一直很热，而是保证电池处于安全充放电窗口。</p>
+<ol><li>任一电芯低于5°C禁止充电。</li><li>低温放电允许，但必须降额。</li><li>预热功率按1kW级评估。</li><li>作业维温功率按200–300W估算。</li><li>重载除雪时PTC应降额，优先保障动力。</li><li>充电前优先预热到允许温度。</li><li>温度采样必须覆盖冷点和热源附近。</li></ol>
+<p>PTC维温能耗必须从低温可用能量中扣除。</p>
+<div class="table-wrap"><table><tbody><tr><td>低温可用能量</td><td>8小时维温扣除</td><td>剩余有效作业能量</td><td>3.5kW平均功率续航</td><td>5.0kW平均功率续航</td></tr><tr><td>12kWh</td><td>2.4kWh</td><td>9.6kWh</td><td>约2.7h</td><td>约1.9h</td></tr><tr><td>15kWh</td><td>2.4kWh</td><td>12.6kWh</td><td>约3.6h</td><td>约2.5h</td></tr><tr><td>18kWh</td><td>2.4kWh</td><td>15.6kWh</td><td>约4.5h</td><td>约3.1h</td></tr></tbody></table></div>
+<p>控制器、DC-DC、BMS和充电触点也必须进入热管理设计。防水密封不能以牺牲散热为代价。</p>
+<h3 id="sec-23-23">23. 线束与连接器</h3>
+<p>线束是结构的一部分，不是装配后补救。</p>
+<p>线束必须分区：</p>
+<pre><code>线束分区
+
+高电流
+├─ 主放电高电流线束
+├─ 充电高电流线束
+└─ 电机支路线束
+
+低压与通信
+├─ 24V/12V低压电源线束
+├─ CAN通信线束
+└─ 传感器线束
+
+安全
+└─ 急停与安全线束</code></pre>
+<p>初步线径方向如下，最终必须以温升测试和敷设条件确定：</p>
+<div class="table-wrap"><table><tbody><tr><td>路径</td><td>电流等级</td><td>初步方向</td></tr><tr><td>充电路径</td><td>200A连续</td><td>50mm²级或等效并联，待验证</td></tr><tr><td>主放电母线</td><td>250–300A连续</td><td>70mm²级或铜排，待验证</td></tr><tr><td>除雪总成支路</td><td>150–250A峰值，堵转更高</td><td>35–50mm²级，待验证</td></tr><tr><td>履带支路</td><td>50–100A峰值</td><td>10–25mm²级，待验证</td></tr><tr><td>DC-DC支路</td><td>20–40A</td><td>4–10mm²级，待验证</td></tr></tbody></table></div>
+<p>禁止使用模型级连接器、消费级端子和扎带临时布线进入产品化。高电流连接器必须提供连续电流曲线、温升曲线、插拔寿命、IP等级、盐雾能力、振动能力、低温材料说明和端子压接规范。</p>
+<h3 id="sec-24-24-emc">24. EMC、接地与通信</h3>
+<p>SnowBot 同时有高电流PWM电机和敏感导航传感器。EMC必须前置设计。</p>
+<p>要求：</p>
+<ol><li>动力CAN和传感器CAN建议分段或经网关隔离。</li><li>CAN使用屏蔽双绞线。</li><li>屏蔽层接地策略必须统一，不得现场随意接。</li><li>电机相线远离传感器线。</li><li>DC-DC输入输出预留滤波。</li><li>电机控制器输入端预留TVS、滤波和浪涌抑制。</li><li>金属外壳搭接形成低阻抗路径。</li><li>高电流回路面积尽量小。</li><li>传感器电源与电机控制器电源尽量隔离。</li><li>所有通信故障必须记录。</li></ol>
+<p>必须验证：绞龙启动时RTK不掉线，履带原地转向时CAN不大量丢包，PTC启动时IPC不重启，充电开始时BMS和VCU通信稳定，低温启动时低压系统不反复重启。</p>
+<h3 id="sec-25-25">25. 结构接口要求</h3>
+<p>结构必须为电气系统预留空间。必须进入结构图纸的项目：</p>
+<pre><code>结构图纸必须体现
+
+电池与充电
+├─ 电池仓
+├─ 电池抽拉路径
+├─ 盲插连接器安装面
+└─ 尾部充电接口
+
+线束与安装
+├─ 主线束线槽
+├─ 支路线束线槽
+├─ 控制器安装板
+├─ DC-DC位置
+└─ 低压控制盒
+
+保护器件
+├─ 主熔断器
+├─ Service Disconnect
+└─ 主接触器
+
+环境与安全
+├─ 排水通道
+├─ 防雪挡板
+├─ 防冰加热位置
+└─ 运动件禁布线区域</code></pre>
+<p>核心原则：结构不给电气空间，电气可靠性一定失败。电气不冻结边界，结构也不能真正封板。</p>
+<h3 id="sec-26-26-dock">26. 充电座与Dock</h3>
+<p>充电座是系统的一部分，不是外部附件。</p>
+<p>充电座应具备：240VAC输入、离板DC充电器、低压握手、机械导向、触点保护、防冰加热、本地断电、状态指示、故障日志、防水防雪防盐雾、安装水平容差、机器人对接容差说明。</p>
+<p>对接流程：</p>
+<pre><code>机器人低速靠近
+    ↓
+机械导向进入
+    ↓
+低压辅助触点先接通
+    ↓
+对准确认
+    ↓
+BMS与充电器握手
+    ↓
+绝缘、极性、接触电阻检查
+    ↓
+预充
+    ↓
+开始充电</code></pre>
+<p>充电座设计必须与机器人尾部结构同步，不允许后期临时找充电桩配合。</p>
+<h3 id="sec-27-27">27. 作业面积、路径长度与产品定位</h3>
+<p>续航不能只按平均功率计算，必须按真实场地面积、有效清扫宽度、路径损耗和速度计算。</p>
+<pre><code>理想路径长度 = 待清扫面积 / 有效清扫宽度
+实际路径长度 = 理想路径长度 × 路径损耗系数
+作业时间 = 实际路径长度 / 平均行驶速度
+消耗能量 = 平均电池侧功率 × 作业时间 + 维温能耗 + 控制系统能耗</code></pre>
+<p>以 8,000m²、0.75m有效宽度、路径损耗1.25–1.60估算：</p>
+<div class="table-wrap"><table><tbody><tr><td>路径损耗</td><td>实际路径长度</td><td>0.4m/s时间</td><td>0.5m/s时间</td><td>0.6m/s时间</td></tr><tr><td>1.25</td><td>约13.3km</td><td>约9.2h</td><td>约7.4h</td><td>约6.2h</td></tr><tr><td>1.40</td><td>约14.9km</td><td>约10.3h</td><td>约8.3h</td><td>约6.9h</td></tr><tr><td>1.60</td><td>约17.1km</td><td>约11.9h</td><td>约9.5h</td><td>约7.9h</td></tr></tbody></table></div>
+<p>结论：如果有效清扫宽度只有0.70–0.80m，SnowBot v1.0不适合承诺单机一次性清完大型商业停车场。它更适合人行道、建筑入口、园区道路、公寓和酒店入口、小型商业停车区、固定路线巡回、可中途回充的分区作业和多机协同场景。</p>
+<h3 id="sec-28-28">28. 硬冰层服务边界</h3>
+<p>SnowBot 是除雪机器人，不是无人破冰机。</p>
+<div class="table-wrap"><table><tbody><tr><td>地面状态</td><td>v1.0能力定义</td><td>电气策略</td><td>服务策略</td></tr><tr><td>新鲜蓬松雪</td><td>正常处理</td><td>正常功率</td><td>可承诺</td></tr><tr><td>普通积雪</td><td>正常处理</td><td>正常功率</td><td>可承诺</td></tr><tr><td>湿雪/厚雪</td><td>降速处理</td><td>重载功率 + 热降额</td><td>有条件承诺</td></tr><tr><td>轻度压实雪</td><td>低速、多次处理</td><td>堵转监测</td><td>有限承诺</td></tr><tr><td>薄冰小于1cm</td><td>可尝试扰动或刮除</td><td>峰值保护</td><td>不作为核心承诺</td></tr><tr><td>1–3cm硬冰</td><td>高风险，容易堵转</td><td>保护优先</td><td>不建议承诺</td></tr><tr><td>大于3cm硬冰</td><td>不作为工作对象</td><td>进入FAULT_STOP或绕行</td><td>需人工、融冰剂或专用设备</td></tr></tbody></table></div>
+<p>销售和SLA必须写明硬冰层边界。若未来要承诺破冰能力，需要独立破冰机构或刮刀系统，而不是仅依赖绞龙。</p>
+<h3 id="sec-29-29">29. 低温材料、盐雾与热循环</h3>
+<p>北美冬季环境下，材料问题常常比电气原理更早暴露。</p>
+<p>低温机械操作验证：-30°C冷箱浸泡48小时后，立即插拔充电接口、拆装电池包、操作Service Disconnect、启动履带、释放制动器，并检查线束外皮、密封件、连接器锁舌、卡扣和盖板是否开裂或失效。</p>
+<p>盐雾要求：外部连接器、履带附近连接器、尾部充电接口建议不低于500小时盐雾；关键外部高电流触点和尾部充电接口建议评估1000小时盐雾。盐雾后必须检查接触电阻、绝缘、插拔和锁止。</p>
+<p>热循环要求：建议执行 -30°C 到 +10°C 至少120次循环，重点检查充电触点、电池盲插接口、塑料壳体、密封件、金属触点、螺栓和线束固定点。</p>
+<p>若除雪总成采用皮带、链条或齿轮箱：皮带必须选用低温材料并提供低温张力曲线；链条必须使用低温合成润滑脂；齿轮箱必须使用低温合成齿轮油；首次冷启动应低速空转30–60秒，再逐步加载进雪。</p>
+<h3 id="sec-30-30">30. 故障诊断体系</h3>
+<p>SnowBot 必须从第一版开始建立故障码体系。</p>
+<p>故障分类：</p>
+<pre><code>故障分类
+
+BMS故障
+├─ 过流
+├─ 过温
+├─ 低温禁充
+├─ 单体欠压
+└─ 接触器异常
+
+充电故障
+├─ 对准失败
+├─ 极性错误
+├─ 绝缘异常
+└─ 接触电阻高
+
+电机故障
+├─ 堵转
+├─ 过温
+├─ 过流
+├─ 控制器离线
+└─ 编码器异常
+
+低压故障
+├─ DC-DC欠压
+├─ IPC掉电
+└─ 传感器电源异常
+
+通信故障
+├─ CAN掉线
+├─ 超时
+└─ 错误帧过多
+
+安全故障
+├─ 急停
+├─ 盖板打开
+├─ 半插入
+└─ 维护状态未解除
+
+热管理故障
+├─ PTC异常
+├─ 温度传感器异常
+└─ 预热失败
+
+导航降级
+├─ NAV_DEGRADED
+├─ NAV_LOST
+└─ COMMS_LOST</code></pre>
+<p>每个故障必须定义：触发条件、动作策略、恢复条件、是否允许自动恢复、是否需要人工检查、是否记录日志。</p>
+<h3 id="sec-31-31">31. 认证与合规预留</h3>
+<p>本文不替代认证报告，但器件选型必须从一开始预留认证路径。</p>
+<p>应提前考虑：电池UN38.3、电芯和电池包安全标准、BMS硬件保护资料、充电器北美/欧洲安全认证、EMC、无线模块FCC/ISED/CE RED、整机机械安全、急停与安全控制回路、RoHS/REACH、IP、防水、防尘、盐雾测试。</p>
+<p>原则：认证不是最后贴标，而是从器件选型、线束、充电接口、安全状态机和测试记录开始决定。</p>
+<h3 id="sec-32-32-alpha">32. Alpha阶段要求</h3>
+<p>Alpha目标是验证架构，不追求最终成本和最终外观。</p>
+<p>Alpha必须完成：</p>
+<pre><code>Alpha必须完成
+
+能量系统
+├─ 15S1P电池包
+├─ BMS基本保护
+├─ 主接触器
+├─ 预充
+└─ 主熔断
+
+动力与低压
+├─ 履带驱动联调
+├─ 除雪总成台架测试
+└─ DC-DC和低压系统
+
+控制与安全
+├─ VCU基本状态机
+├─ 急停硬件链路
+├─ 充电接口原理验证
+├─ 低温禁充
+├─ 故障码雏形
+└─ 负载谱采集</code></pre>
+<p>Alpha可以使用部分工程样机件，但不能临时处理以下项目：急停链路、主熔断保护、低温禁充、主接触器控制、带载拔插禁止、基本线束固定。</p>
+<h3 id="sec-33-33-beta">33. Beta阶段要求</h3>
+<p>Beta目标是接近产品化结构和电气边界。</p>
+<p>Beta必须完成：</p>
+<pre><code>Beta必须完成
+
+电池与结构
+├─ 15S2P电池包
+├─ 工业级盲插连接器
+└─ 电池仓结构定型
+
+主回路与充电
+├─ 主放电路径250–300A级验证
+├─ 充电路径200A连续验证
+└─ 支路保护协调
+
+动力系统
+├─ 除雪总成传动方案冻结
+├─ 除雪总成电机和控制器冻结
+└─ 履带功率冻结
+
+控制与验证
+├─ BMS连续/峰值能力冻结
+├─ 线束图和端子表
+├─ CAN拓扑
+├─ EMC预扫
+├─ 低温测试
+├─ 振动测试
+├─ 充电Dock联调
+└─ 故障注入测试</code></pre>
+<h3 id="sec-34-34-v1-0">34. v1.0产品化要求</h3>
+<p>v1.0目标是商业客户可试用，供应商可复制，售后可维护。</p>
+<p>v1.0不允许：</p>
+<pre><code>v1.0不允许
+
+电池与连接
+├─ 现场接线式电池
+└─ 模型级高电流连接器
+
+图纸与保护
+├─ 无线束图
+├─ 无熔断器协调表
+├─ 无主回路单线图
+├─ 无急停硬件链路
+├─ 无低温禁充硬件保护
+└─ 无充电互锁
+
+验证与诊断
+├─ 无故障码表
+├─ 无负载谱数据
+├─ 无温升测试
+└─ 无基本EMC预评估</code></pre>
+<h3 id="sec-35-35">35. 推荐方案参数表</h3>
+<div class="table-wrap"><table><tbody><tr><td>系统</td><td>推荐方案</td></tr><tr><td>电压平台</td><td>48V LFP，15S</td></tr><tr><td>产品电池</td><td>15S2P，约26.88kWh</td></tr><tr><td>Alpha电池</td><td>15S1P，约13.44kWh</td></tr><tr><td>BMS</td><td>300A连续等级评估，400–450A 10秒，500–600A 1秒</td></tr><tr><td>主放电路径</td><td>250–300A连续预留</td></tr><tr><td>充电路径</td><td>200A连续</td></tr><tr><td>主充电</td><td>离板7.2kW，240VAC/40A，尾部DC触点</td></tr><tr><td>除雪总成主电机</td><td>2.5–3.5kW连续，4–5kW重载，5–6kW峰值</td></tr><tr><td>履带电机</td><td>1.0–1.5kW/侧连续目标，2.0–2.5kW/侧峰值目标，750W/侧仅Alpha候选下限</td></tr><tr><td>低压电源</td><td>24V主母线，500–800W DC-DC，关键支路独立保护</td></tr><tr><td>急停</td><td>硬件链路，切断驱动和除雪使能</td></tr><tr><td>线束</td><td>分区、固定线槽、高电流温升测试</td></tr><tr><td>通信</td><td>CAN分段，动力和传感器隔离</td></tr><tr><td>热管理</td><td>1kW预热，200–300W维温，重载降额</td></tr></tbody></table></div>
+<h3 id="sec-36-36">36. 一票否决项</h3>
+<p>以下任一项出现，不能进入Beta冻结或v1.0产品化冻结：</p>
+<ol><li>未确认除雪总成传动方案就冻结主电机。</li><li>将5kW直接定义为连续功率且无负载谱依据。</li><li>主放电路径未按250–300A级校核。</li><li>BMS无法提供连续和峰值电流能力证明。</li><li>低温禁充只靠软件。</li><li>电池半插入仍可能上电。</li><li>带载拔出没有硬件阻止。</li><li>充电退出存在带载电弧。</li><li>急停只靠软件。</li><li>高电流线束无温升测试。</li><li>线束路径未进入结构图。</li><li>消费级连接器进入产品化高电流路径。</li><li>VCU通信丢失后动作不受控。</li><li>电机堵转靠熔断器处理。</li><li>无故障码和日志。</li><li>未定义硬冰层服务边界就对客户承诺破冰能力。</li><li>未进行真实场地路径长度估算就承诺大停车场续航。</li><li>未定义满电下坡和回生禁止策略。</li><li>未定义NAV_DEGRADED、NAV_LOST、COMMS_LOST行为。</li><li>履带750W/侧未经坡道、原地转向、湿雪阻力测试就冻结。</li><li>未进行-30°C浸泡后的连接器、电池仓、充电接口机械操作测试。</li><li>外部高电流连接器和充电触点无盐雾寿命资料。</li><li>充电触点和电池盲插接口无热循环验证计划。</li><li>熔断器规格按经验拍定，无I²t和时间-电流曲线协调。</li><li>传动件无低温润滑、冷启动和寿命验证。</li></ol>
+<h3 id="sec-37-37">37. 下一步工程工作顺序</h3>
+<p>下一步不应继续扩写本文，而应进入工程动作。</p>
+<pre><code>1. 明确目标客户场景和场地面积区间
+2. 明确v1.0服务边界
+3. 冻结除雪头有效宽度目标
+4. 输出除雪总成传动方案草图
+5. 建立除雪总成台架负载谱方案
+6. 进行停车场路径长度与作业时间仿真
+7. 重新确认电池容量是否匹配目标场景
+8. 重新确认履带功率目标
+9. 冻结BMS连续和峰值能力目标
+10. 建立主回路保护协调表
+11. 建立满电下坡和回生策略
+12. 建立导航降级状态机
+13. 完成低温、盐雾、热循环验证计划
+14. 进入Alpha/Beta采购冻结</code></pre>
+<p>最优先的工程交付物是除雪总成传动方案草图。没有这张图，电机功率、控制器、堵转策略、线束、BMS峰值都只能停留在设计取值，不能进入采购冻结。</p>
+<h3 id="sec-38-38">38. 当前不建议的方向</h3>
+<ol><li>不建议直接把5kW定义为除雪总成连续功率。</li><li>不建议直接升级72V并推翻48V平台。</li><li>不建议把充电器装到机器人内部并把AC引到尾部活动接口。</li><li>不建议用地面触点作为主充电方案。</li><li>不建议用无感BLDC直接冻结为除雪总成产品化方案。</li><li>不建议用单一主保险保护所有电机支路。</li><li>不建议所有低压设备共用一个无隔离电源分支。</li><li>不建议将急停和普通IO混在一起。</li><li>不建议结构先封板、电气后塞进去。</li><li>不建议没有负载谱就冻结BMS和线束。</li></ol>
+<h3 id="sec-39-39">39. 最终工程判断</h3>
+<p>SnowBot 的价值不是做一台能动的除雪车。真正的价值是建立一套极寒户外自治机器人电气平台。</p>
+<p>这套平台的成败取决于：电池是否像工业模块一样可靠，充电是否像基础设施一样稳定，线束是否像结构件一样被认真设计，BMS是否像安全系统一样工作，VCU是否掌握整机状态边界，电机控制器是否能处理堵转、湿雪和低温，急停是否真正硬，故障是否能被诊断，结构是否为电气留出空间，负载谱是否真实。</p>
+<p>最终结论：</p>
+<pre><code>SnowBot v1.0 最终工程判断
+
+平台
+├─ 保留48V LFP平台
+└─ 产品电池目标26.88kWh
+
+主回路与充电
+├─ 主放电路径按250–300A连续预留
+├─ 充电路径按200A连续设计
+└─ BMS按300A连续、400–450A 10秒、500–600A 1秒评估
+
+动力系统
+├─ 除雪总成主电机按2.5–3.5kW连续、5–6kW峰值寻找
+├─ 履带驱动按1.0–1.5kW/侧连续目标评估
+└─ 5kW不能作为连续功率冻结
+
+服务边界
+├─ 硬冰层必须定义服务边界
+└─ 大型停车场必须采用分区、中途回充或多机协同
+
+冻结依据
+└─ 所有关键参数由负载谱、路径仿真和低温验证反推，而不是由供应商表格决定</code></pre>
+<p>这就是 SnowBot 整机电气系统 v1.0 的总体方案。</p>
+      </section>
+      <footer class="document-footer">
+        <div class="footer-row">
+          <span class="footer-brand">ARCBOS</span>
+          <span class="footer-ref">ARCBOS-SPEC-2606-0016 · Version v1.0</span>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
