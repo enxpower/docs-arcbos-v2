@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SnowBot 电气分包 B包 · 整车电控总包需求与交付说明 v1.0 — ARCBOS-SPEC-2606-0014</title>
+    <link rel="icon" href="../../assets/favicon.ico">
+    <meta name="description" content="文件编号：ARCBOS-SPEC-2606-0005-B">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="SnowBot 电气分包 B包 · 整车电控总包需求与交付说明 v1.0">
+    <meta property="og:description" content="文件编号：ARCBOS-SPEC-2606-0005-B">
+    <meta property="og:image" content="https://ref.arcbos.com/assets/arcbos-share-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SnowBot 电气分包 B包 · 整车电控总包需求与交付说明 v1.0">
+    <meta name="twitter:description" content="文件编号：ARCBOS-SPEC-2606-0005-B">
+    <meta name="twitter:image" content="https://ref.arcbos.com/assets/arcbos-share-preview.png">
+    <link rel="stylesheet" href="../../assets/css/screen.css">
+    <link rel="stylesheet" href="../../assets/css/print.css" media="print">
+  </head>
+  <body>
+    <header class="site-topbar no-print"><span class="topbar-brand">ARCBOS</span></header>
+    <main class="document">
+      <header class="document-masthead">
+        <div class="masthead-row">
+          <div class="masthead-brand">ARCBOS</div>
+          <p class="masthead-slogan">ENGINEERED FOR EXTREME CONDITIONS</p>
+        </div>
+      </header>
+      <section class="document-title-block">
+        <p class="document-kicker">Specification</p>
+        <h1>SnowBot 电气分包 B包 · 整车电控总包需求与交付说明 v1.0</h1>
+      </section>
+      <div class="document-meta-grid" aria-label="Document metadata"><div class="meta-item"><span class="meta-label">Document ID</span><span class="meta-value meta-value--id">ARCBOS-SPEC-2606-0014</span></div><div class="meta-item"><span class="meta-label">Type</span><span class="meta-value">Specification</span></div><div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">v1.0</span></div><div class="meta-item"><span class="meta-label">Status</span><span class="tag status-final">Final</span></div><div class="meta-item"><span class="meta-label">Client</span><span class="meta-value">SnowBot</span></div><div class="meta-item"><span class="meta-label">Project</span><span class="meta-value">SnowBot Alpha &amp; Beta</span></div><div class="meta-item"><span class="meta-label">Updated</span><span class="meta-value">2026-07-19</span></div><div class="meta-item"><span class="meta-label">Access</span><span class="tag is-client-link">Client Link</span></div></div>
+      <div class="document-actions no-print">
+        <button type="button" class="action-btn" onclick="window.print()" title="Print this document using your browser" aria-label="Print this document">Print</button><a href="../../pdf/ARCBOS-SPEC-2606-0014.pdf" class="action-btn action-btn--download-pdf" title="Download pre-generated PDF" aria-label="Download PDF" download>Download PDF</a>
+      </div>
+      <nav class="document-toc no-print" aria-label="Contents">
+        <details class="toc-details">
+          <summary class="toc-title">Contents<span class="toc-count">20 sections</span></summary>
+          <ol class="toc-list"><li class="toc-d0"><a href="#sec-1-1-b">1. 一页读懂B包</a></li><li class="toc-d0"><a href="#sec-2-2-snowbot">2. SnowBot整机全貌</a></li><li class="toc-d0"><a href="#sec-3-3-b">3. B包核心目标</a></li><li class="toc-d0"><a href="#sec-4-4">4. 除雪总成主电机要求</a></li><li class="toc-d0"><a href="#sec-5-5">5. 除雪总成传动输入</a></li><li class="toc-d0"><a href="#sec-6-6">6. 堵转与反转清堵要求</a></li><li class="toc-d0"><a href="#sec-7-7">7. 履带驱动要求</a></li><li class="toc-d0"><a href="#sec-8-8-vcu">8. VCU状态机要求</a></li><li class="toc-d0"><a href="#sec-9-9-nav-comms">9. NAV/COMMS降级动作</a></li><li class="toc-d0"><a href="#sec-10-10">10. 满电下坡策略</a></li><li class="toc-d0"><a href="#sec-11-11">11. 负载仲裁要求</a></li><li class="toc-d0"><a href="#sec-12-12-a-c-i">12. 与A/C/I包接口</a></li><li class="toc-d0"><a href="#sec-13-13-b">13. B包必须交付的设计文件</a></li><li class="toc-d0"><a href="#sec-14-14-b">14. B包必须交付的测试文件</a></li><li class="toc-d0"><a href="#sec-15-15">15. 供应商必须回答的问题</a></li><li class="toc-d0"><a href="#sec-16-16-b">16. B包验收标准</a></li><li class="toc-d0"><a href="#sec-17-17-b">17. B包一票否决项</a></li><li class="toc-d0"><a href="#sec-18-18-b">18. B包第一阶段工作顺序</a></li><li class="toc-d0"><a href="#sec-19-19-b">19. B包完整责任覆盖与技术要求</a></li><li class="toc-d0"><a href="#sec-27-20">20. 辅助执行器、负载仲裁与传动低温强制要求</a></li></ol>
+        </details>
+      </nav>
+      <section class="document-content">
+        <aside class="callout"><strong>DOCUMENT GOVERNANCE — CURRENT ELECTRICAL AUTHORITY</strong></aside>
+<p><strong>文件编号</strong>：ARCBOS-SPEC-2606-0005-B</p>
+<p><strong>版本</strong>：v1.0</p>
+<p><strong>状态</strong>：Final</p>
+<p><strong>适用对象</strong>：整车电控总包候选供应商、电机控制工程师、嵌入式/VCU工程师、履带底盘工程师、ARCBOS内部评审团队</p>
+<p><strong>关联总方案</strong>：SnowBot 整机电气系统总体方案 v1.0</p>
+<p><strong>整机范围说明</strong>：本包范围外的整机级技术背景、系统边界和最终冻结原则，以《SnowBot 整机电气系统总体方案 v1.0》（ARCBOS-SPEC-2606-0016）为准。</p>
+<p><strong>本文定位</strong>：本文是B包整车电控总包的需求与交付说明。供应商阅读本文后，应能理解SnowBot整机全貌、本包责任、与A/C/I包接口、核心控制策略、交付物、测试要求和验收标准。</p>
+<h3 id="sec-1-1-b">1. 一页读懂B包</h3>
+<pre><code>B包：整车电控总包
+
+核心职责
+└─ 让机器人安全地动起来、除起来、停下来、报故障。
+
+负责范围
+├─ 除雪总成主电机与控制器
+├─ 履带电机与控制器
+├─ 机械制动器控制
+├─ 辅助执行器
+├─ VCU
+├─ IO
+├─ CAN通信
+├─ 初版低压电源
+├─ 初版线束
+├─ 状态机
+├─ 堵转/反转清堵
+├─ 负载仲裁
+├─ 满电下坡策略
+├─ NAV/COMMS降级动作
+└─ 故障码
+
+不负责范围
+├─ 电池包内部设计
+├─ BMS内部算法
+├─ 充电Dock产品化设计
+├─ 整车导航算法本体
+├─ 云平台
+└─ 最终系统冻结权</code></pre>
+<p>B包是SnowBot Alpha阶段最关键的外包包。A包提供电，B包让机器可控地工作。若B包做不好，整机不会形成可验证闭环。</p>
+<h3 id="sec-2-2-snowbot">2. SnowBot整机全貌</h3>
+<p>SnowBot是一台48V LFP低温户外履带除雪机器人。它不是简单履带底盘，也不是普通AGV，而是带除雪总成、高电流负载、堵转风险、低温环境和无人值守安全状态机的商业设备。</p>
+<pre><code>整机系统分工
+
+A包：电池能源包
+└─ 安全、稳定、可诊断地输出48V主电源。
+
+B包：整车电控总包
+└─ 让机器动起来、除起来、停下来、报故障。
+
+C包：产品化电气工程包
+└─ 把Alpha跑通的电气系统产品化，包含Dock、正式线束、低压、EMC。
+
+I包：ARCBOS总架构包
+└─ 定义系统、控制接口、验收和最终冻结。</code></pre>
+<p>B包必须理解整机安全边界。VCU不是普通控制板，而是整机状态边界和负载仲裁的执行者。</p>
+<h3 id="sec-3-3-b">3. B包核心目标</h3>
+<pre><code>B包核心目标
+
+运动能力
+├─ 履带可控行走
+├─ 可低速Docking
+├─ 可坡道启动
+├─ 可原地转向
+└─ 可安全制动
+
+除雪能力
+├─ 除雪总成软启动
+├─ 正常除雪
+├─ 重载降额
+├─ 堵转检测
+└─ 反转清堵
+
+控制能力
+├─ VCU状态机
+├─ IO控制
+├─ CAN通信
+├─ 负载仲裁
+├─ 故障码
+└─ 日志
+
+安全能力
+├─ E_STOP配合
+├─ CHARGING互锁
+├─ SERVICE禁止自动动作
+├─ 满电下坡限制
+└─ NAV/COMMS降级动作</code></pre>
+<h3 id="sec-4-4">4. 除雪总成主电机要求</h3>
+<p>除雪总成主电机不是单纯绞龙电机。它承担进雪、破雪、输送、加速雪流、抛雪、堵转恢复和急停能量处理。</p>
+<div class="table-wrap"><table><tbody><tr><td>项目</td><td>目标</td><td>说明</td></tr><tr><td>连续功率</td><td>2.5–3.5kW</td><td>主工作区</td></tr><tr><td>重载功率</td><td>4–5kW</td><td>湿雪、厚雪、压实雪</td></tr><tr><td>峰值功率</td><td>5–6kW</td><td>突然进雪、半堵转</td></tr><tr><td>控制</td><td>CAN</td><td>必须可由VCU控制并反馈状态</td></tr><tr><td>功能</td><td>软启动、限流、堵转检测、反转清堵、热降额</td><td>必须提供策略说明</td></tr><tr><td>低温</td><td>-30°C验证</td><td>冷启动必须测试</td></tr><tr><td>防护</td><td>IP65或更高</td><td>含电机出线和连接器</td></tr></tbody></table></div>
+<p>不允许直接把5kW定义为连续功率。5kW只能作为重载或峰值设计范围的一部分，最终必须由负载谱和传动方案验证。</p>
+<h3 id="sec-5-5">5. 除雪总成传动输入</h3>
+<p>B包必须与机械结构方协同确认传动方案。未确认传动方案前，不得冻结电机。</p>
+<pre><code>传动方案必须说明
+
+转速与传动
+├─ 叶轮目标转速
+├─ 绞龙目标转速
+├─ 传动比
+└─ 是否同轴
+
+清堵与保护
+├─ 是否允许反转
+├─ 反转时叶轮是否随动
+├─ 是否有机械过载保护
+└─ 堵转时控制器 / BMS / 机械保护动作顺序
+
+安全停机
+├─ 急停后叶轮停止时间
+└─ 惯量释放方式</code></pre>
+<p>推荐优先评估一台主电机通过传动比分配到叶轮和绞龙的方案。不建议直接冻结绞龙和叶轮同轴同速刚性直连。</p>
+<h3 id="sec-6-6">6. 堵转与反转清堵要求</h3>
+<pre><code>堵转恢复流程
+
+检测电流上升和转速下降
+    ↓ 100–200ms
+控制器限流
+    ↓
+停止正转
+    ↓
+反转清堵300–500ms
+    ↓
+再次正转软启动
+    ↓
+若恢复，继续低速作业
+    ↓
+若再次堵转，最多再尝试1次
+    ↓
+两次失败后进入FAULT_STOP</code></pre>
+<p>堵转不能靠熔断器处理。普通堵转必须由控制器限流、VCU判断、反转清堵和状态机共同处理。</p>
+<div class="table-wrap"><table><tbody><tr><td>场景</td><td>预期母线电流</td><td>动作策略</td></tr><tr><td>湿雪软堵转</td><td>150–250A</td><td>限流 + 反转清堵</td></tr><tr><td>冰雪混合半堵转</td><td>250–350A</td><td>快速限流 + 停转判断</td></tr><tr><td>硬冰或异物完全堵转</td><td>350–500A瞬态</td><td>保护，不允许硬顶</td></tr><tr><td>控制器限流后堵转</td><td>200–280A</td><td>热降额或停机</td></tr></tbody></table></div>
+<h3 id="sec-7-7">7. 履带驱动要求</h3>
+<div class="table-wrap"><table><tbody><tr><td>项目</td><td>目标</td><td>说明</td></tr><tr><td>Alpha候选下限</td><td>750W/侧</td><td>仅可用于早期验证</td></tr><tr><td>v1.0连续目标</td><td>1.0–1.5kW/侧</td><td>覆盖坡道、压实雪、原地转向、除雪反力</td></tr><tr><td>v1.0峰值目标</td><td>2.0–2.5kW/侧</td><td>坡道启动、一侧受阻、短时冲击</td></tr><tr><td>制动</td><td>机械制动</td><td>驻车、失电保持、坡道安全</td></tr><tr><td>控制</td><td>CAN</td><td>电流、速度、温度、故障反馈</td></tr></tbody></table></div>
+<p>履带冻结前必须完成：</p>
+<pre><code>履带测试
+
+坡道能力
+├─ 5%坡道启动
+├─ 8%坡道启动
+└─ 10%坡道短时启动
+
+雪地运动
+├─ 压实雪原地转向
+├─ 湿雪中前进除雪
+├─ 一侧履带受阻
+└─ 一侧履带打滑
+
+低温与精密控制
+├─ 满载低温低SOC启动
+└─ Docking低速微动</code></pre>
+<h3 id="sec-8-8-vcu">8. VCU状态机要求</h3>
+<p>B包必须实现或配合实现VCU状态机。</p>
+<pre><code>VCU状态
+
+OFF
+BOOT
+SELF_CHECK
+READY
+DRIVE
+SNOW_WORK
+DERATE
+DOCKING
+CHARGING
+FAULT_STOP
+E_STOP
+SERVICE</code></pre>
+<p>硬规则：</p>
+<pre><code>VCU硬规则
+
+CHARGING
+└─ 禁止履带和除雪总成动作。
+
+SERVICE
+└─ 禁止自动动作。
+
+E_STOP
+└─ 优先级最高。
+
+通信丢失
+└─ 不得维持危险动作。
+
+低压异常
+└─ 必须进入降级或停机。</code></pre>
+<h3 id="sec-9-9-nav-comms">9. NAV/COMMS降级动作</h3>
+<pre><code>导航与通信状态
+
+NAV_OK
+└─ 定位正常，允许正常作业。
+
+NAV_DEGRADED
+└─ 降速，保持安全距离，禁止靠近车辆、边缘、坡道高速动作。
+
+NAV_LOST
+└─ 停止除雪总成，低速停车或回最后安全点，禁止继续新区域作业。
+
+COMMS_LOST
+└─ 本地定位正常时可完成当前安全段，不进入新区域或高风险任务。
+
+LOCAL_SAFE
+└─ 安全停车，记录日志，等待恢复。</code></pre>
+<p>该逻辑必须进入VCU，不得仅交给导航软件或云端处理。</p>
+<h3 id="sec-10-10">10. 满电下坡策略</h3>
+<p>满电下坡是硬规则，不是运营建议。</p>
+<div class="table-wrap"><table><tbody><tr><td>条件</td><td>VCU动作</td></tr><tr><td>SOC大于90%且BMS.ChargeAllowed为FALSE</td><td>禁止进入坡度大于5%且长度大于20m的下坡路段</td></tr><tr><td>SOC大于95%且BMS.RegenAllowed为FALSE</td><td>履带回生功率限制为不超过500W或供应商允许的更低值</td></tr><tr><td>已在坡道且母线电压接近过压阈值</td><td>进入DERATE，降低速度，机械制动主导</td></tr><tr><td>母线过压触发</td><td>受控停车，记录故障，禁止继续下坡</td></tr></tbody></table></div>
+<h3 id="sec-11-11">11. 负载仲裁要求</h3>
+<pre><code>负载仲裁规则
+
+除雪总成重载
+└─ 履带速度自动降低。
+
+履带原地转向
+└─ 除雪总成不得处于满功率进雪状态。
+
+PTC预热
+└─ 不得与重载除雪同时满功率运行。
+
+主母线电流持续超过300A
+└─ 进入DERATE。
+
+峰值超过BMS允许值
+└─ 进入FAULT_STOP或受控停机。</code></pre>
+<p>B包必须提供负载仲裁逻辑说明，不能让每个控制器各自拉满。</p>
+<h3 id="sec-12-12-a-c-i">12. 与A/C/I包接口</h3>
+<div class="table-wrap"><table><tbody><tr><td>接口对象</td><td>B包接收</td><td>B包输出</td></tr><tr><td>A包电池能源</td><td>48V主电源、BMS CAN、充放电允许、回生允许、故障码</td><td>VCU控制请求、负载状态、故障清除请求</td></tr><tr><td>C包产品化电气工程</td><td>正式线束、低压配电、Dock接口、EMC约束</td><td>控制器端子定义、IO点表、CAN拓扑、初版线束需求</td></tr><tr><td>I包ARCBOS总架构</td><td>系统边界、验收标准、安全策略、一票否决项</td><td>状态机、控制架构、测试报告、故障码、接口资料</td></tr></tbody></table></div>
+<h3 id="sec-13-13-b">13. B包必须交付的设计文件</h3>
+<pre><code>B包设计交付物
+
+动力系统
+├─ 除雪总成电机选型报告
+├─ 除雪总成控制器选型报告
+├─ 履带电机选型报告
+├─ 履带控制器选型报告
+├─ 制动器选型报告
+└─ 辅助执行器接口说明
+
+控制系统
+├─ VCU架构图
+├─ IO点表
+├─ CAN拓扑
+├─ CAN协议/DBC
+├─ 状态机图
+├─ 故障码表
+├─ 安全动作矩阵
+├─ 负载仲裁规则
+├─ 满电下坡规则
+└─ NAV/COMMS降级规则
+
+工程样机
+├─ 初版低压电源方案
+├─ 初版线束图
+├─ 控制器安装与散热建议
+└─ 台架测试方案</code></pre>
+<h3 id="sec-14-14-b">14. B包必须交付的测试文件</h3>
+<pre><code>B包测试交付物
+
+除雪总成
+├─ 空载启动电流
+├─ 低温空载启动
+├─ 模拟负载电流曲线
+├─ 半堵转测试
+├─ 完全堵转保护
+├─ 反转清堵测试
+├─ 热降额测试
+└─ 急停测试
+
+履带系统
+├─ 平地启动
+├─ 5%坡道启动
+├─ 8%坡道启动
+├─ 10%坡道短时启动
+├─ 压实雪原地转向
+├─ 一侧履带受阻
+├─ 一侧履带打滑
+└─ Docking低速微动
+
+VCU与状态机
+├─ 上电自检测试
+├─ 状态切换测试
+├─ E_STOP测试
+├─ SERVICE模式测试
+├─ CHARGING互锁测试
+├─ BMS通信丢失测试
+├─ 控制器掉线测试
+├─ NAV_LOST测试
+├─ COMMS_LOST测试
+├─ 满电下坡规则测试
+└─ 故障日志测试</code></pre>
+<h3 id="sec-15-15">15. 供应商必须回答的问题</h3>
+<ol><li>是否具备48V大电流BLDC/PMSM控制经验。</li><li>是否具备履带差速控制经验。</li><li>是否能实现VCU状态机，而不是只卖电机控制器。</li><li>是否支持CAN控制和故障反馈。</li><li>是否能处理堵转、限流、反转清堵、热降额。</li><li>是否能提供满电下坡和回生限制策略。</li><li>是否能提供NAV/COMMS降级动作。</li><li>是否能提供初版线束和低压配电方案。</li><li>是否愿意交付源文件、CAN协议、状态机图、故障码表。</li><li>哪些内容需要ARCBOS或第三方提供输入。</li></ol>
+<h3 id="sec-16-16-b">16. B包验收标准</h3>
+<p>B包通过验收至少满足：</p>
+<ol><li>除雪总成电机/控制器选型有依据。</li><li>履带电机/控制器选型有牵引和坡道依据。</li><li>VCU状态机可读、可测、可执行。</li><li>CAN接口清楚。</li><li>故障码表完整。</li><li>堵转清堵逻辑可测试。</li><li>满电下坡策略可测试。</li><li>NAV/COMMS降级可测试。</li><li>初版线束与低压方案能支撑Alpha集成。</li><li>与A/C/I包接口无重大空白。</li></ol>
+<h3 id="sec-17-17-b">17. B包一票否决项</h3>
+<pre><code>B包一票否决项
+
+1. 只卖电机，不负责控制策略
+2. 没有传动方案就推荐电机冻结
+3. 把5kW直接定义为连续功率
+4. 无感BLDC不做低速带载测试就冻结
+5. 不支持反转清堵
+6. 不支持CAN故障反馈
+7. 堵转只能靠熔断器处理
+8. 控制器无热降额曲线
+9. 无VCU状态机图
+10. IPC直接控制高风险动作
+11. CHARGING状态仍允许履带动作
+12. SERVICE状态仍允许自动动作
+13. 满电下坡不是VCU硬规则
+14. NAV_LOST后继续新区域作业
+15. 不交CAN协议、故障码表或状态机文件</code></pre>
+<h3 id="sec-18-18-b">18. B包第一阶段工作顺序</h3>
+<pre><code>B包第一阶段工作顺序
+
+1. 确认除雪总成传动输入
+2. 输出除雪总成电机/控制器候选方案
+3. 输出履带电机/控制器候选方案
+4. 输出VCU架构与IO点表
+5. 输出CAN拓扑和接口清单
+6. 输出状态机初版
+7. 输出堵转/清堵/负载仲裁策略
+8. 输出满电下坡和NAV/COMMS降级策略
+9. 输出初版线束与低压配电建议
+10. 搭建除雪总成与履带台架测试方案
+11. 与A包确认BMS接口
+12. 与I包完成第一轮设计评审</code></pre>
+<h3 id="sec-19-19-b">19. B包完整责任覆盖与技术要求</h3>
+<p>本节明确B包必须承接的完整技术责任。B包不是单纯电机采购包，也不是普通嵌入式外包包，而是Alpha阶段整车运动、除雪、状态机和故障闭环的核心总包。</p>
+<h4 id="sec-20-19-1-b">19.1 B包必须承接的系统内容</h4>
+<div class="table-wrap"><table><tbody><tr><td>主方案主题</td><td>B包责任</td><td>要求</td></tr><tr><td>负载谱与功率等级</td><td>主责</td><td>按L0–L7理解整机功率，不得只看单个电机额定功率</td></tr><tr><td>除雪总成主电机与传动方案</td><td>主责</td><td>必须先确认传动输入，再冻结电机和控制器</td></tr><tr><td>除雪总成堵转与恢复策略</td><td>主责</td><td>堵转检测、限流、反转清堵、两次失败FAULT_STOP</td></tr><tr><td>履带驱动系统</td><td>主责</td><td>1.0–1.5kW/侧连续目标，2.0–2.5kW/侧峰值目标，机械制动</td></tr><tr><td>除雪总成与履带功率耦合</td><td>主责</td><td>VCU必须做负载仲裁，不能各控制器各自拉满</td></tr><tr><td>辅助执行器</td><td>主责</td><td>旋转、俯仰、抬升执行器必须进入VCU状态机</td></tr><tr><td>低压电源系统</td><td>Alpha主责，Beta接口</td><td>Alpha提供初版低压与线束，Beta移交C包产品化</td></tr><tr><td>VCU、IPC与控制边界</td><td>主责</td><td>IPC不能直接控制高风险动作，VCU掌握状态机</td></tr><tr><td>GPS/通信降级状态机</td><td>主责</td><td>NAV_DEGRADED、NAV_LOST、COMMS_LOST、LOCAL_SAFE必须可执行</td></tr><tr><td>急停、安全链路与制动回生</td><td>主责/接口</td><td>E_STOP配合硬件链路，满电下坡为硬规则</td></tr><tr><td>硬冰层服务边界</td><td>主责执行</td><td>3cm以上硬冰不硬顶，不承诺处理，进入保护或绕行</td></tr><tr><td>故障诊断体系</td><td>主责</td><td>VCU故障码、日志、状态机事件、控制器故障统一管理</td></tr></tbody></table></div>
+<h4 id="sec-21-19-2">19.2 整机负载谱控制策略</h4>
+<p>B包必须把主方案L0–L7负载谱转化为控制策略。</p>
+<pre><code>负载谱到控制策略
+
+L0/L1：待机与上电
+└─ VCU自检、通信检查、禁止高风险动作。
+
+L2：低温预热
+└─ PTC与动力负载不得同时拉满，需与A包BMS温度状态联动。
+
+L3：空载行走
+└─ 履带正常控制，记录行走电流基线。
+
+L4：正常除雪
+└─ 允许SNOW_WORK，记录除雪总成和履带叠加电流。
+
+L5：重载除雪
+└─ 进入重载控制，降低履带速度或除雪进给速度。
+
+L6：短时峰值
+└─ 允许短时峰值，但必须受BMS允许值、控制器限流和时间窗口约束。
+
+L7：保护区
+└─ 不作为工作区，进入DERATE、FAULT_STOP或受控停机。</code></pre>
+<h4 id="sec-22-19-3">19.3 辅助执行器要求</h4>
+<p>B包必须覆盖辅助执行器，不得把旋转、俯仰、抬升视为无关小电机。</p>
+<pre><code>辅助执行器要求
+
+旋转电机
+├─ 100–200W级方向
+├─ 带减速
+├─ 带位置反馈或限位
+├─ 有堵转保护
+└─ 进入VCU状态机
+
+俯仰电机
+├─ 100–200W级方向
+├─ 必须有自锁、抱持或制动能力
+├─ 断电后不得自由下落
+├─ 有行程限位
+└─ 进入VCU状态机
+
+抬升执行器
+├─ 8000N、8mm/s、120mm行程可作为候选目标
+├─ 必须验证低温效率
+├─ 必须验证自锁
+├─ 必须验证过载保护
+├─ 必须验证冰雪卡滞
+└─ 必须验证寿命循环</code></pre>
+<h4 id="sec-23-19-4-vcu">19.4 硬冰层边界必须进入VCU</h4>
+<p>B包不得把硬冰层问题留给运营口头说明。VCU必须对持续高阻力、堵转和疑似硬冰做状态处理。</p>
+<pre><code>硬冰处理规则
+
+普通积雪 / 新雪
+└─ 正常SNOW_WORK。
+
+湿雪 / 厚雪 / 轻度压实雪
+└─ 降速、限流、必要时多次处理。
+
+1cm以下薄冰
+└─ 可短时尝试扰动，但必须受峰值保护约束。
+
+1–3cm硬冰
+└─ 高风险，短时尝试失败后降级或绕行。
+
+3cm以上硬冰
+└─ 不作为工作对象，不硬顶，进入FAULT_STOP、LOCAL_SAFE或绕行策略。</code></pre>
+<h4 id="sec-24-19-5">19.5 急停与安全停机要求</h4>
+<p>B包必须配合硬件急停链路，并定义受控停机过程。</p>
+<pre><code>急停动作链
+
+急停触发
+    ↓
+硬件切断驱动与除雪使能
+    ↓
+VCU记录状态
+    ↓
+电机控制器进入安全扭矩关闭或等效状态
+    ↓
+机械制动进入保持
+    ↓
+必要时请求A包BMS断开主接触器</code></pre>
+<p>B包不得把急停只做成软件按钮。B包必须说明急停后履带、除雪总成、辅助执行器和制动器分别如何动作。</p>
+<h4 id="sec-25-19-6">19.6 初版低压与线束边界</h4>
+<p>Alpha阶段B包负责初版低压与线束，是为了让样机跑起来；Beta产品化阶段必须把正式线束、低压配电、EMC工程移交C包。</p>
+<pre><code>B包Alpha初版低压/线束责任
+
+必须做到
+├─ 48V到24V/12V基本供电
+├─ VCU、控制器、传感器基本上电
+├─ CAN通信可用
+├─ 急停链路可用
+├─ 线束安全固定
+├─ 高低压基本分区
+└─ 支持Alpha测试
+
+不得声称完成
+├─ 正式线束图冻结
+├─ 产品化端子表冻结
+├─ EMC正式通过
+├─ 产品化接地屏蔽冻结
+└─ 批量装配工艺冻结</code></pre>
+<h4 id="sec-26-19-7-b">19.7 B包完整交付核对清单</h4>
+<pre><code>B包不得遗漏
+
+1. 除雪总成主电机选型
+2. 除雪总成控制器选型
+3. 传动方案输入与冻结前置条件
+4. 堵转检测
+5. 反转清堵
+6. 热降额
+7. 两次失败FAULT_STOP
+8. 履带电机与控制器
+9. 机械制动器控制
+10. 坡道与原地转向测试
+11. 辅助执行器控制
+12. VCU状态机
+13. IO点表
+14. CAN拓扑与协议
+15. 负载仲裁
+16. 满电下坡硬规则
+17. NAV/COMMS降级动作
+18. 硬冰服务边界执行
+19. E_STOP配合
+20. 故障码表与日志
+21. Alpha初版低压与线束
+22. 源文件、配置文件、协议文件交付</code></pre>
+<h3 id="sec-27-20">20. 辅助执行器、负载仲裁与传动低温强制要求</h3>
+<p>本节定义B包必须满足的辅助执行器测试、负载仲裁量化、传动件低温材料、Alpha到Beta移交和新增否决要求。供应商必须按本节提交可执行、可测试、可验收的工程资料。</p>
+<h4 id="sec-28-20-1">20.1 辅助执行器测试与验收要求</h4>
+<p>辅助执行器不是附属小项，必须进入B包测试交付物和验收标准。</p>
+<pre><code>辅助执行器测试清单
+
+旋转电机
+├─ 正反转命令响应测试
+├─ 左右极限位置测试
+├─ 限位触发后停止测试
+├─ 堵转保护测试
+├─ 低温启动测试
+└─ VCU故障码记录测试
+
+俯仰电机
+├─ 上仰/下俯命令响应测试
+├─ 行程限位测试
+├─ 断电自锁或抱持测试
+├─ 断电后不得自由下落测试
+├─ 堵转保护测试
+├─ 低温卡滞测试
+└─ VCU故障码记录测试
+
+抬升执行器
+├─ 8000N目标载荷能力验证或供应商等效证明
+├─ 8mm/s速度验证或供应商等效证明
+├─ 120mm行程验证或供应商等效证明
+├─ 低温效率测试
+├─ 自锁测试
+├─ 过载保护测试
+├─ 冰雪卡滞测试
+└─ 寿命循环测试计划</code></pre>
+<p>验收标准：辅助执行器必须能被VCU控制、能反馈状态或限位、能在异常时停止、能记录故障码。未进入VCU状态机的辅助执行器不得进入Alpha装机。</p>
+<h4 id="sec-29-20-2">20.2 负载仲裁量化阈值初版</h4>
+<p>以下阈值为Alpha阶段初始建议值，用于让VCU软件团队有可执行边界。最终阈值必须由负载谱测试、BMS能力、控制器曲线和I包评审冻结。</p>
+<div class="table-wrap"><table><tbody><tr><td>触发条件</td><td>VCU动作</td><td>退出条件</td></tr><tr><td>主母线电流持续超过270A超过3秒</td><td>进入DERATE；限制除雪总成功率至2.5kW级；履带速度降至0.3m/s级</td><td>主母线电流低于220A持续5秒</td></tr><tr><td>主母线电流超过320A持续超过1秒</td><td>进入FAULT_STOP或受控停机</td><td>人工复位或I包批准的恢复流程</td></tr><tr><td>除雪总成进入堵转清堵状态</td><td>禁止履带原地转向；维持低速前进或停止</td><td>堵转清堵完成且电流恢复正常</td></tr><tr><td>PTC预热功率大于500W</td><td>限制除雪总成启动或禁止进入SNOW_WORK</td><td>PTC降至维温功率或BMS温度达到允许区间</td></tr><tr><td>BMS DischargeAllowed为FALSE</td><td>禁止履带和除雪总成新动作，进入安全停机</td><td>BMS恢复允许且故障被确认清除</td></tr><tr><td>BMS RegenAllowed为FALSE且SOC大于95%</td><td>限制或禁止履带回生，机械制动主导</td><td>SOC下降或BMS恢复RegenAllowed</td></tr></tbody></table></div>
+<p>B包可以提出不同阈值，但必须提交工程依据。未经I包批准，软件工程师不得自行决定关键阈值。</p>
+<h4 id="sec-30-20-3">20.3 传动件低温材料与冷启动要求</h4>
+<p>B包必须把传动件低温材料纳入设计交付和测试交付。</p>
+<pre><code>传动件低温材料要求
+
+皮带方案
+├─ 必须提供-40°C或更低温度等级材料资料
+├─ 必须提供低温张力变化说明
+├─ 必须验证-30°C冷启动不打滑或不过度打滑
+└─ 不接受只按常温工业皮带选型
+
+链条方案
+├─ 必须提供低温润滑脂资料
+├─ 润滑脂倾点建议≤-50°C或满足-40°C工作说明
+├─ 必须验证低温张紧器动作
+└─ 必须考虑盐水、雪泥、颗粒磨损
+
+齿轮箱方案
+├─ 必须提供低温合成齿轮油资料
+├─ 必须说明-30°C冷启动粘度影响
+├─ 必须检查密封件低温收缩泄漏
+└─ 必须验证低温空载和加载启动电流</code></pre>
+<h4 id="sec-31-20-4">20.4 传动件冷启动测试</h4>
+<pre><code>传动件冷启动测试
+
+测试准备
+├─ -30°C浸泡48小时
+├─ 保持实际润滑脂/齿轮油/皮带材料
+├─ 保持实际张紧结构
+└─ 保持实际电机控制器限流设置
+
+启动流程
+├─ 首次低速空转30–60秒
+├─ 记录启动电流
+├─ 记录RPM响应
+├─ 记录异常噪声和振动
+├─ 逐步加载模拟雪负载
+└─ 记录热降额和故障码
+
+判定
+├─ 不允许卡死
+├─ 不允许电流异常持续高位
+├─ 不允许皮带明显打滑后无法恢复
+├─ 不允许链条跳齿或张紧失效
+└─ 不允许齿轮箱泄漏或异常噪声持续</code></pre>
+<h4 id="sec-32-20-5-alpha-beta">20.5 Alpha到Beta低压与线束移交条件</h4>
+<p>B包初版低压/线束不能被C包直接当作产品化冻结输入。必须满足以下条件后，才允许C包基于B包输入开展正式线束设计。</p>
+<pre><code>B包向C包移交触发条件
+
+文件条件
+├─ IO点表已经过I包评审确认
+├─ VCU状态机初版已通过R2评审
+├─ 除雪总成控制器端子定义已确认
+├─ 左右履带控制器端子定义已确认
+├─ VCU端子定义已确认
+├─ 辅助执行器端子定义已确认
+└─ 初版CAN拓扑已确认
+
+测试条件
+├─ Alpha样机完成基本上电测试
+├─ Alpha样机完成状态切换测试
+├─ 履带基本动作测试完成
+├─ 除雪总成空载动作测试完成
+└─ 急停链路测试完成
+
+批准条件
+└─ I包正式签发“C包可以启动产品化电气工程”的书面通知。</code></pre>
+<h4 id="sec-33-20-6-b">20.6 B包新增一票否决项</h4>
+<pre><code>B包新增一票否决项
+
+1. 辅助执行器未进入VCU状态机且无测试记录。
+2. 辅助执行器无端子定义、控制接口或故障反馈说明。
+3. 传动件未提供低温材料或低温润滑资料。
+4. 不做-30°C传动件冷启动测试。
+5. 负载仲裁阈值未量化，由软件工程师自行决定。
+6. B包初版线束未经I包批准即移交C包产品化。</code></pre>
+      </section>
+      <footer class="document-footer">
+        <div class="footer-row">
+          <span class="footer-brand">ARCBOS</span>
+          <span class="footer-ref">ARCBOS-SPEC-2606-0014 · Version v1.0</span>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>

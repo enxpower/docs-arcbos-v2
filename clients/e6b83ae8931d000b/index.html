@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SnowBot 电气分包 A包 · 电池能源包需求与交付说明 v1.0 — ARCBOS-SPEC-2606-0013</title>
+    <link rel="icon" href="../../assets/favicon.ico">
+    <meta name="description" content="文件编号：ARCBOS-SPEC-2606-0004-A">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="SnowBot 电气分包 A包 · 电池能源包需求与交付说明 v1.0">
+    <meta property="og:description" content="文件编号：ARCBOS-SPEC-2606-0004-A">
+    <meta property="og:image" content="https://ref.arcbos.com/assets/arcbos-share-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SnowBot 电气分包 A包 · 电池能源包需求与交付说明 v1.0">
+    <meta name="twitter:description" content="文件编号：ARCBOS-SPEC-2606-0004-A">
+    <meta name="twitter:image" content="https://ref.arcbos.com/assets/arcbos-share-preview.png">
+    <link rel="stylesheet" href="../../assets/css/screen.css">
+    <link rel="stylesheet" href="../../assets/css/print.css" media="print">
+  </head>
+  <body>
+    <header class="site-topbar no-print"><span class="topbar-brand">ARCBOS</span></header>
+    <main class="document">
+      <header class="document-masthead">
+        <div class="masthead-row">
+          <div class="masthead-brand">ARCBOS</div>
+          <p class="masthead-slogan">ENGINEERED FOR EXTREME CONDITIONS</p>
+        </div>
+      </header>
+      <section class="document-title-block">
+        <p class="document-kicker">Specification</p>
+        <h1>SnowBot 电气分包 A包 · 电池能源包需求与交付说明 v1.0</h1>
+      </section>
+      <div class="document-meta-grid" aria-label="Document metadata"><div class="meta-item"><span class="meta-label">Document ID</span><span class="meta-value meta-value--id">ARCBOS-SPEC-2606-0013</span></div><div class="meta-item"><span class="meta-label">Type</span><span class="meta-value">Specification</span></div><div class="meta-item"><span class="meta-label">Version</span><span class="meta-value">v1.0</span></div><div class="meta-item"><span class="meta-label">Status</span><span class="tag status-final">Final</span></div><div class="meta-item"><span class="meta-label">Client</span><span class="meta-value">SnowBot</span></div><div class="meta-item"><span class="meta-label">Project</span><span class="meta-value">SnowBot Alpha &amp; Beta</span></div><div class="meta-item"><span class="meta-label">Updated</span><span class="meta-value">2026-07-19</span></div><div class="meta-item"><span class="meta-label">Access</span><span class="tag is-client-link">Client Link</span></div></div>
+      <div class="document-actions no-print">
+        <button type="button" class="action-btn" onclick="window.print()" title="Print this document using your browser" aria-label="Print this document">Print</button><a href="../../pdf/ARCBOS-SPEC-2606-0013.pdf" class="action-btn action-btn--download-pdf" title="Download pre-generated PDF" aria-label="Download PDF" download>Download PDF</a>
+      </div>
+      <nav class="document-toc no-print" aria-label="Contents">
+        <details class="toc-details">
+          <summary class="toc-title">Contents<span class="toc-count">18 sections</span></summary>
+          <ol class="toc-list"><li class="toc-d0"><a href="#sec-1-1-a">1. 一页读懂A包</a></li><li class="toc-d0"><a href="#sec-2-2-snowbot">2. SnowBot整机全貌</a></li><li class="toc-d0"><a href="#sec-3-3-a">3. A包设计目标</a></li><li class="toc-d0"><a href="#sec-4-4">4. 核心技术参数</a></li><li class="toc-d0"><a href="#sec-5-5-a-300a">5. 为什么A包必须按300A级设计</a></li><li class="toc-d0"><a href="#sec-6-6-bms">6. BMS必须输出的状态与数据</a></li><li class="toc-d0"><a href="#sec-7-7">7. 主回路范围</a></li><li class="toc-d0"><a href="#sec-8-8">8. 电池包结构设计要求</a></li><li class="toc-d0"><a href="#sec-15-9">9. 与其他包的接口</a></li><li class="toc-d0"><a href="#sec-16-10">10. 必须交付的设计文件</a></li><li class="toc-d0"><a href="#sec-17-11">11. 必须交付的计算文件</a></li><li class="toc-d0"><a href="#sec-18-12">12. 必须交付的测试文件</a></li><li class="toc-d0"><a href="#sec-19-13">13. 供应商必须回答的问题</a></li><li class="toc-d0"><a href="#sec-20-14-a">14. A包验收标准</a></li><li class="toc-d0"><a href="#sec-21-15-a">15. A包一票否决项</a></li><li class="toc-d0"><a href="#sec-22-16-a">16. A包第一阶段工作顺序</a></li><li class="toc-d0"><a href="#sec-23-17-a">17. A包完整责任覆盖与技术要求</a></li><li class="toc-d0"><a href="#sec-30-18-bms-can">18. BMS CAN接口与温升验证强制要求</a></li></ol>
+        </details>
+      </nav>
+      <section class="document-content">
+        <aside class="callout"><strong>DOCUMENT GOVERNANCE — CURRENT ELECTRICAL AUTHORITY</strong></aside>
+<p><strong>文件编号</strong>：ARCBOS-SPEC-2606-0004-A</p>
+<p><strong>版本</strong>：v1.0</p>
+<p><strong>状态</strong>：Final</p>
+<p><strong>适用对象</strong>：电池包供应商、BMS供应商、主回路设计工程师、ARCBOS内部评审团队</p>
+<p><strong>关联总方案</strong>：SnowBot 整机电气系统总体方案 v1.0</p>
+<p><strong>整机范围说明</strong>：本包范围外的整机级技术背景、系统边界和最终冻结原则，以《SnowBot 整机电气系统总体方案 v1.0》（ARCBOS-SPEC-2606-0016）为准。</p>
+<p><strong>本文定位</strong>：本文是A包电池能源包的需求与交付说明。供应商阅读本文后，应能理解SnowBot整机全貌、本包边界、接口要求、交付内容和验收标准，并可立即进入方案评估和报价准备。</p>
+<h3 id="sec-1-1-a">1. 一页读懂A包</h3>
+<pre><code>A包：电池能源包
+
+核心职责
+└─ 安全、稳定、可诊断地输出48V主电源。
+
+负责范围
+├─ 电池包
+├─ BMS
+├─ 主接触器
+├─ 主熔断器
+├─ 预充回路
+├─ Service Disconnect
+├─ 电池盲插接口
+├─ 低温硬件禁充
+└─ BMS CAN接口
+
+不负责范围
+├─ 整车运动控制
+├─ 除雪总成电机控制
+├─ 履带控制
+├─ VCU状态机
+├─ 充电Dock机械对接
+└─ 整机最终安全冻结</code></pre>
+<p>A包的输出质量决定SnowBot整机电气系统的安全底座。A包不是简单交付一块电池，而是交付一个可维护、可诊断、可保护、可集成的48V工业电池能源系统。</p>
+<h3 id="sec-2-2-snowbot">2. SnowBot整机全貌</h3>
+<p>SnowBot是一台低温户外自主除雪机器人。整机不是消费级小车，而是低温、高电流、雪水、盐雾、振动、无人值守工况下运行的商业设备。</p>
+<pre><code>整机电气系统
+
+A包：电池能源包
+├─ 48V LFP电池包
+├─ BMS
+├─ 主回路保护
+└─ 低温禁充
+
+B包：整车电控总包
+├─ 除雪总成主电机与控制器
+├─ 履带电机与控制器
+├─ VCU
+├─ IO
+├─ 状态机
+└─ 初版低压与线束
+
+C包：产品化电气工程包
+├─ 充电Dock
+├─ 尾部DC触点
+├─ 正式线束
+├─ 低压配电优化
+└─ EMC工程化
+
+I包：ARCBOS总架构包
+├─ 系统架构
+├─ 接口控制
+├─ 安全边界
+├─ 集成测试
+└─ 最终冻结</code></pre>
+<p>A包必须理解一个事实：SnowBot的高电流不是由单个负载产生，而是除雪总成、履带、低压系统、热管理在重载雪况下叠加产生。</p>
+<h3 id="sec-3-3-a">3. A包设计目标</h3>
+<pre><code>A包设计目标
+
+安全
+├─ 低温硬件禁充
+├─ 主熔断保护
+├─ 接触器受控闭合/断开
+├─ 预充受控
+└─ 半插入/带载拔出保护
+
+能力
+├─ 300A连续等级评估
+├─ 400–450A 10秒峰值
+├─ 500–600A 1秒峰值
+├─ 200A连续充电
+└─ 支持重载除雪与履带叠加电流
+
+诊断
+├─ CAN通信
+├─ 完整故障码
+├─ 充放电允许状态
+├─ 回生允许状态
+└─ 保护动作日志
+
+维护
+├─ 电池模块可拆装
+├─ Service Disconnect可达
+├─ 主保护器件可维护
+└─ 接插件有明确端子定义</code></pre>
+<h3 id="sec-4-4">4. 核心技术参数</h3>
+<div class="table-wrap"><table><tbody><tr><td>项目</td><td>目标值</td><td>说明</td></tr><tr><td>电池平台</td><td>48V LFP，15S</td><td>v1.0保留48V平台</td></tr><tr><td>Alpha电池</td><td>15S1P，约13.44kWh</td><td>工程验证使用</td></tr><tr><td>Beta/v1.0电池</td><td>15S2P，约26.88kWh</td><td>产品化目标</td></tr><tr><td>满充电压</td><td>54.75V</td><td>15S LFP</td></tr><tr><td>截止电压</td><td>37.5V</td><td>低压端电流计算按此保守值</td></tr><tr><td>连续放电</td><td>250–300A，按300A级评估</td><td>覆盖除雪总成与履带叠加负载</td></tr><tr><td>10秒峰值放电</td><td>400–450A</td><td>覆盖突然进雪、坡道、原地转向和限流堵转</td></tr><tr><td>1秒峰值放电</td><td>500–600A</td><td>覆盖冲击峰值与半堵转瞬态</td></tr><tr><td>连续充电</td><td>200A</td><td>覆盖7.2kW充电低压端电流</td></tr><tr><td>低温禁充</td><td>任一电芯低于5°C禁止充电</td><td>必须硬件级实现</td></tr></tbody></table></div>
+<h3 id="sec-5-5-a-300a">5. 为什么A包必须按300A级设计</h3>
+<p>SnowBot不是单一电机负载。重载雪况下，除雪总成、履带和热管理会叠加。</p>
+<pre><code>叠加负载来源
+
+除雪总成
+├─ 正常除雪：约80–130A
+├─ 重载除雪：约130–180A
+└─ 峰值/堵转：可能200–300A
+
+履带系统
+├─ 左履带：重载40–70A，峰值80A以上
+└─ 右履带：重载40–70A，峰值80A以上
+
+低压与热管理
+└─ 约20–50A，取决于DC-DC、PTC和控制系统
+
+合计
+├─ 中等工况：约130–240A
+├─ 重载工况：约230–360A
+└─ 峰值工况：可能超过400A</code></pre>
+<p>因此，300A连续等级不是过度设计，而是SnowBot 48V平台成立的基本条件。</p>
+<h3 id="sec-6-6-bms">6. BMS必须输出的状态与数据</h3>
+<pre><code>BMS输出项
+
+电池状态
+├─ 总压
+├─ 总流
+├─ SOC
+├─ SOH
+└─ SOP
+
+单体状态
+├─ 最高单体电压
+├─ 最低单体电压
+├─ 最高温度
+└─ 最低温度
+
+允许状态
+├─ 充电允许
+├─ 放电允许
+└─ 回生允许
+
+执行与安全状态
+├─ 主接触器状态
+├─ 预充状态
+├─ 互锁状态
+├─ 故障码
+└─ 保护动作日志</code></pre>
+<p>BMS必须通过CAN向VCU提供上述数据。BMS不能只提供SOC和电压，必须提供允许状态、保护状态、故障码和日志。</p>
+<h3 id="sec-7-7">7. 主回路范围</h3>
+<p>推荐A包主回路范围如下：</p>
+<pre><code>电池正极
+    ↓
+主熔断器
+    ↓
+Service Disconnect
+    ↓
+主接触器正极
+    ↓
+预充支路并联
+    ↓
+48V主母线正极输出
+
+电池负极
+    ↓
+电流传感器
+    ↓
+主接触器负极或负极汇流
+    ↓
+48V主母线负极输出</code></pre>
+<p>主熔断器、接触器、Service Disconnect、预充、电流传感器和BMS必须作为一个系统协调，不允许各自独立拍型号。</p>
+<h3 id="sec-8-8">8. 电池包结构设计要求</h3>
+<p>A包必须把电池包作为工业模块设计，而不是把电芯、BMS和外壳简单装在一起。电池包结构设计属于A包核心责任范围，并必须与SnowBot整机结构、电气接口、维护方式和低温环境共同设计。</p>
+<pre><code>电池包结构设计目标
+
+安全
+├─ 电池包未锁止不得上电
+├─ 半插入不得上电
+├─ 带载拔出必须被硬件阻止
+├─ Service Disconnect必须可达
+└─ 主回路高电流端子必须防误触
+
+维护
+├─ 电池包可抽拉或可拆装
+├─ 维护人员可识别锁止状态
+├─ 连接器可检查
+├─ 关键保护器件可维护
+└─ 电池包可安全搬运或吊装
+
+环境
+├─ 防雪
+├─ 防水
+├─ 防盐雾
+├─ 排水
+├─ 防冰
+└─ -30°C低温操作
+
+集成
+├─ 与整机重心匹配
+├─ 与线束路径匹配
+├─ 与充电接口匹配
+├─ 与结构安装面匹配
+└─ 与散热/保温方案匹配</code></pre>
+<h4 id="sec-9-8-1">8.1 电池包外壳</h4>
+<p>电池包外壳必须满足以下要求：</p>
+<ol><li>能承受Alpha约13.44kWh电池包和Beta/v1.0约26.88kWh电池包对应重量。</li><li>Beta/v1.0电池包应按约162kg以上等级进行结构设计和安全搬运评估。</li><li>外壳应具备足够刚度，避免运输、振动、抽拉、安装过程中对电芯、铜排、BMS和连接器产生应力。</li><li>外壳材料、密封件、卡扣、锁扣和把手必须适应-30°C低温。</li><li>外壳应防水、防雪、防盐雾，并具备必要排水路径。</li><li>外壳不应把冷凝水、融雪水或盐水引向高电流端子和BMS。</li></ol>
+<h4 id="sec-10-8-2">8.2 滑入式安装与抽拉路径</h4>
+<p>若采用滑入式电池模块，A包必须提供电池包结构接口要求，并与整机结构方确认。</p>
+<pre><code>滑入式电池包要求
+
+机械导向
+├─ 导轨或定位面
+├─ 防偏插结构
+├─ 防卡滞结构
+└─ 低温下可操作
+
+锁止
+├─ 主锁止
+├─ 副锁止或防脱结构
+├─ 锁止状态检测
+└─ 维护人员可见状态
+
+抽拉
+├─ 明确抽拉方向
+├─ 明确抽拉空间
+├─ 明确维护姿态
+└─ 明确搬运/吊装方式</code></pre>
+<h4 id="sec-11-8-3">8.3 盲插连接器与安装面</h4>
+<p>电池盲插连接器属于A包核心交付范围。连接器必须同时考虑高电流、低压信号、互锁、半插入检测和维护安全。</p>
+<p>要求：</p>
+<ol><li>高电流正负极必须防误插、防反插。</li><li>高电流触点必须满足主放电和充电路径要求。</li><li>低压信号触点应包含BMS通信、互锁、锁止状态和必要辅助信号。</li><li>盲插安装面必须有机械导向，不能让高电流端子承担定位力。</li><li>半插入状态不得上电。</li><li>未锁止状态不得上电。</li><li>带载拔出必须被硬件阻止。</li><li>连接器必须提供插拔寿命、温升、盐雾、振动和低温资料。</li></ol>
+<h4 id="sec-12-8-4-service-disconnect">8.4 Service Disconnect可达性</h4>
+<p>Service Disconnect必须进入电池包结构设计，不得后期临时找位置。</p>
+<p>要求：</p>
+<ol><li>维护人员可在不拆大量结构件的情况下操作。</li><li>操作位置应防误触，但不能不可达。</li><li>操作状态应清楚可见。</li><li>若Service Disconnect位于主放电路径，必须按250–300A连续等级评估。</li><li>若Service Disconnect不承载主路径，必须在原理图和结构图中明确限制。</li></ol>
+<h4 id="sec-13-8-5">8.5 电池仓环境接口</h4>
+<p>A包必须向整机结构方输出电池仓环境要求。</p>
+<pre><code>电池仓环境接口
+
+防水与排水
+├─ 不允许积水淹没连接器
+├─ 排水路径不得经过高电流端子
+└─ 融雪水不得进入BMS区域
+
+防雪与防冰
+├─ 电池仓开口需防雪进入
+├─ 锁止机构低温不应冻结失效
+└─ 必要时预留防冰加热位置
+
+盐雾与腐蚀
+├─ 高电流端子需防盐雾腐蚀
+├─ 紧固件需防腐蚀
+└─ 接地/搭接点需防腐蚀
+
+热管理
+├─ 保温层空间
+├─ PTC或加热片安装空间
+├─ 温度传感器位置
+└─ 热源与冷点识别</code></pre>
+<h4 id="sec-14-8-6">8.6 电池包结构交付物</h4>
+<pre><code>电池包结构交付物
+
+结构文件
+├─ 电池包外形图
+├─ 安装接口图
+├─ 抽拉/滑入方向图
+├─ 重量与重心说明
+├─ 吊装/搬运方式说明
+├─ 锁止结构说明
+├─ 半插入检测结构说明
+├─ 盲插连接器安装面图
+├─ Service Disconnect位置图
+└─ 电池仓环境接口要求
+
+验证文件
+├─ 电池包安装/拆卸测试
+├─ 半插入检测测试
+├─ 锁止状态测试
+├─ 带载拔出阻止测试
+├─ 低温拆装测试
+├─ 振动后锁止检查
+├─ 盐雾后连接器检查
+└─ 热循环后密封检查</code></pre>
+<h3 id="sec-15-9">9. 与其他包的接口</h3>
+<div class="table-wrap"><table><tbody><tr><td>接口对象</td><td>A包输出</td><td>A包接收</td></tr><tr><td>B包整车电控</td><td>48V主电源、BMS CAN、充放电允许、回生允许、故障码</td><td>VCU控制请求、负载状态、故障清除请求</td></tr><tr><td>C包产品化电气工程</td><td>电池端子定义、主回路接口、充电接口边界、温度/互锁状态</td><td>正式线束接口、充电Dock接口、接插件选型约束</td></tr><tr><td>I包ARCBOS总架构</td><td>设计资料、测试报告、保护曲线、CAN协议、故障码表</td><td>系统边界、验收标准、一票否决项、冻结意见</td></tr></tbody></table></div>
+<h3 id="sec-16-10">10. 必须交付的设计文件</h3>
+<pre><code>A包设计交付物
+
+电气设计
+├─ 电池包电气原理图
+├─ BMS接线图
+├─ 主回路单线图
+├─ 预充回路设计
+├─ 主熔断器选型表
+├─ 主接触器选型表
+├─ Service Disconnect选型表
+├─ 电流传感器选型表
+└─ 电池盲插连接器规格
+
+接口资料
+├─ 电池包端子定义
+├─ BMS CAN协议
+├─ DBC或寄存器表
+├─ 故障码表
+├─ 充电允许/放电允许/回生允许逻辑
+└─ 与VCU通信超时策略
+
+结构与维护
+├─ 电池包外形与安装接口
+├─ 电池包抽拉/吊装/维护说明
+├─ Service Disconnect操作说明
+└─ 半插入/锁止检测说明</code></pre>
+<h3 id="sec-17-11">11. 必须交付的计算文件</h3>
+<pre><code>A包计算交付物
+
+电流能力
+├─ 连续300A校核
+├─ 10秒400–450A峰值校核
+├─ 1秒500–600A峰值校核
+└─ 200A连续充电校核
+
+保护协调
+├─ 主熔断器I²t初步协调
+├─ 接触器热校核
+├─ 预充电阻计算
+├─ 电池包短路能力估算
+└─ 主回路温升估算
+
+低温与能量
+├─ 低温可用能量估算
+├─ 低温禁充逻辑说明
+├─ 预热/维温边界说明
+└─ 温度采样点布置说明</code></pre>
+<h3 id="sec-18-12">12. 必须交付的测试文件</h3>
+<pre><code>A包测试交付物
+
+功能测试
+├─ BMS上电测试
+├─ BMS CAN通信测试
+├─ 主接触器动作测试
+├─ 预充测试
+├─ 充电允许测试
+├─ 放电允许测试
+└─ 回生允许测试
+
+保护测试
+├─ 过流保护测试
+├─ 欠压保护测试
+├─ 过温保护测试
+├─ 低温禁充测试
+├─ 接触器异常测试
+└─ 通信超时测试
+
+高电流测试
+├─ 连续放电温升测试
+├─ 峰值放电测试
+├─ 连续充电温升测试
+└─ 盲插连接器温升测试
+
+维护与安全测试
+├─ 半插入检测测试
+├─ 带载拔出阻止测试
+├─ Service Disconnect操作测试
+└─ 故障码记录测试</code></pre>
+<h3 id="sec-19-13">13. 供应商必须回答的问题</h3>
+<ol><li>是否具备15S LFP 300A连续等级电池包设计经验。</li><li>BMS是否支持300A连续、400–450A 10秒、500–600A 1秒。</li><li>BMS是否支持200A连续充电。</li><li>低温禁充是否为硬件级保护。</li><li>是否能提供完整CAN协议、DBC或寄存器表。</li><li>是否能提供故障码表和保护动作日志。</li><li>主接触器、主熔断器、Service Disconnect是否有DC参数和曲线。</li><li>是否能提供I²t初步协调。</li><li>是否能提供电池包温升测试。</li><li>是否接受所有源文件、图纸、协议和测试报告交付给ARCBOS。</li></ol>
+<h3 id="sec-20-14-a">14. A包验收标准</h3>
+<p>A包通过验收至少满足：</p>
+<ol><li>设计资料完整，不只交PDF宣传资料。</li><li>BMS CAN通信可被VCU读取。</li><li>低温硬件禁充可验证。</li><li>主接触器、预充、主熔断器逻辑清楚。</li><li>连续放电、峰值放电、连续充电能力有供应商资料和测试依据。</li><li>电池包接口、端子、盲插、锁止、半插入检测清楚。</li><li>故障码、日志、保护动作可追溯。</li><li>与B包、C包、I包接口清楚。</li></ol>
+<h3 id="sec-21-15-a">15. A包一票否决项</h3>
+<pre><code>A包一票否决项
+
+1. 低温禁充只靠软件
+2. BMS没有CAN故障码
+3. 无法证明300A连续能力
+4. 无法证明400–600A峰值能力
+5. 无法证明200A连续充电能力
+6. 主熔断器无DC分断能力资料
+7. 接触器无DC参数或无反馈策略
+8. Service Disconnect低于主路径电流等级且未说明限制
+9. 电池半插入仍可能上电
+10. 带载拔出没有硬件阻止
+11. 无温升测试计划
+12. 不交CAN协议、故障码和设计源文件</code></pre>
+<h3 id="sec-22-16-a">16. A包第一阶段工作顺序</h3>
+<pre><code>A包第一阶段工作顺序
+
+1. 确认15S1P Alpha与15S2P Beta/v1.0配置
+2. 确认BMS连续/峰值/充电能力
+3. 输出主回路初版单线图
+4. 输出主接触器、熔断器、Service Disconnect候选表
+5. 输出BMS CAN协议与故障码清单
+6. 输出低温禁充硬件逻辑
+7. 输出电池包接口与盲插方案
+8. 输出Alpha样包测试计划
+9. 与B包确认VCU读取与控制接口
+10. 与I包完成第一轮设计评审</code></pre>
+<h3 id="sec-23-17-a">17. A包完整责任覆盖与技术要求</h3>
+<p>本节明确A包必须承接的完整技术责任。A包不是只负责电芯和BMS，而是负责SnowBot整机48V能源系统的安全底座。</p>
+<h4 id="sec-24-17-1-a">17.1 A包必须承接的系统内容</h4>
+<div class="table-wrap"><table><tbody><tr><td>主方案主题</td><td>A包责任</td><td>要求</td></tr><tr><td>电压平台选择</td><td>主责</td><td>按48V LFP、15S系统设计，保留72V触发条件作为未来升级输入</td></tr><tr><td>电池系统方案</td><td>主责</td><td>覆盖15S1P Alpha、15S2P Beta/v1.0、电池模块结构、低温可用能量</td></tr><tr><td>BMS目标能力</td><td>主责</td><td>300A连续等级评估、400–450A 10秒、500–600A 1秒、200A连续充电</td></tr><tr><td>主回路与保护协调</td><td>主责</td><td>主熔断器、接触器、预充、Service Disconnect、I²t协调</td></tr><tr><td>热管理</td><td>主责/接口</td><td>电池预热、维温、温度采样、低温禁充、低温可用能量</td></tr><tr><td>线束与连接器</td><td>接口</td><td>提供电池端子、盲插接口、高电流连接器要求，与C包正式线束对接</td></tr><tr><td>故障诊断体系</td><td>主责</td><td>BMS故障码、保护动作日志、接触器状态、通信超时策略</td></tr><tr><td>认证与合规预留</td><td>主责</td><td>电池运输、安全、BMS保护、材料与测试资料必须预留</td></tr><tr><td>Alpha/Beta阶段要求</td><td>主责</td><td>Alpha交15S1P验证包，Beta交15S2P产品化接口</td></tr><tr><td>一票否决项</td><td>主责</td><td>低温禁充、带载拔出、半插入、温升、CAN、故障码不可缺失</td></tr></tbody></table></div>
+<h4 id="sec-25-17-2-bms">17.2 BMS详细要求</h4>
+<p>BMS必须提供的不只是电压、电流和SOC。BMS必须作为整机安全边界的一部分。</p>
+<pre><code>BMS补强要求
+
+精度与状态
+├─ SOC常温精度目标：±3%级
+├─ SOC低温精度目标：±5%级
+├─ SOH输出
+├─ SOP输出
+└─ 低温容量折损说明
+
+温度采样
+├─ 产品化温度点不少于6点或供应商给出等效理由
+├─ 覆盖冷点
+├─ 覆盖热源
+├─ 覆盖电池仓关键位置
+└─ 支持最低温度作为充电禁止判断依据
+
+允许信号
+├─ ChargeAllowed
+├─ DischargeAllowed
+├─ RegenAllowed
+├─ ContactorStatus
+└─ InterlockStatus
+
+日志与诊断
+├─ 保护动作时间戳
+├─ 保护原因
+├─ 故障码
+├─ 故障等级
+└─ 是否允许自动恢复</code></pre>
+<h4 id="sec-26-17-3">17.3 电池热管理责任</h4>
+<p>A包必须提供电池热管理设计边界，不能把电池热管理全部留给整机方。</p>
+<pre><code>电池热管理责任
+
+预热
+├─ 预热功率边界
+├─ 预热允许条件
+├─ 预热温度目标
+└─ 预热失败故障码
+
+维温
+├─ 作业维温功耗估算
+├─ 低温可用能量扣除说明
+├─ 与B包负载仲裁接口
+└─ 与C包低压/线束接口
+
+禁充
+├─ 任一电芯低于5°C禁止充电
+├─ 禁充必须硬件级实现
+├─ BMS向VCU输出ChargeAllowed
+└─ BMS向充电系统输出禁止条件</code></pre>
+<h4 id="sec-27-17-4">17.4 主回路保护协调要求</h4>
+<p>A包必须明确保护动作顺序，不得让熔断器承担普通堵转保护。</p>
+<pre><code>主回路保护协调
+
+普通重载或堵转趋势
+    ↓
+B包电机控制器限流
+    ↓
+B包VCU降额或停机
+    ↓
+A包BMS限流或断开
+    ↓
+支路熔断器处理硬故障
+    ↓
+主熔断器处理系统级严重故障</code></pre>
+<p>A包必须交付主熔断器时间-电流曲线、I²t初步协调、接触器热校核和电池包短路能力估算。没有这些资料，不得进入Beta冻结。</p>
+<h4 id="sec-28-17-5">17.5 认证与资料预留</h4>
+<p>A包必须从第一版开始准备认证和合规资料。</p>
+<pre><code>A包认证与资料预留
+
+电池运输
+├─ UN38.3资料
+└─ 电芯与电池包运输资料
+
+电池安全
+├─ 电芯规格书
+├─ BMS保护说明
+├─ 电芯安全测试资料
+├─ 电池包安全测试资料
+└─ 低温禁充证明
+
+产品化资料
+├─ 材料清单
+├─ 阻燃/绝缘材料说明
+├─ 高电流连接器资料
+├─ 温升测试资料
+├─ 盐雾/低温/振动资料
+└─ 维护说明</code></pre>
+<h4 id="sec-29-17-6-a">17.6 A包完整交付核对清单</h4>
+<pre><code>A包不得遗漏
+
+1. 15S1P Alpha电池包
+2. 15S2P Beta/v1.0电池包
+3. BMS CAN协议
+4. BMS故障码表
+5. ChargeAllowed / DischargeAllowed / RegenAllowed
+6. 300A连续等级评估
+7. 400–450A 10秒峰值评估
+8. 500–600A 1秒峰值评估
+9. 200A连续充电评估
+10. 低温硬件禁充
+11. 电池包结构设计
+12. 盲插连接器与半插入检测
+13. 带载拔出硬件阻止
+14. Service Disconnect可达性
+15. 主熔断器DC分断能力
+16. 主接触器与预充回路
+17. I²t初步协调
+18. 温升测试计划
+19. 低温、盐雾、热循环、振动验证资料
+20. 认证与运输资料预留</code></pre>
+<h3 id="sec-30-18-bms-can">18. BMS CAN接口与温升验证强制要求</h3>
+<p>本节定义A包必须满足的BMS通信接口、心跳超时、温升验证和新增否决要求。供应商必须按本节提交可集成、可测试、可验收的工程资料。</p>
+<h4 id="sec-31-18-1-bms-can">18.1 BMS CAN协议最低规范</h4>
+<p>A包不得只要求供应商“提供CAN协议”。供应商必须交付可直接用于VCU集成和仿真的标准化接口文件。</p>
+<pre><code>BMS CAN协议最低交付要求
+
+文件格式
+├─ 必须提供标准DBC文件
+├─ 必须提供可读版信号说明表
+├─ 必须提供故障码表
+├─ 必须提供通信超时处理说明
+└─ 不接受只交PDF截图或宣传手册
+
+CAN基础参数
+├─ CAN 2.0B
+├─ 11位或29位ID必须明确
+├─ 波特率必须明确，候选250kbps或500kbps
+├─ 周期报文刷新周期必须明确
+└─ 心跳帧必须定义
+
+VCU必须读取的核心信号
+├─ PackVoltage
+├─ PackCurrent
+├─ SOC
+├─ SOH
+├─ SOP
+├─ MinCellVoltage
+├─ MaxCellVoltage
+├─ MinCellTemperature
+├─ MaxCellTemperature
+├─ ChargeAllowed
+├─ DischargeAllowed
+├─ RegenAllowed
+├─ MainContactorStatus
+├─ PrechargeStatus
+├─ InterlockStatus
+├─ FaultLevel
+└─ FaultCode</code></pre>
+<h4 id="sec-32-18-2-bms-can">18.2 BMS CAN核心信号表</h4>
+<div class="table-wrap"><table><tbody><tr><td>信号</td><td>最低要求</td><td>用途</td></tr><tr><td>ChargeAllowed</td><td>1 bit或等效状态位，周期发送</td><td>VCU和充电系统判断是否允许充电</td></tr><tr><td>DischargeAllowed</td><td>1 bit或等效状态位，周期发送</td><td>VCU判断是否允许驱动和除雪</td></tr><tr><td>RegenAllowed</td><td>1 bit或等效状态位，周期发送</td><td>VCU执行满电下坡和回生限制</td></tr><tr><td>PackVoltage</td><td>必须定义单位、比例、偏移、有效范围</td><td>主母线监控和欠压保护</td></tr><tr><td>PackCurrent</td><td>必须定义充放电方向、单位、比例、偏移</td><td>负载仲裁、保护和日志</td></tr><tr><td>SOC</td><td>必须定义范围0–100%</td><td>续航、满电下坡、低电量策略</td></tr><tr><td>MinCellTemperature</td><td>必须可用于低温禁充判断</td><td>任一电芯低于5°C禁止充电</td></tr><tr><td>FaultCode</td><td>必须有故障码表和故障等级</td><td>VCU、日志、售后诊断</td></tr></tbody></table></div>
+<h4 id="sec-33-18-3">18.3 心跳与超时规则</h4>
+<pre><code>BMS通信超时最低规则
+
+心跳帧
+├─ 推荐周期：100ms以内
+├─ 最大允许周期：由A包供应商说明，I包批准
+└─ 必须包含BMS在线状态或递增计数
+
+VCU超时处理
+├─ BMS关键状态超过300ms未更新：VCU进入DERATE或保持安全状态
+├─ BMS关键状态超过1s未更新：VCU禁止新动作
+├─ BMS关键状态超过3s未更新：VCU进入FAULT_STOP或LOCAL_SAFE
+└─ 具体时间可在系统集成测试后由I包冻结</code></pre>
+<p>以上时间为Alpha阶段建议初值。供应商如提出不同时间，必须说明理由，并经I包批准。</p>
+<h4 id="sec-34-18-4">18.4 高电流温升测试通过标准</h4>
+<p>A包必须为温升测试提供量化通过标准，不能只写“完成温升测试”。</p>
+<pre><code>温升测试最低通过标准
+
+200A连续充电路径
+├─ 按200A连续运行到温度稳定
+├─ 高电流连接器端子温升目标≤30K，或不超过连接器厂家额定温升
+├─ 线缆外皮温度不得超过材料额定值
+└─ 接触电阻不得出现异常上升
+
+250–300A主放电路径
+├─ 按设计连续电流运行到温度稳定
+├─ 端子、铜排、线缆、接触器、熔断器座均需测温
+├─ 任何测点不得超过器件额定温度
+└─ 温升结果必须进入A包测试报告
+
+盲插连接器
+├─ 分别测试充电电流和放电电流工况
+├─ 插拔后复测接触电阻
+└─ 低温/盐雾/振动后复测接触电阻</code></pre>
+<h4 id="sec-35-18-5-a">18.5 A包新增一票否决项</h4>
+<pre><code>A包新增一票否决项
+
+1. 只提供PDF协议说明，不提供DBC文件或可集成信号表。
+2. BMS没有ChargeAllowed、DischargeAllowed、RegenAllowed三个关键状态。
+3. BMS通信无心跳或无超时处理说明。
+4. 温升测试无量化通过标准。
+5. 200A充电路径和250–300A主放电路径未分别进行温升验证。</code></pre>
+      </section>
+      <footer class="document-footer">
+        <div class="footer-row">
+          <span class="footer-brand">ARCBOS</span>
+          <span class="footer-ref">ARCBOS-SPEC-2606-0013 · Version v1.0</span>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
